@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.319">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>🧠 EEG-2023 - The EEG Motor Movement/Imagery Dataset</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      🧠 EEG-2023
+      </li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">🧠 EEG-2023</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Course</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ℹ️ Organisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📆 Schedule</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../semesterproject.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📋 Descriptions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../grading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Grading</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../milestones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎯 Milestones</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Exercises</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ℹ️ Organisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises/exercises.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🏋️‍♂️ Exercise sheets</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Resources</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../bibliography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📚 Bibliography</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../software.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">💻 Software</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#big-picture" id="toc-big-picture" class="nav-link active" data-scroll-target="#big-picture">Big picture:</a></li>
+  <li><a href="#lets-get-started" id="toc-lets-get-started" class="nav-link" data-scroll-target="#lets-get-started">Let’s get started</a></li>
+  <li><a href="#csp-feature-selection" id="toc-csp-feature-selection" class="nav-link" data-scroll-target="#csp-feature-selection">CSP Feature Selection</a></li>
+  <li><a href="#lda-classification" id="toc-lda-classification" class="nav-link" data-scroll-target="#lda-classification">LDA Classification</a></li>
+  <li><a href="#crossvalidation" id="toc-crossvalidation" class="nav-link" data-scroll-target="#crossvalidation">Crossvalidation</a></li>
+  <li><a href="#decoding-via-pipeline" id="toc-decoding-via-pipeline" class="nav-link" data-scroll-target="#decoding-via-pipeline">Decoding via Pipeline</a></li>
+  <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a>
+  <ul class="collapse">
+  <li><a href="#remove-csp" id="toc-remove-csp" class="nav-link" data-scroll-target="#remove-csp">Remove CSP</a></li>
+  <li><a href="#classify-over-time" id="toc-classify-over-time" class="nav-link" data-scroll-target="#classify-over-time">Classify over time</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The EEG Motor Movement/Imagery Dataset</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext autoreload</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The autoreload extension is already loaded. To reload it, use:
+  %reload_ext autoreload</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>,<span class="st">".."</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pylab <span class="im">as</span> pl</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn.pipeline</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn.model_selection</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.discriminant_analysis <span class="im">import</span> LinearDiscriminantAnalysis</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne.decoding</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ccs_eeg_utils</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> ccs_eeg_utils.get_classification_dataset(typeInt<span class="op">=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>loading subject 1 with runs [6, 10, 14]
+Extracting EDF parameters from /home/ehinger/mne_data/MNE-eegbci-data/files/eegmmidb/1.0.0/S001/S001R06.edf...
+EDF file detected
+Setting channel info structure...
+Creating raw.info structure...
+Reading 0 ... 19999  =      0.000 ...   124.994 secs...
+Extracting EDF parameters from /home/ehinger/mne_data/MNE-eegbci-data/files/eegmmidb/1.0.0/S001/S001R10.edf...
+EDF file detected
+Setting channel info structure...
+Creating raw.info structure...
+Reading 0 ... 19999  =      0.000 ...   124.994 secs...
+Extracting EDF parameters from /home/ehinger/mne_data/MNE-eegbci-data/files/eegmmidb/1.0.0/S001/S001R14.edf...
+EDF file detected
+Setting channel info structure...
+Creating raw.info structure...
+Reading 0 ... 19999  =      0.000 ...   124.994 secs...
+Filtering raw data in 3 contiguous segments
+Setting up band-pass filter from 7 - 30 Hz
+
+FIR filter parameters
+---------------------
+Designing a one-pass, zero-phase, non-causal bandpass filter:
+- Windowed time-domain design (firwin) method
+- Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
+- Lower passband edge: 7.00
+- Lower transition bandwidth: 2.00 Hz (-6 dB cutoff frequency: 6.00 Hz)
+- Upper passband edge: 30.00 Hz
+- Upper transition bandwidth: 7.50 Hz (-6 dB cutoff frequency: 33.75 Hz)
+- Filter length: 265 samples (1.656 sec)
+
+Used Annotations descriptions: ['T1', 'T2']
+Not setting metadata
+45 matching events found
+No baseline correction applied
+0 projection items activated
+Using data from preloaded Raw for 45 events and 801 original time points ...
+0 bad epochs dropped</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>epochs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<div class="table-responsive">
+<table class="table table-hover table-striped table-sm small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Number of events</td>
+<td>45</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Events</td>
+<td>feet: 24<br>
+hands: 21</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Time range</td>
+<td>-1.000 – 4.000 sec</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Baseline</td>
+<td>off</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Information on the dataset at hand can be found <a href="https://physionet.org/content/eegmmidb/1.0.0/">here</a> - a total of 109 subjects exist.</p>
+<section id="big-picture" class="level3">
+<h3 class="anchored" data-anchor-id="big-picture">Big picture:</h3>
+<p>Subjects imagine opening left &amp; right hand or hand &amp; feet. We want to decode which they do, in case they are doing that for real, or when they are just imagining it (brain reading 🤯!)</p>
+<ul>
+<li><p>We will use Common Spatial Patterns to get a good feature space and LinearDiscriminatAnalysis as a simple decoder. Of course you can always change things up and see how it changes.</p></li>
+<li><p>We will use cross-validation to preclude overfitting</p></li>
+<li><p>We will apply the weights over all timepoints to get a score across time</p></li>
+</ul>
+</section>
+<section id="lets-get-started" class="level3">
+<h3 class="anchored" data-anchor-id="lets-get-started">Let’s get started</h3>
+<p>Our training data should exclude the evoked response, because it will not be sustained throughout the trial. We will make a copy of the epochs and crop it between 1 and 2 seconds (<code>epochs_train.crop(tmin=1.,tmax=2.)</code>)</p>
+<p><strong>T:</strong> To get a first look at the training data, 1) average the epochs_train over time and plot the channels C3 and C4 as x/y axis in a scatter plot. Color the datapoints according to the labels. Data you can get using <code>.get_data(picks=["C3","C4"])</code>, labels via <code>.events</code></p>
+<p><strong>Q:</strong> Would this be easy or difficult to separate with a linear classifier?</p>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>epochs_train <span class="op">=</span> epochs.copy().crop(tmin<span class="op">=</span><span class="fl">1.</span>, tmax<span class="op">=</span><span class="fl">2.</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> epochs_train.get_data(picks<span class="op">=</span>[<span class="st">'C3'</span>,<span class="st">'C4'</span>]).mean(axis<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> epochs.events[:,<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(labels)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(data[:,<span class="dv">0</span>],data[:,<span class="dv">1</span>],color<span class="op">=</span>np.array([<span class="st">"red"</span>,<span class="st">"green"</span>])[labels<span class="op">-</span><span class="dv">2</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[3 2 2 3 2 3 3 2 2 3 3 2 2 3 3 2 3 3 2 3 2 2 3 3 2 2 3 3 2 3 3 2 3 2 2 3 2
+ 3 2 3 3 2 3 2 3]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex10_decoding_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="csp-feature-selection" class="level3">
+<h3 class="anchored" data-anchor-id="csp-feature-selection">CSP Feature Selection</h3>
+<p>We can define a CommonSpatialPatterns object using <code>csp = mne.decoding.CSP(n_components=2)</code></p>
+<p>To fit the CSP we have to give it the data and the labels. For now we just want to look at the CSP, not run a classifier for it, so we dont worry about any overfit etc.</p>
+<p><strong>T:</strong> <code>csp.fit_transform(epochs_data, labels)</code> will fit it and <code>csp.plot_filters(epochs.info)</code> and <code>csp.plot_patterns(epochs.info)</code> will plot filter and activation.</p>
+<p><strong>Q:</strong> Let’s say you invite a subject again, but are allowed to only measure 5 channels not the 64. Which of the two plots would you choose to inform which channels to measure? In other words, does any of the plot tell you where the information to decode is strongest?</p>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>csp <span class="op">=</span> mne.decoding.CSP(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>csp.fit_transform(epochs.get_data(), labels)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>csp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Computing rank from data with rank=None
+    Using tolerance 0.00025 (2.2e-16 eps * 64 dim * 1.7e+10  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.00026 (2.2e-16 eps * 64 dim * 1.9e+10  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<pre><code>CSP(component_order='mutual_info', cov_est='concat', cov_method_params=None,
+  log=None, n_components=2, norm_trace=False, rank=None, reg=None,
+  transform_into='average_power')</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>csp <span class="op">=</span> mne.decoding.CSP(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>csp.fit_transform(epochs.get_data(), labels)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>csp.plot_filters(epochs.info)<span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>csp.plot_patterns(epochs.info)<span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Computing rank from data with rank=None
+    Using tolerance 0.00025 (2.2e-16 eps * 64 dim * 1.7e+10  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.00026 (2.2e-16 eps * 64 dim * 1.9e+10  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex10_decoding_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex10_decoding_files/figure-html/cell-8-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>T:</strong> Finally, let’s weight/transform the data to the fitted CSP components using <code>csp_data = csp.transform(data)</code>. Note that because <code>csp(...,transform_into="average_power")</code> is set by default, we will get data without a time-dimension, thus already aggregated. Plot the datapoints against each other, how easy is it now to define a classifier?</p>
+<div class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>epochs.get_data().shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>(45, 64, 801)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>csp_data <span class="op">=</span> csp.transform(epochs.get_data())</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>csp_data.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="50">
+<pre><code>(45, 2)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>csp_data <span class="op">=</span> csp.transform(epochs.get_data())</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(csp_data[:,<span class="dv">0</span>],csp_data[:,<span class="dv">1</span>],color<span class="op">=</span>np.array([<span class="st">"red"</span>,<span class="st">"green"</span>])[labels<span class="op">-</span><span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7fb687357ee0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex10_decoding_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="lda-classification" class="level3">
+<h3 class="anchored" data-anchor-id="lda-classification">LDA Classification</h3>
+<p>Let’s use the LDA classifier (you could use any other if you fancy, up to you - LDA is a fast and simple one).</p>
+<p>You need to: 1. Construct the classifier via</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.discriminant_analysis <span class="im">import</span> LinearDiscriminantAnalysis</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>lda <span class="op">=</span> LinearDiscriminantAnalysis()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li><p>Reshape the csp_data to conform to labels x features (2D instead of 3D) e.g.&nbsp;using <code>flattenData = csp_data.reshape(csp_data.shape[0],-1)</code></p></li>
+<li><p>Fit the LDA using <code>lda.fit(data,labels)</code></p></li>
+<li><p>Score it using <code>lda.score(data,labels)</code></p></li>
+</ol>
+<p><em>Note: we are doing a cardinal sin: Training and testing on the same data. How to fix that is next.</em></p>
+<p><strong>T:</strong> How well can you classify?</p>
+<div class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>csp_data.reshape(csp_data.shape[<span class="dv">0</span>],<span class="op">-</span><span class="dv">1</span>).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>(45, 2)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.discriminant_analysis <span class="im">import</span> LinearDiscriminantAnalysis</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>lda <span class="op">=</span> LinearDiscriminantAnalysis()</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># flattenData = csp_data.reshape(csp_data.shape[0],-1)</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>lda.fit(csp_data, labels) <span class="co"># fit on training</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lda.score(csp_data,labels))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.9777777777777777</code></pre>
+</div>
+</div>
+</section>
+<section id="crossvalidation" class="level3">
+<h3 class="anchored" data-anchor-id="crossvalidation">Crossvalidation</h3>
+<p>To work against overfitting, we use crossvalidate and use some functions from sklearn for it. We will use a stratifiedShuffleSplit, which will split our data in training and test sets, but in a stratified way. Thus we dont have to worry about under/oversampling between our classes for now.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> sklearn.model_selection.StratifiedShuffleSplit(<span class="dv">10</span>, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>cv_split <span class="op">=</span> cv.split(epochs_train.get_data(),labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next we can walk though each test/train, fit CSP, fit LDA and evaluate. I will give you the skeleton and you only have to fill in the XXX to speed up programming :).</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>score_list <span class="op">=</span> []</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> train_idx, test_idx <span class="kw">in</span> cv_split:</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    y_train, y_test <span class="op">=</span> labels[train_idx], labels[test_idx]</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    csp.fit_transform(epochs_train.get_data()[XXX_idx], y_XXX)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    X_train <span class="op">=</span> csp.transform(epochs_train.get_data()[XXX_idx])</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    X_test  <span class="op">=</span> csp.transform(epochs_train.get_data()[XXX_idx])</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    lda.fit(X_XXX, y_XXX) </span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> lda.score(X_XXX,y_XXX)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    score_list.append(score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">### Crossvalidation</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> sklearn.model_selection.StratifiedShuffleSplit(<span class="dv">10</span>, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>cv_split <span class="op">=</span> cv.split(epochs_train.get_data(),labels)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="bu">next</span>(cv_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<pre><code>(array([ 1, 19, 37, 28, 27, 14, 26, 18, 17, 25, 34, 20, 11, 35,  5, 44,  9,
+        32, 30, 15, 29, 33,  6,  7,  4, 24,  8, 13, 10, 36, 40, 16, 38, 43,
+        23,  2]),
+ array([42, 41, 31, 21,  3, 39,  0, 22, 12]))</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">### Crossvalidation</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> sklearn.model_selection.StratifiedShuffleSplit(<span class="dv">10</span>, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>cv_split <span class="op">=</span> cv.split(epochs_train.get_data(),labels)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>score_list <span class="op">=</span> []</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> train_idx, test_idx <span class="kw">in</span> cv_split:</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    y_train, y_test <span class="op">=</span> labels[train_idx], labels[test_idx]</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    csp.fit_transform(epochs_train.get_data()[train_idx], y_train)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    X_train <span class="op">=</span> csp.transform(epochs_train.get_data()[train_idx])</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    X_test <span class="op">=</span> csp.transform(epochs_train.get_data()[test_idx])</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    lda.fit(X_train, y_train) <span class="co"># fit on training</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> lda.score(X_test,y_test)</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    score_list.append(score)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.mean(score_list))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Computing rank from data with rank=None
+    Using tolerance 0.00012 (2.2e-16 eps * 64 dim * 8.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.00012 (2.2e-16 eps * 64 dim * 8.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 9.9e-05 (2.2e-16 eps * 64 dim * 7e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.00011 (2.2e-16 eps * 64 dim * 8e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 9.8e-05 (2.2e-16 eps * 64 dim * 6.9e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 9.8e-05 (2.2e-16 eps * 64 dim * 6.9e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 9.8e-05 (2.2e-16 eps * 64 dim * 6.9e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.00012 (2.2e-16 eps * 64 dim * 8.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 9.9e-05 (2.2e-16 eps * 64 dim * 7e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 9.9e-05 (2.2e-16 eps * 64 dim * 7e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.00012 (2.2e-16 eps * 64 dim * 8.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+0.9111111111111111</code></pre>
+</div>
+</div>
+</section>
+<section id="decoding-via-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="decoding-via-pipeline">Decoding via Pipeline</h3>
+<p>Typically you would like to use a pipeline-system to easily exchange components. We are using the scikit pipeline We need several incredients:</p>
+<ol type="1">
+<li>Training-Data &amp; labels</li>
+<li>Pipeline with feature selection (CSP) &amp; Classifier (LDA)</li>
+<li>Cross-Validation scheme</li>
+</ol>
+<section id="implementation" class="level4">
+<h4 class="anchored" data-anchor-id="implementation">Implementation</h4>
+<ol start="2" type="1">
+<li>CSP and LDA &amp; pipeline</li>
+</ol>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.discriminant_analysis <span class="im">import</span> LinearDiscriminantAnalysis</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne.decoding</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>lda <span class="op">=</span> LinearDiscriminantAnalysis()</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>csp <span class="op">=</span> mne.decoding.CSP(n_components<span class="op">=</span><span class="dv">2</span>) <span class="co"># default is 4, typically youd like to do a nested cross-val hyperparam search. 2 is likely too low</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> <span class="kw">and</span> the pipeline simply:</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> sklearn.pipeline.Pipeline([(<span class="st">'CSP'</span>, csp), (<span class="st">'LDA'</span>, lda)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>The sklearn Cross-validation pipeline is run like this</li>
+</ol>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn.model_selection</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> sklearn.model_selection.StratifiedShuffleSplit(<span class="dv">10</span>, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> sklearn.model_selection.cross_val_score(pipe, trainingData, labels, cv<span class="op">=</span>cv, n_jobs<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>lda <span class="op">=</span> LinearDiscriminantAnalysis()</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>csp <span class="op">=</span> mne.decoding.CSP(n_components<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> sklearn.pipeline.Pipeline([(<span class="st">'CSP'</span>, csp), (<span class="st">'LDA'</span>, lda)])</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> sklearn.model_selection.StratifiedShuffleSplit(<span class="dv">10</span>, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> sklearn.model_selection.cross_val_score(pipe, epochs_train.get_data(), labels, cv<span class="op">=</span>cv, n_jobs<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Computing rank from data with rank=None
+    Using tolerance 0.00012 (2.2e-16 eps * 64 dim * 8.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.00012 (2.2e-16 eps * 64 dim * 8.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 9.9e-05 (2.2e-16 eps * 64 dim * 7e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.00011 (2.2e-16 eps * 64 dim * 8e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 9.8e-05 (2.2e-16 eps * 64 dim * 6.9e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 9.8e-05 (2.2e-16 eps * 64 dim * 6.9e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 9.8e-05 (2.2e-16 eps * 64 dim * 6.9e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.00012 (2.2e-16 eps * 64 dim * 8.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 9.9e-05 (2.2e-16 eps * 64 dim * 7e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 9.9e-05 (2.2e-16 eps * 64 dim * 7e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.00012 (2.2e-16 eps * 64 dim * 8.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 0.0001 (2.2e-16 eps * 64 dim * 7.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.mean(scores))</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scores)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(score_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.9111111111111111
+[1.         1.         0.88888889 0.88888889 0.77777778 0.88888889
+ 0.88888889 1.         1.         0.77777778]
+[1.0, 1.0, 0.8888888888888888, 0.8888888888888888, 0.7777777777777778, 0.8888888888888888, 0.8888888888888888, 1.0, 1.0, 0.7777777777777778]</code></pre>
+</div>
+</div>
+<p><strong>Q:</strong> What is the accuracy of the classifier? What is the chance level?</p>
+<div class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Accuracy: </span><span class="sc">{:.1f}</span><span class="st">%, "</span>.<span class="bu">format</span>(scores.mean()<span class="op">*</span><span class="dv">100</span>))</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># chance level should be 50% because we used stratified cross validation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy: 91.1%, </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="extensions" class="level2">
+<h2 class="anchored" data-anchor-id="extensions">Extensions</h2>
+<p>This formulations with the pipelines etc. is neat, because we can simply exchange parts of the pipeline and see what happens. Note though, that you are performing multiple testing and are very easily overfitting to your dataset.</p>
+<p>Thus in principle, you would like to explore some options with one set of subjects, then test the pipeline on another set of subjects. But this is a bit too involved for the homework.</p>
+<section id="remove-csp" class="level3">
+<h3 class="anchored" data-anchor-id="remove-csp">Remove CSP</h3>
+<p>Instead of applying a feature selection, maybe we can learn from the “raw” data? <strong>T:</strong> Replace the “csd” in the pipeline with <code>mne.decoding.Vectorizer()</code>, this will ensure the reshaping of the features we performed earlier.</p>
+<p><strong>Q:</strong> What is the accuracy now?</p>
+<div class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>pipe_simple <span class="op">=</span> sklearn.pipeline.Pipeline([(<span class="st">'vector'</span>,mne.decoding.Vectorizer()),(<span class="st">'LDA'</span>, lda)])</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> sklearn.model_selection.StratifiedShuffleSplit(<span class="dv">10</span>, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> sklearn.model_selection.cross_val_score(pipe_simple, epochs_train.get_data(), labels, cv<span class="op">=</span>cv, n_jobs<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Accuracy: </span><span class="sc">{:.1f}</span><span class="st">%, "</span>.<span class="bu">format</span>(scores.mean()<span class="op">*</span><span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy: 51.1%, </code></pre>
+</div>
+</div>
+</section>
+<section id="classify-over-time" class="level3">
+<h3 class="anchored" data-anchor-id="classify-over-time">Classify over time</h3>
+<p>Next we will fit a classifier for each timepoint and test it on that timepoint (you have to use the simple pipeline, see below) For this the convenience function <code>timeDecode = mne.decoding.SlidingEstimator(pipe)</code> exists. This function performs the pipeline on the last dimension (which is currently time).</p>
+<p>Because we will get multiple scores per cross-val, we also have to switch our scorer to <code>mne.decoding.cross_val_multiscore(timeDecode,...)</code>.</p>
+<p><strong>T:</strong> Plot the performance against time</p>
+<p><strong>Bonus T:</strong> You can also use <code>mne.decoding.GeneralizingEstimator(...)</code> to get the temporal decoding matrix (increased runtime warning)</p>
+<div class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>timeDecode <span class="op">=</span> mne.decoding.SlidingEstimator(pipe_simple)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> mne.decoding.cross_val_multiscore(timeDecode, epochs.copy().resample(<span class="dv">20</span>).get_data(), labels, cv<span class="op">=</span>cv,n_jobs<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"3f9a68dda08d49709856bd15234d23b5","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"78a046add74f4abb83fbc97d552eb763","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"8095c26c48fd4896b893797ddf30f2f9","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"b6a2bd42c0b3475f89859acc87a717cb","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"61d630f1e04b49318f6d501a89f376fd","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"c8f77d7a7dee426c832751ae8402ff2c","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"1322525045834e18bc68697db13cb8e0","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"51b532eefb704640943086fdce0f9f4a","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"5fd0909e4b294b27abf41dbeb9fa1bf2","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"ca7d31fe1afe446bb498a67e2a5c3883","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+</div>
+<div class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>plt.plot(epochs.copy().resample(<span class="dv">20</span>).times,scores.mean(axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>plt.hlines(<span class="fl">0.5</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">4</span>,<span class="st">'k'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="72">
+<pre><code>&lt;matplotlib.collections.LineCollection at 0x7fb67badead0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex10_decoding_files/figure-html/cell-22-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>timeDecode <span class="op">=</span> mne.decoding.GeneralizingEstimator(pipe_simple)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> mne.decoding.cross_val_multiscore(timeDecode, epochs.copy().resample(<span class="dv">20</span>).get_data(), labels, cv<span class="op">=</span><span class="dv">2</span>,n_jobs<span class="op">=</span><span class="dv">1</span>) <span class="co"># resample speeds it up a lot! </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"3cb942eb7f424e079377e9fc6f619c58","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"b8179f71bd2f4a5eb3234ee5f7b371b3","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"22aa009cf81a4e9995f459a6bac7d47a","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"6af0c1730cea4085bce490c179488ca7","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+</div>
+<p>You might be surprised - or not - by the performance you observed. Applying this to a dataset with actual evoked responses, will likely be much more satisfactory.</p>
+<p>The reason seems clear, we would need CSP in between. But CSP needs multiple timepoints and doesntwork with SlidingEstimator. We have to do it manually.</p>
+<div class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> plt.imshow(scores.mean(axis<span class="op">=</span><span class="dv">0</span>), interpolation<span class="op">=</span><span class="st">'lanczos'</span>, origin<span class="op">=</span><span class="st">'lower'</span>, cmap<span class="op">=</span><span class="st">'RdBu_r'</span>,vmin<span class="op">=</span><span class="fl">0.2</span>, vmax<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="74">
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x7fb67bd27b50&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex10_decoding_files/figure-html/cell-24-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.diag(scores.mean(axis<span class="op">=</span><span class="dv">0</span>)))</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>plt.hlines(<span class="fl">0.5</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">100</span>,<span class="st">'k'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="75">
+<pre><code>&lt;matplotlib.collections.LineCollection at 0x7fb67bbb4730&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex10_decoding_files/figure-html/cell-25-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>w_size <span class="op">=</span> <span class="fl">0.7</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>timeVec <span class="op">=</span> epochs.copy().resample(<span class="dv">40</span>).times</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>timeVec <span class="op">=</span> timeVec[::<span class="dv">10</span>]</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>t_scores <span class="op">=</span> np.zeros(<span class="bu">len</span>(timeVec))</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t, w_time <span class="kw">in</span> <span class="bu">enumerate</span>(timeVec):</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="sc">{}</span><span class="st">/</span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(t,<span class="bu">len</span>(timeVec)))</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Center the min and max of the window</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>        w_tmin <span class="op">=</span> w_time <span class="op">-</span> w_size <span class="op">/</span> <span class="fl">2.</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>        w_tmax <span class="op">=</span> w_time <span class="op">+</span> w_size <span class="op">/</span> <span class="fl">2.</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># stop the program if the timewindow is outside of our epoch</span></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> w_tmin <span class="op">&lt;</span> timeVec[<span class="dv">0</span>]:</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> w_tmax <span class="op">&gt;</span> timeVec[<span class="bu">len</span>(timeVec)<span class="op">-</span><span class="dv">1</span>]:</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Crop data into time-window of interest</span></span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> epochs.copy().resample(<span class="dv">40</span>).crop(w_tmin, w_tmax).get_data()</span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Save mean scores over folds for each frequency and time window</span></span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>        t_scores[t] <span class="op">=</span> np.mean( sklearn.model_selection.cross_val_score(estimator<span class="op">=</span>pipe, X<span class="op">=</span>X, y<span class="op">=</span>labels,</span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>                                                     scoring<span class="op">=</span><span class="st">'roc_auc'</span>, cv<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a>                                                     n_jobs<span class="op">=</span><span class="dv">1</span>), axis<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0/20
+1/20
+2/20
+Computing rank from data with rank=None
+    Using tolerance 3.1e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.2e-05 (2.2e-16 eps * 64 dim * 2.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.1e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.5e-05 (2.2e-16 eps * 64 dim * 2.4e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+3/20
+Computing rank from data with rank=None
+    Using tolerance 3.1e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.1e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.3e-05 (2.2e-16 eps * 64 dim * 2.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.3e-05 (2.2e-16 eps * 64 dim * 2.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+4/20
+Computing rank from data with rank=None
+    Using tolerance 3.3e-05 (2.2e-16 eps * 64 dim * 2.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.3e-05 (2.2e-16 eps * 64 dim * 2.4e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.5e-05 (2.2e-16 eps * 64 dim * 2.5e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.6e-05 (2.2e-16 eps * 64 dim * 2.5e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+5/20
+Computing rank from data with rank=None
+    Using tolerance 2.9e-05 (2.2e-16 eps * 64 dim * 2.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.4e-05 (2.2e-16 eps * 64 dim * 2.4e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.4e-05 (2.2e-16 eps * 64 dim * 2.4e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.5e-05 (2.2e-16 eps * 64 dim * 2.5e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+6/20
+Computing rank from data with rank=None
+    Using tolerance 3.1e-05 (2.2e-16 eps * 64 dim * 2.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.5e-05 (2.2e-16 eps * 64 dim * 2.4e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.2e-05 (2.2e-16 eps * 64 dim * 2.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.5e-05 (2.2e-16 eps * 64 dim * 2.5e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+7/20
+Computing rank from data with rank=None
+    Using tolerance 2.8e-05 (2.2e-16 eps * 64 dim * 1.9e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.1e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 2.9e-05 (2.2e-16 eps * 64 dim * 2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.3e-05 (2.2e-16 eps * 64 dim * 2.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+8/20
+Computing rank from data with rank=None
+    Using tolerance 2.8e-05 (2.2e-16 eps * 64 dim * 1.9e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 2.9e-05 (2.2e-16 eps * 64 dim * 2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.2e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.3e-05 (2.2e-16 eps * 64 dim * 2.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+9/20
+Computing rank from data with rank=None
+    Using tolerance 2.7e-05 (2.2e-16 eps * 64 dim * 1.9e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.1e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.4e-05 (2.2e-16 eps * 64 dim * 2.4e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3e-05 (2.2e-16 eps * 64 dim * 2.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+10/20
+Computing rank from data with rank=None
+    Using tolerance 3.1e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.1e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 4.3e-05 (2.2e-16 eps * 64 dim * 3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.2e-05 (2.2e-16 eps * 64 dim * 2.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+11/20
+Computing rank from data with rank=None
+    Using tolerance 2.9e-05 (2.2e-16 eps * 64 dim * 2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.1e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 4.1e-05 (2.2e-16 eps * 64 dim * 2.9e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.2e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+12/20
+Computing rank from data with rank=None
+    Using tolerance 2.9e-05 (2.2e-16 eps * 64 dim * 2.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3e-05 (2.2e-16 eps * 64 dim * 2.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 4e-05 (2.2e-16 eps * 64 dim * 2.8e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.2e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+13/20
+Computing rank from data with rank=None
+    Using tolerance 2.7e-05 (2.2e-16 eps * 64 dim * 1.9e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.2e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.1e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.2e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+14/20
+Computing rank from data with rank=None
+    Using tolerance 3e-05 (2.2e-16 eps * 64 dim * 2.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.2e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3e-05 (2.2e-16 eps * 64 dim * 2.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.4e-05 (2.2e-16 eps * 64 dim * 2.4e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+15/20
+Computing rank from data with rank=None
+    Using tolerance 2.8e-05 (2.2e-16 eps * 64 dim * 1.9e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.1e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.2e-05 (2.2e-16 eps * 64 dim * 2.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.3e-05 (2.2e-16 eps * 64 dim * 2.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+16/20
+Computing rank from data with rank=None
+    Using tolerance 2.7e-05 (2.2e-16 eps * 64 dim * 1.9e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.3e-05 (2.2e-16 eps * 64 dim * 2.3e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3e-05 (2.2e-16 eps * 64 dim * 2.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3e-05 (2.2e-16 eps * 64 dim * 2.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+17/20
+Computing rank from data with rank=None
+    Using tolerance 2.4e-05 (2.2e-16 eps * 64 dim * 1.7e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.5e-05 (2.2e-16 eps * 64 dim * 2.5e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3e-05 (2.2e-16 eps * 64 dim * 2.1e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+Computing rank from data with rank=None
+    Using tolerance 3.1e-05 (2.2e-16 eps * 64 dim * 2.2e+09  max singular value)
+    Estimated rank (mag): 64
+    MAG: rank 64 computed from 64 data channels with 0 projectors
+Reducing data rank from 64 -&gt; 64
+Estimating covariance using EMPIRICAL
+Done.
+18/20
+19/20</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>plt.plot(timeVec,t_scores,<span class="st">'o-'</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>plt.hlines(<span class="fl">0.5</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">4</span>,<span class="st">'k'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="81">
+<pre><code>&lt;matplotlib.collections.LineCollection at 0x7fb687435d20&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex10_decoding_files/figure-html/cell-27-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

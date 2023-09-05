@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.319">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>🧠 EEG-2023 – ex4_ica</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      🧠 EEG-2023
+      </li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">🧠 EEG-2023</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Course</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ℹ️ Organisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📆 Schedule</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../semesterproject.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📋 Descriptions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../grading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Grading</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../milestones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎯 Milestones</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Exercises</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ℹ️ Organisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises/exercises.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🏋️‍♂️ Exercise sheets</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Resources</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../bibliography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📚 Bibliography</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../software.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">💻 Software</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>,<span class="st">".."</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ccs_eeg_utils</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> ccs_eeg_utils.simulate_ICA(dims<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x.T)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex4_ICA_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> scp</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> whiten(x):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    mM <span class="op">=</span> np.mean(x,axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    sph <span class="op">=</span> np.linalg.inv(scp.linalg.sqrtm(np.cov(x)))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    xM <span class="op">=</span> np.subtract(x.T,mM)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    whiteX <span class="op">=</span> np.matmul(sph,xM.T)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> whiteX</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>whiteX <span class="op">=</span> whiten(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.plot(whiteX.T)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex4_ICA_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.plot(whiteX[<span class="dv">0</span>,:],whiteX[<span class="dv">1</span>,:],<span class="st">'bo'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x[<span class="dv">0</span>,:],x[<span class="dv">1</span>,:],<span class="st">'ro'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex4_ICA_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arbitrary 2d rotation matrix</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>turn <span class="op">=</span><span class="kw">lambda</span> k: np.reshape(np.array([np.cos(k), np.sin(k), <span class="op">-</span>np.sin(k), np.cos(k)]),(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>kurt <span class="op">=</span> []</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># rotate from 0 to pi</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span><span class="op">*</span>np.pi,<span class="dv">1000</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> l <span class="kw">in</span> r:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># turn </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    x_bar <span class="op">=</span> np.matmul(turn(l),whiteX)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calc kurtosis</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    kurt.append(np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(scp.stats.kurtosis(x_bar,axis<span class="op">=</span><span class="dv">1</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.plot(r<span class="op">/</span>np.pi<span class="op">*</span><span class="dv">180</span>,kurt)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>best_turn <span class="op">=</span> r[np.argmax(kurt)]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(best_turn<span class="op">/</span>np.pi<span class="op">*</span><span class="dv">180</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>224.14414414414412</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex4_ICA_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x_unmixed <span class="op">=</span> np.matmul(turn(best_turn),whiteX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x_unmixed <span class="op">=</span> np.matmul(turn(<span class="fl">45.</span> <span class="op">/</span><span class="dv">180</span> <span class="op">*</span> np.pi),whiteX)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x_unmixed.T)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x_unmixed <span class="op">=</span> np.matmul(turn(<span class="fl">135.</span> <span class="op">/</span><span class="dv">180</span> <span class="op">*</span> np.pi),whiteX)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x_unmixed.T)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>x_unmixed <span class="op">=</span> np.matmul(turn((<span class="fl">180.</span> <span class="op">+</span> <span class="fl">45.</span>) <span class="op">/</span><span class="dv">180</span> <span class="op">*</span> np.pi),whiteX)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.plot(x_unmixed.T)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x.T)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x_unmixed.T)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex4_ICA_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> ccs_eeg_utils.simulate_ICA(dims<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x.T)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex4_ICA_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>unmix <span class="op">=</span> mne.preprocessing.infomax(x.T,verbose<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Computing Extended Infomax ICA
+step 1 - lrate 0.007213, wchange 439.64796958, angledelta  0.0 deg
+step 2 - lrate 0.007213, wchange 147.64923695, angledelta  0.0 deg
+step 3 - lrate 0.007213, wchange 9.17729304, angledelta 149.8 deg
+step 4 - lrate 0.006492, wchange 3.00857525, angledelta 152.3 deg
+step 5 - lrate 0.005843, wchange 0.28983694, angledelta 131.5 deg
+step 6 - lrate 0.005259, wchange 2.55396760, angledelta 63.3 deg
+step 7 - lrate 0.004733, wchange 1.25576871, angledelta 129.9 deg
+step 8 - lrate 0.004259, wchange 3.60682907, angledelta 104.2 deg
+step 9 - lrate 0.003834, wchange 0.78706908, angledelta 138.9 deg
+step 10 - lrate 0.003450, wchange 0.15855737, angledelta 109.7 deg
+step 11 - lrate 0.003105, wchange 0.29316184, angledelta 73.3 deg
+step 12 - lrate 0.002795, wchange 0.66305510, angledelta 107.9 deg
+step 13 - lrate 0.002515, wchange 0.76104828, angledelta 152.1 deg
+step 14 - lrate 0.002264, wchange 1.39815136, angledelta 96.6 deg
+step 15 - lrate 0.002037, wchange 0.16916776, angledelta 38.6 deg
+step 16 - lrate 0.002037, wchange 1.17013022, angledelta 164.7 deg
+step 17 - lrate 0.001834, wchange 0.95017242, angledelta 162.0 deg
+step 18 - lrate 0.001650, wchange 0.58350322, angledelta 138.0 deg
+step 19 - lrate 0.001485, wchange 0.34488643, angledelta 172.9 deg
+step 20 - lrate 0.001337, wchange 0.27546380, angledelta 122.3 deg
+step 21 - lrate 0.001203, wchange 0.06082744, angledelta 62.4 deg
+step 22 - lrate 0.001083, wchange 0.05624716, angledelta 153.8 deg
+step 23 - lrate 0.000974, wchange 0.02444557, angledelta  9.0 deg
+step 24 - lrate 0.000974, wchange 0.01625955, angledelta 70.0 deg
+step 25 - lrate 0.000877, wchange 0.06649628, angledelta 77.1 deg
+step 26 - lrate 0.000789, wchange 0.03459649, angledelta 118.9 deg
+step 27 - lrate 0.000710, wchange 0.14180648, angledelta 51.9 deg
+step 28 - lrate 0.000710, wchange 0.10072199, angledelta 112.3 deg
+step 29 - lrate 0.000639, wchange 0.02099114, angledelta 74.9 deg
+step 30 - lrate 0.000575, wchange 0.06687893, angledelta 161.8 deg
+step 31 - lrate 0.000518, wchange 0.05010068, angledelta 122.5 deg
+step 32 - lrate 0.000466, wchange 0.01869956, angledelta 28.7 deg
+step 33 - lrate 0.000466, wchange 0.00207146, angledelta 143.1 deg
+step 34 - lrate 0.000419, wchange 0.00124883, angledelta 147.8 deg
+step 35 - lrate 0.000378, wchange 0.00626026, angledelta 155.0 deg
+step 36 - lrate 0.000340, wchange 0.00540405, angledelta 101.6 deg
+step 37 - lrate 0.000306, wchange 0.01101259, angledelta 109.0 deg
+step 38 - lrate 0.000275, wchange 0.00034382, angledelta 116.9 deg
+step 39 - lrate 0.000248, wchange 0.00202240, angledelta 76.1 deg
+step 40 - lrate 0.000223, wchange 0.00198221, angledelta 158.9 deg
+step 41 - lrate 0.000201, wchange 0.00030651, angledelta 169.6 deg
+step 42 - lrate 0.000181, wchange 0.00051933, angledelta 121.4 deg
+step 43 - lrate 0.000163, wchange 0.00006583, angledelta 116.9 deg
+step 44 - lrate 0.000146, wchange 0.00037886, angledelta 49.7 deg
+step 45 - lrate 0.000146, wchange 0.00019064, angledelta 37.9 deg
+step 46 - lrate 0.000146, wchange 0.00078735, angledelta 135.0 deg
+step 47 - lrate 0.000132, wchange 0.00014887, angledelta 136.9 deg
+step 48 - lrate 0.000118, wchange 0.00008778, angledelta 163.6 deg
+step 49 - lrate 0.000107, wchange 0.00029554, angledelta 70.6 deg
+step 50 - lrate 0.000096, wchange 0.00001016, angledelta 61.5 deg
+step 51 - lrate 0.000086, wchange 0.00000880, angledelta 71.6 deg
+step 52 - lrate 0.000078, wchange 0.00003686, angledelta 11.5 deg
+step 53 - lrate 0.000078, wchange 0.00026652, angledelta 105.2 deg
+step 54 - lrate 0.000070, wchange 0.00006390, angledelta 59.8 deg
+step 55 - lrate 0.000070, wchange 0.00005258, angledelta 44.3 deg
+step 56 - lrate 0.000070, wchange 0.00017507, angledelta 59.3 deg
+step 57 - lrate 0.000070, wchange 0.00001763, angledelta 127.2 deg
+step 58 - lrate 0.000063, wchange 0.00000926, angledelta 126.4 deg
+step 59 - lrate 0.000057, wchange 0.00005094, angledelta 161.4 deg
+step 60 - lrate 0.000051, wchange 0.00016853, angledelta 32.4 deg
+step 61 - lrate 0.000051, wchange 0.00002469, angledelta 108.8 deg
+step 62 - lrate 0.000046, wchange 0.00012241, angledelta 130.7 deg
+step 63 - lrate 0.000041, wchange 0.00000320, angledelta 31.1 deg
+step 64 - lrate 0.000041, wchange 0.00002304, angledelta 22.5 deg
+step 65 - lrate 0.000041, wchange 0.00000213, angledelta 24.7 deg
+step 66 - lrate 0.000041, wchange 0.00001618, angledelta 165.4 deg
+step 67 - lrate 0.000037, wchange 0.00000193, angledelta 154.0 deg
+step 68 - lrate 0.000033, wchange 0.00000200, angledelta 144.9 deg
+step 69 - lrate 0.000030, wchange 0.00002110, angledelta 27.7 deg
+step 70 - lrate 0.000030, wchange 0.00000228, angledelta 83.8 deg
+step 71 - lrate 0.000027, wchange 0.00000426, angledelta 105.2 deg
+step 72 - lrate 0.000024, wchange 0.00000085, angledelta 92.1 deg
+step 73 - lrate 0.000022, wchange 0.00000317, angledelta 15.6 deg
+step 74 - lrate 0.000022, wchange 0.00000609, angledelta 127.8 deg
+step 75 - lrate 0.000020, wchange 0.00000126, angledelta 15.3 deg
+step 76 - lrate 0.000020, wchange 0.00000007, angledelta 130.4 deg
+step 77 - lrate 0.000018, wchange 0.00000946, angledelta 51.8 deg
+step 78 - lrate 0.000018, wchange 0.00000530, angledelta 137.4 deg
+step 79 - lrate 0.000016, wchange 0.00000548, angledelta 157.8 deg
+step 80 - lrate 0.000014, wchange 0.00000268, angledelta 146.0 deg
+step 81 - lrate 0.000013, wchange 0.00000071, angledelta 57.8 deg
+step 82 - lrate 0.000013, wchange 0.00000841, angledelta 152.2 deg
+step 83 - lrate 0.000012, wchange 0.00000146, angledelta 41.2 deg
+step 84 - lrate 0.000012, wchange 0.00000180, angledelta 81.0 deg
+step 85 - lrate 0.000010, wchange 0.00000109, angledelta 171.8 deg
+step 86 - lrate 0.000009, wchange 0.00000265, angledelta 155.1 deg
+step 87 - lrate 0.000009, wchange 0.00000040, angledelta 144.5 deg
+step 88 - lrate 0.000008, wchange 0.00000075, angledelta 36.7 deg
+step 89 - lrate 0.000008, wchange 0.00000530, angledelta 51.5 deg
+step 90 - lrate 0.000008, wchange 0.00000024, angledelta 159.8 deg
+step 91 - lrate 0.000007, wchange 0.00000045, angledelta 40.6 deg
+step 92 - lrate 0.000007, wchange 0.00000053, angledelta 166.0 deg
+step 93 - lrate 0.000006, wchange 0.00000037, angledelta 12.6 deg
+step 94 - lrate 0.000006, wchange 0.00000027, angledelta 110.0 deg
+step 95 - lrate 0.000006, wchange 0.00000048, angledelta 61.6 deg
+step 96 - lrate 0.000005, wchange 0.00000005, angledelta 43.1 deg
+step 97 - lrate 0.000005, wchange 0.00000013, angledelta 60.4 deg
+step 98 - lrate 0.000005, wchange 0.00000003, angledelta 103.1 deg
+step 99 - lrate 0.000004, wchange 0.00000017, angledelta 87.6 deg
+step 100 - lrate 0.000004, wchange 0.00000041, angledelta 88.9 deg
+step 101 - lrate 0.000003, wchange 0.00000010, angledelta 60.6 deg
+step 102 - lrate 0.000003, wchange 0.00000004, angledelta 61.8 deg
+step 103 - lrate 0.000003, wchange 0.00000020, angledelta 129.4 deg
+step 104 - lrate 0.000002, wchange 0.00000007, angledelta 134.9 deg
+step 105 - lrate 0.000002, wchange 0.00000022, angledelta 149.0 deg
+step 106 - lrate 0.000002, wchange 0.00000001, angledelta 50.1 deg
+step 107 - lrate 0.000002, wchange 0.00000007, angledelta 121.0 deg
+step 108 - lrate 0.000002, wchange 0.00000000, angledelta 89.5 deg
+step 109 - lrate 0.000002, wchange 0.00000002, angledelta 54.0 deg
+step 110 - lrate 0.000002, wchange 0.00000002, angledelta 94.1 deg
+step 111 - lrate 0.000001, wchange 0.00000001, angledelta 49.5 deg
+step 112 - lrate 0.000001, wchange 0.00000003, angledelta 163.3 deg
+step 113 - lrate 0.000001, wchange 0.00000004, angledelta 110.1 deg
+step 114 - lrate 0.000001, wchange 0.00000003, angledelta 166.8 deg
+step 115 - lrate 0.000001, wchange 0.00000007, angledelta 139.8 deg
+step 116 - lrate 0.000001, wchange 0.00000001, angledelta 19.0 deg
+step 117 - lrate 0.000001, wchange 0.00000000, angledelta 51.7 deg
+step 118 - lrate 0.000001, wchange 0.00000001, angledelta 130.8 deg
+step 119 - lrate 0.000001, wchange 0.00000000, angledelta 28.1 deg
+step 120 - lrate 0.000001, wchange 0.00000001, angledelta 133.0 deg
+step 121 - lrate 0.000001, wchange 0.00000000, angledelta  6.8 deg
+step 122 - lrate 0.000001, wchange 0.00000000, angledelta 149.0 deg
+step 123 - lrate 0.000001, wchange 0.00000001, angledelta 23.5 deg
+step 124 - lrate 0.000001, wchange 0.00000000, angledelta 163.7 deg
+step 125 - lrate 0.000001, wchange 0.00000001, angledelta 135.3 deg
+step 126 - lrate 0.000001, wchange 0.00000001, angledelta 22.6 deg
+step 127 - lrate 0.000001, wchange 0.00000000, angledelta 171.8 deg
+step 128 - lrate 0.000000, wchange 0.00000001, angledelta 101.7 deg
+step 129 - lrate 0.000000, wchange 0.00000000, angledelta 93.2 deg
+step 130 - lrate 0.000000, wchange 0.00000000, angledelta 50.7 deg
+step 131 - lrate 0.000000, wchange 0.00000000, angledelta 106.7 deg
+step 132 - lrate 0.000000, wchange 0.00000000, angledelta 154.1 deg
+step 133 - lrate 0.000000, wchange 0.00000000, angledelta 160.3 deg
+step 134 - lrate 0.000000, wchange 0.00000001, angledelta 115.0 deg
+step 135 - lrate 0.000000, wchange 0.00000000, angledelta 160.6 deg
+step 136 - lrate 0.000000, wchange 0.00000000, angledelta 108.2 deg
+step 137 - lrate 0.000000, wchange 0.00000000, angledelta 141.6 deg
+step 138 - lrate 0.000000, wchange 0.00000000, angledelta 102.3 deg
+step 139 - lrate 0.000000, wchange 0.00000000, angledelta  4.0 deg
+step 140 - lrate 0.000000, wchange 0.00000000, angledelta 122.3 deg
+step 141 - lrate 0.000000, wchange 0.00000000, angledelta 119.4 deg
+step 142 - lrate 0.000000, wchange 0.00000000, angledelta 22.7 deg
+step 143 - lrate 0.000000, wchange 0.00000000, angledelta  2.9 deg
+step 144 - lrate 0.000000, wchange 0.00000000, angledelta 103.7 deg
+step 145 - lrate 0.000000, wchange 0.00000000, angledelta 133.8 deg
+step 146 - lrate 0.000000, wchange 0.00000000, angledelta 167.2 deg
+step 147 - lrate 0.000000, wchange 0.00000000, angledelta 53.3 deg
+step 148 - lrate 0.000000, wchange 0.00000000, angledelta 102.1 deg
+step 149 - lrate 0.000000, wchange 0.00000000, angledelta 115.0 deg
+step 150 - lrate 0.000000, wchange 0.00000000, angledelta 115.1 deg
+step 151 - lrate 0.000000, wchange 0.00000000, angledelta 17.0 deg
+step 152 - lrate 0.000000, wchange 0.00000000, angledelta 112.9 deg
+step 153 - lrate 0.000000, wchange 0.00000000, angledelta 12.8 deg
+step 154 - lrate 0.000000, wchange 0.00000000, angledelta 16.6 deg
+step 155 - lrate 0.000000, wchange 0.00000000, angledelta 22.6 deg
+step 156 - lrate 0.000000, wchange 0.00000000, angledelta 74.6 deg
+step 157 - lrate 0.000000, wchange 0.00000000, angledelta 133.8 deg
+step 158 - lrate 0.000000, wchange 0.00000000, angledelta 96.2 deg</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.dot(unmix,x).T)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">0</span>].plot(np.dot(unmix,x)[<span class="dv">0</span>,:])</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">0</span>].plot(np.dot(unmix,x)[<span class="dv">0</span>,:])</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">0</span>].plot(np.dot(unmix,x)[<span class="dv">1</span>,:])</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>, <span class="dv">1</span>].plot(np.dot(unmix,x)[<span class="dv">2</span>,:])</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>, <span class="dv">1</span>].plot(np.dot(unmix,x)[<span class="dv">3</span>,:])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex4_ICA_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex4_ICA_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne_bids <span class="im">import</span> (BIDSPath,read_raw_bids)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne_bids</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"../local/bids/"</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"/bigpool/export/users/ehinger/erp-core/bids"</span> <span class="co"># Bene's Server location</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"/store/data/erp-core/"</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>subject_id <span class="op">=</span> <span class="st">'003'</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>bids_path <span class="op">=</span> BIDSPath(subject<span class="op">=</span>subject_id,task<span class="op">=</span><span class="st">"P3"</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>                     datatype<span class="op">=</span><span class="st">'eeg'</span>, suffix<span class="op">=</span><span class="st">'eeg'</span>,session<span class="op">=</span><span class="st">"P3"</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                     root<span class="op">=</span>bids_root)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bids_path)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> read_raw_bids(bids_path)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>ccs_eeg_utils.read_annotations_core(bids_path,raw)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>raw.load_data()</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>raw.<span class="bu">filter</span>(<span class="fl">0.5</span>,<span class="dv">50</span>, fir_design<span class="op">=</span><span class="st">'firwin'</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>raw.set_montage(<span class="st">'standard_1020'</span>,match_case<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/store/data/erp-core/sub-003/ses-P3/eeg/sub-003_ses-P3_task-P3_eeg.set
+Reading /store/data/erp-core/sub-003/ses-P3/eeg/sub-003_ses-P3_task-P3_eeg.fdt
+Reading events from /store/data/erp-core/sub-003/ses-P3/eeg/sub-003_ses-P3_task-P3_events.tsv.
+The event "response" refers to multiple event values. Creating hierarchical event names.
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+The event "stimulus" refers to multiple event values. Creating hierarchical event names.
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/14
+Reading channel info from /store/data/erp-core/sub-003/ses-P3/eeg/sub-003_ses-P3_task-P3_channels.tsv.
+Reading 0 ... 386047  =      0.000 ...   376.999 secs...
+Filtering raw data in 1 contiguous segment
+Setting up band-pass filter from 0.5 - 50 Hz
+
+FIR filter parameters
+---------------------
+Designing a one-pass, zero-phase, non-causal bandpass filter:
+- Windowed time-domain design (firwin) method
+- Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
+- Lower passband edge: 0.50
+- Lower transition bandwidth: 0.50 Hz (-6 dB cutoff frequency: 0.25 Hz)
+- Upper passband edge: 50.00 Hz
+- Upper transition bandwidth: 12.50 Hz (-6 dB cutoff frequency: 56.25 Hz)
+- Filter length: 6759 samples (6.601 sec)
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_1691702/3619079600.py:13: RuntimeWarning: Data file name in EEG.data (sub-003_task-P3_eeg.fdt) is incorrect, the file name must have changed on disk, using the correct file name (sub-003_ses-P3_task-P3_eeg.fdt).
+  raw = read_raw_bids(bids_path)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+
+<table class="table table-hover table-striped table-sm table-responsive small">
+    <tbody><tr>
+        <th>Measurement date</th>
+        
+        <td>Unknown</td>
+        
+    </tr>
+    <tr>
+        <th>Experimenter</th>
+        
+        <td>Unknown</td>
+        
+    </tr>
+        <tr><th>Participant</th>
+        
+            
+            <td>sub-003</td>
+            
+        
+    </tr>
+    <tr>
+        <th>Digitized points</th>
+        
+        <td>0 points</td>
+        
+    </tr>
+    <tr>
+        <th>Good channels</th>
+        <td>30 EEG, 3 EOG</td>
+    </tr>
+    <tr>
+        <th>Bad channels</th>
+        <td>None</td>
+    </tr>
+    <tr>
+        <th>EOG channels</th>
+        <td>HEOG_left, HEOG_right, VEOG_lower</td>
+    </tr>
+    <tr>
+        <th>ECG channels</th>
+        <td>Not available</td>
+    
+    </tr><tr>
+        <th>Sampling frequency</th>
+        <td>1024.00 Hz</td>
+    </tr>
+    
+    
+    <tr>
+        <th>Highpass</th>
+        <td>0.50 Hz</td>
+    </tr>
+    
+    
+    <tr>
+        <th>Lowpass</th>
+        <td>50.00 Hz</td>
+    </tr>
+    
+    
+    
+    <tr>
+        <th>Filenames</th>
+        <td>sub-003_ses-P3_task-P3_eeg.fdt</td>
+    </tr>
+    
+    <tr>
+        <th>Duration</th>
+        <td>00:06:16 (HH:MM:SS)</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>    ica <span class="op">=</span> mne.preprocessing.ICA(method<span class="op">=</span><span class="st">"picard"</span>) <span class="co"># picard is fast and supposedly good; infomax is slow but good</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    ica.fit(raw,verbose<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting ICA to data using 30 channels (please be patient, this may take a while)
+Selecting by non-zero PCA components: 30 components
+Fitting ICA took 32.8s.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="table-responsive">
+<table class="table table-hover table-striped table-sm small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Method</td>
+<td>picard</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Fit</td>
+<td>92 iterations on raw data (386048 samples)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">ICA components</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Explained variance</td>
+<td>100.0&nbsp;%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Available PCA components</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Channel types</td>
+<td>eeg</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">ICA components marked for exclusion</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ica.plot_components(<span class="bu">range</span>(<span class="dv">20</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex4_ICA_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>icaact <span class="op">=</span> ica.get_sources(raw)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.plot(icaact[<span class="dv">1</span>,<span class="dv">0</span>:<span class="dv">20000</span>][<span class="dv">0</span>].T)<span class="op">;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.plot(raw[0,0:20000][0].T)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex4_ICA_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ica.plot_properties(raw,picks<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">7</span>],psd_args<span class="op">=</span>{<span class="st">'fmax'</span>: <span class="fl">35.</span>},reject<span class="op">=</span><span class="va">None</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Using multitaper spectrum estimation with 7 DPSS windows
+Not setting metadata
+188 matching events found
+No baseline correction applied
+0 projection items activated
+0 bad epochs dropped</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex4_ICA_files/figure-html/cell-20-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ica_infomax <span class="op">=</span> mne.preprocessing.ICA(method<span class="op">=</span><span class="st">"infomax"</span>) <span class="co"># picard is fast and supposedly good; infomax is slow but good</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ica_infomax.fit(raw,verbose<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting ICA to data using 30 channels (please be patient, this may take a while)
+Selecting by non-zero PCA components: 30 components
+ 
+Fitting ICA took 281.0s.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/ehinger/miniconda3/envs/eegCourse/lib/python3.10/site-packages/mne/preprocessing/infomax_.py:192: RuntimeWarning: overflow encountered in exp
+  y = 1.0 / (1.0 + np.exp(-u))</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="table-responsive">
+<table class="table table-hover table-striped table-sm small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Method</td>
+<td>infomax</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Fit</td>
+<td>500 iterations on raw data (386048 samples)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">ICA components</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Explained variance</td>
+<td>100.0&nbsp;%</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Available PCA components</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Channel types</td>
+<td>eeg</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">ICA components marked for exclusion</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>evts,evts_dict <span class="op">=</span> mne.events_from_annotations(raw)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>wanted_keys <span class="op">=</span> [e <span class="cf">for</span> e <span class="kw">in</span> evts_dict.keys() <span class="cf">if</span> <span class="st">"response"</span> <span class="kw">in</span> e]</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>evts_dict_stim<span class="op">=</span><span class="bu">dict</span>((k, evts_dict[k]) <span class="cf">for</span> k <span class="kw">in</span> wanted_keys <span class="cf">if</span> k <span class="kw">in</span> evts_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>reconst_raw <span class="op">=</span> raw.copy()</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ica.apply(reconst_raw,exclude=[1,8,9])</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">#raw.plot()</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">#reconst_raw.plot()  </span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>ica.plot_overlay(raw,exclude<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">8</span>,<span class="dv">9</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>whiteX = whiten(x)</p>
+<p>w = np.eye(x.shape[0])</p>
+<p>#f = lambda x: np.tanh(x) #f = lambda x: x-np.tanh(x) I = np.eye(x.shape[0]) #f =lambda x: 1./(1+np.exp(-x)) f = lambda x: (2 / (1 + np.exp(-x))) lr = 0.01</p>
+<p>bias1 = np.zeros((x.shape[0], 1)) for k in range(0,50000): u = np.matmul(w,whiteX)</p>
+<pre><code>#A = np.matmul(f(u),u.T)
+#A = np.dot(f(u),u.T)
+#dW = lr * np.dot(( I - A ),w)
+
+
+
+unmixed = np.dot(w, whiteX) + bias1
+logit = 1 - (2 / (1 + np.exp(-unmixed)))
+w = w + lr * np.dot(I + np.dot(logit, unmixed.T), w)
+bias1 = bias1 + lr * logit.sum(axis=1).reshape(bias1.shape)
+
+if np.mod(k,5000)==0:
+    print(A)
+
+if np.max(np.abs(w))&gt;100:
+    print("reducing learningrate \n")
+    lr = lr*0.2
+    # reset w
+    w = np.eye(x.shape[0]) 
+    continue
+w = w+ dW
+
+#u2 = w2*x;
+#w2 = w2+0.0001*(I+ (1- 2*f2(u2))*u2')*w2;</code></pre>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

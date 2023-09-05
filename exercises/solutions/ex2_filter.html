@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.319">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>🧠 EEG-2023 - Highpass instead of lowpass</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      🧠 EEG-2023
+      </li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">🧠 EEG-2023</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Course</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ℹ️ Organisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📆 Schedule</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Projects</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../semesterproject.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📋 Descriptions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../grading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Grading</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../milestones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎯 Milestones</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Exercises</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises_overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ℹ️ Organisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../exercises/exercises.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🏋️‍♂️ Exercise sheets</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Resources</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../bibliography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📚 Bibliography</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../software.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">💻 Software</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-happens-to-the-frequency-and-time-response-if-we-add-artefacts" id="toc-what-happens-to-the-frequency-and-time-response-if-we-add-artefacts" class="nav-link active" data-scroll-target="#what-happens-to-the-frequency-and-time-response-if-we-add-artefacts">What happens to the frequency and time response if we add “artefacts”?</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Highpass instead of lowpass</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> scp</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.fft</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> cos, sin, pi,  arange</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#from scipy.signal import kaiserord, lfilter, firwin, freqz, convolve,filtfilt</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sample_rate <span class="op">=</span> <span class="fl">100.0</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>nsamples <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> arange(nsamples) <span class="op">/</span> sample_rate</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> cos(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>t) <span class="op">+</span> <span class="fl">0.2</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">2.5</span><span class="op">*</span>t<span class="op">+</span><span class="fl">0.1</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="fl">0.2</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">15.3</span><span class="op">*</span>t) <span class="op">+</span> <span class="fl">0.1</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">16.7</span><span class="op">*</span>t <span class="op">+</span> <span class="fl">0.1</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="fl">0.1</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">23.45</span><span class="op">*</span>t<span class="op">+</span><span class="fl">.8</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>split the complex fourier result into <em>angle</em> and <em>magnitude</em></li>
+</ul>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#dF = 1/T = 0.25Hz</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#nyquist-frequency = fs/2</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.linspace(<span class="dv">0</span>,fs<span class="op">-</span><span class="dv">1</span><span class="op">/</span>T,fs<span class="op">*</span>T)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.plot(f,np.log(np.<span class="bu">abs</span>(scp.fft.fft(x))))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.plot(f[<span class="dv">0</span>:<span class="bu">len</span>(f)<span class="op">//</span><span class="dv">2</span><span class="op">+</span><span class="dv">1</span>],np.log(np.<span class="bu">abs</span>(scp.fft.rfft(x))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log(np.<span class="bu">abs</span>(np.fft.fft(x))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.angle(scp.fft.fft(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>set the respective magnitudes to zero (we start with a lowpass filter: <code>magnitude[30:370] = 0</code>)</li>
+</ul>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(x))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(x))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">30</span>:<span class="dv">370</span>] <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>combine angle and magnitude back to a complex fourier coefficient (<span class="math inline">\(m*e^(1j*ang)\)</span>)</li>
+<li>apply the inverse FFT</li>
+<li>plot the signal with what you started out</li>
+</ul>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Repeat the steps from above, but this time, remove the low frequency components</p>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(x))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(x))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">1</span>:<span class="dv">30</span>] <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">370</span>:<span class="dv">400</span>] <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#ang_random = np.random.rand(ang.shape[0])*2*np.pi - np.pi</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.plot(t,scp.fft.ifft(mag*np.exp(1j*ang_random)).real)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<section id="what-happens-to-the-frequency-and-time-response-if-we-add-artefacts" class="level2">
+<h2 class="anchored" data-anchor-id="what-happens-to-the-frequency-and-time-response-if-we-add-artefacts">What happens to the frequency and time response if we add “artefacts”?</h2>
+<p>Add a DC-offset (a step-function) starting from <code>x[200:]</code> and investigate the fourier space. Filter it again (low or high pass) and transfer it back to the time domain and investigate the signal around the spike.</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>xtmp <span class="op">=</span> x.copy()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>xtmp[<span class="dv">200</span>:<span class="dv">250</span>] <span class="op">=</span> xtmp[<span class="dv">200</span>:<span class="dv">250</span>]<span class="op">+</span><span class="dv">2</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>plt.plot(xtmp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(xtmp))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(xtmp))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">30</span>:<span class="dv">370</span>] <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.plot(t,xtmp)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>xtmp <span class="op">=</span> x.copy()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>xtmp[<span class="dv">200</span>:] <span class="op">=</span> xtmp[<span class="dv">200</span>:]<span class="op">+</span><span class="dv">20</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(xtmp))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(xtmp))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">1</span>:<span class="dv">30</span>] <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">370</span>:<span class="dv">400</span>] <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>## Impulse Response Function To get a bit deeper understanding of what is going on, have a look at the fourier transform of a new impulse signal (e.g.&nbsp;1:400 =&gt; 0. and 200 =&gt; 1.). What do you observe? Why would we see ringing if we put most of the coefficients to 0?</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Impulse Response Function</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x[:] <span class="op">=</span><span class="dv">0</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">200</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(x))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(x))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">30</span>:<span class="dv">370</span>] <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>## Filtering EEG data</p>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>,<span class="st">".."</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne_bids <span class="im">import</span> (BIDSPath,read_raw_bids)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne_bids</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ccs_eeg_utils</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"../local/bids"</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"/bigpool/export/users/ehinger/erp-core/bids"</span> <span class="co"># Bene's Server location</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"/store/data/erp-core/"</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>subject_id <span class="op">=</span> <span class="st">'002'</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>bids_path <span class="op">=</span> BIDSPath(subject<span class="op">=</span>subject_id,task<span class="op">=</span><span class="st">"P3"</span>,session<span class="op">=</span><span class="st">"P3"</span>,</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>                     datatype<span class="op">=</span><span class="st">'eeg'</span>, suffix<span class="op">=</span><span class="st">'eeg'</span>,</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                     root<span class="op">=</span>bids_root)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> read_raw_bids(bids_path)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>ccs_eeg_utils.read_annotations_core(bids_path,raw)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>raw.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_eeg.fdt
+Reading events from /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_events.tsv.
+The event "response" refers to multiple event values. Creating hierarchical event names.
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+The event "stimulus" refers to multiple event values. Creating hierarchical event names.
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/15
+Reading channel info from /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_channels.tsv.
+Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_70389/3018021070.py:18: RuntimeWarning: Data file name in EEG.data (sub-002_task-P3_eeg.fdt) is incorrect, the file name must have changed on disk, using the correct file name (sub-002_ses-P3_task-P3_eeg.fdt).
+  raw = read_raw_bids(bids_path)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+
+<table class="table table-hover table-striped table-sm table-responsive small">
+    <tbody><tr>
+        <th>Measurement date</th>
+        
+        <td>Unknown</td>
+        
+    </tr>
+    <tr>
+        <th>Experimenter</th>
+        
+        <td>Unknown</td>
+        
+    </tr>
+        <tr><th>Participant</th>
+        
+            
+            <td>sub-002</td>
+            
+        
+    </tr>
+    <tr>
+        <th>Digitized points</th>
+        
+        <td>0 points</td>
+        
+    </tr>
+    <tr>
+        <th>Good channels</th>
+        <td>30 EEG, 3 EOG</td>
+    </tr>
+    <tr>
+        <th>Bad channels</th>
+        <td>None</td>
+    </tr>
+    <tr>
+        <th>EOG channels</th>
+        <td>HEOG_left, HEOG_right, VEOG_lower</td>
+    </tr>
+    <tr>
+        <th>ECG channels</th>
+        <td>Not available</td>
+    
+    </tr><tr>
+        <th>Sampling frequency</th>
+        <td>1024.00 Hz</td>
+    </tr>
+    
+    
+    <tr>
+        <th>Highpass</th>
+        <td>0.00 Hz</td>
+    </tr>
+    
+    
+    <tr>
+        <th>Lowpass</th>
+        <td>512.00 Hz</td>
+    </tr>
+    
+    
+    
+    <tr>
+        <th>Filenames</th>
+        <td>sub-002_ses-P3_task-P3_eeg.fdt</td>
+    </tr>
+    
+    <tr>
+        <th>Duration</th>
+        <td>00:06:44 (HH:MM:SS)</td>
+    </tr>
+</tbody></table>
+</div>
+</div>
+<p><strong>T:</strong> Choose the channel “Pz”, plot the channel (same as previous HW)</p>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%matplotlib qt</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>raw.pick_channels([<span class="st">"Pz"</span>])<span class="co">#["Pz","Fz","Cz"])</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[:,:][<span class="dv">0</span>].T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>T:</strong> Plot the fourier space using <code>raw.plot_psd</code></p>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>raw.plot_psd(area_mode<span class="op">=</span><span class="st">'range'</span>, tmax<span class="op">=</span><span class="fl">10.0</span>, average<span class="op">=</span><span class="va">False</span>,xscale<span class="op">=</span><span class="st">"linear"</span>,)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Effective window size : 2.000 (s)
+Need more than one channel to make topography for eeg. Disabling interactivity.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_70389/1845277888.py:2: RuntimeWarning: Channel locations not available. Disabling spatial colors.
+  raw.plot_psd(area_mode='range', tmax=10.0, average=False,xscale="linear",);</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-17-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>T:</strong> Now we filter using <code>raw.filter()</code>, specify a highpass of 0.5Hz and a lowpass of 50Hz. Plot the fourier spectrum again.</p>
+<p><strong>T:</strong> Plot the channel again, did the filter work as indented?</p>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>raw_f <span class="op">=</span> raw.copy().<span class="bu">filter</span>(<span class="fl">0.5</span>,<span class="dv">50</span>, fir_design<span class="op">=</span><span class="st">'firwin'</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>raw_f.plot_psd(area_mode<span class="op">=</span><span class="st">'range'</span>, tmax<span class="op">=</span><span class="fl">10.0</span>, average<span class="op">=</span><span class="va">False</span>,xscale<span class="op">=</span><span class="st">"log"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Filtering raw data in 1 contiguous segment
+Setting up band-pass filter from 0.5 - 50 Hz
+
+FIR filter parameters
+---------------------
+Designing a one-pass, zero-phase, non-causal bandpass filter:
+- Windowed time-domain design (firwin) method
+- Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
+- Lower passband edge: 0.50
+- Lower transition bandwidth: 0.50 Hz (-6 dB cutoff frequency: 0.25 Hz)
+- Upper passband edge: 50.00 Hz
+- Upper transition bandwidth: 12.50 Hz (-6 dB cutoff frequency: 56.25 Hz)
+- Filter length: 6759 samples (6.601 sec)
+
+Effective window size : 2.000 (s)
+Need more than one channel to make topography for eeg. Disabling interactivity.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_70389/1145606728.py:2: RuntimeWarning: Channel locations not available. Disabling spatial colors.
+  raw_f.plot_psd(area_mode='range', tmax=10.0, average=False,xscale="log");</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-18-output-3.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.plot(raw_f[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Due to a huge DC-offset, the signals cannot be compared. We have to remove e.g.&nbsp;the median from each signal</p>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T<span class="op">-</span>np.median(raw[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>plt.plot(raw_f[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T<span class="op">-</span>np.median(raw_f[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.plot(raw_f[:,0:1000][0].T-np.mean(raw_f[:,0:1000][0].T))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
