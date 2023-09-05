@@ -1,0 +1,86 @@
+# EEG Semester Project
+
+The goal of this project is to re-analyse and document a real EEG dataset using MNE-Python.
+
+How I will grade the projects can be seen in [grading](grading.md). I value line of thinking and documented motivation much higher than actual results. I want to see that you understand what you are doing.
+
+## Which Datasets?
+
+In previous iterations, we took a well understood and standardized EEG dataset, which made the task a bit unrealistic and, frankly, a bit boring. This year, we will try something new. You will choose a paper (with data) to reproduce.
+
+::: callout-important
+This has the consequence that there will be many (individual) unforseen problems, inconsistencies and problems. This is to be expected and **very** typical for EEG analyses. See it as part of the challenge!
+:::
+
+This is a list of datasets with accompanying papers that I have screened. **Please** feel free to look for your own datasets either on [menar.org](https://nemar.org) or on [openneuro.org](https://openneuro.org). Try to look for datasets below 20Gb of space. There is time allocated to discuss the dataset/paper with me.
+
+| VPs | task                         | analysis | link                                                                 |
+|------------------|------------------|------------------|------------------|
+| 20  | grating                      | decoding | [dataset](https://openneuro.org/datasets/ds004043/versions/1.1.0)    |
+| 19  | reaching                     | ERP      | [dataset](https://openneuro.org/datasets/ds003846/versions/1.0.1)    |
+| 24  | pattern symmetry             | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004347) |
+| 12  | reward                       | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004147) |
+| 18  | walking oddall               | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004033) |
+| 47  | (maybe exclude?) social task | timefreq | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003702) |
+| 40  | music-chords oddball         | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003570) |
+| 17  | game-playing                 | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003517) |
+
+## What should the project contain?
+
+The idea is to reproduce, but **not** with a direct reproduction. That is, we will not try to re-do their exact pipeline step-by-step, but rather we will try to obtain their result, with a different pipeline, checking for the robustness of the original analysis pipeline.
+
+A list of the typical steps you will perform: - Preprocessing: Filtering, re-referencening, ICA, Event-handling - (automatic) data cleaning: Time, channel and subjects
+
+## Group work
+
+Given the new nature of the datasets and the unforeseeable complications, I propose student groups of 2-3 students.
+
+## Where do I get the data?
+
+You can find the link above
+
+## Tipps
+
+-   Please work modularly! Don't put all your functions in a single jupyter-notebook. Please use notebooks for your analysis & your functions to a ./src/xyz.py files
+-   Make use of the BIDS structure and [mne-bids-pipeline](https://mne.tools/mne-bids-pipeline/).
+-   Thoroughly think about what you are doing and why. And note that down - most people can blindly apply a pipeline, I want to see your reasoning why you included / removed certain steps.
+
+## How can I get help / advice?
+
+-   Write in the ILIAS Forum. Either others will help, or I myself will answer questions.
+
+-   I highly recommend watching the first talk in this session: https://www.crowdcast.io/e/live-meeg-2020/7 by Marijn van Vliet for an fitting introduction of analysing multiple subjects with MNE in a reproducible and documented way. After that, use mne-bids-pipeline as suggested before.
+
+-   The MNE-documentation is quite extensive. It is worth looking into. You can also try **stackexchange** or **neurostar** for help.
+
+-   
+
+## FAQ (will be updated)
+
+::: {.callout-note icon="false"}
+## What is the scope of the project report?
+
+The project should not be a dissertation. If you report goes beyond 40 pages (which depending on the amount of plots can easily happen), you should really think whether you need more pages to make your point. A project report with 20 pages or less is completely fine.
+:::
+
+::: {.callout-note icon="false"}
+## Am I allowed to use other packages
+
+Yes! Everything goes this time around. I do recommend to stick mostly to mne-python though
+:::
+
+::: {.callout-note icon="false"}
+## Should I use a single jupyternotebook?
+
+No. It is a good idea to use a notebook to display the data / report / results. But one large notebook quickly becomes messy. I'd recommend to encapsulate code in functions and put them in separate files that you can import and use in your notebook.
+:::
+
+## Format of report
+
+You can share a git of your project and a report, or the code and the report via Illias. The git can be on github or on the university gitlab. The report can be a jupyter notebook if you prefer to intermingle code and documentation. The report is there to document your decisions and thoughts along the pipeline. I am especially interested why you chose certain steps / parameters / analyses / visualizations. Make grading easy for me and show that you understood what you are doing and what your results are.
+
+You make my life easier if you name the git / zip file with your last name, e.g. `Muller_SS2021_EEGSemesterProject.zip`, and the folder containing in the zip as well.
+
+## Deadline
+
+Please hand in the documents until 31.03.2023

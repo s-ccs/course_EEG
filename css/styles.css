@@ -1,0 +1,10 @@
+/* css styles */
+
+img .rounded {
+    object-fit: cover;
+    border-radius: 50%;
+    height: 100% !important;
+    width: 100% !important;
+    aspect-ratio: 1;
+
+  }

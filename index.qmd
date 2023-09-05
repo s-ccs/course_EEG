@@ -1,0 +1,20 @@
+---
+title: "Signal processing and Analysis of human brain potentials (EEG)"
+editor:
+  render-on-save: true
+from: markdown+emoji
+---
+### Overview
+<!-- - ℹ️ [Course information](course.qmd) !-->
+- 📆 [Schedule](schedule.qmd)
+- 🔬 [Exercises](exercises_overview.qmd)
+- 🛠️ [Project information](semesterproject.qmd)
+- 📋 [Grading](grading.qmd)
+
+
+
+### Authors
+This course was put together by [Benedikt Ehinger](https://www.s-ccs.de) with feedback from previous cohorts.
+
+### Licenses
+We are currently working to release all material under CC-by license (where possible)

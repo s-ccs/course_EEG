@@ -1,0 +1,48 @@
+project:
+  type: website
+
+editor:
+  render-on-save: true
+
+#pre-render: homework/convertExercises.sh
+website:
+  title: "🧠 EEG-2023"
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: "Course"
+        contents:
+            - href: course.qmd
+              text: ℹ️ Organisation
+            - href: schedule.qmd
+              text: 📆 Schedule
+      - section: "Projects"
+        contents:
+            - href: semesterproject.qmd
+              text: 📋 Descriptions
+            - href: grading.qmd
+              text: 🛠️ Grading
+            - href: milestones.qmd
+              text: 🎯 Milestones
+      - section: "Exercises"
+        contents:
+            - href: exercises_overview.qmd
+              text: ℹ️ Organisation
+            - href: exercises/exercises.qmd
+              text: 🏋️‍♂️ Exercise sheets
+      - section: "Resources"
+        contents:
+            - href: bibliography.qmd
+              text: 📚 Bibliography
+            - href: software.qmd
+              text: 💻 Software
+
+format:
+  html:
+    theme: 
+      - yeti
+      - css/styles.scss
+    css: css/styles.css
+    
+    toc: true
