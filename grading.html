@@ -189,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./software.qmd" class="sidebar-item-text sidebar-link">
+  <a href="./software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">💻 Software</span></a>
   </div>
 </li>
@@ -201,33 +201,37 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#grading" id="toc-grading" class="nav-link active" data-scroll-target="#grading">Grading</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<p>I will be grading each of the following sections</p>
+<section id="grading" class="level2">
+<h2 class="anchored" data-anchor-id="grading">Grading</h2>
+<p>I will grade the report and code according to the following criteria:</p>
 <ul>
-<li>Preprocessing &amp; Data cleaning</li>
-<li>ERP peak analysis</li>
+<li>20% Code readability &amp; code documentation</li>
+<li>20% Reproducibility &amp; modularity</li>
+<li>20% Sanity Checks &amp; sanity visualizations &amp; their discussion*</li>
+<li>20% Result visualization &amp; Results documentation &amp; interpretation</li>
+<li>20% Scope of Project</li>
 </ul>
-<p>2 out of the following 4:</p>
-<ul>
-<li>Mass univariate</li>
-<li>Decoding analysis</li>
-<li>Source space</li>
-<li>Time trequency analysis</li>
-</ul>
-<p>According to the following criteria:</p>
-<p>20% Code readability &amp; code documentation 20% Reproducibility &amp; modularity 20% Sanity Checks &amp; sanity visualizations &amp; their discussion* 20% Result visualization &amp; Results documentation &amp; interpretation 20% Scope of Project</p>
-<p>Generally, you see that documentation is important. I do not only want to see that you analyzed the dataset, but I want to see what your motivation for choosing parameters is (like reference, filter settings, data removal criteria, algorithmic choices etc.). Regarding readability, I think direct-documentation, style and modularity are key. Regarding reproducibility, it is important that you control and document the software versions, that your analysis scripts can be easily reproduced on another computer (think about the paths you use, and if/when manual input is needed).</p>
-<ul>
-<li>Sanity checks are small asserts &amp; plots here and there, maybe even a unittest or two - small things that make sure your code is doing what it is supposed to be doing. Sentences starting with (“This seems correct, because xy”, “this is strange because…”, etc.) are expected. Such sentences give me an idea how much you understood the material.</li>
-</ul>
+<p>Generally, you see that <strong>documentation and explanations</strong> are important. I do not (only) want to see that you analyzed the dataset, but I want to see what your motivation for choosing parameters is (parameteres like reference, filter settings, data removal criteria, algorithmic choices etc.).</p>
+<p>Regarding <strong>readability</strong>, I think direct-documentation (code-comments), style and modularity are key.</p>
+<p>Regarding <strong>reproducibility</strong>, it is important that you control and document the software versions, that your analysis scripts can be easily reproduced on another computer. If you are using mne-BIDS-pipeline you should already have a good start.</p>
+<p><strong>Sanity checks</strong> are small asserts &amp; plots here and there, maybe even a unittest or two - small things that make sure your code is doing what it is supposed to be doing.</p>
+<p>Sentences starting with (“This seems correct, because xy”, “this is strange because…”, etc.) are expected. Such sentences give me an idea how much you understood the material.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

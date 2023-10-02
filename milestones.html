@@ -189,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./software.qmd" class="sidebar-item-text sidebar-link">
+  <a href="./software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">💻 Software</span></a>
   </div>
 </li>
@@ -234,8 +234,8 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>The purpose of the milestones is to help you monitoring your progress throughout the semester.</p>
-<p>In each milestone session, each project group briefly presents their current process and we can discuss open questions (approx. 2 min presentation + 5 min discussion per group).</p>
-<p>For this purpose, each group is supposed to prepare 1–2 slides for each of the milestones and <strong>upload them on Ilias until midnight before the respective session.</strong></p>
+<p>In each milestone session, each project group briefly presents their current process and we can discuss open questions (approx. 1 min presentation + 3 min discussion per group).</p>
+<p>For this purpose, each group is supposed to prepare <strong>1 slide</strong> (singular!) for each of the milestones and <strong>upload them on Ilias until midnight before the respective session.</strong></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -257,7 +257,7 @@ Important
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Milestone 1: Research question
+Milestone 1: Paper+Dataset selected
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -265,16 +265,15 @@ Milestone 1: Research question
 <div class="callout-body-container callout-body">
 <p><strong>Goals to be reached:</strong></p>
 <ul>
-<li>Your research question and your hypotheses are clearly formulated.</li>
-<li>You decided on how you want to test your hypotheses (experimental design, independent and dependent measures).</li>
+<li>You selected a paper and a dataset to replicate</li>
+<li>You extracted the central hypotheses of the paper</li>
 </ul>
-<p><strong>Notes:</strong> You can use the paper corresponding to your project as a starting point and either replicate their experiment or come up with your own research question based on the paper.</p>
-<p><strong>Slides:</strong> Prepare 1–2 Slides showing:</p>
+<p><strong>Slides:</strong> Prepare 1 Slide showing:</p>
 <ul>
 <li>Teamname + Members</li>
-<li>Reminder on general idea of the experiment</li>
-<li>The main research question(s) (= your “spin” on the project)</li>
-<li>What EyeTracking measure(s) does the research question(s) map to?</li>
+<li>The general idea of the experiment</li>
+<li>The main research question</li>
+<li>The main analysis you will perform (ERP, Time-Frequency, Source-space, others)</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -289,65 +288,6 @@ Tip
 <p>Research questions can often be answered by a “yes” or “no”.</p>
 </div>
 </div>
-<p>For instance, your (an arguable trivial) research question could be:</p>
-<p>“Does <strong>highlighting</strong> every <strong>other</strong> word <strong>make</strong> a <strong>text</strong> more <strong>readable</strong>”</p>
-<p>with your Hypothesis/EyeTracking measure for example being:</p>
-<ol type="1">
-<li>shorter fixation durations on the highlighted words</li>
-<li>shorter total reading time for highlight-enabled sentences</li>
-<li>less regressions in highlight-enabled sentences</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Milestone 2: Experimental design, paradigm, stimuli
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><strong>Goals to be reached:</strong></p>
-<ul>
-<li>Prepared the experimental paradigm, including what are your conditions, how will you randomize (you do not need to have a working implementation in OpenSesame already, but it can guide you).</li>
-<li>Defined and prepared your stimuli.</li>
-</ul>
-<p><strong>Slides:</strong> Prepare 1–2 Slides showing:</p>
-<ul>
-<li><p>The central research question (one sentence, very brief)</p></li>
-<li><p>The experimental procedure, no need to make it beautiful, but could look like this: <img src="slides_quarto/project_slides/images/experimental_timeline_example.png" class="img-fluid"></p></li>
-<li><p>Name all conditions and their levels. Also add whether they are between (group-design) or within subjects (each subject sees multiple levels of this condition).</p></li>
-</ul>
-<table class="table">
-<thead>
-<tr class="header">
-<th>condition</th>
-<th>levels</th>
-<th>within/between</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Difficulty</td>
-<td><code>hard</code>,<code>easy</code>,<code>medium</code></td>
-<td>between-subjects</td>
-</tr>
-<tr class="even">
-<td>Contrast</td>
-<td>0–100%</td>
-<td>within subjects</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>How will you do the balancing and randomization?</li>
-<li>What are your stimuli? Provide some examples.</li>
-</ul>
 </div>
 </div>
 </div>
@@ -357,7 +297,7 @@ Milestone 2: Experimental design, paradigm, stimuli
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Milestone 3: Experiment
+Milestone 2: Processing Pipeline
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -365,20 +305,28 @@ Milestone 3: Experiment
 <div class="callout-body-container callout-body">
 <p><strong>Goals to be reached:</strong></p>
 <ul>
-<li>Implement the full experiment:</li>
-<li>Test the experiment in the lab - especially check that triggers are available!</li>
+<li>Map out the required analysis pipeline of the authors</li>
+<li>Compare this to the analysis pipeline you want to do</li>
+<li>Downloaded + Loaded the data. Have a first impression</li>
 </ul>
-<p><strong>Slides:</strong> No slides this time!</p>
-<p><strong>Hand in</strong></p>
+<p><strong>Slides:</strong> Prepare 1 slide showing:</p>
 <ul>
-<li>Upload the full <code>.osexp</code> file to Ilias.</li>
-<li>Upload a second, “demo”-version of your experiment:
-<ul>
-<li>Should take 1–2 minutes (reduce the number of trials, or break early) to run.</li>
-<li>Should make showcase different conditions.</li>
-<li>Should have advanced mouse-simulation activated.</li>
-</ul></li>
+<li>The central research question (one sentence, very brief)</li>
+<li>A table with the authors + your pipeline</li>
 </ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Not all authors do a good job to clearly communicate how their pipeline looked like. Add notes when you are unsure!</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -388,7 +336,7 @@ Milestone 3: Experiment
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Milestone 4: Pilot data
+Milestone 3: First subject analyzed
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -396,19 +344,10 @@ Milestone 4: Pilot data
 <div class="callout-body-container callout-body">
 <p><strong>Goals to be reached:</strong></p>
 <ul>
-<li>Collect a pilot to find bugs/problems in your Milestone 3 experiment.</li>
-<li>Conduct sanity-check data analyses.</li>
+<li>Implemented a preprocessing pipeline</li>
+<li>One single subject analyzed</li>
 </ul>
-<p><strong>Slides:</strong> Provide 1–2 slides with some sanity checks.</p>
-<p>Sanity checks could be (depending on project, come up with your own!)</p>
-<ul>
-<li>Plot time against x-position, adding vertical lines for each <code>USER</code>-log/trigger.</li>
-<li>Plot x against y .</li>
-<li>Count all logs/triggers and confirming all trials exist, and their temporal-distances are what’s to be expected.</li>
-<li>Check for balancing/randomization errors.</li>
-<li>…</li>
-<li>Advanced: Calculate accuracy/precision while gaze is on a fixation-cross.</li>
-</ul>
+<p><strong>Slides:</strong> Prepare 1 slide showing: - Your improved pipeline - First results of one subject (e.g.&nbsp;an ERP or similar)</p>
 </div>
 </div>
 </div>
@@ -418,7 +357,7 @@ Milestone 4: Pilot data
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Milestone 5: Analysis pipeline
+Milestone 4: All subjects
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -426,44 +365,40 @@ Milestone 5: Analysis pipeline
 <div class="callout-body-container callout-body">
 <p><strong>Goals to be reached:</strong></p>
 <ul>
-<li>Think about the <em>minimal set</em> of analyses needed to answer your research questions.</li>
-<li>Draft the analysis pipeline and validate it using the data collected for Milestone 4.</li>
+<li>Pipeline ran for all subjects</li>
+<li>Further outliers / problems identified</li>
 </ul>
-<p><strong>Slides:</strong> Prepare 2–3 slides listing:</p>
-<ul>
-<li>the research questions,</li>
-<li>the analyses that are supposed to answer them,</li>
-<li>expected results,</li>
-<li>preliminary results based on pilot data from Milestone 4.</li>
-</ul>
+<p><strong>Slides:</strong> Provide 1-2 slides with results of your sanity checks.</p>
+<p>Sanity checks could be (depending on project, come up with your own!)<br>
+- ICA topography quality - ERP Signal-To-Noise</p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-default callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Milestone 5: Outlook
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>If you have “blocker”-questions, please reach out to us. You can also ask in class or on Ilias.</p>
+<p><strong>Goals to be reached:</strong></p>
+<ul>
+<li>You should by now be close to replicate (or not!) the results of the authors</li>
+<li>You should think of an additional analysis (e.g.&nbsp;ERP, decoding, linear model, time-frequency, source-space) to run on this data.</li>
+</ul>
+<p><strong>Slides:</strong> Prepare 2 slides listing:</p>
+<ul>
+<li>(Slide 1) the current state of replication vs.&nbsp;not</li>
+<li>(Slide 2) your ideas on what to look at next</li>
+</ul>
 </div>
 </div>
-<!--
-|Nr| Description |
-|---:|-------------|
-|1|       Research question is clearly formulated, dependent measures and experiment design decided.      |
-|2|       First draft of stimuli + experiment |
-|3|       Experiment is tested and ready for data collection.      | 
-|4|       Pilot data is available and some plots show what’s going on in the data.      |
-|5|       Data processing pipeline is ready and tested with pilot data.      |
-|6|       Final presentations.      |
-|7|       Data collection and analysis, preparation of report.      |
-|8|       Submission deadline for reports and project packages.      |
--->
+</div>
 
 
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>🧠 EEG-2023 – ex4_ica</title>
+<title>🧠 EEG-2023 – software</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,59 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -94,7 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body class="nav-sidebar docked">
@@ -106,9 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      🧠 EEG-2023
-      </li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bibliography.html">Resources</a></li><li class="breadcrumb-item"><a href="./software.html">💻 Software</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -123,7 +87,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">🧠 EEG-2023</a> 
+      <a href="./">🧠 EEG-2023</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -144,13 +108,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../course.qmd" class="sidebar-item-text sidebar-link">
+  <a href="./course.qmd" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ℹ️ Organisation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">📆 Schedule</span></a>
   </div>
 </li>
@@ -167,19 +131,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../semesterproject.html" class="sidebar-item-text sidebar-link">
+  <a href="./semesterproject.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">📋 Descriptions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../grading.html" class="sidebar-item-text sidebar-link">
+  <a href="./grading.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🛠️ Grading</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../milestones.html" class="sidebar-item-text sidebar-link">
+  <a href="./milestones.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🎯 Milestones</span></a>
   </div>
 </li>
@@ -196,13 +160,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises_overview.html" class="sidebar-item-text sidebar-link">
+  <a href="./exercises_overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ℹ️ Organisation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/exercises.qmd" class="sidebar-item-text sidebar-link">
+  <a href="./exercises/exercises.qmd" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🏋️‍♂️ Exercise sheets</span></a>
   </div>
 </li>
@@ -219,13 +183,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bibliography.html" class="sidebar-item-text sidebar-link">
+  <a href="./bibliography.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">📚 Bibliography</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../software.html" class="sidebar-item-text sidebar-link">
+  <a href="./software.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">💻 Software</span></a>
   </div>
 </li>
@@ -241,11 +205,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-4" id="toc-signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-4" class="nav-link active" data-scroll-target="#signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-4">Signal processing and analysis of human brain potentials (EEG) [Exercise 4]</a>
-  <ul class="collapse">
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#ica-on-eeg-data" id="toc-ica-on-eeg-data" class="nav-link" data-scroll-target="#ica-on-eeg-data">ICA on EEG data</a></li>
-  </ul></li>
+  <li><a href="#mne-python" id="toc-mne-python" class="nav-link active" data-scroll-target="#mne-python">mne-python</a></li>
+  <li><a href="#mne-bids-pipeline" id="toc-mne-bids-pipeline" class="nav-link" data-scroll-target="#mne-bids-pipeline">mne-bids-pipeline</a></li>
+  <li><a href="#iclabel" id="toc-iclabel" class="nav-link" data-scroll-target="#iclabel">IClabel</a></li>
   </ul>
 </nav>
     </div>
@@ -254,58 +216,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-4" class="level1">
-<h1>Signal processing and analysis of human brain potentials (EEG) [Exercise 4]</h1>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p><strong>T:</strong> Load simulation dataset by <code>x = ccs_eeg_utils.simulate_ICA(dims=2)</code> and plot it. We will write simple ICA algorithm to try to return the original signals</p>
-<p>Remember that for ICA we have to undo a scaling and a rotation. The scaling we can do by whitening our signal <code>x</code>. The sphering (=whitening) matrix is the inverse of the matrix-squareroot of the covariance matrix of x.</p>
-<p>In order to whiten (<code>x_white</code>), we have to remove the mean of <code>x</code> and then calculate the matrix product with the sphering matrix <code>sph*x</code>. Now we are ready to try a extermely simple, naive, restricted and stupid ICA algorithm:</p>
-<p>We simply rotate the signal using a 2D rotation matrix and for each rotatio calculate the kurtosis</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>turn <span class="op">=</span><span class="kw">lambda</span> k: np.reshape(np.array([np.cos(k), np.sin(k), <span class="op">-</span>np.sin(k), np.cos(k)]),(<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>(pseudocode)</p>
-<pre><code>for t in 0:pi
-    x_bar = turn(t) * x_white
-    abs(kurtosis(x_bar))</code></pre>
-<p>The solution to ICA would be then <code>argmax(kurtosis_list)</code>.</p>
-<p><strong>T:</strong> Plot the solution!</p>
-<p><strong>Bonus</strong> If you want to be fancy, you can also generate an animation linking kurtosis + rotating the datapoints + marginal histograms together</p>
-<p><strong>T:</strong> Next we will use the infomax algorithm implemented in <code>mne</code> (you could try implementing it yourself, but I found an effective adjustment of learning rate quite tricky). you can call the infomax algorithm using <code>mne.preprocessing.infomax(x.T,verbose=True)</code>. Run it on <code>x = ccs_eeg_utils.simulate_ICA(dims=4)</code> and plot the signals before and after.</p>
+<section id="mne-python" class="level2">
+<h2 class="anchored" data-anchor-id="mne-python">mne-python</h2>
+<p>MNE Python is a general EEG processing, analysis and visualization toolbox. It will sufficice for 99% of your EEG analyses.</p>
 </section>
-<section id="ica-on-eeg-data" class="level2">
-<h2 class="anchored" data-anchor-id="ica-on-eeg-data">ICA on EEG data</h2>
-<p><strong>T:</strong> Now we are ready to run ICA on real EEG data. Select a dataset from a previous exercise and start the ICA (you can downsample the data to speed up ICA calculation <code>raw.resample(100)</code>).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne_bids <span class="im">import</span> (BIDSPath,read_raw_bids)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne_bids</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"../local/bids"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>subject_id <span class="op">=</span> <span class="st">'002'</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>bids_path <span class="op">=</span> BIDSPath(subject<span class="op">=</span>subject_id,task<span class="op">=</span><span class="st">"P3"</span>,session<span class="op">=</span><span class="st">"P3"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                     datatype<span class="op">=</span><span class="st">'eeg'</span>, suffix<span class="op">=</span><span class="st">'eeg'</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                     root<span class="op">=</span>bids_root)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> read_raw_bids(bids_path)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ccs_eeg_utils.read_annotations_core(bids_path,raw)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>raw.load_data()</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>raw.<span class="bu">filter</span>(<span class="fl">0.5</span>,<span class="dv">50</span>, fir_design<span class="op">=</span><span class="st">'firwin'</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>raw.set_montage(<span class="st">'standard_1020'</span>,match_case<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Generate an ICA object <code>ica= mne.preprocessing.ICA(method="fastica")</code></p>
-<p>fit the ICA on the data. <code>ica.fit(raw,verbose=True)</code></p>
-<p>After the fit (can take some minutes) you can plot the component using <code>ica.plot_components()</code></p>
-<p>If you want to inspect a specific component, you can select it using <code>ica.plot_properties(raw,picks=[3])</code>.</p>
-<p>In order to exclude components, write: ica.exclude = [3,4,16]</p>
-<p>You can then compare the EEG before &amp; after using:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ica.apply() changes the Raw object in-place, so let's make a copy first:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>reconst_raw <span class="op">=</span> raw.copy()</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ica.<span class="bu">apply</span>(reconst_raw)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>raw.plot()</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>reconst_raw.plot()  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Or use one of MNEs functionalities: `<code>ica.plot_overlay(raw,exclude=[1,8,9])</code></p>
+<section id="mne-bids-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="mne-bids-pipeline">mne-bids-pipeline</h2>
+<p>BIDS is a standardized format (mostly in terms of folder-structures), to save EEG (and other imaging) dataformats. On top of BIDS, one can relatively easily specify an MNE-pipeline using the <code>MNE-BIDS-Pipeline</code> package.</p>
+<p><a href="https://mne.tools/mne-bids-pipeline/1.4/getting_started/install.html">get started here</a></p>
+<p>We recommend strongly to try it out in a tutorial and use it for your semester project data analysis!</p>
+</section>
+<section id="iclabel" class="level2">
+<h2 class="anchored" data-anchor-id="iclabel">IClabel</h2>
+<p>a cool tool to automatically classify artefactual independent components is ICLabel. You can use it here: https://github.com/mne-tools/mne-icalabel</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I havent tested iclabel with mne-bids-pipeline, it should be compatible though.</p>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
