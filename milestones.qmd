@@ -1,0 +1,107 @@
+---
+title: "Project Milestones"
+editor:
+  render-on-save: true
+---
+
+::: callout-note
+The purpose of the milestones is to help you monitoring your progress throughout the semester.
+
+In each milestone session, each project group briefly presents their current process and we can discuss open questions (approx. 1 min presentation + 3 min discussion per group).
+
+For this purpose, each group is supposed to prepare **1 slide** (singular!) for each of the milestones and **upload them on Ilias until midnight before the respective session.**
+:::
+
+::: callout-important
+Check out the [schedule](schedule.qmd) for the actual dates.
+:::
+
+
+::: {.callout-caution collapse="true" icon="false"}
+
+### Milestone 1: Paper+Dataset selected {#sec-ms1}
+**Goals to be reached:**
+
+-   You selected a Paper and a Dataset to replicate
+-   You extracted the central hypotheses of the paper
+
+**Slides:**
+Prepare 1 Slides showing:
+
+- Teamname + Members
+- The general idea of the experiment
+- The main research question
+- The main analysis you will perform (ERP, Time-Frequency, Source-space, others)
+
+:::: callout-tip
+Research questions can often be answered by a "yes" or "no".
+::::
+
+:::
+
+::: {.callout-caution collapse="true" icon="false"}
+### Milestone 2: Processing Pipeline {#sec-ms2}
+**Goals to be reached:**
+
+- Map out the required analysis pipeline of the authors
+- Compare this to the analysis pipeline you want to do
+- Downloaded + Loaded the data. Have a first impression
+
+**Slides:**
+Prepare 1-2 Slides showing:
+
+- The central research question (one sentence, very brief)
+- A table with the authors + your pipeline
+
+:::: callout-warning
+Not all authors do a good job to clearly communicate how their pipeline looked like. Add notes when you are unsure!
+:::: 
+:::
+
+
+::: {.callout-caution collapse="true" icon="false"}
+### Milestone 3: First subject analyzed {#sec-ms3}
+**Goals to be reached:**
+
+- Implemented a preprocessing pipeline
+- One single subject analyzed
+ 
+**Slides:**
+Prepare 1 slide showing:
+- Your improved pipeline
+- First results of one subject (e.g. an ERP or similar)
+
+:::
+
+
+::: {.callout-caution collapse="true" icon="false"}
+### Milestone 4: All subjects {#sec-ms4}
+**Goals to be reached:**  
+
+- Pipeline ran for all subjects
+- Further outliers / problems  identified
+
+**Slides:**
+Provide 1-2 slides with results of your sanity checks.
+
+Sanity checks could be (depending on project, come up with your own!)  
+- ICA topography quality
+- ERP Signal-To-Noise
+
+
+:::
+
+::: {.callout-caution collapse="true" icon="false"}
+### Milestone 5: Outlook {#sec-ms5}
+**Goals to be reached:**  
+
+- You should by now be close to replicate (or not!) the results of the authors
+- You should think of an additional analysis (e.g. ERP, linear model, time-frequency, source-space) to run on this data.
+
+**Slides:** Prepare 2 slides listing:  
+
+- (1) the current state of replication vs. not
+- (2) your ideas on what to look at next
+
+:::
+

@@ -48,12 +48,9 @@ You can find the link above
 ## How can I get help / advice?
 
 -   Write in the ILIAS Forum. Either others will help, or I myself will answer questions.
-
 -   I highly recommend watching the first talk in this session: https://www.crowdcast.io/e/live-meeg-2020/7 by Marijn van Vliet for an fitting introduction of analysing multiple subjects with MNE in a reproducible and documented way. After that, use mne-bids-pipeline as suggested before.
-
 -   The MNE-documentation is quite extensive. It is worth looking into. You can also try **stackexchange** or **neurostar** for help.
-
--   
+  
 
 ## FAQ (will be updated)
 
