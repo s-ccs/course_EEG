@@ -22,11 +22,11 @@ Check out the [schedule](schedule.qmd) for the actual dates.
 ### Milestone 1: Paper+Dataset selected {#sec-ms1}
 **Goals to be reached:**
 
--   You selected a Paper and a Dataset to replicate
+-   You selected a paper and a dataset to replicate
 -   You extracted the central hypotheses of the paper
 
 **Slides:**
-Prepare 1 Slides showing:
+Prepare 1 Slide showing:
 
 - Teamname + Members
 - The general idea of the experiment
@@ -48,7 +48,7 @@ Research questions can often be answered by a "yes" or "no".
 - Downloaded + Loaded the data. Have a first impression
 
 **Slides:**
-Prepare 1-2 Slides showing:
+Prepare 1 slide showing:
 
 - The central research question (one sentence, very brief)
 - A table with the authors + your pipeline
@@ -96,12 +96,12 @@ Sanity checks could be (depending on project, come up with your own!)
 **Goals to be reached:**  
 
 - You should by now be close to replicate (or not!) the results of the authors
-- You should think of an additional analysis (e.g. ERP, linear model, time-frequency, source-space) to run on this data.
+- You should think of an additional analysis (e.g. ERP, decoding, linear model, time-frequency, source-space) to run on this data.
 
 **Slides:** Prepare 2 slides listing:  
 
-- (1) the current state of replication vs. not
-- (2) your ideas on what to look at next
+- (Slide 1) the current state of replication vs. not
+- (Slide 2) your ideas on what to look at next
 
 :::
 

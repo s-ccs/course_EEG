@@ -1,0 +1,18 @@
+---
+title: "Bibliography"
+editor:
+  render-on-save: true
+---
+
+## Text books
+
+#### Hari & Puce - MEG/EEG Primer
+Good book with a general overview of many topics discussed in the course
+
+
+#### Luck - An Introduction to the Event-Related Potential Technique, Second Edition
+The standard book for ERP analyses
+
+
+#### Analyzing Neural Time Series Data: Theory and Practice
+The standard book for time-frequency analysis (a bit on the older side though, still excellent read)

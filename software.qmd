@@ -1,0 +1,18 @@
+## mne-python
+
+MNE Python is a general EEG processing, analysis and visualization toolbox. It will sufficice for 99% of your EEG analyses.
+
+## mne-bids-pipeline
+
+BIDS is a standardized format (mostly in terms of folder-structures), to save EEG (and other imaging) dataformats. On top of BIDS, one can relatively easily specify an MNE-pipeline using the `MNE-BIDS-Pipeline` package.
+
+[get started here](https://mne.tools/mne-bids-pipeline/1.4/getting_started/install.html)
+
+We recommend strongly to try it out in a tutorial and use it for your semester project data analysis!
+
+## IClabel
+a cool tool to automatically classify artefactual independent components is ICLabel. You can use it here: https://github.com/mne-tools/mne-icalabel
+
+::: {.callout-warning}
+I havent tested iclabel with mne-bids-pipeline, it should be compatible though. 
+:::

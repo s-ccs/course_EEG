@@ -17,4 +17,4 @@ from: markdown+emoji
 This course was put together by [Benedikt Ehinger](https://www.s-ccs.de) with feedback from previous cohorts.
 
 ### Licenses
-We are currently working to release all material under CC-by license (where possible)
+We are currently working to release all material under CC-by license (where possible) - but it is a long process. Thus, the materials here are not open-education materials yet.
