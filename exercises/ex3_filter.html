@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>🧠 EEG-2023 – grading</title>
+<title>🧠 EEG-2023 – ex3_filter</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -59,8 +93,10 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body class="nav-sidebar docked">
@@ -72,7 +108,9 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./semesterproject.html">Projects</a></li><li class="breadcrumb-item"><a href="./grading.html">🛠️ Grading</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      🧠 EEG-2023
+      </li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -87,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">🧠 EEG-2023</a> 
+      <a href="../">🧠 EEG-2023</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -108,13 +146,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course.html" class="sidebar-item-text sidebar-link">
+  <a href="../course.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ℹ️ Organisation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">📆 Schedule</span></a>
   </div>
 </li>
@@ -131,19 +169,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./semesterproject.html" class="sidebar-item-text sidebar-link">
+  <a href="../semesterproject.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">📋 Descriptions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./grading.html" class="sidebar-item-text sidebar-link active">
+  <a href="../grading.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🛠️ Grading</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./milestones.html" class="sidebar-item-text sidebar-link">
+  <a href="../milestones.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🎯 Milestones</span></a>
   </div>
 </li>
@@ -160,13 +198,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercises_overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../exercises_overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ℹ️ Organisation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercises/exercises.html" class="sidebar-item-text sidebar-link">
+  <a href="../exercises/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🏋️‍♂️ Exercise sheets</span></a>
   </div>
 </li>
@@ -183,13 +221,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bibliography.html" class="sidebar-item-text sidebar-link">
+  <a href="../bibliography.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">📚 Bibliography</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./software.html" class="sidebar-item-text sidebar-link">
+  <a href="../software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">💻 Software</span></a>
   </div>
 </li>
@@ -205,7 +243,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#grading" id="toc-grading" class="nav-link active" data-scroll-target="#grading">Grading</a></li>
+  <li><a href="#signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-3" id="toc-signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-3" class="nav-link active" data-scroll-target="#signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-3">Signal processing and analysis of human brain potentials (EEG) [Exercise 3]</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#simulate-a-simple-eeg-signal" id="toc-simulate-a-simple-eeg-signal" class="nav-link" data-scroll-target="#simulate-a-simple-eeg-signal">Simulate a simple EEG signal</a></li>
+  <li><a href="#transform-to-fourier-space" id="toc-transform-to-fourier-space" class="nav-link" data-scroll-target="#transform-to-fourier-space">Transform to fourier space</a></li>
+  <li><a href="#a-simple-filter" id="toc-a-simple-filter" class="nav-link" data-scroll-target="#a-simple-filter">A simple filter</a></li>
+  <li><a href="#highpass-instead-of-lowpass" id="toc-highpass-instead-of-lowpass" class="nav-link" data-scroll-target="#highpass-instead-of-lowpass">Highpass instead of lowpass</a></li>
+  <li><a href="#what-happens-to-the-frequency-and-time-response-if-we-add-artefacts" id="toc-what-happens-to-the-frequency-and-time-response-if-we-add-artefacts" class="nav-link" data-scroll-target="#what-happens-to-the-frequency-and-time-response-if-we-add-artefacts">What happens to the frequency and time response if we add “artefacts”?</a></li>
+  <li><a href="#bonus-electrical-artefacts" id="toc-bonus-electrical-artefacts" class="nav-link" data-scroll-target="#bonus-electrical-artefacts">Bonus: Electrical Artefacts</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -214,23 +261,70 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="grading" class="level2">
-<h2 class="anchored" data-anchor-id="grading">Grading</h2>
-<p>I will grade the report and code according to the following criteria:</p>
-<ul>
-<li>20% Code readability &amp; code documentation</li>
-<li>20% Reproducibility &amp; modularity</li>
-<li>20% Sanity Checks &amp; sanity visualizations &amp; their discussion*</li>
-<li>20% Result visualization &amp; Results documentation &amp; interpretation</li>
-<li>20% Scope of Project</li>
-</ul>
-<p>Generally, you see that <strong>documentation and explanations</strong> are important. I do not (only) want to see that you analyzed the dataset, but I want to see what your motivation for choosing parameters is (parameteres like reference, filter settings, data removal criteria, algorithmic choices etc.).</p>
-<p>Regarding <strong>readability</strong>, I think direct-documentation (code-comments), style and modularity are key.</p>
-<p>Regarding <strong>reproducibility</strong>, it is important that you control and document the software versions, that your analysis scripts can be easily reproduced on another computer. If you are using mne-BIDS-pipeline you should already have a good start.</p>
-<p><strong>Sanity checks</strong> are small asserts &amp; plots here and there, maybe even a unittest or two - small things that make sure your code is doing what it is supposed to be doing.</p>
-<p>Sentences starting with (“This seems correct, because xy”, “this is strange because…”, etc.) are expected. Such sentences give me an idea how much you understood the material.</p>
+<section id="signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-3" class="level1">
+<h1>Signal processing and analysis of human brain potentials (EEG) [Exercise 3]</h1>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>In this exercise we will learn a lot about filters.</p>
+</section>
+<section id="simulate-a-simple-eeg-signal" class="level2">
+<h2 class="anchored" data-anchor-id="simulate-a-simple-eeg-signal">Simulate a simple EEG signal</h2>
+<p>We start out with a simple signal:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> cos, sin, pi,  arange</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sample_rate <span class="op">=</span> <span class="fl">100.0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>nsamples <span class="op">=</span> <span class="dv">400</span> <span class="co"># fixed at 11.11.2020</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> arange(nsamples) <span class="op">/</span> sample_rate</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> cos(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>t) <span class="op">+</span> <span class="fl">0.2</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">2.5</span><span class="op">*</span>t<span class="op">+</span><span class="fl">0.1</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="fl">0.2</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">15.3</span><span class="op">*</span>t) <span class="op">+</span> <span class="fl">0.1</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">16.7</span><span class="op">*</span>t <span class="op">+</span> <span class="fl">0.1</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="fl">0.1</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">23.45</span><span class="op">*</span>t<span class="op">+</span><span class="fl">.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Plot the signal against time.</p>
+</section>
+<section id="transform-to-fourier-space" class="level2">
+<h2 class="anchored" data-anchor-id="transform-to-fourier-space">Transform to fourier space</h2>
+<p>We will run the FFT algorithm and plot the magnitude response (<span class="math inline">\(log10(abs(fft(x))))\)</span>).</p>
+</section>
+<section id="a-simple-filter" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-filter">A simple filter</h2>
+<p>a very simple frequency filter is to set the unwanted amplitude of the fourier components to something close to zero. We have to be a tad careful not to remove the phase information though. Your task is therefore: - split the complex fourier result into <em>angle</em> and <em>magnitude</em> - set the respective magnitudes to zero (we start with a lowpass filter: <code>magnitude[30:370] = 0</code>) - combine angle and magnitude back to a complex fourier coefficient (<span class="math inline">\(m*e^(1j*ang)\)</span>) - apply the inverse FFT - plot the signal with what you started out</p>
+<p>Note: If you plot e.g.&nbsp;the magnitude you will notice it is mirrorsymmetric around the middle! This is because FFT is actually defined for complex signals. Because we only have real signals, practically half of the FFT is redundant. But this also means, all of our manual-filters need to take the mirror-symmetry into account.</p>
+</section>
+<section id="highpass-instead-of-lowpass" class="level2">
+<h2 class="anchored" data-anchor-id="highpass-instead-of-lowpass">Highpass instead of lowpass</h2>
+<p>Repeat the steps from above, but this time, remove the low frequency components</p>
+</section>
+<section id="what-happens-to-the-frequency-and-time-response-if-we-add-artefacts" class="level2">
+<h2 class="anchored" data-anchor-id="what-happens-to-the-frequency-and-time-response-if-we-add-artefacts">What happens to the frequency and time response if we add “artefacts”?</h2>
+<p>Add a DC-offset (a step-function) starting from <code>x[200:]</code> and investigate the fourier space. Filter it again (low or high pass) and transfer it back to the time domain and investigate the signal around the spike.</p>
+<p>## Impulse Response Function To get a bit deeper understanding of what is going on, have a look at the fourier transform of a new impulse signal (e.g.&nbsp;1:400 =&gt; 0. and 200 =&gt; 1.). What do you observe? Why would we see ringing if we put most of the coefficients to 0?</p>
+<p>## Filtering EEG data Usually we would not built our own filters - but understanding the properties is still very important! We will load our data from last time again:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne_bids <span class="im">import</span> (BIDSPath,read_raw_bids)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne_bids</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ccs_eeg_utils</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"../local/bids"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>subject_id <span class="op">=</span> <span class="st">'002'</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>bids_path <span class="op">=</span> BIDSPath(subject<span class="op">=</span>subject_id,task<span class="op">=</span><span class="st">"P3"</span>,session<span class="op">=</span><span class="st">"P3"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                     datatype<span class="op">=</span><span class="st">'eeg'</span>, suffix<span class="op">=</span><span class="st">'eeg'</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                     root<span class="op">=</span>bids_root)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> read_raw_bids(bids_path)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ccs_eeg_utils.read_annotations_core(bids_path,raw)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>raw.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>T:</strong> Choose the channel “Pz”, plot the channel (previous HW it was “Cz”)</p>
+<p><strong>T:</strong> Plot the fourier space using <code>raw.plot_psd()</code></p>
+<p><strong>T:</strong> Now we filter using <code>raw.filter()</code>, specify a highpass of 0.5Hz and a lowpass of 50Hz. Plot the fourier spectrum again.</p>
+<p><strong>T:</strong> Plot the channel again, did the filter work as indented?</p>
+<p><strong>Bonus</strong> If you want, you can compare the ERP with and without filtering. You can also use “invalid” filter settings - HP up to 2-5Hz, lowpass until 10-20Hz. I say invalid here, because usually with such ranges, you would filter out results that you are actually interested in.</p>
+</section>
+<section id="bonus-electrical-artefacts" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-electrical-artefacts">Bonus: Electrical Artefacts</h2>
+<p>Too late to fix the lecture, but instead of notch filtering 50/60Hz artefacts, one can also try to regress it out in smarter ways. A good tool for this is <em>Zap_Line</em> with a python implementation here: https://github.com/nbara/python-meegkit/. There are also several robust detrending methods, which could potentially replace highpass filters in the future. But more work needs to be invested to see how results compare. These methods are not (yet) common.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
