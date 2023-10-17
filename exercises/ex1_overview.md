@@ -1,10 +1,4 @@
 # Signal processing and analysis of human brain potentials (EEG) [Exercise 1]
-## General remarks to exercises
-These exercises are comparatively easy and not very involved - this is by design. They are designed to help you think in different ways about the lecture material. The exercises are highly recommended but not mandatory. It is best if you generate a jupyter notebook for each exercise and upload it every week until Monday 12.00 (some exercises are over two weeks and specified as such in the course-overview table in Ilias).
-
-You are encouraged to work in groups of 2. 
-
-Exercises are only graded pass/failed and if requested I will try to provide feedback. Again: Exercises are not mandatory to pass the course. The course-grade is solely based on the semesterproject.
 
 ## Overview
 In this exercise we will install the mne-python toolbox, download a example dataset, make some basic visualizations and epoch, average and visualize the resulting ERPs.
@@ -23,18 +17,10 @@ If you want to read the details you can find it here (the dataset is also part o
 
 
 ```
-pip install osfclient
 pip install mne-bids
 ```
 
-### Update 2020-11-04
-Unfortunately, the osf-repo was recently moved and all tasks were put together. Due to a quirky implementation of osfclient, it blindly (recursively) iterates over all files and checks each against the to-be-fetched one. Thus it can take minutes for a single file to be downloaded (and we run into API-timeouts etc.). Therefore the following code will likely not work
-```python
-import ccs_eeg_utils
-ccs_eeg_utils.download_erpcore(task="P3",subject=2,localpath="../local/bids/")
-
-```
-And you have to download the following files manually from https://osf.io/thsqg/
+ou have to download the following files manually from https://osf.io/thsqg/
 `["channels.tsv","events.tsv","eeg.fdt","eeg.json","eeg.set"]`
 and put them into `../local/bids/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_XYZ` with `XZY` being the filename.
 

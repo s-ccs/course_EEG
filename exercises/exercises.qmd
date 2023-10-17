@@ -1,0 +1,21 @@
+## General remarks to exercises
+These exercises are not intendend to be particularly difficult or very involved - this is by design. They are designed to help you think in different ways about the lecture material. The exercises are highly recommended but not mandatory. It is best if you generate a jupyter notebook for each exercise and upload it every week until Wednesday 12.00 (some exercises are over two weeks and specified as such in the course-overview)
+
+You are encouraged to work in groups of 2. 
+
+Exercises are only graded pass/failed and if requested I will try to provide feedback. Again: Exercises are not mandatory to pass the course. The course-grade is solely based on the semesterproject.
+
+## The exercises
+|||
+| --- | ---| 
+| Overview + first ERP  | [Exercise 1](ex1_overview.md)
+| ERPs| [Exercise 2](ex2_erpComponents.md), [Supplementary PDF file](ex2_erpComponents_Tanaka2001.pdf)
+| Filter | [Exercise 3](ex3_filter.md)
+| Cleaning | [Exercise 4](ex4_cleaning.md)
+| ICA | [Exercise 5](ex5_ICA.md)
+| LinearModels | [Exercise 6](ex6_linearModels.md) [Supplementary CSV file](ex6_N170.csv)
+| Encoding | [Exercise 7](ex7_encoding.md)
+| ClusterPermuatation | [Exercise 8](ex8_clusterPerm.md)
+| TimeFrequency | [Exercise 9](ex9_tf.md)
+| Decoding | [Exercise 10](ex10_decoding.md)
+| Source Space | [Exercise 11](ex11_sourceSpace.md)

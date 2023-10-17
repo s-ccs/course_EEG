@@ -1,4 +1,4 @@
-# Signal processing and analysis of human brain potentials (EEG) [Exercise 4]
+# Signal processing and analysis of human brain potentials (EEG) [Exercise 5]
 ## Overview
 **T:** Load simulation dataset by `x = ccs_eeg_utils.simulate_ICA(dims=2)` and plot it. We will write simple ICA algorithm to try to return the original signals
 

@@ -1,0 +1,23 @@
+## Course Philosophy
+
+You are here because you want to learn something. My job is to make that easier and provide opportunities. I will provide lectures whenever they are ready. Homeworks and all solutions are already available at the start of the course. In principle, you can decide to not join most of the weekly "Discussions" and teach yourself - but the discussions will be fun and helpful as you will see. Attending the milestones is mandatory
+
+At the end of the course, you should be able to analyse a complete EEG dataset in different ways. This requires conceptual knowledge and implementation practice. Importantly, this course requires you to actually want to learn! I will give you lots of flexibility, but in the end, you must make the time and effort to learn the content.
+
+I will support, but I will not enforce.
+
+## Formal requirements to pass
+The formal requirements to pass the course, is to get a grade >=4.0 in the semester project and to present at each milestone (ungraded). There is no requirement to join the other seminar sessions, to do the homeworks or watch the lectures. All of these things will be extremely helpful though, and I recommend to watch them early in the semester (you have to watch them anyway!)
+
+## Exercises
+The homeworks are voluntarily, but **HIGHLY** recommended. The semester project is based on the exercises. If you went through them and understood the content, the backbone of the semester project will be finished already.
+
+A note to solutions: I provide solutions so that you can check yourself in case you get stuck. This is dangerous from a learning perspective because easy access to solutions also means you might not challenge yourself enough. I highly recommend trying out various ways on a problem first, and only to go for the solution if you do not succeed after 10-20min .
+
+## Feedback
+In order for you to learn, you need feedback. One possibility is the forum where you can also help each other (which I highly recommend!), another one is the "Discussion" sessions, and lastly you can ask for my feedback for the exercises. The more specific your questions are, the better feedback I can provide! I aim to provide feedback within one week to the scheduled dates.
+
+## Other (less important) notes
+- This is the fourth iteration of the course and the material improves every time. The major change this year is the new semester project
+- The other course ("Übung") will not be made available.
+- This Semesters "Discussions" will be in Hybrid-Mode.
