@@ -1,4 +1,4 @@
-# Signal processing and analysis of human brain potentials (EEG) [Exercise 2]
+# Signal processing and analysis of human brain potentials (EEG) [Exercise 3]
 ## Overview
 In this exercise we will learn a lot about filters.
 

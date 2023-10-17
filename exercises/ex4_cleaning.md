@@ -1,4 +1,4 @@
-# Signal processing and analysis of human brain potentials (EEG) [Exercise 3]
+# Signal processing and analysis of human brain potentials (EEG) [Exercise 4]
 ## Cleaning Data
 **T:** Download the `P3` dataset for Subject `30` (before 2020-11-20 12.53 this stated subject 9, sorry!) from the [ERPcore](https://osf.io/thsqg/).
 
