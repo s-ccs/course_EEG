@@ -2,126 +2,126 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/ex10_decoding.html</loc>
-    <lastmod>2023-10-17T21:01:26.592Z</lastmod>
+    <lastmod>2023-10-25T19:48:28.086Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/ex11_sourceSpace.html</loc>
-    <lastmod>2023-10-17T21:01:27.307Z</lastmod>
+    <lastmod>2023-10-25T19:48:28.832Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/ex1_overview.html</loc>
-    <lastmod>2023-10-17T21:01:27.818Z</lastmod>
+    <lastmod>2023-10-25T19:48:29.296Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/ex4_cleaning.html</loc>
-    <lastmod>2023-10-17T21:01:28.293Z</lastmod>
+    <lastmod>2023-10-25T19:48:29.741Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/ex5_ICA.html</loc>
-    <lastmod>2023-10-17T21:01:28.768Z</lastmod>
+    <lastmod>2023-10-25T19:48:30.190Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/ex2_erpComponents.html</loc>
-    <lastmod>2023-10-17T21:01:29.193Z</lastmod>
+    <lastmod>2023-10-25T19:48:30.673Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/exercises.html</loc>
-    <lastmod>2023-10-17T21:01:29.615Z</lastmod>
+    <lastmod>2023-10-25T19:48:31.161Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/ex6_linearModels.html</loc>
-    <lastmod>2023-10-17T21:01:30.146Z</lastmod>
+    <lastmod>2023-10-25T19:48:31.700Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/ex7_encoding.html</loc>
-    <lastmod>2023-10-17T21:01:30.728Z</lastmod>
+    <lastmod>2023-10-25T19:48:32.290Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/ex8_clusterPerm.html</loc>
-    <lastmod>2023-10-17T21:01:31.318Z</lastmod>
+    <lastmod>2023-10-25T19:48:32.845Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/ex9_tf.html</loc>
-    <lastmod>2023-10-17T21:01:31.772Z</lastmod>
+    <lastmod>2023-10-25T19:48:33.298Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/ex3_filter.html</loc>
-    <lastmod>2023-10-17T21:01:32.242Z</lastmod>
+    <lastmod>2023-10-25T19:48:33.729Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/solutions/ex10_decoding.html</loc>
-    <lastmod>2023-10-17T21:01:33.136Z</lastmod>
+    <lastmod>2023-10-25T19:48:34.502Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/solutions/ex11_sourceSpace.html</loc>
-    <lastmod>2023-10-17T21:01:34.381Z</lastmod>
+    <lastmod>2023-10-25T19:48:35.649Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/solutions/ex1_overview.html</loc>
-    <lastmod>2023-10-17T21:01:34.973Z</lastmod>
+    <lastmod>2023-10-25T19:48:36.333Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/solutions/ex2_filter.html</loc>
-    <lastmod>2023-10-17T21:01:35.716Z</lastmod>
+    <lastmod>2023-10-25T19:48:37.083Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/solutions/ex3_cleaning.html</loc>
-    <lastmod>2023-10-17T21:01:36.625Z</lastmod>
+    <lastmod>2023-10-25T19:48:37.936Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/solutions/ex4_ICA.html</loc>
-    <lastmod>2023-10-17T21:01:37.280Z</lastmod>
+    <lastmod>2023-10-25T19:48:38.602Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/solutions/ex6_linearModels.html</loc>
-    <lastmod>2023-10-17T21:01:38.380Z</lastmod>
+    <lastmod>2023-10-25T19:48:39.533Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/solutions/ex7_encoding.html</loc>
-    <lastmod>2023-10-17T21:01:39.448Z</lastmod>
+    <lastmod>2023-10-25T19:48:40.575Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/solutions/ex8_clusterPerm.html</loc>
-    <lastmod>2023-10-17T21:01:40.409Z</lastmod>
+    <lastmod>2023-10-25T19:48:41.591Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises/solutions/ex9_tf.html</loc>
-    <lastmod>2023-10-17T21:01:41.131Z</lastmod>
+    <lastmod>2023-10-25T19:48:42.166Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/grading.html</loc>
-    <lastmod>2023-10-17T21:01:41.600Z</lastmod>
+    <lastmod>2023-10-25T19:48:42.524Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/exercises_overview.html</loc>
-    <lastmod>2023-10-17T21:01:42.027Z</lastmod>
+    <lastmod>2023-10-25T19:48:42.901Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/milestones.html</loc>
-    <lastmod>2023-10-17T21:01:42.560Z</lastmod>
+    <lastmod>2023-10-25T19:48:43.405Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/index.html</loc>
-    <lastmod>2023-10-17T21:01:42.957Z</lastmod>
+    <lastmod>2023-10-25T19:48:43.769Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/schedule.html</loc>
-    <lastmod>2023-10-17T21:01:43.443Z</lastmod>
+    <lastmod>2023-10-25T19:48:44.261Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/bibliography.html</loc>
-    <lastmod>2023-10-17T21:01:43.830Z</lastmod>
+    <lastmod>2023-10-25T19:48:44.610Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/semesterproject.html</loc>
-    <lastmod>2023-10-17T21:01:44.441Z</lastmod>
+    <lastmod>2023-10-25T19:48:45.184Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/software.html</loc>
-    <lastmod>2023-10-17T21:01:44.862Z</lastmod>
+    <lastmod>2023-10-25T19:48:45.528Z</lastmod>
   </url>
   <url>
     <loc>https://s-ccs.github.io/course_EEG_WS2023/course.html</loc>
-    <lastmod>2023-10-17T21:01:45.309Z</lastmod>
+    <lastmod>2023-10-25T19:48:45.937Z</lastmod>
   </url>
 </urlset>
