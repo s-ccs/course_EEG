@@ -15,12 +15,18 @@ Test the installation by
 We will be using a typical P3 oddball dataset. We expect a positive response over parietal/central electrodes (Cz/Pz) starting at 300-400ms. Something like this: https://www.neurobs.com/manager/content/docs/psychlab101_experiments/Oddball%20Task%20(Visual)/description.html
 If you want to read the details you can find it here (the dataset is also part of the semester project): https://psyarxiv.com/4azqm/. You can also investigate the `sub-002_task-P3_eeg.json` for a task description which is automatically downloaded.
 
+Next, you need the [ccs_eeg_utils.py](ccs_eeg_utils.py) file which you can add to your python code e.g. via
+```
+import sys
+sys.path.insert(0,'..')
+```
 
+For the ccs_eeg_utils, you will need mne-bids - a tool to manage multi-subject/session EEG data.
 ```
 pip install mne-bids
 ```
 
-ou have to download the following files manually from https://osf.io/thsqg/
+The actual data you can download from https://osf.io/thsqg/
 `["channels.tsv","events.tsv","eeg.fdt","eeg.json","eeg.set"]`
 and put them into `../local/bids/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_XYZ` with `XZY` being the filename.
 
