@@ -1,4 +1,4 @@
-from osfclient import cli
+#from osfclient import cli
 import os
 from mne_bids.read import _from_tsv,_drop
 from mne_bids import (BIDSPath,read_raw_bids)
@@ -80,16 +80,16 @@ class args:
         self.remote = remote
         self.local = local
 
-def download_erpcore(task="MMN",subject=1,localpath="local/bids/"):
-    project = "9f5w7" # after recent change they put everything as "sessions" in one big BIDS file
-            
-    arguments = args(project) # project ID
-    for extension in ["channels.tsv","events.tsv","eeg.fdt","eeg.json","eeg.set"]:
-        targetpath = '/sub-{:03d}/ses-{}/eeg/sub-{:03d}_ses-{}_task-{}_{}'.format(subject,task,subject,task,task,extension)
-        print("Downloading {}".format(targetpath))
-        arguments.remote = "\\ERP_CORE_BIDS_Raw_Files/"+targetpath
-        arguments.local = localpath+targetpath
-        cli.fetch(arguments)
+#def download_erpcore(task="MMN",subject=1,localpath="local/bids/"):
+#    project = "9f5w7" # after recent change they put everything as "sessions" in one big BIDS file
+#            
+#    arguments = args(project) # project ID
+#    for extension in ["channels.tsv","events.tsv","eeg.fdt","eeg.json","eeg.set"]:
+#        targetpath = '/sub-{:03d}/ses-{}/eeg/sub-{:03d}_ses-{}_task-{}_{}'.format(subject,task,subject,task,task,extension)
+#        print("Downloading {}".format(targetpath))
+#        arguments.remote = "\\ERP_CORE_BIDS_Raw_Files/"+targetpath
+#        arguments.local = localpath+targetpath
+#        cli.fetch(arguments)
 
 
 def simulate_ICA(dims=4):
