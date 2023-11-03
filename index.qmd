@@ -7,7 +7,7 @@ from: markdown+emoji
 ### Overview
 <!-- - ℹ️ [Course information](course.qmd) !-->
 - 📆 [Schedule](schedule.qmd)
-- 🔬 [Exercises](exercises_overview.qmd)
+- 🔬 [Exercises](exercises/exercises.qmd)
 - 🛠️ [Project information](semesterproject.qmd)
 - 📋 [Grading](grading.qmd)
 
