@@ -74,14 +74,21 @@
     "href": "software.html",
     "title": "🧠 EEG-2023",
     "section": "",
-    "text": "MNE Python is a general EEG processing, analysis and visualization toolbox. It will sufficice for 99% of your EEG analyses."
+    "text": "not directly a software, but a specification: the BIDS specification\nIt might be helpful as a manual to get an overview what should be there and what shouldnt."
+  },
+  {
+    "objectID": "software.html#bids",
+    "href": "software.html#bids",
+    "title": "🧠 EEG-2023",
+    "section": "",
+    "text": "not directly a software, but a specification: the BIDS specification\nIt might be helpful as a manual to get an overview what should be there and what shouldnt."
   },
   {
     "objectID": "software.html#mne-python",
     "href": "software.html#mne-python",
     "title": "🧠 EEG-2023",
-    "section": "",
-    "text": "MNE Python is a general EEG processing, analysis and visualization toolbox. It will sufficice for 99% of your EEG analyses."
+    "section": "mne-python",
+    "text": "mne-python\nMNE Python is a general EEG processing, analysis and visualization toolbox. It will sufficice for 99% of your EEG analyses."
   },
   {
     "objectID": "software.html#mne-bids-pipeline",
