@@ -1,3 +1,8 @@
+## BIDS
+not directly a software, but a specification: [the BIDS specification](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/03-electroencephalography.html)
+
+It might be helpful as a manual to get an overview what should be there and what shouldnt.
+
 ## mne-python
 
 MNE Python is a general EEG processing, analysis and visualization toolbox. It will sufficice for 99% of your EEG analyses.
