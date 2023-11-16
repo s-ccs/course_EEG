@@ -93,10 +93,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 
 
 <link rel="stylesheet" href="../../css/styles.css">
@@ -264,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="cell" data-execution_count="17">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="st">'..'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne_bids <span class="im">import</span> (BIDSPath,read_raw_bids)</span>
@@ -289,974 +285,97 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>ccs_eeg_utils.read_annotations_core(bids_path,raw)</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>raw.load_data()</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>raw.<span class="bu">filter</span>(<span class="fl">0.5</span>,<span class="dv">50</span>, fir_design<span class="op">=</span><span class="st">'firwin'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Reading /store/data/erp-core/sub-030/ses-P3/eeg/sub-030_ses-P3_task-P3_eeg.fdt
-Reading events from /store/data/erp-core/sub-030/ses-P3/eeg/sub-030_ses-P3_task-P3_events.tsv.
-The event "response" refers to multiple event values. Creating hierarchical event names.
-    Renaming event: response -&gt; response/202
-    Renaming event: response -&gt; response/202
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/202
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/202
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/202
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/202
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/202
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/202
-    Renaming event: response -&gt; response/202
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-The event "stimulus" refers to multiple event values. Creating hierarchical event names.
-    Renaming event: stimulus -&gt; stimulus/31
-    Renaming event: stimulus -&gt; stimulus/31
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/31
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/31
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/31
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/31
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/31
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/31
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/21
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/21
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/24
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/21
-    Renaming event: stimulus -&gt; stimulus/21
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/24
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/24
-    Renaming event: stimulus -&gt; stimulus/21
-    Renaming event: stimulus -&gt; stimulus/21
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/11
-    Renaming event: stimulus -&gt; stimulus/13
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/12
-    Renaming event: stimulus -&gt; stimulus/13
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/13
-    Renaming event: stimulus -&gt; stimulus/13
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/12
-    Renaming event: stimulus -&gt; stimulus/11
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/11
-    Renaming event: stimulus -&gt; stimulus/11
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/11
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/11
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/13
-    Renaming event: stimulus -&gt; stimulus/11
-    Renaming event: stimulus -&gt; stimulus/13
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/12
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/11
-    Renaming event: stimulus -&gt; stimulus/13
-    Renaming event: stimulus -&gt; stimulus/13
-    Renaming event: stimulus -&gt; stimulus/13
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/13
-    Renaming event: stimulus -&gt; stimulus/12
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/42
-Reading channel info from /store/data/erp-core/sub-030/ses-P3/eeg/sub-030_ses-P3_task-P3_channels.tsv.
-Reading 0 ... 393215  =      0.000 ...   383.999 secs...
-Filtering raw data in 1 contiguous segment
-Setting up band-pass filter from 0.5 - 50 Hz
-
-FIR filter parameters
----------------------
-Designing a one-pass, zero-phase, non-causal bandpass filter:
-- Windowed time-domain design (firwin) method
-- Hamming window with 0.0194 passband ripple and 53 dB stopband attenuation
-- Lower passband edge: 0.50
-- Lower transition bandwidth: 0.50 Hz (-6 dB cutoff frequency: 0.25 Hz)
-- Upper passband edge: 50.00 Hz
-- Upper transition bandwidth: 12.50 Hz (-6 dB cutoff frequency: 56.25 Hz)
-- Filter length: 6759 samples (6.601 sec)
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_1983997/3896480629.py:21: RuntimeWarning: Data file name in EEG.data (sub-030_task-P3_eeg.fdt) is incorrect, the file name must have changed on disk, using the correct file name (sub-030_ses-P3_task-P3_eeg.fdt).
-  raw = read_raw_bids(bids_path)</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="17">
-
-<table class="table table-hover table-striped table-sm table-responsive small">
-    <tbody><tr>
-        <th>Measurement date</th>
-        
-        <td>Unknown</td>
-        
-    </tr>
-    <tr>
-        <th>Experimenter</th>
-        
-        <td>Unknown</td>
-        
-    </tr>
-        <tr><th>Participant</th>
-        
-            
-            <td>sub-030</td>
-            
-        
-    </tr>
-    <tr>
-        <th>Digitized points</th>
-        
-        <td>0 points</td>
-        
-    </tr>
-    <tr>
-        <th>Good channels</th>
-        <td>30 EEG, 3 EOG</td>
-    </tr>
-    <tr>
-        <th>Bad channels</th>
-        <td>None</td>
-    </tr>
-    <tr>
-        <th>EOG channels</th>
-        <td>HEOG_left, HEOG_right, VEOG_lower</td>
-    </tr>
-    <tr>
-        <th>ECG channels</th>
-        <td>Not available</td>
-    
-    </tr><tr>
-        <th>Sampling frequency</th>
-        <td>1024.00 Hz</td>
-    </tr>
-    
-    
-    <tr>
-        <th>Highpass</th>
-        <td>0.50 Hz</td>
-    </tr>
-    
-    
-    <tr>
-        <th>Lowpass</th>
-        <td>50.00 Hz</td>
-    </tr>
-    
-    
-    
-    <tr>
-        <th>Filenames</th>
-        <td>sub-030_ses-P3_task-P3_eeg.fdt</td>
-    </tr>
-    
-    <tr>
-        <th>Duration</th>
-        <td>00:06:23 (HH:MM:SS)</td>
-    </tr>
-</tbody></table>
-</div>
 </div>
 <p><strong>T:</strong> Go through the dataset using the MNE explorer and clean it. You can use <code>raw.plot()</code> for this. If you are working from a jupyter notebook, try to use <code>%matplotlib qt</code> for better support of the cleaning window. To get an understanding how the tool works, press <code>help</code> or type <code>?</code> in the window. (Hint: You first have to add a new annotation by pressing <code>a</code>)</p>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib qt</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>raw.plot(n_channels<span class="op">=</span><span class="bu">len</span>(raw.ch_names))<span class="co">#,scalings =40e-6)</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># See below</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Opening raw-browser...
-Closing raw-browser...
-Channels marked as bad:
-none</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="20">
-<p><img src="ex3_cleaning_files/figure-html/cell-3-output-2.png" class="img-fluid"></p>
-</div>
-</div>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bad_ix <span class="op">=</span> [i <span class="cf">for</span> i,a <span class="kw">in</span> <span class="bu">enumerate</span>(raw.annotations) <span class="cf">if</span> a[<span class="st">'description'</span>]<span class="op">==</span><span class="st">"BAD_"</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#raw.annotations[bad_ix].save("sub-{}_task-P3_badannotations.csv".format(subject_id))</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>annotations <span class="op">=</span> mne.read_annotations(<span class="st">"sub-</span><span class="sc">{}</span><span class="st">_task-P3_badannotations.csv"</span>.<span class="bu">format</span>(subject_id))</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>raw.annotations.append(annotations.onset,annotations.duration,annotations.description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
-<pre><code>&lt;Annotations | 431 segments: BAD_ (34), response:201 (188), response:202 ...&gt;</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib qt</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>raw.plot(n_channels<span class="op">=</span><span class="bu">len</span>(raw.ch_names))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Closing raw-browser...
-Channels marked as bad:
-none
-Opening raw-browser...</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<p><img src="ex3_cleaning_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
-</div>
-</div>
-<p><strong>T:</strong> While going through the dataset, mark what you observe as bad electrodes. Those are saved in <code>raw.info['bads']</code>. The channels can be interpolated with <code>raw.interpolate_bads()</code> or <code>epoch.interpolate_bads()</code>. Compare the channel + neighbours before and after. Did the interpolation succeed? (If you are interested in the mathematical details of spline interpolation, checkout this https://mne.tools/dev/overview/implementation.html#id26) Hint: You need channel locations to run the interpolation which you can get by using the default-standardized channel locations <code>raw.set_montage('standard_1020',match_case=False)</code></p>
-<div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I thought there was not really a bad channel in this dataset, so I remove one at random.</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>raw.info[<span class="st">'bads'</span>] <span class="op">=</span> [<span class="st">'FP2'</span>]</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># for interpolation</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>raw.set_montage(<span class="st">'standard_1020'</span>,match_case<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>raw.interpolate_bads()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Interpolating bad channels
-    Automatic origin fit: head of radius 97.5 mm
-Computing interpolation matrix from 29 sensor positions
-Interpolating 1 sensors</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="24">
-
-<table class="table table-hover table-striped table-sm table-responsive small">
-    <tbody><tr>
-        <th>Measurement date</th>
-        
-        <td>Unknown</td>
-        
-    </tr>
-    <tr>
-        <th>Experimenter</th>
-        
-        <td>Unknown</td>
-        
-    </tr>
-        <tr><th>Participant</th>
-        
-            
-            <td>sub-030</td>
-            
-        
-    </tr>
-    <tr>
-        <th>Digitized points</th>
-        
-        <td>0 points</td>
-        
-    </tr>
-    <tr>
-        <th>Good channels</th>
-        <td>30 EEG, 3 EOG</td>
-    </tr>
-    <tr>
-        <th>Bad channels</th>
-        <td>None</td>
-    </tr>
-    <tr>
-        <th>EOG channels</th>
-        <td>HEOG_left, HEOG_right, VEOG_lower</td>
-    </tr>
-    <tr>
-        <th>ECG channels</th>
-        <td>Not available</td>
-    
-    </tr><tr>
-        <th>Sampling frequency</th>
-        <td>1024.00 Hz</td>
-    </tr>
-    
-    
-    <tr>
-        <th>Highpass</th>
-        <td>0.50 Hz</td>
-    </tr>
-    
-    
-    <tr>
-        <th>Lowpass</th>
-        <td>50.00 Hz</td>
-    </tr>
-    
-    
-    
-    <tr>
-        <th>Filenames</th>
-        <td>sub-030_ses-P3_task-P3_eeg.fdt</td>
-    </tr>
-    
-    <tr>
-        <th>Duration</th>
-        <td>00:06:23 (HH:MM:SS)</td>
-    </tr>
-</tbody></table>
-</div>
-</div>
-<p><strong>T:</strong> In the epoching step, we can also specify rejection criterion for a peak-to-peak rejection method</p>
-<div class="cell" data-tags="[]" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>evts,evts_dict <span class="op">=</span> mne.events_from_annotations(raw)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>wanted_keys <span class="op">=</span> [e <span class="cf">for</span> e <span class="kw">in</span> evts_dict.keys() <span class="cf">if</span> <span class="st">"stimulus"</span> <span class="kw">in</span> e]</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>evts_dict_stim<span class="op">=</span><span class="bu">dict</span>((k, evts_dict[k]) <span class="cf">for</span> k <span class="kw">in</span> wanted_keys <span class="cf">if</span> k <span class="kw">in</span> evts_dict)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get epochs with and without rejection</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>epochs        <span class="op">=</span> mne.Epochs(raw,evts,evts_dict_stim,tmin<span class="op">=-</span><span class="fl">0.1</span>,tmax<span class="op">=</span><span class="dv">1</span>,reject_by_annotation<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>epochs_manual <span class="op">=</span> mne.Epochs(raw,evts,evts_dict_stim,tmin<span class="op">=-</span><span class="fl">0.1</span>,tmax<span class="op">=</span><span class="dv">1</span>,reject_by_annotation<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>reject_criteria <span class="op">=</span> <span class="bu">dict</span>(eeg<span class="op">=</span><span class="fl">200e-6</span>,       <span class="co"># 100 µV # HAD TO INCREASE IT HERE, 100 was too harsh</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>                       eog<span class="op">=</span><span class="fl">200e-6</span>)       <span class="co"># 200 µV</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>epochs_thresh <span class="op">=</span> mne.Epochs(raw,evts,evts_dict_stim,tmin<span class="op">=-</span><span class="fl">0.1</span>,tmax<span class="op">=</span><span class="dv">1</span>,reject<span class="op">=</span>reject_criteria,reject_by_annotation<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#from matplotlib import pyplot as plt</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># compare</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.plot([0,:])</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>mne.viz.plot_compare_evokeds({<span class="st">'raw'</span>:epochs.average(),<span class="st">'clean'</span>:epochs_manual.average(),<span class="st">'thresh'</span>:epochs_thresh.average()},picks<span class="op">=</span><span class="st">"Cz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Used Annotations descriptions: ['response:201', 'response:202', 'stimulus:11', 'stimulus:12', 'stimulus:13', 'stimulus:14', 'stimulus:15', 'stimulus:21', 'stimulus:22', 'stimulus:23', 'stimulus:24', 'stimulus:25', 'stimulus:31', 'stimulus:32', 'stimulus:33', 'stimulus:34', 'stimulus:35', 'stimulus:41', 'stimulus:42', 'stimulus:43', 'stimulus:44', 'stimulus:45', 'stimulus:51', 'stimulus:52', 'stimulus:53', 'stimulus:54', 'stimulus:55']
-Not setting metadata
-200 matching events found
-Setting baseline interval to [-0.099609375, 0.0] sec
-Applying baseline correction (mode: mean)
-0 projection items activated
-Not setting metadata
-200 matching events found
-Setting baseline interval to [-0.099609375, 0.0] sec
-Applying baseline correction (mode: mean)
-0 projection items activated
-Not setting metadata
-200 matching events found
-Setting baseline interval to [-0.099609375, 0.0] sec
-Applying baseline correction (mode: mean)
-0 projection items activated
-    Rejecting  epoch based on EEG : ['FP1', 'F3', 'F7', 'FC3', 'C3', 'C5', 'P3', 'P7', 'P9', 'PO7', 'PO3', 'O1', 'Oz', 'Pz', 'CPz', 'FP2', 'Fz', 'F4', 'F8', 'FC4', 'FCz', 'Cz', 'C4', 'C6', 'P4', 'P8', 'P10', 'PO8', 'PO4', 'O2']
-    Rejecting  epoch based on EEG : ['F3', 'FC3', 'C3', 'C5', 'P9', 'PO3', 'O1', 'Oz', 'Pz', 'CPz', 'FP2', 'Fz', 'F4', 'F8', 'FC4', 'FCz', 'Cz', 'C4', 'C6', 'P4', 'P8', 'PO8']
-    Rejecting  epoch based on EEG : ['F8']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EOG : ['HEOG_left']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EOG : ['HEOG_left', 'HEOG_right', 'VEOG_lower']
-    Rejecting  epoch based on EOG : ['HEOG_left', 'HEOG_right', 'VEOG_lower']
-    Rejecting  epoch based on EOG : ['HEOG_left', 'HEOG_right', 'VEOG_lower']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2', 'F4']
-    Rejecting  epoch based on EOG : ['HEOG_right', 'VEOG_lower']
-    Rejecting  epoch based on EOG : ['HEOG_right', 'VEOG_lower']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['P4']
-    Rejecting  epoch based on EOG : ['VEOG_lower']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EOG : ['HEOG_left', 'HEOG_right']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EOG : ['VEOG_lower']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['F4']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['P7', 'F4', 'C4', 'C6']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['F4', 'C4', 'C6']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'F7', 'FC3', 'C3', 'P3', 'P7', 'P9', 'PO3', 'FP2', 'F4', 'F8', 'FC4', 'C4', 'C6', 'P10', 'PO4']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2', 'F4']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2', 'F8']
-    Rejecting  epoch based on EEG : ['FP1']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2', 'F4']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'F7', 'FC3', 'C3', 'C5', 'P3', 'P7', 'P9', 'PO7', 'PO3', 'O1', 'FP2', 'Fz', 'F4', 'F8', 'FC4', 'FCz', 'C4', 'C6', 'P4', 'P8', 'P10', 'PO8', 'PO4', 'O2']
-    Rejecting  epoch based on EEG : ['FP1', 'P7', 'P9', 'PO7', 'O1', 'FP2', 'F4', 'F8', 'C4', 'C6', 'PO4']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2', 'F8']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'P7', 'FP2', 'F4', 'C4']
-    Rejecting  epoch based on EEG : ['FP1', 'P7', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'F3', 'F7', 'FC3', 'C3', 'P3', 'P7', 'P9', 'PO7', 'PO3', 'O1', 'CPz', 'FP2', 'Fz', 'F4', 'F8', 'FC4', 'FCz', 'Cz', 'C4', 'C6', 'P4', 'P8', 'PO8', 'PO4', 'O2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'P7', 'F4', 'C4']
-    Rejecting  epoch based on EEG : ['FP1', 'P7', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1']
-    Rejecting  epoch based on EEG : ['FP1', 'F7', 'FC3', 'C3', 'P3', 'P7', 'PO7', 'PO3', 'O1', 'FP2', 'Fz', 'F4', 'F8', 'FC4', 'FCz', 'C4', 'C6', 'P8', 'P10', 'PO8', 'PO4']
-    Rejecting  epoch based on EEG : ['FP1', 'P7', 'P9', 'FP2', 'F4', 'F8']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2', 'F4']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2', 'F4']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2', 'F4', 'FC4', 'C6']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'C3', 'P7', 'PO7', 'FP2', 'F4', 'F8', 'C6']
-    Rejecting  epoch based on EEG : ['FP1', 'PO7', 'FP2', 'Fz', 'F4', 'F8', 'FCz', 'C4', 'P4', 'PO8']
-    Rejecting  epoch based on EEG : ['FP1', 'F3', 'F7', 'C3', 'C5', 'P3', 'P7', 'P9', 'PO7', 'Oz', 'FP2', 'F4', 'F8', 'FC4', 'C4', 'C6', 'P4', 'P8', 'P10', 'PO8', 'PO4', 'O2']
-    Rejecting  epoch based on EEG : ['FP1', 'F3', 'F7', 'FC3', 'C3', 'C5', 'P3', 'P7', 'P9', 'PO3', 'FP2', 'Fz', 'F4', 'F8', 'FC4', 'C4', 'C6']
-    Rejecting  epoch based on EEG : ['FP1', 'F3', 'F7', 'FC3', 'C3', 'C5', 'P3', 'P7', 'P9', 'PO7', 'PO3', 'O1', 'Oz', 'Pz', 'CPz', 'FP2', 'Fz', 'F4', 'F8', 'FC4', 'FCz', 'Cz', 'C4', 'C6', 'P4', 'P8', 'P10', 'PO8', 'PO4', 'O2']
-    Rejecting  epoch based on EEG : ['FP1', 'F7', 'P3', 'P9', 'PO7', 'FP2', 'F4', 'F8', 'C4', 'PO8', 'PO4']
-    Rejecting  epoch based on EEG : ['FP1', 'F3', 'F7', 'C5', 'P9', 'PO7', 'PO3', 'O1', 'Pz', 'CPz', 'FP2', 'Fz', 'F4', 'F8', 'FC4', 'FCz', 'Cz', 'C4', 'P4', 'P10', 'PO4', 'O2']
-    Rejecting  epoch based on EEG : ['FP1', 'F7', 'C5', 'FP2', 'F8', 'P4']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2', 'F8']
-    Rejecting  epoch based on EEG : ['F4']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'F3', 'F7', 'FC3', 'C3', 'P9', 'PO7', 'FP2', 'Fz', 'F4', 'FC4', 'FCz', 'C4', 'P10', 'O2']
-    Rejecting  epoch based on EEG : ['F7', 'P7', 'P9', 'PO7', 'PO3', 'F8']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['PO7', 'FP2', 'F8']
-    Rejecting  epoch based on EEG : ['FP1', 'F3', 'F7', 'FC3', 'C3', 'C5', 'P3', 'P9', 'PO7', 'PO3', 'O1', 'Oz', 'Pz', 'CPz', 'FP2', 'Fz', 'F4', 'F8', 'FC4', 'FCz', 'Cz', 'C4', 'C6', 'P4', 'P8', 'P10', 'PO8', 'PO4', 'O2']
-    Rejecting  epoch based on EEG : ['FP1', 'F7', 'P9', 'PO7', 'FP2', 'F4', 'F8', 'P10', 'PO4', 'O2']
-    Rejecting  epoch based on EEG : ['FP1', 'F7', 'P9', 'PO7', 'FP2', 'F8', 'P4', 'P8', 'P10', 'PO8', 'PO4', 'O2']
-    Rejecting  epoch based on EEG : ['F8', 'P10']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2', 'F8']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['PO7', 'FP2', 'F8', 'P8', 'P10', 'PO8', 'PO4', 'O2']
-    Rejecting  epoch based on EEG : ['PO7', 'F8', 'P10', 'O2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2', 'F8']
-    Rejecting  epoch based on EEG : ['FP1', 'F3', 'F7', 'FC3', 'C3', 'C5', 'P3', 'P7', 'P9', 'PO7', 'PO3', 'O1', 'Oz', 'Pz', 'CPz', 'FP2', 'Fz', 'F4', 'F8', 'FC4', 'FCz', 'Cz', 'C4', 'C6', 'P4', 'P8', 'P10', 'PO8', 'PO4', 'O2']
-    Rejecting  epoch based on EEG : ['FP1', 'F7', 'FC3', 'C3', 'P3', 'P7', 'P9', 'PO7', 'FP2', 'Fz', 'F4', 'F8', 'FC4', 'C4', 'C6', 'P4', 'P8', 'P10', 'PO8', 'PO4', 'O2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']
-    Rejecting  epoch based on EEG : ['FP1', 'F7', 'FC3', 'P3', 'P9', 'PO7', 'O1', 'FP2', 'Fz', 'F8', 'C4', 'P4', 'P8', 'P10', 'PO8', 'PO4', 'O2']
-    Rejecting  epoch based on EEG : ['FP1', 'F7', 'O1', 'FP2', 'F4', 'F8']
-    Rejecting  epoch based on EEG : ['FP1', 'FP2']</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="ex3_cleaning_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="25">
-<pre><code>[&lt;Figure size 576x432 with 2 Axes&gt;]</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> autoreject <span class="im">import</span> AutoReject</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ar <span class="op">=</span> AutoReject(verbose<span class="op">=</span><span class="st">'tqdm'</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>epochs.load_data()</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>epochs_ar <span class="op">=</span> ar.fit_transform(epochs)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Using data from preloaded Raw for 200 events and 1127 original time points ...
-0 bad epochs dropped
-Running autoreject on ch_type=eeg
-
-
-
-
-Estimated consensus=0.30 and n_interpolate=4
-Dropped 68 epochs: 0, 1, 10, 11, 12, 47, 55, 56, 62, 68, 69, 72, 74, 75, 76, 77, 79, 82, 86, 89, 90, 92, 95, 102, 106, 109, 111, 113, 117, 120, 126, 129, 130, 131, 133, 151, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 167, 168, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 181, 184, 186, 187, 188, 189, 196, 197, 198</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"c288de6fff374eaeae43d4cf41ba2baf","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"022fcdb6080a46258e15604651bda769","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"1312fcbee4974f84a84286c998966bd0","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"c12ecbf0b9de44f5a5b7015226751382","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"81de497af725442fa933b9788c474c11","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"20212fe005a74b789eb2195413749de1","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"32ea4992399640c48b7a17b578724e87","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"5b9a9e483c2d4a52a6cafadb325bd067","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"2058c44e69c04375aa3f2fd8008efa0e","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/home/ehinger/miniconda3/envs/eegCourse/lib/python3.10/site-packages/mne/bem.py:965: RuntimeWarning: Mean of empty slice.
-  radius_init = radii.mean()
-/home/ehinger/miniconda3/envs/eegCourse/lib/python3.10/site-packages/numpy/core/_methods.py:189: RuntimeWarning: invalid value encountered in double_scalars
-  ret = ret.dtype.type(ret / rcount)
-/home/ehinger/miniconda3/envs/eegCourse/lib/python3.10/site-packages/numpy/core/fromnumeric.py:3474: RuntimeWarning: Mean of empty slice.
-  return _methods._mean(a, axis=axis, dtype=dtype,
-/home/ehinger/miniconda3/envs/eegCourse/lib/python3.10/site-packages/numpy/core/_methods.py:181: RuntimeWarning: invalid value encountered in true_divide
-  ret = um.true_divide(</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"cd21d6ac46c144cf888ce0f998c4e1c6","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"da60b5dfe2094568a713c46eaece4bc9","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-</div>
-<div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> ar.get_reject_log(epochs_ar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>r.plot(orientation<span class="op">=</span><span class="st">"horizontal"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="ex3_cleaning_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
-</div>
-</div>
-<div class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>mne.viz.plot_compare_evokeds({</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'raw'</span>:epochs.average(),</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'clean'</span>:epochs_manual.average(),</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ar'</span>:epochs_ar.average()</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    },picks<span class="op">=</span><span class="st">"Cz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="ex3_cleaning_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="30">
-<pre><code>[&lt;Figure size 576x432 with 2 Axes&gt;]</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats.mstats <span class="im">import</span> winsorize</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> winsor(d):</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(winsorize(d,axis<span class="op">=</span><span class="dv">0</span>,limits<span class="op">=</span>(<span class="fl">0.2</span>,<span class="fl">0.2</span>)),axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> median(d):</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.median(d,axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>mne.viz.plot_compare_evokeds({</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'clean'</span>:epochs_manual.average(),</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'robust'</span>:epochs.load_data().average(method<span class="op">=</span>winsor),</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'median'</span>:epochs.load_data().average(method<span class="op">=</span>median),</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    },picks<span class="op">=</span><span class="st">"Cz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="ex3_cleaning_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="36">
-<pre><code>[&lt;Figure size 576x432 with 2 Axes&gt;]</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mne.viz.plot_compare_evokeds({</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'clean'</span>:epochs_manual.average(),</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'robust'</span>:epochs.average(method<span class="op">=</span>winsor),</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ar'</span>:epochs_ar.average()</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    },picks<span class="op">=</span><span class="st">"Cz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="ex3_cleaning_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="37">
-<pre><code>[&lt;Figure size 576x432 with 2 Axes&gt;]</code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib qt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>raw.plot(n_channels<span class="op">=</span><span class="bu">len</span>(raw.ch_names))<span class="co">#,scalings =40e-6)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># See below</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ylim <span class="op">=</span> <span class="bu">dict</span>(eeg<span class="op">=</span>(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>))</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>epochs.average().plot(ylim<span class="op">=</span>ylim, spatial_colors<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>epochs_ar.average().plot(ylim<span class="op">=</span>ylim, spatial_colors<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>epochs_manual.average().plot(ylim<span class="op">=</span>ylim, spatial_colors<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="ex3_cleaning_files/figure-html/cell-14-output-1.svg" class="img-fluid"></p>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bad_ix <span class="op">=</span> [i <span class="cf">for</span> i,a <span class="kw">in</span> <span class="bu">enumerate</span>(raw.annotations) <span class="cf">if</span> a[<span class="st">'description'</span>]<span class="op">==</span><span class="st">"BAD_"</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#raw.annotations[bad_ix].save("sub-{}_task-P3_badannotations.csv".format(subject_id))</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>annotations <span class="op">=</span> mne.read_annotations(<span class="st">"sub-</span><span class="sc">{}</span><span class="st">_task-P3_badannotations.csv"</span>.<span class="bu">format</span>(subject_id))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>raw.annotations.append(annotations.onset,annotations.duration,annotations.description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-display">
-<p><img src="ex3_cleaning_files/figure-html/cell-14-output-2.svg" class="img-fluid"></p>
+<p><strong>T:</strong> While going through the dataset, mark what you observe as bad electrodes. Those are saved in <code>raw.info['bads']</code>. The channels can be interpolated with <code>raw.interpolate_bads()</code> or <code>epoch.interpolate_bads()</code>. Compare the channel + neighbours before and after. Did the interpolation succeed? (If you are interested in the mathematical details of spline interpolation, checkout this https://mne.tools/dev/overview/implementation.html#id26) Hint: You need channel locations to run the interpolation which you can get by using the default-standardized channel locations <code>raw.set_montage('standard_1020',match_case=False)</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I thought there was not really a bad channel in this dataset, so I remove one at random.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>raw.info[<span class="st">'bads'</span>] <span class="op">=</span> [<span class="st">'FP2'</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># for interpolation</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>raw.set_montage(<span class="st">'standard_1020'</span>,match_case<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>raw.interpolate_bads()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-display">
-<p><img src="ex3_cleaning_files/figure-html/cell-14-output-3.svg" class="img-fluid"></p>
+<p><strong>T:</strong> In the epoching step, we can also specify rejection criterion for a peak-to-peak rejection method</p>
+<div class="cell" data-tags="[]">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>evts,evts_dict <span class="op">=</span> mne.events_from_annotations(raw)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>wanted_keys <span class="op">=</span> [e <span class="cf">for</span> e <span class="kw">in</span> evts_dict.keys() <span class="cf">if</span> <span class="st">"stimulus"</span> <span class="kw">in</span> e]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>evts_dict_stim<span class="op">=</span><span class="bu">dict</span>((k, evts_dict[k]) <span class="cf">for</span> k <span class="kw">in</span> wanted_keys <span class="cf">if</span> k <span class="kw">in</span> evts_dict)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get epochs with and without rejection</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>epochs        <span class="op">=</span> mne.Epochs(raw,evts,evts_dict_stim,tmin<span class="op">=-</span><span class="fl">0.1</span>,tmax<span class="op">=</span><span class="dv">1</span>,reject_by_annotation<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>epochs_manual <span class="op">=</span> mne.Epochs(raw,evts,evts_dict_stim,tmin<span class="op">=-</span><span class="fl">0.1</span>,tmax<span class="op">=</span><span class="dv">1</span>,reject_by_annotation<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>reject_criteria <span class="op">=</span> <span class="bu">dict</span>(eeg<span class="op">=</span><span class="fl">200e-6</span>,       <span class="co"># 100 µV # HAD TO INCREASE IT HERE, 100 was too harsh</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                       eog<span class="op">=</span><span class="fl">200e-6</span>)       <span class="co"># 200 µV</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>epochs_thresh <span class="op">=</span> mne.Epochs(raw,evts,evts_dict_stim,tmin<span class="op">=-</span><span class="fl">0.1</span>,tmax<span class="op">=</span><span class="dv">1</span>,reject<span class="op">=</span>reject_criteria,reject_by_annotation<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#from matplotlib import pyplot as plt</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># compare</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.plot([0,:])</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>mne.viz.plot_compare_evokeds({<span class="st">'raw'</span>:epochs.average(),<span class="st">'clean'</span>:epochs_manual.average(),<span class="st">'thresh'</span>:epochs_thresh.average()},picks<span class="op">=</span><span class="st">"Cz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="17">
-<p><img src="ex3_cleaning_files/figure-html/cell-14-output-4.svg" class="img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> autoreject <span class="im">import</span> AutoReject</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ar <span class="op">=</span> AutoReject(verbose<span class="op">=</span><span class="st">'tqdm'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>epochs.load_data()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>epochs_ar <span class="op">=</span> ar.fit_transform(epochs)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> ar.get_reject_log(epochs_ar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>r.plot(orientation<span class="op">=</span><span class="st">"horizontal"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mne.viz.plot_compare_evokeds({</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'raw'</span>:epochs.average(),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'clean'</span>:epochs_manual.average(),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ar'</span>:epochs_ar.average()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    },picks<span class="op">=</span><span class="st">"Cz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats.mstats <span class="im">import</span> winsorize</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> winsor(d):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(winsorize(d,axis<span class="op">=</span><span class="dv">0</span>,limits<span class="op">=</span>(<span class="fl">0.2</span>,<span class="fl">0.2</span>)),axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> median(d):</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.median(d,axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>mne.viz.plot_compare_evokeds({</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'clean'</span>:epochs_manual.average(),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'robust'</span>:epochs.load_data().average(method<span class="op">=</span>winsor),</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'median'</span>:epochs.load_data().average(method<span class="op">=</span>median),</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    },picks<span class="op">=</span><span class="st">"Cz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mne.viz.plot_compare_evokeds({</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'clean'</span>:epochs_manual.average(),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'robust'</span>:epochs.average(method<span class="op">=</span>winsor),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ar'</span>:epochs_ar.average()</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    },picks<span class="op">=</span><span class="st">"Cz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ylim <span class="op">=</span> <span class="bu">dict</span>(eeg<span class="op">=</span>(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>epochs.average().plot(ylim<span class="op">=</span>ylim, spatial_colors<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>epochs_ar.average().plot(ylim<span class="op">=</span>ylim, spatial_colors<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>epochs_manual.average().plot(ylim<span class="op">=</span>ylim, spatial_colors<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

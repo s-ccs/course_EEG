@@ -271,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> scp</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.fft</span>
@@ -288,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="fl">0.1</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">23.45</span><span class="op">*</span>t<span class="op">+</span><span class="fl">.8</span>)</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="14">
+<div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
@@ -297,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>split the complex fourier result into <em>angle</em> and <em>magnitude</em></li>
 </ul>
-<div class="cell" data-execution_count="15">
+<div class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#dF = 1/T = 0.25Hz</span></span>
@@ -305,19 +305,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#nyquist-frequency = fs/2</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.linspace(<span class="dv">0</span>,fs<span class="op">-</span><span class="dv">1</span><span class="op">/</span>T,fs<span class="op">*</span>T)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.plot(f,np.log(np.<span class="bu">abs</span>(scp.fft.fft(x))))</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.plot(f[<span class="dv">0</span>:<span class="bu">len</span>(f)<span class="op">//</span><span class="dv">2</span><span class="op">+</span><span class="dv">1</span>],np.log(np.<span class="bu">abs</span>(scp.fft.rfft(x))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.plot(f,np.log(np.abs(scp.fft.fft(x))))</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.plot(f[<span class="dv">0</span>:<span class="bu">len</span>(f)<span class="op">//</span><span class="dv">2</span><span class="op">+</span><span class="dv">1</span>],(np.<span class="bu">abs</span>(scp.fft.rfft(x))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="16">
+<div class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log(np.<span class="bu">abs</span>(np.fft.fft(x))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="17">
+<div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.angle(scp.fft.fft(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
@@ -326,14 +326,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>set the respective magnitudes to zero (we start with a lowpass filter: <code>magnitude[30:370] = 0</code>)</li>
 </ul>
-<div class="cell" data-execution_count="18">
+<div class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(x))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(x))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">30</span>:<span class="dv">370</span>] <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">30</span>:<span class="dv">370</span>] <span class="op">=</span> <span class="fl">0.</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_575488/994262993.py:5: RuntimeWarning: divide by zero encountered in log10
+  plt.plot(np.log10(mag))</code></pre>
+</div>
 <div class="cell-output cell-output-display">
-<p><img src="ex2_filter_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+<p><img src="ex2_filter_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <ul>
@@ -341,29 +345,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>apply the inverse FFT</li>
 <li>plot the signal with what you started out</li>
 </ul>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Repeat the steps from above, but this time, remove the low frequency components</p>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(x))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(x))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">1</span>:<span class="dv">30</span>] <span class="op">=</span> <span class="fl">0.1</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">370</span>:<span class="dv">400</span>] <span class="op">=</span> <span class="fl">0.1</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#ang_random = np.random.rand(ang.shape[0])*2*np.pi - np.pi</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.plot(t,scp.fft.ifft(mag*np.exp(1j*ang_random)).real)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(x))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(x))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">1</span>:<span class="dv">30</span>] <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">370</span>:<span class="dv">400</span>] <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#ang_random = np.random.rand(ang.shape[0])*2*np.pi - np.pi</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.plot(t,scp.fft.ifft(mag*np.exp(1j*ang_random)).real)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
@@ -371,25 +375,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="what-happens-to-the-frequency-and-time-response-if-we-add-artefacts" class="level2">
 <h2 class="anchored" data-anchor-id="what-happens-to-the-frequency-and-time-response-if-we-add-artefacts">What happens to the frequency and time response if we add “artefacts”?</h2>
 <p>Add a DC-offset (a step-function) starting from <code>x[200:]</code> and investigate the fourier space. Filter it again (low or high pass) and transfer it back to the time domain and investigate the signal around the spike.</p>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>xtmp <span class="op">=</span> x.copy()</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>xtmp[<span class="dv">200</span>:<span class="dv">250</span>] <span class="op">=</span> xtmp[<span class="dv">200</span>:<span class="dv">250</span>]<span class="op">+</span><span class="dv">2</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>plt.plot(xtmp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>xtmp <span class="op">=</span> x.copy()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>xtmp[<span class="dv">200</span>:<span class="dv">250</span>] <span class="op">=</span> xtmp[<span class="dv">200</span>:<span class="dv">250</span>]<span class="op">+</span><span class="dv">2</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.plot(xtmp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(xtmp))</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(xtmp))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">30</span>:<span class="dv">370</span>] <span class="op">=</span> <span class="fl">0.2</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.plot(t,xtmp)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(xtmp))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(xtmp))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">30</span>:<span class="dv">370</span>] <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.plot(t,xtmp)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
@@ -397,45 +401,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="ex2_filter_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>xtmp <span class="op">=</span> x.copy()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>xtmp[<span class="dv">200</span>:] <span class="op">=</span> xtmp[<span class="dv">200</span>:]<span class="op">+</span><span class="dv">20</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(xtmp))</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(xtmp))</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">1</span>:<span class="dv">30</span>] <span class="op">=</span> <span class="fl">0.2</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">370</span>:<span class="dv">400</span>] <span class="op">=</span> <span class="fl">0.2</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>xtmp <span class="op">=</span> x.copy()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>xtmp[<span class="dv">200</span>:] <span class="op">=</span> xtmp[<span class="dv">200</span>:]<span class="op">+</span><span class="dv">20</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.plot(xtmp)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(xtmp))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(xtmp))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">1</span>:<span class="dv">30</span>] <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">370</span>:<span class="dv">400</span>] <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
 </div>
+<div class="cell-output cell-output-display">
+<p><img src="ex2_filter_files/figure-html/cell-12-output-3.png" class="img-fluid"></p>
+</div>
 </div>
 <p>## Impulse Response Function To get a bit deeper understanding of what is going on, have a look at the fourier transform of a new impulse signal (e.g.&nbsp;1:400 =&gt; 0. and 200 =&gt; 1.). What do you observe? Why would we see ringing if we put most of the coefficients to 0?</p>
-<div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Impulse Response Function</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x[:] <span class="op">=</span><span class="dv">0</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">200</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Impulse Response Function</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x[:] <span class="op">=</span><span class="dv">0</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">200</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(x))</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(x))</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">30</span>:<span class="dv">370</span>] <span class="op">=</span> <span class="fl">0.2</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(x))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(x))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>mag[<span class="dv">30</span>:<span class="dv">370</span>] <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
 </div>
@@ -444,27 +455,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>## Filtering EEG data</p>
-<div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>,<span class="st">".."</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne_bids <span class="im">import</span> (BIDSPath,read_raw_bids)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne_bids</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ccs_eeg_utils</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"../local/bids"</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"/bigpool/export/users/ehinger/erp-core/bids"</span> <span class="co"># Bene's Server location</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"/store/data/erp-core/"</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>subject_id <span class="op">=</span> <span class="st">'002'</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>bids_path <span class="op">=</span> BIDSPath(subject<span class="op">=</span>subject_id,task<span class="op">=</span><span class="st">"P3"</span>,session<span class="op">=</span><span class="st">"P3"</span>,</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>                     datatype<span class="op">=</span><span class="st">'eeg'</span>, suffix<span class="op">=</span><span class="st">'eeg'</span>,</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                     root<span class="op">=</span>bids_root)</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> read_raw_bids(bids_path)</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>ccs_eeg_utils.read_annotations_core(bids_path,raw)</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>raw.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>,<span class="st">".."</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne_bids <span class="im">import</span> (BIDSPath,read_raw_bids)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne_bids</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ccs_eeg_utils</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"../local/bids"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"/bigpool/export/users/ehinger/erp-core/bids"</span> <span class="co"># Bene's Server location</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"/store/data/erp-core/"</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>subject_id <span class="op">=</span> <span class="st">'002'</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>bids_path <span class="op">=</span> BIDSPath(subject<span class="op">=</span>subject_id,task<span class="op">=</span><span class="st">"P3"</span>,session<span class="op">=</span><span class="st">"P3"</span>,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>                     datatype<span class="op">=</span><span class="st">'eeg'</span>, suffix<span class="op">=</span><span class="st">'eeg'</span>,</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>                     root<span class="op">=</span>bids_root)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> read_raw_bids(bids_path)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>ccs_eeg_utils.read_annotations_core(bids_path,raw)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>raw.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_eeg.fdt
 Reading events from /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_events.tsv.
@@ -876,10 +887,10 @@ Reading channel info from /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3
 Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_70389/3018021070.py:18: RuntimeWarning: Data file name in EEG.data (sub-002_task-P3_eeg.fdt) is incorrect, the file name must have changed on disk, using the correct file name (sub-002_ses-P3_task-P3_eeg.fdt).
+<pre><code>/tmp/ipykernel_575488/3018021070.py:18: RuntimeWarning: Data file name in EEG.data (sub-002_task-P3_eeg.fdt) is incorrect, the file name must have changed on disk, using the correct file name (sub-002_ses-P3_task-P3_eeg.fdt).
   raw = read_raw_bids(bids_path)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="41">
 
 <table class="table table-hover table-striped table-sm table-responsive small">
     <tbody><tr>
@@ -904,7 +915,7 @@ Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
     <tr>
         <th>Digitized points</th>
         
-        <td>0 points</td>
+        <td>33 points</td>
         
     </tr>
     <tr>
@@ -949,31 +960,34 @@ Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
     
     <tr>
         <th>Duration</th>
-        <td>00:06:44 (HH:MM:SS)</td>
+        <td>00:06:45 (HH:MM:SS)</td>
     </tr>
 </tbody></table>
 </div>
 </div>
 <p><strong>T:</strong> Choose the channel “Pz”, plot the channel (same as previous HW)</p>
-<div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%matplotlib qt</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>raw.pick_channels([<span class="st">"Pz"</span>])<span class="co">#["Pz","Fz","Cz"])</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[:,:][<span class="dv">0</span>].T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%matplotlib qt</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>raw.pick([<span class="st">"Pz"</span>])<span class="co">#["Pz","Fz","Cz"])</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[:,:][<span class="dv">0</span>].T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><strong>T:</strong> Plot the fourier space using <code>raw.plot_psd</code></p>
-<div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>raw.plot_psd(area_mode<span class="op">=</span><span class="st">'range'</span>, tmax<span class="op">=</span><span class="fl">10.0</span>, average<span class="op">=</span><span class="va">False</span>,xscale<span class="op">=</span><span class="st">"linear"</span>,)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>raw.plot_psd(area_mode<span class="op">=</span><span class="st">'range'</span>, tmax<span class="op">=</span><span class="fl">10.0</span>, average<span class="op">=</span><span class="va">False</span>,xscale<span class="op">=</span><span class="st">"linear"</span>,)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Effective window size : 2.000 (s)
+<pre><code>NOTE: plot_psd() is a legacy function. New code should use .compute_psd().plot().
+Effective window size : 2.000 (s)
 Need more than one channel to make topography for eeg. Disabling interactivity.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_70389/1845277888.py:2: RuntimeWarning: Channel locations not available. Disabling spatial colors.
-  raw.plot_psd(area_mode='range', tmax=10.0, average=False,xscale="linear",);</code></pre>
+<pre><code>/tmp/ipykernel_575488/1845277888.py:2: RuntimeWarning: Channel locations not available. Disabling spatial colors.
+  raw.plot_psd(area_mode='range', tmax=10.0, average=False,xscale="linear",);
+/home/ehinger/micromamba/envs/course_EEG_ws2023/lib/python3.10/site-packages/mne/viz/utils.py:161: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  (fig or plt).show(**kwargs)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-17-output-3.png" class="img-fluid"></p>
@@ -981,9 +995,9 @@ Need more than one channel to make topography for eeg. Disabling interactivity.<
 </div>
 <p><strong>T:</strong> Now we filter using <code>raw.filter()</code>, specify a highpass of 0.5Hz and a lowpass of 50Hz. Plot the fourier spectrum again.</p>
 <p><strong>T:</strong> Plot the channel again, did the filter work as indented?</p>
-<div class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>raw_f <span class="op">=</span> raw.copy().<span class="bu">filter</span>(<span class="fl">0.5</span>,<span class="dv">50</span>, fir_design<span class="op">=</span><span class="st">'firwin'</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>raw_f.plot_psd(area_mode<span class="op">=</span><span class="st">'range'</span>, tmax<span class="op">=</span><span class="fl">10.0</span>, average<span class="op">=</span><span class="va">False</span>,xscale<span class="op">=</span><span class="st">"log"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>raw_f <span class="op">=</span> raw.copy().<span class="bu">filter</span>(<span class="fl">0.5</span>,<span class="dv">50</span>, fir_design<span class="op">=</span><span class="st">'firwin'</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>raw_f.plot_psd(area_mode<span class="op">=</span><span class="st">'range'</span>, tmax<span class="op">=</span><span class="fl">10.0</span>, average<span class="op">=</span><span class="va">False</span>,xscale<span class="op">=</span><span class="st">"log"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Filtering raw data in 1 contiguous segment
 Setting up band-pass filter from 0.5 - 50 Hz
@@ -997,31 +1011,34 @@ Designing a one-pass, zero-phase, non-causal bandpass filter:
 - Lower transition bandwidth: 0.50 Hz (-6 dB cutoff frequency: 0.25 Hz)
 - Upper passband edge: 50.00 Hz
 - Upper transition bandwidth: 12.50 Hz (-6 dB cutoff frequency: 56.25 Hz)
-- Filter length: 6759 samples (6.601 sec)
+- Filter length: 6759 samples (6.601 s)
 
+NOTE: plot_psd() is a legacy function. New code should use .compute_psd().plot().
 Effective window size : 2.000 (s)
 Need more than one channel to make topography for eeg. Disabling interactivity.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_70389/1145606728.py:2: RuntimeWarning: Channel locations not available. Disabling spatial colors.
-  raw_f.plot_psd(area_mode='range', tmax=10.0, average=False,xscale="log");</code></pre>
+<pre><code>/tmp/ipykernel_575488/1145606728.py:2: RuntimeWarning: Channel locations not available. Disabling spatial colors.
+  raw_f.plot_psd(area_mode='range', tmax=10.0, average=False,xscale="log");
+/home/ehinger/micromamba/envs/course_EEG_ws2023/lib/python3.10/site-packages/mne/viz/utils.py:161: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  (fig or plt).show(**kwargs)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-18-output-3.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.plot(raw_f[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>plt.plot(raw_f[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Due to a huge DC-offset, the signals cannot be compared. We have to remove e.g.&nbsp;the median from each signal</p>
-<div class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T<span class="op">-</span>np.median(raw[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T))</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>plt.plot(raw_f[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T<span class="op">-</span>np.median(raw_f[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T))</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.plot(raw_f[:,0:1000][0].T-np.mean(raw_f[:,0:1000][0].T))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[:,<span class="dv">0</span>:<span class="dv">10000</span>][<span class="dv">0</span>].T<span class="op">-</span>np.median(raw[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plt.plot(raw_f[:,<span class="dv">0</span>:<span class="dv">10000</span>][<span class="dv">0</span>].T<span class="op">-</span>np.median(raw_f[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.plot(raw_f[:,0:1000][0].T-np.mean(raw_f[:,0:1000][0].T))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ex2_filter_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
 </div>
