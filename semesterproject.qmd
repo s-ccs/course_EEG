@@ -14,7 +14,7 @@ This has the consequence that there will be many (individual) unforseen problems
 
 This is a list of datasets with accompanying papers that I have screened. **Please** feel free to look for your own datasets either on [menar.org](https://nemar.org) or on [openneuro.org](https://openneuro.org). Try to look for datasets below 20Gb of space. There is time allocated to discuss the dataset/paper with me.
 
-| VPs | task                         | analysis | link                                                                 |
+| Subjects | task                         | analysis | link                                                                 |
 |------------------|------------------|------------------|------------------|
 | 20  | grating                      | decoding | [dataset](https://openneuro.org/datasets/ds004043/versions/1.1.0)    |
 | 19  | reaching                     | ERP      | [dataset](https://openneuro.org/datasets/ds003846/versions/1.0.1)    |
