@@ -1,4 +1,4 @@
-# EEG Preprocessing and analysis [WS2023]
+# EEG Preprocessing and analysis [WS2024]
 Welcome to the practical part of the EEG course.
 - You can find information on the semesterproject in `./semesterproject`
 - You can find the exercises in `./exercises`
