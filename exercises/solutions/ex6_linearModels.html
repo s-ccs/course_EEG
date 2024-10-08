@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>🧠 EEG-2023 - Statistical Analysis of N170 area using Linear Regression</title>
+<title>Statistical Analysis of N170 area using Linear Regression – 🧠 EEG-2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,17 +94,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../css/styles.css">
 </head>
@@ -109,15 +143,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      🧠 EEG-2023
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      🧠 EEG-2024
       </li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -126,10 +160,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../">🧠 EEG-2023</a> 
+      <a href="../../">🧠 EEG-2024</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -141,9 +175,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Course</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -164,9 +198,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Projects</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -193,9 +227,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Exercises</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -216,9 +250,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Resources</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -240,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -274,22 +308,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
+
 <p><em>T</em> Load the data into a pandas dataframe. A very useful concept here is the concept of a tidy dataframe. The idea is, that every observation is one row of a table, where columns are potential features / descriptors + the independent variable (the average activity at PO8 here).</p>
-<div class="cell" data-execution_count="7">
+<div id="cell-2" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> numpy</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> pd.read_csv(<span class="st">"../ex6_N170.csv"</span>,delimiter<span class="op">=</span><span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="8">
+<div id="cell-3" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -398,10 +434,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>T:</strong> Use a plottinglibrary of your choice to visualise the simple scatter plot between some/all variables. I recommend packages <em>seaborn</em> e.g.&nbsp;pairplot) or <em>plotnine</em> for this. They make it easy to split up plots of continuous variables (e.g.&nbsp;baseline vs.&nbsp;PO8) by a categorical variable, e.g.&nbsp;<em>cond</em> (scrambled/intact).</p>
 <p><strong>Q:</strong> Can you already guess what the relationships between the variables are, solely based on the plots?</p>
-<div class="cell" data-execution_count="9">
+<div id="cell-5" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(d,hue<span class="op">=</span><span class="st">"cond"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex6_linearModels_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex6_linearModels_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <section id="do-it-yourself-linear-models" class="level3">
@@ -415,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Because we will need it quite often.</p>
 <p><strong>Q:</strong> What does the resulting value <em>mean</em>? Note: The result is often called a “beta”</p>
 <p><em>Note: While the pseudoinverse is great because it is easy to understand what is going on, typically we would not directly use it but rather go over a Cholesky-Decomposition first. This will greatly increase numeric stability. But right now we do not care much about that</em></p>
-<div class="cell" data-execution_count="10">
+<div id="cell-7" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span>  np</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> solve(<span class="op">*</span>args):</span>
@@ -423,7 +463,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(X)</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.linalg.inv(X.T <span class="op">@</span> X)<span class="op">@</span>X.T<span class="op">@</span>d.PO8.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="11">
+<div id="cell-8" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>const <span class="op">=</span> np.ones(d.shape[<span class="dv">0</span>])</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Const-only</span><span class="sc">{}</span><span class="st">,mean:</span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(solve(const),np.mean(d.PO8)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -431,8 +471,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Const-only[-3.91109151],mean:-3.911091509146645</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(y_i = \beta_0*X_1 + e_i\)</span> with <span class="math inline">\(X_i = 1\)</span></p>
-<div class="cell" data-execution_count="12">
+<p><span class="math inline">\(y_i = \beta_0*X_1  + e_i\)</span> with <span class="math inline">\(X_i = 1\)</span></p>
+<div id="cell-10" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.hist(d.PO8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -443,10 +483,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  &lt;BarContainer object of 10 artists&gt;)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="ex6_linearModels_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex6_linearModels_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="13">
+</div>
+<div id="cell-11" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>solve(const)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>array([-3.91109151])</code></pre>
@@ -454,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>T:</strong> Now we add the condition <em>cond</em> to the designmarix (thus <code>PO8 ~ intercept + cond</code>) which differentiates between intact and scrambled images. Because this is a categorical variable we have to encode it first. For that, we need a “1” when images are intact and a “0” if they were scrambled. Fit the model</p>
 <p><strong>Q:</strong> What do the outputs mean now?</p>
-<div class="cell" data-execution_count="14">
+<div id="cell-13" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cond <span class="op">=</span> <span class="fl">1.</span><span class="op">*</span>(d.cond.values <span class="op">==</span> <span class="st">'intact'</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>cond</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -476,23 +520,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
        0., 1., 1., 1., 0., 1., 0.])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="15">
+<div id="cell-14" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[-0.97665794 -5.75148979]</code></pre>
 </div>
 </div>
 <p><span class="math inline">\(\hat{y} = \beta_0 + \beta_1 * X_{cond}\)</span></p>
-<div class="cell" data-execution_count="16">
+<div id="cell-16" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>,<span class="dv">1</span>],[d.PO8[d.cond<span class="op">==</span><span class="st">"scrambled"</span>].mean(),d.PO8[d.cond<span class="op">==</span><span class="st">"intact"</span>].mean()])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex6_linearModels_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex6_linearModels_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>T:</strong> Next add a predictor for stimulus (<code>PO8 ~ intercept + cond + stim</code>) and fit it.</p>
 <p><strong>Q:</strong> What changed to the previous modelfit - <em>Bonus</em>: An idea why the size of the change is the size it is? Hint: It has to do with correlations</p>
 <p><span class="math inline">\(\hat{y} = \beta_0 + \beta_1 * X_{cond} + \beta_2 * X{stim}\)</span></p>
-<div class="cell" data-execution_count="17">
+<div id="cell-19" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>stim <span class="op">=</span> <span class="fl">1.</span><span class="op">*</span>(d.stim.values <span class="op">==</span> <span class="st">'face'</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond))</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># intact, face</span></span>
@@ -502,14 +550,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [-0.29596347 -5.63868899 -1.458631  ]</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="18">
+<div id="cell-20" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>,<span class="dv">1</span>],[d.PO8[(d.cond<span class="op">==</span><span class="st">"scrambled"</span>) <span class="op">&amp;</span> (d.stim<span class="op">==</span><span class="st">"face"</span>)].mean(),d.PO8[(d.cond<span class="op">==</span><span class="st">"scrambled"</span>) <span class="op">&amp;</span> (d.stim<span class="op">==</span><span class="st">"car"</span>)].mean()])</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>,<span class="dv">1</span>],[d.PO8[(d.cond<span class="op">==</span><span class="st">"intact"</span>) <span class="op">&amp;</span> (d.stim<span class="op">==</span><span class="st">"face"</span>)].mean(),d.PO8[(d.cond<span class="op">==</span><span class="st">"intact"</span>) <span class="op">&amp;</span> (d.stim<span class="op">==</span><span class="st">"car"</span>)].mean()])                  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex6_linearModels_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex6_linearModels_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="19">
+</div>
+<div id="cell-21" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># investigate correlation between cond and interaction of cond*stim</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>np.corrcoef(cond,stim<span class="op">*</span>cond)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
@@ -519,7 +571,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>T:</strong> And an interaction (column of stimulus * column of cond)</p>
 <p><strong>Q:</strong> What do the betas/results/parameters mean now? (You might want to do the plotting of the next step to help your interpretation)</p>
-<div class="cell" data-execution_count="20">
+<div id="cell-23" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond))</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond,stim))</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond,stim,cond<span class="op">*</span>stim))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -531,8 +583,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Now we have what we call a 2x2 design. Two categorical factors (often only “factor”) with two levels each + the interaction.</p>
 <p><strong>T:</strong> It is about time to plot our results! Put cond on the x, and use color for stimulus. We will reconstruct our original data first:</p>
-<p>You should reconstruct 4 values, one for <strong>intact faces</strong>, one for <strong>scrambled faces</strong>, one for <strong>intact cars</strong> and one for <strong>scrambled cars</strong>. It migt be helpful to explicitly write down the models (<span class="math inline">\(y = 1*\beta_0 + ...\)</span> )</p>
-<div class="cell" data-execution_count="24">
+<p>You should reconstruct 4 values, one for <strong>intact faces</strong>, one for <strong>scrambled faces</strong>, one for <strong>intact cars</strong> and one for <strong>scrambled cars</strong>. It migt be helpful to explicitly write down the models (<span class="math inline">\(y  = 1*\beta_0 + ...\)</span> )</p>
+<div id="cell-25" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>est <span class="op">=</span> solve(const,cond,stim,cond<span class="op">*</span>stim)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#est = solve(const,cond,stim)</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#est = np.append(est,0)</span></span>
@@ -544,11 +596,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">3</span>],</span>
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">3</span>]]})</span>
 <span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span>res.stim,y<span class="op">=</span>res.est,hue<span class="op">=</span>res.cond)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
-<pre><code>&lt;AxesSubplot:xlabel='stim', ylabel='est'&gt;</code></pre>
-</div>
 <div class="cell-output cell-output-display">
-<p><img src="ex6_linearModels_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex6_linearModels_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><span class="math inline">\(\beta_0 *1 + \beta_1 * X_1(1,0) + \beta_2 * X_2(1,0)\)</span></p>
@@ -561,8 +614,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We discussed in the lecture that it is possible to change the bases. We will go back to the simple example of of <code>Intercept + cond</code>. But in addition of <em>dummy coding</em> (intact == 1, scrambled == 0), we will fit a second model with <em>effect-coding</em> (intact == 0.5, scrambled = -0.5).</p>
 <p><strong>Q:</strong> How do the betas compare of the two models? How does the interpretation change?</p>
 <p><strong>Hint</strong> If you need more you can read two of my tutorial-blogposts on this topic <a href="https://benediktehinger.de/blog/science/dummy-coding-and-effects-coding/">here</a> and <a href="https://benediktehinger.de/blog/science/interaction-and-effect-sum-coding/">here :)</a></p>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cond<span class="op">-</span><span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-29" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cond<span class="op">-</span><span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>array([-0.5,  0.5, -0.5, -0.5,  0.5,  0.5,  0.5, -0.5, -0.5,  0.5, -0.5,
        -0.5, -0.5, -0.5, -0.5,  0.5, -0.5, -0.5,  0.5, -0.5, -0.5,  0.5,
@@ -589,21 +642,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
        -0.5,  0.5, -0.5])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(np.mean(d.PO8[(d.cond<span class="op">==</span><span class="st">"scrambled"</span>)]) <span class="op">+</span> np.mean(d.PO8[(d.cond<span class="op">==</span><span class="st">"intact"</span>)]))<span class="op">/</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-30" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(np.mean(d.PO8[(d.cond<span class="op">==</span><span class="st">"scrambled"</span>)]) <span class="op">+</span> np.mean(d.PO8[(d.cond<span class="op">==</span><span class="st">"intact"</span>)]))<span class="op">/</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>-3.8524028378068995</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>np.mean(d.PO8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-31" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>np.mean(d.PO8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>-3.911091509146645</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond))</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond<span class="op">-</span><span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-32" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond))</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond<span class="op">-</span><span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[-0.97665794 -5.75148979]
 [-3.85240284 -5.75148979]</code></pre>
@@ -611,9 +664,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>T:</strong> Now we run the full 2x2 model once with dummy and once with effect-coding. The interaction of an effect-coded model is still just the designmatrix columns multiplied with eachother</p>
 <p><strong>Q:</strong> Can you put the results together, why do they have the results they have?</p>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond<span class="op">-</span><span class="fl">0.5</span>,stim<span class="op">-</span><span class="fl">0.5</span>,(cond<span class="op">-</span><span class="fl">0.5</span>)<span class="op">*</span>(stim<span class="op">-</span><span class="fl">0.5</span>)))</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond,stim,cond<span class="op">*</span>stim)) <span class="co"># dummy cding / treatment coding</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-34" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond<span class="op">-</span><span class="fl">0.5</span>,stim<span class="op">-</span><span class="fl">0.5</span>,(cond<span class="op">-</span><span class="fl">0.5</span>)<span class="op">*</span>(stim<span class="op">-</span><span class="fl">0.5</span>)))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond,stim,cond<span class="op">*</span>stim)) <span class="co"># dummy cding / treatment coding</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[-3.73857326 -5.61334487 -1.40707547 -5.4995781 ]
 [-1.60325761 -2.86355582  1.34271358 -5.4995781 ]</code></pre>
@@ -625,29 +678,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In theory baseline corrections are not needed, the baseline (i.e.&nbsp;what happens before stimulus onset, thus “negative” time in an ERP) should be flat / noise around 0, because stimulus order is random. But in practice, we only have limited number of trials and limited randomization. Thus it might be, that we have a bias with in one condition more residual drift / low-frequency activity than in the other. This will “move” the whole ERP curve up/down and bias results later in the epoch.</p>
 <p>Classically, baselines are simply subtracted. Thus every point of an ERP recieves the “same” baseline correction. This is equivalent to adding a known parameter to our model: <code>y ~ b0 * constant + b1 * cond + stim +1*BSL</code>. What we will do instead is the 2020-version, we regress the baseline. This allows us to remove less of the baseline activity (or more, but rarely happens).</p>
 <p><strong>T:</strong> Plot the PO8 actiity against the baseline (you might have done this plot at the beginning of the exercise). Split it up by cond &amp; stim</p>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>d.bsl,y<span class="op">=</span>d.PO8,hue<span class="op">=</span>d.cond)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
-<pre><code>&lt;AxesSubplot:xlabel='bsl', ylabel='PO8'&gt;</code></pre>
-</div>
+<div id="cell-37" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>d.bsl,y<span class="op">=</span>d.PO8,hue<span class="op">=</span>d.cond)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex6_linearModels_files/figure-html/cell-22-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex6_linearModels_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>d.bsl,y<span class="op">=</span>d.PO8,hue<span class="op">=</span>d.stim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
-<pre><code>&lt;AxesSubplot:xlabel='bsl', ylabel='PO8'&gt;</code></pre>
 </div>
+<div id="cell-38" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>d.bsl,y<span class="op">=</span>d.PO8,hue<span class="op">=</span>d.stim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex6_linearModels_files/figure-html/cell-23-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex6_linearModels_files/figure-html/cell-23-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>T:</strong> Add the baseline as a predictor to your 2x2 model.</p>
 <p><strong>Q:</strong> What is the resulting beta?</p>
-<div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond,stim,cond<span class="op">*</span>stim,d.bsl))</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond,stim,cond<span class="op">*</span>stim))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-40" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond,stim,cond<span class="op">*</span>stim,d.bsl))</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond,stim,cond<span class="op">*</span>stim))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[-1.23950777 -3.80187398  1.27907238 -5.53859036  0.32611814]
 [-1.60325761 -2.86355582  1.34271358 -5.4995781 ]</code></pre>
@@ -656,9 +711,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Typically we do not only remove the overall baseline, but condition-indivudal baselines.</p>
 <p><strong>T:</strong> Thus we have to generate interactions with all predictors &amp; interaction of the interactions too</p>
 <p><strong>Q:</strong> What is your interpretation of the resulting betas? For which conditions do we really need a baseline correction and how strong should it be?</p>
-<div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond,stim,cond<span class="op">*</span>stim,d.bsl))</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond,stim,cond<span class="op">*</span>stim,d.bsl,d.bsl<span class="op">*</span>cond,d.bsl<span class="op">*</span>stim,d.bsl<span class="op">*</span>cond<span class="op">*</span>stim))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-42" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond,stim,cond<span class="op">*</span>stim,d.bsl))</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(solve(const,cond,stim,cond<span class="op">*</span>stim,d.bsl,d.bsl<span class="op">*</span>cond,d.bsl<span class="op">*</span>stim,d.bsl<span class="op">*</span>cond<span class="op">*</span>stim))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[-1.23950777 -3.80187398  1.27907238 -5.53859036  0.32611814]
 [-1.59620965 -4.05240262  1.58967869 -5.42777959  0.00631882  0.66445615
@@ -668,33 +723,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math inline">\(y - BSL = \beta_0 \dots\)</span></p>
 <p><span class="math inline">\(y = \beta_0 \dots + BSL\)</span></p>
 <p><span class="math inline">\(y = \beta_0 \dots + \gamma_0 * BSL\)</span></p>
-<div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>est <span class="op">=</span> solve(const,cond,stim,cond<span class="op">*</span>stim,d.bsl,d.bsl<span class="op">*</span>cond,d.bsl<span class="op">*</span>stim,d.bsl<span class="op">*</span>cond<span class="op">*</span>stim)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#est = solve(const,cond,stim,cond*stim,d.bsl)</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"stim"</span>:[<span class="st">"car"</span>,<span class="st">"car"</span>,<span class="st">"face"</span>,<span class="st">"face"</span>],</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">"cond"</span>:[<span class="st">"scrambled"</span>,<span class="st">"intact"</span>,<span class="st">"scrambled"</span>,<span class="st">"intact"</span>],</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>              <span class="st">"est"</span>: [</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">3</span>],</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">3</span>],</span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">3</span>],</span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">3</span>]]})</span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span>res.cond,y<span class="op">=</span>res.est,hue<span class="op">=</span>res.stim)</span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>est <span class="op">=</span> solve(const,cond,stim,cond<span class="op">*</span>stim)</span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"stim"</span>:[<span class="st">"car"</span>,<span class="st">"car"</span>,<span class="st">"face"</span>,<span class="st">"face"</span>],</span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">"cond"</span>:[<span class="st">"scrambled"</span>,<span class="st">"intact"</span>,<span class="st">"scrambled"</span>,<span class="st">"intact"</span>],</span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">"est"</span>: [</span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">3</span>],</span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">3</span>],</span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">3</span>],</span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">3</span>]]})</span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span>res.cond,y<span class="op">=</span>res.est,hue<span class="op">=</span>res.stim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
-<pre><code>&lt;AxesSubplot:xlabel='cond', ylabel='est'&gt;</code></pre>
-</div>
+<div id="cell-44" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>est <span class="op">=</span> solve(const,cond,stim,cond<span class="op">*</span>stim,d.bsl,d.bsl<span class="op">*</span>cond,d.bsl<span class="op">*</span>stim,d.bsl<span class="op">*</span>cond<span class="op">*</span>stim)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#est = solve(const,cond,stim,cond*stim,d.bsl)</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"stim"</span>:[<span class="st">"car"</span>,<span class="st">"car"</span>,<span class="st">"face"</span>,<span class="st">"face"</span>],</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">"cond"</span>:[<span class="st">"scrambled"</span>,<span class="st">"intact"</span>,<span class="st">"scrambled"</span>,<span class="st">"intact"</span>],</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>              <span class="st">"est"</span>: [</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">3</span>],</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">3</span>],</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">3</span>],</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">3</span>]]})</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span>res.cond,y<span class="op">=</span>res.est,hue<span class="op">=</span>res.stim)</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>est <span class="op">=</span> solve(const,cond,stim,cond<span class="op">*</span>stim)</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"stim"</span>:[<span class="st">"car"</span>,<span class="st">"car"</span>,<span class="st">"face"</span>,<span class="st">"face"</span>],</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">"cond"</span>:[<span class="st">"scrambled"</span>,<span class="st">"intact"</span>,<span class="st">"scrambled"</span>,<span class="st">"intact"</span>],</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">"est"</span>: [</span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">3</span>],</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">3</span>],</span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">0</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">0</span><span class="op">*</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">3</span>],</span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span><span class="op">*</span>est[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span>est[<span class="dv">2</span>] <span class="op">+</span> <span class="dv">1</span><span class="op">*</span><span class="dv">1</span><span class="op">*</span>est[<span class="dv">3</span>]]})</span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span>res.cond,y<span class="op">=</span>res.est,hue<span class="op">=</span>res.stim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex6_linearModels_files/figure-html/cell-26-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex6_linearModels_files/figure-html/cell-26-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -707,22 +763,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>T:</strong> Implement this formula. The sqrt of the diagonal elements are your Standard-Errors, which we can use as error-bars. The <span class="math inline">\(\sigma^2\)</span> is the variance of the residuals</p>
 <p><span class="math inline">\(Y_i = X\beta + e_i\)</span></p>
 <p><span class="math inline">\(Y_i - X\beta = e_i\)</span></p>
-<div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span>  np</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> se(<span class="op">*</span>args):</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.stack(args).T</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> np.linalg.inv(X.T <span class="op">@</span> X)<span class="op">@</span>X.T<span class="op">@</span>d.PO8</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    e <span class="op">=</span> d.PO8<span class="op">-</span>X<span class="op">@</span>b</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> np.var(e)</span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(np.diag(s <span class="op">*</span> np.linalg.inv(X.T <span class="op">@</span> X)))</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> (se(const,cond,stim,cond<span class="op">*</span>stim))    </span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>es <span class="op">=</span> (solve(const,cond,stim,cond<span class="op">*</span>stim))    </span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es)</span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se)</span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es<span class="op">/</span>se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-47" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span>  np</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> se(<span class="op">*</span>args):</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.stack(args).T</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> np.linalg.inv(X.T <span class="op">@</span> X)<span class="op">@</span>X.T<span class="op">@</span>d.PO8</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    e <span class="op">=</span> d.PO8<span class="op">-</span>X<span class="op">@</span>b</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> np.var(e)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(np.diag(s <span class="op">*</span> np.linalg.inv(X.T <span class="op">@</span> X)))</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> (se(const,cond,stim,cond<span class="op">*</span>stim))    </span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>es <span class="op">=</span> (solve(const,cond,stim,cond<span class="op">*</span>stim))    </span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es)</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(se)</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(es<span class="op">/</span>se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[-1.60325761 -2.86355582  1.34271358 -5.4995781 ]
 [0.73685984 1.07359417 1.07865236 1.51134258]
@@ -731,29 +787,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Now we have to apply it including our contrast vectors e.g.&nbsp;c = [1 0 0 0*0], or c=[1 0 1 1*0]</p>
 <p><span class="math display">\[se_c = \sigma^2 c^T (X^TX)^{-1} c\]</span></p>
-<div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> se_contrast(<span class="op">*</span>args,c<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>]):</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> np.array(c)</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.stack(args).T</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> np.linalg.inv(X.T <span class="op">@</span> X)<span class="op">@</span>X.T<span class="op">@</span>d.PO8</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    e <span class="op">=</span> d.PO8<span class="op">-</span>X<span class="op">@</span>b</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> np.var(e)</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(np.sqrt(c.T @ np.linalg.inv(X.T @ X) @c))</span></span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(s <span class="op">*</span> c.T <span class="op">@</span> np.linalg.inv(X.T <span class="op">@</span> X) <span class="op">@</span>c)</span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>se_A <span class="op">=</span> se_contrast(const,cond,stim,cond<span class="op">*</span>stim,c <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>])</span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>se_A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-49" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> se_contrast(<span class="op">*</span>args,c<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>]):</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> np.array(c)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.stack(args).T</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> np.linalg.inv(X.T <span class="op">@</span> X)<span class="op">@</span>X.T<span class="op">@</span>d.PO8</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    e <span class="op">=</span> d.PO8<span class="op">-</span>X<span class="op">@</span>b</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> np.var(e)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(np.sqrt(c.T @ np.linalg.inv(X.T @ X) @c))</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(s <span class="op">*</span> c.T <span class="op">@</span> np.linalg.inv(X.T <span class="op">@</span> X) <span class="op">@</span>c)</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>se_A <span class="op">=</span> se_contrast(const,cond,stim,cond<span class="op">*</span>stim,c <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>])</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>se_A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>0.7807957629392348</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-50" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -793,27 +849,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>est <span class="op">=</span> solve(const,cond,stim,cond<span class="op">*</span>stim)</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"stim"</span>:[<span class="st">"car"</span>,<span class="st">"car"</span>,<span class="st">"face"</span>,<span class="st">"face"</span>],</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">"cond"</span>:[<span class="st">"scrambled"</span>,<span class="st">"intact"</span>,<span class="st">"scrambled"</span>,<span class="st">"intact"</span>],</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">"est"</span>: [</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>                    est<span class="op">@</span>np.array([<span class="dv">1</span>,<span class="dv">0</span> ,<span class="dv">0</span>,<span class="dv">0</span><span class="op">*</span><span class="dv">0</span>]),</span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>                    est<span class="op">@</span>np.array([<span class="dv">1</span>,<span class="dv">1</span> ,<span class="dv">0</span>,<span class="dv">1</span><span class="op">*</span><span class="dv">0</span>]),</span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>                    est<span class="op">@</span>np.array([<span class="dv">1</span>,<span class="dv">0</span> ,<span class="dv">1</span>,<span class="dv">0</span><span class="op">*</span><span class="dv">1</span>]),</span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>                    est<span class="op">@</span>np.array([<span class="dv">1</span>,<span class="dv">1</span> ,<span class="dv">1</span>,<span class="dv">1</span><span class="op">*</span><span class="dv">1</span>])],</span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>               <span class="st">"se"</span>: [se_contrast(const,cond,stim,cond<span class="op">*</span>stim,c <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>]),</span>
-<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>                     se_contrast(const,cond,stim,cond<span class="op">*</span>stim,c <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>]),</span>
-<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>                     se_contrast(const,cond,stim,cond<span class="op">*</span>stim,c <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]),</span>
-<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>                     se_contrast(const,cond,stim,cond<span class="op">*</span>stim,c <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>])]})</span>
-<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span>res.cond,y<span class="op">=</span>res.est,hue<span class="op">=</span>res.stim)</span>
-<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>plt.errorbar(x<span class="op">=</span>res.cond,y<span class="op">=</span>res.est,yerr<span class="op">=</span>res.se,fmt<span class="op">=</span><span class="st">"none"</span>,c <span class="op">=</span> <span class="st">'k'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
-<pre><code>&lt;ErrorbarContainer object of 3 artists&gt;</code></pre>
-</div>
+<div id="cell-51" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>est <span class="op">=</span> solve(const,cond,stim,cond<span class="op">*</span>stim)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"stim"</span>:[<span class="st">"car"</span>,<span class="st">"car"</span>,<span class="st">"face"</span>,<span class="st">"face"</span>],</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">"cond"</span>:[<span class="st">"scrambled"</span>,<span class="st">"intact"</span>,<span class="st">"scrambled"</span>,<span class="st">"intact"</span>],</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">"est"</span>: [</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>                    est<span class="op">@</span>np.array([<span class="dv">1</span>,<span class="dv">0</span> ,<span class="dv">0</span>,<span class="dv">0</span><span class="op">*</span><span class="dv">0</span>]),</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>                    est<span class="op">@</span>np.array([<span class="dv">1</span>,<span class="dv">1</span> ,<span class="dv">0</span>,<span class="dv">1</span><span class="op">*</span><span class="dv">0</span>]),</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>                    est<span class="op">@</span>np.array([<span class="dv">1</span>,<span class="dv">0</span> ,<span class="dv">1</span>,<span class="dv">0</span><span class="op">*</span><span class="dv">1</span>]),</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>                    est<span class="op">@</span>np.array([<span class="dv">1</span>,<span class="dv">1</span> ,<span class="dv">1</span>,<span class="dv">1</span><span class="op">*</span><span class="dv">1</span>])],</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>               <span class="st">"se"</span>: [se_contrast(const,cond,stim,cond<span class="op">*</span>stim,c <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>]),</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>                     se_contrast(const,cond,stim,cond<span class="op">*</span>stim,c <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>]),</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>                     se_contrast(const,cond,stim,cond<span class="op">*</span>stim,c <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>]),</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>                     se_contrast(const,cond,stim,cond<span class="op">*</span>stim,c <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>])]})</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span>res.cond,y<span class="op">=</span>res.est,hue<span class="op">=</span>res.stim)</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>plt.errorbar(x<span class="op">=</span>res.cond,y<span class="op">=</span>res.est,yerr<span class="op">=</span>res.se,fmt<span class="op">=</span><span class="st">"none"</span>,c <span class="op">=</span> <span class="st">'k'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex6_linearModels_files/figure-html/cell-30-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex6_linearModels_files/figure-html/cell-30-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 
@@ -856,18 +913,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -899,11 +945,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/s-ccs\.github\.io\/course_EEG\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -913,8 +998,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -926,7 +1020,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -970,6 +1187,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -995,6 +1213,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1055,6 +1299,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

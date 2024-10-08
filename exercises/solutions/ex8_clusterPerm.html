@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>🧠 EEG-2023 - Multiple Comparison Corrections</title>
+<title>Multiple Comparison Corrections – 🧠 EEG-2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,14 +94,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../css/styles.css">
 </head>
@@ -106,15 +140,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      🧠 EEG-2023
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      🧠 EEG-2024
       </li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -123,10 +157,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../">🧠 EEG-2023</a> 
+      <a href="../../">🧠 EEG-2024</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -138,9 +172,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Course</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -161,9 +195,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Projects</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -190,9 +224,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Exercises</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -213,9 +247,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Resources</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -237,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -270,9 +304,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
-<div class="cell" data-execution_count="1">
+
+<div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext autoreload</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -285,70 +321,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Use <code>data = ccs_eeg_utils.ex8_simulateData()</code> to simulate a simple difference between two condition. Instead of electrodes x time, we now have a simple rectangular matrix (or <span class="math inline">\(n_{subject}=15\)</span> of them), but the principles of multiple comparison corrections, can be applied to it as well.</p>
 <p><strong>T:</strong> calculate the mean of the data over subjects and plot it as an image</p>
-<div class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> ccs_eeg_utils.ex8_simulateData()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(data.mean(axis<span class="op">=</span><span class="dv">0</span>))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x2698f15b7b8&gt;</code></pre>
-</div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-3-output-2.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-3-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>T:</strong> Plot some subjects individually. Can you infer anything from the “single subject” displays?</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>,<span class="dv">5</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">15</span>):</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">3</span>,<span class="dv">5</span>,k<span class="op">+</span><span class="dv">1</span>).imshow(data[k,:,:])</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-6" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>,<span class="dv">5</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">15</span>):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">3</span>,<span class="dv">5</span>,k<span class="op">+</span><span class="dv">1</span>).imshow(data[k,:,:])</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-4-output-1.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-4-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <section id="t-values" class="level3">
 <h3 class="anchored" data-anchor-id="t-values">T-Values</h3>
 <p>The t-value is a weighting of your effect-strength (i.e.&nbsp;the difference between the means of two conditions) and the standard deviation (=spread) of this effect. <span class="math inline">\(t = \frac{mean(x)}{\frac{std(x)}{\sqrt(n-1)}}\)</span>. Use this formula to manually compare the t-values over the n=15 subjects. Compare it with <code>scipy.stats.ttest_1samp(data,popmean=0,axis=0)</code>.</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tstat_man <span class="op">=</span> data.mean(axis<span class="op">=</span><span class="dv">0</span>)<span class="op">/</span> (data.std(axis<span class="op">=</span><span class="dv">0</span>)<span class="op">/</span>np.sqrt(<span class="dv">14</span>))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>tstat <span class="op">=</span>scipy.stats.ttest_1samp(data, popmean<span class="op">=</span> <span class="dv">0</span>, axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>).imshow(tstat_man,clim<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>])</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>).imshow(tstat.statistic,clim<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>&lt;matplotlib.image.AxesImage at 0x26990843160&gt;</code></pre>
-</div>
+<div id="cell-8" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tstat_man <span class="op">=</span> data.mean(axis<span class="op">=</span><span class="dv">0</span>)<span class="op">/</span> (data.std(axis<span class="op">=</span><span class="dv">0</span>)<span class="op">/</span>np.sqrt(<span class="dv">14</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>tstat <span class="op">=</span>scipy.stats.ttest_1samp(data, popmean<span class="op">=</span> <span class="dv">0</span>, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>).imshow(tstat_man,clim<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>])</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>).imshow(tstat.statistic,clim<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-5-output-2.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-5-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>T:</strong> The scipy function also returns p-values. We want to plot the t-values next to the p-values. Because we will iteratively add different multiple comparison corrections, it is best to generate a function that allows to subsequently increase the amount of plots one can plot. I recommend to plot the log10(p-values)</p>
 <p><strong>Bonus:</strong> You can also use <code>m = np.ma.masked_where(pvalues&gt;0.05,tvalues)</code> to get a nice masked view of the data.</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_stats(stats):</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># a list of statistics</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(stats)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    fig,ax <span class="op">=</span> plt.subplots(n,<span class="dv">3</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(stats)):</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        ax1 <span class="op">=</span> plt.subplot(n,<span class="dv">3</span>,k<span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        ax2 <span class="op">=</span> plt.subplot(n,<span class="dv">3</span>,k<span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="dv">2</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        ax3 <span class="op">=</span> plt.subplot(n,<span class="dv">3</span>,k<span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="dv">3</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        im <span class="op">=</span> ax1.imshow(stats[k][<span class="dv">0</span>],cmap<span class="op">=</span><span class="st">"RdBu"</span>,clim<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>])</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        ax1.set_yticklabels([])<span class="op">;</span>ax1.set_xticklabels([])<span class="op">;</span>ax2.set_yticklabels([])<span class="op">;</span>ax2.set_xticklabels([])<span class="op">;</span>ax3.set_yticklabels([])<span class="op">;</span>ax3.set_xticklabels([])</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        plt.colorbar(im,ax<span class="op">=</span>ax1)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        im <span class="op">=</span> ax2.imshow(np.log10(stats[k][<span class="dv">1</span>]),cmap<span class="op">=</span><span class="st">"BuPu"</span>,clim<span class="op">=</span>[<span class="op">-</span><span class="dv">3</span>,<span class="dv">0</span>])<span class="op">;</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        cbar <span class="op">=</span> plt.colorbar(im,ax<span class="op">=</span>ax2,ticks<span class="op">=</span>np.log10([<span class="dv">1</span>,<span class="fl">0.05</span>,<span class="fl">0.01</span>,<span class="fl">0.001</span>]))</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        cbar.ax.set_yticklabels([<span class="va">None</span>,<span class="fl">0.05</span>,<span class="fl">0.01</span>,<span class="fl">0.001</span>])</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> np.ma.masked_where(stats[k][<span class="dv">1</span>]<span class="op">&gt;</span><span class="fl">0.05</span>,stats[k][<span class="dv">0</span>])</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        im <span class="op">=</span> ax3.imshow(m,cmap<span class="op">=</span><span class="st">"RdBu"</span>,clim<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-10" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_stats(stats):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># a list of statistics</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(stats)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    fig,ax <span class="op">=</span> plt.subplots(n,<span class="dv">3</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(stats)):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        ax1 <span class="op">=</span> plt.subplot(n,<span class="dv">3</span>,k<span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        ax2 <span class="op">=</span> plt.subplot(n,<span class="dv">3</span>,k<span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="dv">2</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        ax3 <span class="op">=</span> plt.subplot(n,<span class="dv">3</span>,k<span class="op">*</span><span class="dv">3</span><span class="op">+</span><span class="dv">3</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        im <span class="op">=</span> ax1.imshow(stats[k][<span class="dv">0</span>],cmap<span class="op">=</span><span class="st">"RdBu"</span>,clim<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>])</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        ax1.set_yticklabels([])<span class="op">;</span>ax1.set_xticklabels([])<span class="op">;</span>ax2.set_yticklabels([])<span class="op">;</span>ax2.set_xticklabels([])<span class="op">;</span>ax3.set_yticklabels([])<span class="op">;</span>ax3.set_xticklabels([])</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        plt.colorbar(im,ax<span class="op">=</span>ax1)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        im <span class="op">=</span> ax2.imshow(np.log10(stats[k][<span class="dv">1</span>]),cmap<span class="op">=</span><span class="st">"BuPu"</span>,clim<span class="op">=</span>[<span class="op">-</span><span class="dv">3</span>,<span class="dv">0</span>])<span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        cbar <span class="op">=</span> plt.colorbar(im,ax<span class="op">=</span>ax2,ticks<span class="op">=</span>np.log10([<span class="dv">1</span>,<span class="fl">0.05</span>,<span class="fl">0.01</span>,<span class="fl">0.001</span>]))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        cbar.ax.set_yticklabels([<span class="va">None</span>,<span class="fl">0.05</span>,<span class="fl">0.01</span>,<span class="fl">0.001</span>])</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> np.ma.masked_where(stats[k][<span class="dv">1</span>]<span class="op">&gt;</span><span class="fl">0.05</span>,stats[k][<span class="dv">0</span>])</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        im <span class="op">=</span> ax3.imshow(m,cmap<span class="op">=</span><span class="st">"RdBu"</span>,clim<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot_stats([tstat])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-11" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plot_stats([tstat])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-7-output-1.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-7-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -358,66 +404,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>T:</strong> run <code>data_h0 = ccs_eeg_utils.ex8_simulateData(signal_mean=0,noise_between=0)</code> and plot the t-values as an imshow (be sure to add a colorbar always)</p>
 <p><strong>T:</strong> plot a histogram of all p-values (regardless of position)</p>
 <p><strong>T:</strong> Also plot a histogram of the p-values of the data with the effect</p>
-<div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_h0 <span class="op">=</span> ccs_eeg_utils.ex8_simulateData(signal_mean<span class="op">=</span><span class="dv">0</span>,noise_between<span class="op">=</span><span class="dv">0</span>,rng_seed<span class="op">=</span><span class="dv">43</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ttest_h0 <span class="op">=</span> scipy.stats.ttest_1samp(data_h0,popmean<span class="op">=</span><span class="dv">0</span>,axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(ttest_h0.statistic,clim<span class="op">=</span>[<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>])</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
-<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x26993161a58&gt;</code></pre>
-</div>
+<div id="cell-13" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data_h0 <span class="op">=</span> ccs_eeg_utils.ex8_simulateData(signal_mean<span class="op">=</span><span class="dv">0</span>,noise_between<span class="op">=</span><span class="dv">0</span>,rng_seed<span class="op">=</span><span class="dv">43</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ttest_h0 <span class="op">=</span> scipy.stats.ttest_1samp(data_h0,popmean<span class="op">=</span><span class="dv">0</span>,axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(ttest_h0.statistic,clim<span class="op">=</span>[<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>])</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-8-output-2.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-8-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>).hist(ttest_h0.pvalue.reshape(np.prod(data_h0.shape[<span class="dv">1</span>:])),<span class="dv">50</span>),plt.ylim([<span class="dv">0</span>,<span class="dv">200</span>])<span class="op">;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>).hist(tstat.pvalue.reshape(np.prod(data_h0.shape[<span class="dv">1</span>:])),<span class="dv">50</span>),plt.ylim([<span class="dv">0</span>,<span class="dv">200</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-14" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>).hist(ttest_h0.pvalue.reshape(np.prod(data_h0.shape[<span class="dv">1</span>:])),<span class="dv">50</span>),plt.ylim([<span class="dv">0</span>,<span class="dv">200</span>])<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>).hist(tstat.pvalue.reshape(np.prod(data_h0.shape[<span class="dv">1</span>:])),<span class="dv">50</span>),plt.ylim([<span class="dv">0</span>,<span class="dv">200</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-9-output-1.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-9-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and the t-values for fun</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>).hist(ttest_h0.statistic.reshape(np.prod(data_h0.shape[<span class="dv">1</span>:])),<span class="dv">50</span>),plt.ylim([<span class="dv">0</span>,<span class="dv">200</span>])<span class="op">;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>).hist(tstat.statistic.reshape(np.prod(data_h0.shape[<span class="dv">1</span>:])),<span class="dv">50</span>),plt.ylim([<span class="dv">0</span>,<span class="dv">200</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-15" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and the t-values for fun</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>).hist(ttest_h0.statistic.reshape(np.prod(data_h0.shape[<span class="dv">1</span>:])),<span class="dv">50</span>),plt.ylim([<span class="dv">0</span>,<span class="dv">200</span>])<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>).hist(tstat.statistic.reshape(np.prod(data_h0.shape[<span class="dv">1</span>:])),<span class="dv">50</span>),plt.ylim([<span class="dv">0</span>,<span class="dv">200</span>])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-10-output-1.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-10-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>T:</strong> Count how many pvalues are below 0.05 each from the data with and without effect. For FDR we have to estimate how many “significant” (=&gt; pvalue&lt;<span class="math inline">\(\alpha\)</span>, with <span class="math inline">\(alpha=0.05\)</span> typically) values we would get by chance (=false positives). Instead of estimating the number of p-values from one dataset (which is much more involved), we can also take our null-model pvalue-count as well. Calculate the ratio of H0/H1 significant-pvalues. This is your False-Discovery rate. Can you manually adjust alpha, so that the FDR is 0.05?</p>
-<div class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.007</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>nofdr  <span class="op">=</span> np.<span class="bu">sum</span>(tstat.pvalue<span class="op">&lt;</span>alpha)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>nofdr_h0 <span class="op">=</span> np.<span class="bu">sum</span>(ttest_h0.pvalue<span class="op">&lt;</span>alpha)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>yesfdr <span class="op">=</span> np.<span class="bu">sum</span>(mne.stats.fdr_correction(tstat.pvalue)[<span class="dv">1</span>]<span class="op">&lt;</span><span class="fl">0.05</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"before fdr </span><span class="sc">{}</span><span class="st">, h0 </span><span class="sc">{:.3f}</span><span class="st">, ratio for alpha </span><span class="sc">{}</span><span class="st">: </span><span class="sc">{:.2f}</span><span class="st"> FalsePositives, after fdr-mne: </span><span class="sc">{}</span><span class="st">, fdr-manual: </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(nofdr,nofdr_h0,alpha,nofdr_h0<span class="op">/</span>nofdr,yesfdr,np.<span class="bu">sum</span>(tstat.pvalue<span class="op">&lt;</span><span class="fl">0.007</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-17" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.007</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nofdr  <span class="op">=</span> np.<span class="bu">sum</span>(tstat.pvalue<span class="op">&lt;</span>alpha)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>nofdr_h0 <span class="op">=</span> np.<span class="bu">sum</span>(ttest_h0.pvalue<span class="op">&lt;</span>alpha)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>yesfdr <span class="op">=</span> np.<span class="bu">sum</span>(mne.stats.fdr_correction(tstat.pvalue)[<span class="dv">1</span>]<span class="op">&lt;</span><span class="fl">0.05</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"before fdr </span><span class="sc">{}</span><span class="st">, h0 </span><span class="sc">{:.3f}</span><span class="st">, ratio for alpha </span><span class="sc">{}</span><span class="st">: </span><span class="sc">{:.2f}</span><span class="st"> FalsePositives, after fdr-mne: </span><span class="sc">{}</span><span class="st">, fdr-manual: </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(nofdr,nofdr_h0,alpha,nofdr_h0<span class="op">/</span>nofdr,yesfdr,np.<span class="bu">sum</span>(tstat.pvalue<span class="op">&lt;</span><span class="fl">0.007</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>before fdr 131, h0 6.000, ratio for alpha 0.007: 0.05 FalsePositives, after fdr-mne: 88, fdr-manual: 131</code></pre>
 </div>
 </div>
 <p><strong>T:</strong> Use <code>mne.stats.fdr_correction</code> to calculate the proper fdr-correction. Use the plotting function from the beginning to directly compare the p-values with and without correction.</p>
-<div class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fdr<span class="op">=</span> (tstat.statistic,mne.stats.fdr_correction(tstat.pvalue)[<span class="dv">1</span>])</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plot_stats([tstat,fdr])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-19" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fdr<span class="op">=</span> (tstat.statistic,mne.stats.fdr_correction(tstat.pvalue)[<span class="dv">1</span>])</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plot_stats([tstat,fdr])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-12-output-1.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-12-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="bonus-f-max-permutation-test" class="level2">
 <h2 class="anchored" data-anchor-id="bonus-f-max-permutation-test">Bonus: F-Max Permutation test</h2>
 <p>In the lecture we discussed permutation tests and permutation cluster tests. What we didnt discuss is that you can easily adjust a permutation test to correct for multiple comparisons. We permute each 40x40 grid element concurrently, but instead of saving for each grid element the permuted statistics (e.g.&nbsp;the t-value), we save the maximum of all grid elements. This biases our permutation distribution towards large t-values, and concurrently makes it harder for the observed value to “stand out” (=&gt; be unlikely) from that distribution. You can use <code>mne.stats.permutation_t_test</code> to calculate this.</p>
-<div class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data_flat <span class="op">=</span> data.copy()</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>data_flat.shape <span class="op">=</span> (data.shape[<span class="dv">0</span>], data.shape[<span class="dv">1</span>]<span class="op">*</span>data.shape[<span class="dv">2</span>])</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>perm<span class="op">=</span> mne.stats.permutation_t_test(data_flat, verbose<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>perm[<span class="dv">0</span>].shape <span class="op">=</span> data.shape[<span class="dv">1</span>:]</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>perm[<span class="dv">1</span>].shape <span class="op">=</span> data.shape[<span class="dv">1</span>:]</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plot_stats([tstat,fdr,perm])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-21" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data_flat <span class="op">=</span> data.copy()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>data_flat.shape <span class="op">=</span> (data.shape[<span class="dv">0</span>], data.shape[<span class="dv">1</span>]<span class="op">*</span>data.shape[<span class="dv">2</span>])</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>perm<span class="op">=</span> mne.stats.permutation_t_test(data_flat, verbose<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>perm[<span class="dv">0</span>].shape <span class="op">=</span> data.shape[<span class="dv">1</span>:]</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>perm[<span class="dv">1</span>].shape <span class="op">=</span> data.shape[<span class="dv">1</span>:]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plot_stats([tstat,fdr,perm])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-13-output-1.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-13-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -441,93 +504,101 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>1 - np.mean(c_obs&gt;=c_perms)</code> gives you your p-value</li>
 </ol>
 <p>Note: The test could be improved by e.g.&nbsp;summing the t-values of a cluster instead of merely counting the cluster-extend, but that leads us a bit astray from what we want to understand here.</p>
-<div class="cell" data-execution_count="85">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>t_sum.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-23" class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>t_sum.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="85">
 <pre><code>(59,)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="88">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>label_img <span class="op">=</span> label(np.<span class="bu">abs</span>(t_star)<span class="op">&gt;</span>thr)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(label_img)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>i,c <span class="op">=</span> np.unique(label_img,return_counts<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>t_sum <span class="op">=</span> np.zeros(<span class="bu">len</span>(i))</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> i:</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>   t_sum[j] <span class="op">=</span> np.<span class="bu">abs</span>(np.<span class="bu">sum</span>(t_star[label_img <span class="op">==</span> j]))</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#t_sum</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>np.argmax(t_sum[<span class="dv">1</span>:])</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-24" class="cell" data-execution_count="88">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>label_img <span class="op">=</span> label(np.<span class="bu">abs</span>(t_star)<span class="op">&gt;</span>thr)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(label_img)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>i,c <span class="op">=</span> np.unique(label_img,return_counts<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>t_sum <span class="op">=</span> np.zeros(<span class="bu">len</span>(i))</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> i:</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>   t_sum[j] <span class="op">=</span> np.<span class="bu">abs</span>(np.<span class="bu">sum</span>(t_star[label_img <span class="op">==</span> j]))</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#t_sum</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>np.argmax(t_sum[<span class="dv">1</span>:])</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="88">
 <pre><code>3</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-15-output-2.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-15-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="67">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate statistic</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>t_obs <span class="op">=</span> mne.stats.ttest_1samp_no_p(data)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate max clustersize</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>c_obs <span class="op">=</span> calc_max_cluster(t_obs)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># permute 100 times</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>n_perm <span class="op">=</span> <span class="dv">1000</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>c_perms <span class="op">=</span> np.zeros(shape<span class="op">=</span>n_perm)</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>c_perms[<span class="bu">len</span>(c_perms)<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> c_obs</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#for p in range(n_perm-1):</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>signFlip <span class="op">=</span> (np.random.rand(<span class="dv">15</span>)<span class="op">&gt;</span><span class="fl">0.5</span>)<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>d_perm <span class="op">=</span> np.einsum(<span class="st">'t,tnh-&gt; tnh'</span>,signFlip,data)</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>d_perm.shape</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>thr <span class="op">=</span> scipy.stats.t.ppf(<span class="dv">1</span><span class="op">-</span>(<span class="dv">2</span><span class="op">*</span>alpha), n<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>t_star <span class="op">=</span> mne.stats.ttest_1samp_no_p(d_perm)</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>).imshow(np.<span class="bu">abs</span>(t_star)<span class="op">&gt;</span>thr)</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>t_star <span class="op">=</span> mne.stats.ttest_1samp_no_p(data)</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>).imshow(np.<span class="bu">abs</span>(t_star)<span class="op">&gt;</span>thr)</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>i,c <span class="op">=</span> np.unique(label(np.<span class="bu">abs</span>(t_star)<span class="op">&gt;</span>thr),return_counts<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-25" class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate statistic</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>t_obs <span class="op">=</span> mne.stats.ttest_1samp_no_p(data)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate max clustersize</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>c_obs <span class="op">=</span> calc_max_cluster(t_obs)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># permute 100 times</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>n_perm <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>c_perms <span class="op">=</span> np.zeros(shape<span class="op">=</span>n_perm)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>c_perms[<span class="bu">len</span>(c_perms)<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> c_obs</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#for p in range(n_perm-1):</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>signFlip <span class="op">=</span> (np.random.rand(<span class="dv">15</span>)<span class="op">&gt;</span><span class="fl">0.5</span>)<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>d_perm <span class="op">=</span> np.einsum(<span class="st">'t,tnh-&gt; tnh'</span>,signFlip,data)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>d_perm.shape</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>thr <span class="op">=</span> scipy.stats.t.ppf(<span class="dv">1</span><span class="op">-</span>(<span class="dv">2</span><span class="op">*</span>alpha), n<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>t_star <span class="op">=</span> mne.stats.ttest_1samp_no_p(d_perm)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>).imshow(np.<span class="bu">abs</span>(t_star)<span class="op">&gt;</span>thr)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>t_star <span class="op">=</span> mne.stats.ttest_1samp_no_p(data)</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>).imshow(np.<span class="bu">abs</span>(t_star)<span class="op">&gt;</span>thr)</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>i,c <span class="op">=</span> np.unique(label(np.<span class="bu">abs</span>(t_star)<span class="op">&gt;</span>thr),return_counts<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-16-output-1.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-16-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="92">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage.measure <span class="im">import</span> label</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_max_cluster(t_star,alpha<span class="op">=</span><span class="fl">0.05</span>,n <span class="op">=</span> <span class="dv">15</span>,method<span class="op">=</span><span class="st">"extend"</span>):</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    thr <span class="op">=</span> scipy.stats.t.ppf(<span class="dv">1</span><span class="op">-</span>(<span class="dv">2</span><span class="op">*</span>alpha), n<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    label_img <span class="op">=</span> label(np.<span class="bu">abs</span>(t_star)<span class="op">&gt;</span>thr)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    i,c <span class="op">=</span> np.unique(label_img,return_counts<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove the first because it is "0" =&gt; no effect</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> method <span class="op">==</span> <span class="st">"extend"</span>:</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        mx <span class="op">=</span> np.<span class="bu">max</span>(c[<span class="dv">1</span>:])</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> method <span class="op">==</span> <span class="st">"tsum"</span>:</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        t_sum <span class="op">=</span> np.zeros(<span class="bu">len</span>(i))</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> i:</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>            t_sum[j] <span class="op">=</span> np.<span class="bu">abs</span>(np.<span class="bu">sum</span>(t_star[label_img <span class="op">==</span> j]))</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>        mx <span class="op">=</span> np.<span class="bu">max</span>(t_sum[<span class="dv">1</span>:])        </span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mx</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate statistic</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>t_obs <span class="op">=</span> mne.stats.ttest_1samp_no_p(data)</span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate max clustersize</span></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>c_obs <span class="op">=</span> calc_max_cluster(t_obs,method<span class="op">=</span><span class="st">"tsum"</span>)</span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="co"># permute 100 times</span></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>n_perm <span class="op">=</span> <span class="dv">1000</span></span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>c_perms <span class="op">=</span> np.zeros(shape<span class="op">=</span>n_perm)</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>c_perms[<span class="bu">len</span>(c_perms)<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> c_obs</span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> <span class="bu">range</span>(n_perm<span class="op">-</span><span class="dv">1</span>):</span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.mod(p,<span class="dv">100</span>)<span class="op">==</span><span class="dv">0</span>:</span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(p)</span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>    signFlip <span class="op">=</span> (np.random.rand(<span class="dv">15</span>)<span class="op">&gt;</span><span class="fl">0.5</span>)<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span></span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># python doesnt support broadcasting of vectors to 3d matrice. I.e. this should do</span></span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># signFlip * data, i.e. multiply/flip each subject by a random +1 / -1</span></span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>    d_perm <span class="op">=</span> np.einsum(<span class="st">'t,tnh-&gt; tnh'</span>,signFlip,data)</span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>    t_perm <span class="op">=</span> mne.stats.ttest_1samp_no_p(d_perm)</span>
-<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>    c_perms[p] <span class="op">=</span> calc_max_cluster(t_perm,method<span class="op">=</span><span class="st">"tsum"</span>)</span>
-<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-26" class="cell" data-execution_count="92">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skimage.measure <span class="im">import</span> label</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_max_cluster(t_star,alpha<span class="op">=</span><span class="fl">0.05</span>,n <span class="op">=</span> <span class="dv">15</span>,method<span class="op">=</span><span class="st">"extend"</span>):</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    thr <span class="op">=</span> scipy.stats.t.ppf(<span class="dv">1</span><span class="op">-</span>(<span class="dv">2</span><span class="op">*</span>alpha), n<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    label_img <span class="op">=</span> label(np.<span class="bu">abs</span>(t_star)<span class="op">&gt;</span>thr)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    i,c <span class="op">=</span> np.unique(label_img,return_counts<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove the first because it is "0" =&gt; no effect</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> method <span class="op">==</span> <span class="st">"extend"</span>:</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        mx <span class="op">=</span> np.<span class="bu">max</span>(c[<span class="dv">1</span>:])</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> method <span class="op">==</span> <span class="st">"tsum"</span>:</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        t_sum <span class="op">=</span> np.zeros(<span class="bu">len</span>(i))</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> i:</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>            t_sum[j] <span class="op">=</span> np.<span class="bu">abs</span>(np.<span class="bu">sum</span>(t_star[label_img <span class="op">==</span> j]))</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>        mx <span class="op">=</span> np.<span class="bu">max</span>(t_sum[<span class="dv">1</span>:])        </span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mx</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate statistic</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>t_obs <span class="op">=</span> mne.stats.ttest_1samp_no_p(data)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate max clustersize</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>c_obs <span class="op">=</span> calc_max_cluster(t_obs,method<span class="op">=</span><span class="st">"tsum"</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co"># permute 100 times</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>n_perm <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>c_perms <span class="op">=</span> np.zeros(shape<span class="op">=</span>n_perm)</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>c_perms[<span class="bu">len</span>(c_perms)<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> c_obs</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> <span class="bu">range</span>(n_perm<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.mod(p,<span class="dv">100</span>)<span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(p)</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    signFlip <span class="op">=</span> (np.random.rand(<span class="dv">15</span>)<span class="op">&gt;</span><span class="fl">0.5</span>)<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># python doesnt support broadcasting of vectors to 3d matrice. I.e. this should do</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># signFlip * data, i.e. multiply/flip each subject by a random +1 / -1</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>    d_perm <span class="op">=</span> np.einsum(<span class="st">'t,tnh-&gt; tnh'</span>,signFlip,data)</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    t_perm <span class="op">=</span> mne.stats.ttest_1samp_no_p(d_perm)</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    c_perms[p] <span class="op">=</span> calc_max_cluster(t_perm,method<span class="op">=</span><span class="st">"tsum"</span>)</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1
 2
@@ -1520,50 +1591,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 998</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="93">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.hist(c_perms,<span class="dv">100</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-27" class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plt.hist(c_perms,<span class="dv">100</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-18-output-1.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-18-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>c_obs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-28" class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>c_obs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="94">
 <pre><code>531.4821842222836</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="95">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>p_val <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>np.mean(c_obs<span class="op">&gt;=</span>c_perms)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>p_val</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-29" class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>p_val <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>np.mean(c_obs<span class="op">&gt;=</span>c_perms)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>p_val</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="95">
 <pre><code>0.016000000000000014</code></pre>
 </div>
 </div>
 <p><strong>T:</strong> Running a simular permutation test in MNE is much easier:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>t_clust, clusters, p_values, H0 <span class="op">=</span> mne.stats.permutation_cluster_1samp_test(</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    data, threshold<span class="op">=</span>threshold, adjacency<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    n_permutations<span class="op">=</span><span class="dv">1000</span>, out_type<span class="op">=</span><span class="st">'mask'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>t_clust, clusters, p_values, H0 <span class="op">=</span> mne.stats.permutation_cluster_1samp_test(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    data, threshold<span class="op">=</span>threshold, adjacency<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    n_permutations<span class="op">=</span><span class="dv">1000</span>, out_type<span class="op">=</span><span class="st">'mask'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>The threshold is the same threshold you used before</li>
 <li>Typically we would have to supply the adjacency manually, because the adjancy depends on which channels are next to eachother. But in this case we can put <code>None</code> and mne will assume it is a grid-structure</li>
 </ul>
 <p>In order to fill the clusters with their respective p-values:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>p_clust <span class="op">=</span> np.ones(data.shape[<span class="dv">1</span>:])</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl, p <span class="kw">in</span> <span class="bu">zip</span>(clusters, p_values):</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    p_clust[cl] <span class="op">=</span> p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>p_clust <span class="op">=</span> np.ones(data.shape[<span class="dv">1</span>:])</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl, p <span class="kw">in</span> <span class="bu">zip</span>(clusters, p_values):</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    p_clust[cl] <span class="op">=</span> p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This step is controversial, because clusters do not have any real p-value <a href="https://benediktehinger.de/blog/science/threshold-free-cluster-enhancement-explained/">see here, “interpretation of significant TFCE value”</a>. But pragmatically, I think it is still useful to gauge the Signal-To-Noise ratio of the clusters. As long as you do not literally interpret the p-value as a probability, you should be fine.</p>
 <p><strong>T:</strong> Add the cluster-permutation to your comparison plot</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a> mne.stats.permutation_cluster_1samp_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-31" class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a> mne.stats.permutation_cluster_1samp_test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="106">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> scipy.stats.distributions.t.ppf(<span class="dv">1</span> <span class="op">-</span> <span class="fl">0.15</span>, <span class="dv">15</span> <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>t_clust, clusters, p_values, H0 <span class="op">=</span> mne.stats.permutation_cluster_1samp_test(</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    data, threshold<span class="op">=</span>threshold, adjacency<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    n_permutations<span class="op">=</span><span class="dv">1000</span>, out_type<span class="op">=</span><span class="st">'mask'</span>)</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-32" class="cell" data-execution_count="106">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> scipy.stats.distributions.t.ppf(<span class="dv">1</span> <span class="op">-</span> <span class="fl">0.15</span>, <span class="dv">15</span> <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>t_clust, clusters, p_values, H0 <span class="op">=</span> mne.stats.permutation_cluster_1samp_test(</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    data, threshold<span class="op">=</span>threshold, adjacency<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    n_permutations<span class="op">=</span><span class="dv">1000</span>, out_type<span class="op">=</span><span class="st">'mask'</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>stat_fun(H1): min=-8.247474 max=5.110684
 Running initial clustering
@@ -1574,45 +1649,53 @@ Computing cluster p-values
 Done.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="107">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>p_clust <span class="op">=</span> np.ones(data.shape[<span class="dv">1</span>:])</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl, p <span class="kw">in</span> <span class="bu">zip</span>(clusters, p_values):</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    p_clust[cl] <span class="op">=</span> p</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> (t_clust,p_clust)</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>plot_stats([tstat,fdr,perm,cluster])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-33" class="cell" data-execution_count="107">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>p_clust <span class="op">=</span> np.ones(data.shape[<span class="dv">1</span>:])</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl, p <span class="kw">in</span> <span class="bu">zip</span>(clusters, p_values):</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    p_clust[cl] <span class="op">=</span> p</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> (t_clust,p_clust)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>plot_stats([tstat,fdr,perm,cluster])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-23-output-1.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-23-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="103">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>p_clust <span class="op">=</span> np.ones(data.shape[<span class="dv">1</span>:])</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl, p <span class="kw">in</span> <span class="bu">zip</span>(clusters, p_values):</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    p_clust[cl] <span class="op">=</span> p</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> (t_clust,p_clust)</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>plot_stats([tstat,fdr,perm,cluster])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-34" class="cell" data-execution_count="103">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>p_clust <span class="op">=</span> np.ones(data.shape[<span class="dv">1</span>:])</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cl, p <span class="kw">in</span> <span class="bu">zip</span>(clusters, p_values):</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    p_clust[cl] <span class="op">=</span> p</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> (t_clust,p_clust)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>plot_stats([tstat,fdr,perm,cluster])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-24-output-1.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-24-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="tfce" class="level2">
 <h2 class="anchored" data-anchor-id="tfce">TFCE</h2>
 <p>last but not least, we will get rid of this initial cluster-formung threshold. TFCE integrates over all possible thresholds. We will not implement TFCE here, but simply call the mne-python function.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>t_tfce, _, p_tfce, H0 <span class="op">=</span> mne.stats.permutation_cluster_1samp_test(</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    data, adjacency<span class="op">=</span><span class="va">None</span>,threshold <span class="op">=</span> <span class="bu">dict</span>(start<span class="op">=</span><span class="dv">0</span>, step<span class="op">=</span><span class="fl">0.2</span>),</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    n_permutations<span class="op">=</span><span class="dv">1000</span>, out_type<span class="op">=</span><span class="st">'mask'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>t_tfce, _, p_tfce, H0 <span class="op">=</span> mne.stats.permutation_cluster_1samp_test(</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    data, adjacency<span class="op">=</span><span class="va">None</span>,threshold <span class="op">=</span> <span class="bu">dict</span>(start<span class="op">=</span><span class="dv">0</span>, step<span class="op">=</span><span class="fl">0.2</span>),</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    n_permutations<span class="op">=</span><span class="dv">1000</span>, out_type<span class="op">=</span><span class="st">'mask'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>T:</strong> Add this to your comparison plot. We are done! I hope you learned the differences and underlying algorithms of several multiple-comparison corrects!</p>
-<div class="cell" data-execution_count="108">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>t_tfce, _, p_tfce, H0 <span class="op">=</span> mne.stats.permutation_cluster_1samp_test(</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    data, adjacency<span class="op">=</span><span class="va">None</span>,threshold <span class="op">=</span> <span class="bu">dict</span>(start<span class="op">=</span><span class="dv">0</span>, step<span class="op">=</span><span class="fl">0.2</span>),</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    n_permutations<span class="op">=</span><span class="dv">1000</span>, out_type<span class="op">=</span><span class="st">'mask'</span>)</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>p_tfce.shape <span class="op">=</span> t_tfce.shape</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>tfce <span class="op">=</span> (t_tfce,p_tfce)</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>plot_stats([tstat,fdr,perm,cluster,tfce])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-36" class="cell" data-execution_count="108">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>t_tfce, _, p_tfce, H0 <span class="op">=</span> mne.stats.permutation_cluster_1samp_test(</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    data, adjacency<span class="op">=</span><span class="va">None</span>,threshold <span class="op">=</span> <span class="bu">dict</span>(start<span class="op">=</span><span class="dv">0</span>, step<span class="op">=</span><span class="fl">0.2</span>),</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    n_permutations<span class="op">=</span><span class="dv">1000</span>, out_type<span class="op">=</span><span class="st">'mask'</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>p_tfce.shape <span class="op">=</span> t_tfce.shape</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>tfce <span class="op">=</span> (t_tfce,p_tfce)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>plot_stats([tstat,fdr,perm,cluster,tfce])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>stat_fun(H1): min=-8.247474 max=5.110684
 Running initial clustering
@@ -1624,7 +1707,11 @@ Computing cluster p-values
 Done.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="ex8_clusterPerm_files/figure-html/cell-25-output-2.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex8_clusterPerm_files/figure-html/cell-25-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 
@@ -1667,18 +1754,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1710,11 +1786,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/s-ccs\.github\.io\/course_EEG\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1724,8 +1839,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1737,7 +1861,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1781,6 +2028,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1806,6 +2054,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1866,6 +2140,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

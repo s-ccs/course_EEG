@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>🧠 EEG-2023 - General remarks</title>
+<title>General remarks – 🧠 EEG-2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,13 +94,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 
@@ -108,15 +115,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      🧠 EEG-2023
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      🧠 EEG-2024
       </li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -125,10 +132,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../">🧠 EEG-2023</a> 
+      <a href="../../">🧠 EEG-2024</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -140,9 +147,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Course</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -163,9 +170,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Projects</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -192,9 +199,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Exercises</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -215,9 +222,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Resources</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -239,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -286,9 +293,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
-<div class="cell" data-execution_count="1">
+
+<div id="cell-1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># packages: ; pysurfer</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext autoreload</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span>
@@ -298,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://mne.tools/stable/_images/flow_diagram.svg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">MNE Flow</figcaption>
+<figcaption>MNE Flow</figcaption>
 </figure>
 </div>
 <p>We will skip these steps completly and start with an already-segment “default” MRI (called ‘fsaverage’).</p>
@@ -332,7 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>trans <span class="op">=</span> <span class="st">'fsaverage'</span>  <span class="co"># MNE has a built-in fsaverage transformation</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>src <span class="op">=</span> op.join(fs_dir, <span class="st">'bem'</span>, <span class="st">'fsaverage-ico-5-src.fif'</span>)</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>bem <span class="op">=</span> op.join(fs_dir, <span class="st">'bem'</span>, <span class="st">'fsaverage-5120-5120-5120-bem-sol.fif'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os.path <span class="im">as</span> op</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -358,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne.datasets.limo <span class="im">import</span> load_data</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> load_data(subject<span class="op">=</span><span class="dv">3</span>,path<span class="op">=</span><span class="st">'../local/limo'</span>) <span class="co">#</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>epochs.set_eeg_reference(projection<span class="op">=</span><span class="va">True</span>)  <span class="co"># needed for inverse modeling</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-execution_count="3">
+<div id="cell-6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne.datasets.limo <span class="im">import</span> load_data</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> load_data(subject<span class="op">=</span><span class="dv">3</span>,path<span class="op">=</span><span class="st">'../local/limo'</span>) <span class="co">#</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>epochs.set_eeg_reference(projection<span class="op">=</span><span class="va">True</span>)  <span class="co"># needed for inverse modeling</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -374,7 +383,7 @@ Average reference projection was added, but has not been applied yet. Use the ap
 </div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div class="table-responsive">
-<table class="table table-hover table-striped table-sm small" data-quarto-postprocess="true">
+<table class="table table-hover table-striped table-sm small caption-top" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -416,7 +425,7 @@ Face/B: 534</td>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Hint:</strong> You can close the 3D plots using <code>p.plotter.close()</code> and later plots using <code>b.close()</code>. At least on my machine I had many crashes if I kept them floating around…</p>
-<div class="cell" data-execution_count="18">
+<div id="cell-8" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that the locations of EEG electrodes is correct with respect to MRI</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mne.viz.set_3d_backend(<span class="st">"notebook"</span>)</span>
@@ -451,7 +460,7 @@ Projecting sensors to the head surface</code></pre>
 <section id="the-forward-model" class="level1">
 <h1>The forward model</h1>
 <p>The forward model translates source-activity to sensor-activity. We have to provide the sensor locations (<code>epochs.info</code>), the <strong>trans</strong>formations of sensorlocations to BEM model (<code>trans</code>) and the actual physical spheres (bem). The default conductivities for the BEM model are already saved in the pre-computed standard BEM model.</p>
-<div class="cell" data-execution_count="19">
+<div id="cell-10" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fwd <span class="op">=</span> mne.make_forward_solution(epochs.info, trans<span class="op">=</span>trans, src<span class="op">=</span>src, bem<span class="op">=</span>bem, eeg<span class="op">=</span><span class="va">True</span>, mindist<span class="op">=</span><span class="fl">5.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Source space          : /home/ehinger/mne_data/MNE-fsaverage-data/fsaverage/bem/fsaverage-ico-5-src.fif
@@ -509,13 +518,13 @@ Computing EEG at 20484 source locations (free orientations)...
 Finished.</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="20">
+<div id="cell-11" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fwd[<span class="st">"sol"</span>][<span class="st">"data"</span>].shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>(128, 61452)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="25">
+<div id="cell-12" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>mne.viz.plot_topomap(fwd[<span class="st">"sol"</span>][<span class="st">"data"</span>][:,<span class="dv">2</span>],epochs.info)</span>
@@ -523,10 +532,18 @@ Finished.</code></pre>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>mne.viz.plot_topomap(fwd[<span class="st">"sol"</span>][<span class="st">"data"</span>][:,<span class="dv">8</span>],epochs.info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex11_sourceSpace_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex11_sourceSpace_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="ex11_sourceSpace_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex11_sourceSpace_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>(&lt;matplotlib.image.AxesImage at 0x7f4293e5b2e0&gt;,
@@ -537,7 +554,7 @@ Finished.</code></pre>
 <p><strong>T:</strong> What is the shape of the leadfield and what do the dimension refer to?</p>
 <p><strong>T:</strong> select a random source-point and plot its respective sensor-topoplot (<code>mne.viz.plot_topomap(vector,epochs.info)</code>)</p>
 <p><strong>T:</strong> Next plot three following source-points. Be sure to start with 0,3,6,9… (e.g.&nbsp;multiply your random “starting”-index by 3).What do you observe and what does it tell you about the structure of the forward model? (hint: you could also inspect <code>fwd["source_nn"]</code>) - <code>plot_topomap</code> has an “axes” option to specify subplot-axes, be sure to put <code>show=False</code> if you want to use that.</p>
-<div class="cell" data-execution_count="32">
+<div id="cell-14" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne.viz</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fwd[<span class="st">"sol"</span>][<span class="st">"data"</span>].shape)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#mne.viz.plot_topomap(fwd["sol"]["data"][:,1],epochs.info);</span></span>
@@ -553,7 +570,11 @@ Finished.</code></pre>
 <pre><code>&lt;Figure size 432x288 with 0 Axes&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="ex11_sourceSpace_files/figure-html/cell-9-output-3.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex11_sourceSpace_files/figure-html/cell-9-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Now we will plot the reverse, choose one electrode and see which sources are most sensitive to that electrode. Note that you only need every third sample, i.e.&nbsp;we are looking for the activity at the cortex in only one dimension. It is a bit more involved to collapse over all source-orientations.</p>
@@ -575,7 +596,7 @@ Finished.</code></pre>
 <span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>b.add_data(x[<span class="dv">0</span>:nvert],vertices<span class="op">=</span>v,smoothing_steps<span class="op">=</span><span class="st">'nearest'</span>)</span>
 <span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>´´´</span>
 <span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>::: {.cell execution_count<span class="op">=</span><span class="dv">14</span>}</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>::: {<span class="co">#cell-16 .cell execution_count=14}</span></span>
 <span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>``` {.python .cell<span class="op">-</span>code}</span>
 <span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne.viz <span class="im">import</span> Brain</span>
 <span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
@@ -603,7 +624,7 @@ Finished.</code></pre>
 <pre><code>10242</code></pre>
 </div>
 <p>:::</p>
-<div class="cell">
+<div id="cell-17" class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>b.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -616,20 +637,24 @@ Finished.</code></pre>
 <p><strong>T:</strong> Use <code>from scipy.linalg import pinv</code> on one orientation of the Leadfield (<code>fwd["sol"]["data"][:,::3]</code>) and <code>@</code>-multiply it on your <code>epochs.copy().crop(tmin=0.15,tmax=0.15).average().interpolate_bads().data[:,0]</code> - you need to interpolate the bad channels, else they will project noise to your source-space</p>
 <p><strong>T:</strong> Plot a histogram of your source values. Do negative values make sense (solution below, don’t peak ;))?</p>
 <p><strong>Bonus:</strong> instead of cropping to around 150ms, you can also calculate all timepoints and later select a timepoint, but it is a bit more cumbersome to handle everything</p>
-<div class="cell">
+<div id="cell-19" class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>epochs.average().plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex11_sourceSpace_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex11_sourceSpace_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="33">
+</div>
+<div id="cell-20" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> fwd[<span class="st">"sol"</span>][<span class="st">"data"</span>][:,::<span class="dv">3</span>]</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>L.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
 <pre><code>(128, 20484)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="34">
+<div id="cell-21" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> epochs.copy().crop(tmin<span class="op">=</span><span class="fl">0.150</span>,tmax<span class="op">=</span><span class="fl">0.153</span>).average().interpolate_bads().data</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>d.shape</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.linalg <span class="im">import</span> pinv</span>
@@ -647,7 +672,7 @@ Interpolating 7 sensors</code></pre>
 <pre><code>(20484, 128)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="35">
+<div id="cell-22" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.linalg <span class="im">import</span> pinv</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> fwd[<span class="st">"sol"</span>][<span class="st">"data"</span>][:,::<span class="dv">3</span>]</span>
@@ -663,10 +688,14 @@ Computing interpolation matrix from 121 sensor positions
 Interpolating 7 sensors</code></pre>
 </div>
 </div>
-<div class="cell">
+<div id="cell-23" class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.hist(s,<span class="dv">100</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="ex11_sourceSpace_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex11_sourceSpace_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Once we have the vector of source-activities, we want to plot it</p>
@@ -689,14 +718,14 @@ Interpolating 7 sensors</code></pre>
 <span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>b.scale_data_colormap(fmin<span class="op">=</span>lim[<span class="dv">0</span>], fmid<span class="op">=</span>lim[<span class="dv">1</span>], fmax<span class="op">=</span>lim[<span class="dv">2</span>], transparent<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note the usage of np.abs around the source activity. It is generally not really possible to interpret positive / negative source activity. if you are on one side of a gyrus, the activity might be positive, on the other side it might be negative - simply because of dipole orientation. We therefore often just look at the absolute value</p>
 <p><strong>Bonus:</strong> If you wanted to plot all time-points, you can use <code>b.set_time(200)</code> to set time, or <code>from surfer import TimeViewer</code> and <code>viewer = TimeViewer(b)</code> to get a rudimentairy GUI</p>
-<div class="cell" data-execution_count="37">
+<div id="cell-25" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> fwd[<span class="st">"src"</span>][<span class="dv">0</span>][<span class="st">'vertno'</span>]</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>array([    0,     1,     2, ..., 10239, 10240, 10241])</code></pre>
 </div>
 </div>
-<div class="cell">
+<div id="cell-26" class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>gui qt</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> surfer <span class="im">import</span> Brain</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -712,7 +741,7 @@ Interpolating 7 sensors</code></pre>
 <pre><code>10242</code></pre>
 </div>
 </div>
-<div class="cell">
+<div id="cell-27" class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>b.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -734,12 +763,18 @@ Interpolating 7 sensors</code></pre>
 <div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>noise_cov <span class="op">=</span> mne.compute_covariance(epochs, tmax<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>noise_cov.plot(epochs.info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Q:</strong> What does the 2d-image plot tell you?</p>
-<div class="cell" data-execution_count="38">
+<div id="cell-30" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>noise_cov <span class="op">=</span> mne.compute_covariance(epochs, tmax<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>noise_cov.plot(epochs.info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Computing rank from data with rank=None
-    Using tolerance 1.5e-10 (2.2e-16 eps * 121 dim * 5.5e+03  max singular value)
+<pre><code>Computing rank from data with rank=None</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_2058897/3142076790.py:1: RuntimeWarning: Epochs are not baseline corrected, covariance matrix may be inaccurate
+  noise_cov = mne.compute_covariance(epochs, tmax=0)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Using tolerance 1.5e-10 (2.2e-16 eps * 121 dim * 5.5e+03  max singular value)
     Estimated rank (eeg): 120
     EEG: rank 120 computed from 121 data channels with 1 projector
     Created an SSP operator (subspace dimension = 1)
@@ -754,18 +789,19 @@ Computing rank from covariance with rank=None
     Estimated rank (eeg): 120
     EEG: rank 120 computed from 121 data channels with 0 projectors</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2058897/3142076790.py:1: RuntimeWarning: Epochs are not baseline corrected, covariance matrix may be inaccurate
-  noise_cov = mne.compute_covariance(epochs, tmax=0)</code></pre>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ex11_sourceSpace_files/figure-html/cell-20-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="ex11_sourceSpace_files/figure-html/cell-20-output-3.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex11_sourceSpace_files/figure-html/cell-20-output-5.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
-<div class="cell-output cell-output-display">
-<p><img src="ex11_sourceSpace_files/figure-html/cell-20-output-4.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="38">
-<pre><code>(&lt;Figure size 273.6x266.4 with 2 Axes&gt;, &lt;Figure size 273.6x266.4 with 1 Axes&gt;)</code></pre>
 </div>
 </div>
 <section id="inverse-operator" class="level4">
@@ -775,7 +811,7 @@ Computing rank from covariance with rank=None
 <div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne.minimum_norm <span class="im">import</span> make_inverse_operator, apply_inverse</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>inv_default <span class="op">=</span> make_inverse_operator(epochs.info, fwd, noise_cov, loose<span class="op">=</span><span class="fl">0.2</span>, depth<span class="op">=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>T:</strong> Generate three more operator, one with loose=1, allowing for all dipole orientations, one with loose=0, enforcing strict orthogonal orientation (don’t do that) and one with loose=0.2, but depth=0. - deactivating depth weighting.</p>
-<div class="cell" data-execution_count="40">
+<div id="cell-32" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne.minimum_norm <span class="im">import</span> make_inverse_operator, apply_inverse</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>inv_default<span class="op">=</span> make_inverse_operator(epochs.info, fwd, noise_cov, loose<span class="op">=</span><span class="fl">0.2</span>, depth<span class="op">=</span><span class="fl">0.8</span>)</span>
@@ -882,7 +918,7 @@ Computing SVD of whitened and weighted lead field matrix.
 <div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>snr <span class="op">=</span> <span class="fl">10.0</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>lambda2 <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> snr <span class="op">**</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>T:</strong> calculate the inverse solution and get the stc (source time course) for the <code>inv_default</code> - choose the MNE algorithm in the function <code>mne.minimum_norm.apply_inverse</code> <strong>T:</strong> Plot it! <code>brain = stc.plot(time_viewer=True,hemi="both")</code></p>
-<div class="cell" data-execution_count="41">
+<div id="cell-34" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>snr <span class="op">=</span> <span class="fl">10.0</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>lambda2 <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> snr <span class="op">**</span> <span class="dv">2</span></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>stc <span class="op">=</span> apply_inverse(epochs.average(), inv_default, lambda2, <span class="st">'MNE'</span>)<span class="co">#, pick_ori='vector')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -902,7 +938,7 @@ Applying inverse operator to "0.50 × Face/A + 0.50 × Face/B"...
 [done]</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="42">
+<div id="cell-35" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>brain <span class="op">=</span> stc.plot(time_viewer<span class="op">=</span><span class="va">True</span>,hemi<span class="op">=</span><span class="st">"both"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Using control points [8.26314785e-12 9.82639882e-12 2.66900633e-11]</code></pre>
@@ -1891,7 +1927,7 @@ if (IPython.notebook.kernel !== null) {
 </div>
 </div>
 <p><strong>Bonus:</strong> You can also plot the brain activity on a “inflated” or “flat” brain using <code>surface = "flat"</code> (or inflated respectively). This can be very helpful in comparing conditions etc. - but especially the flat map will be very hard to read for everyone who is not a brain-anatomy-expert</p>
-<div class="cell" data-execution_count="43">
+<div id="cell-37" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>stc.plot(surface<span class="op">=</span><span class="st">"flat"</span>,time_viewer<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co">#stc.plot(surface="flat",time_viewer=True)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -2916,7 +2952,7 @@ if (IPython.notebook.kernel !== null) {
 <span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add the png to a subplot</span></span>
 <span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">2</span>,ix<span class="op">+</span><span class="dv">1</span>).imshow(img)</span>
 <span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-execution_count="46">
+<div id="cell-39" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>,<span class="st">".."</span>)</span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2961,8 +2997,20 @@ Applying inverse operator to "0.50 × Face/A + 0.50 × Face/B"...
     Explained  46.4% variance
     Combining the current components...
 [done]
-Using control points [8.26314785e-12 9.82639882e-12 2.66900633e-11]
-Preparing the inverse operator for use...
+Using control points [8.26314785e-12 9.82639882e-12 2.66900633e-11]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"3e70851a148d4ef58aa63464a9668009","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"012fc6c81d6a42f1b4145c2e301aa51b","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Preparing the inverse operator for use...
     Scaled noise and source covariance from nave = 1 to nave = 1072
     Created the regularized inverter
     Created an SSP operator (subspace dimension = 1)
@@ -2974,8 +3022,20 @@ Applying inverse operator to "0.50 × Face/A + 0.50 × Face/B"...
     Computing residual...
     Explained  46.1% variance
 [done]
-Using control points [1.15861132e-11 1.38390192e-11 3.79632677e-11]
-Preparing the inverse operator for use...
+Using control points [1.15861132e-11 1.38390192e-11 3.79632677e-11]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"4f885ef520914e7ba41782c4b20b8a91","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"82caa07f33134530b6d29f7c6a3fdae2","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Preparing the inverse operator for use...
     Scaled noise and source covariance from nave = 1 to nave = 1072
     Created the regularized inverter
     Created an SSP operator (subspace dimension = 1)
@@ -2988,8 +3048,20 @@ Applying inverse operator to "0.50 × Face/A + 0.50 × Face/B"...
     Explained  46.6% variance
     Combining the current components...
 [done]
-Using control points [6.45174951e-12 7.36806058e-12 1.54805434e-11]
-Preparing the inverse operator for use...
+Using control points [6.45174951e-12 7.36806058e-12 1.54805434e-11]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"3f7cbeff1bab49bdb6a85c7494601c87","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"f88694be263145598eb7026b5acdd11a","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Preparing the inverse operator for use...
     Scaled noise and source covariance from nave = 1 to nave = 1072
     Created the regularized inverter
     Created an SSP operator (subspace dimension = 1)
@@ -3006,36 +3078,6 @@ Using control points [8.20140165e-12 1.00116981e-11 3.64245943e-11]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"3e70851a148d4ef58aa63464a9668009","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"012fc6c81d6a42f1b4145c2e301aa51b","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"4f885ef520914e7ba41782c4b20b8a91","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"82caa07f33134530b6d29f7c6a3fdae2","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"3f7cbeff1bab49bdb6a85c7494601c87","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"f88694be263145598eb7026b5acdd11a","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"decbedf8e6a44270a13729bef8f94d46","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
@@ -3045,38 +3087,42 @@ Using control points [8.20140165e-12 1.00116981e-11 3.64245943e-11]</code></pre>
 </script>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="ex11_sourceSpace_files/figure-html/cell-25-output-10.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex11_sourceSpace_files/figure-html/cell-25-output-13.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Bonus-Q:</strong> Why did MNE suddenly decide to plot pos/neg for the loose=0 (fixed orientation) instead of abs?</p>
 <section id="comparing-algorithms" class="level4">
 <h4 class="anchored" data-anchor-id="comparing-algorithms">Comparing algorithms</h4>
 <p>Next we will compare the four different minimum-norm algorithms implemented in MNE: <code>['MNE','sLORETA','eLORETA','dSPM']</code> adapt the previous script to use <code>inv_default</code> for all of them and plot the solutions again.</p>
-<div class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting parameters</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>brain_kwargs <span class="op">=</span> <span class="bu">dict</span>(views<span class="op">=</span><span class="st">"lateral"</span>,hemi<span class="op">=</span><span class="st">'split'</span>, size<span class="op">=</span>(<span class="dv">800</span>, <span class="dv">400</span>), initial_time<span class="op">=</span><span class="fl">0.15</span>,time_viewer<span class="op">=</span><span class="va">False</span>,time_unit<span class="op">=</span><span class="st">'s'</span>,show_traces<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># getting larger figures</span></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.dpi'</span>] <span class="op">=</span> <span class="dv">100</span> </span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">20</span>,<span class="dv">15</span>)</span>
-<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="co"># a list of all our inverse operators</span></span>
-<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="co">#loop over inverse operators</span></span>
-<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (ix,method) <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="st">'MNE'</span>,<span class="st">'sLORETA'</span>,<span class="st">'eLORETA'</span>,<span class="st">'dSPM'</span>]):</span>
-<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the stc</span></span>
-<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> apply_inverse(epochs.average(), inv_default, lambda2, method, verbose<span class="op">=</span><span class="va">True</span>)<span class="co">#, pick_ori='vector')</span></span>
-<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plot it</span></span>
-<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> s.plot(<span class="op">**</span>brain_kwargs)</span>
-<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-19"><a href="#cb59-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># grab a png from it</span></span>
-<span id="cb59-20"><a href="#cb59-20" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> ccs_eeg_utils.stc_plot2img(h,closeAfterwards<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb59-21"><a href="#cb59-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-22"><a href="#cb59-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add the png to a subplot</span></span>
-<span id="cb59-23"><a href="#cb59-23" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">2</span>,ix<span class="op">+</span><span class="dv">1</span>).imshow(img)</span>
-<span id="cb59-24"><a href="#cb59-24" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-43" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting parameters</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>brain_kwargs <span class="op">=</span> <span class="bu">dict</span>(views<span class="op">=</span><span class="st">"lateral"</span>,hemi<span class="op">=</span><span class="st">'split'</span>, size<span class="op">=</span>(<span class="dv">800</span>, <span class="dv">400</span>), initial_time<span class="op">=</span><span class="fl">0.15</span>,time_viewer<span class="op">=</span><span class="va">False</span>,time_unit<span class="op">=</span><span class="st">'s'</span>,show_traces<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co"># getting larger figures</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.dpi'</span>] <span class="op">=</span> <span class="dv">100</span> </span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">20</span>,<span class="dv">15</span>)</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="co"># a list of all our inverse operators</span></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a><span class="co">#loop over inverse operators</span></span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (ix,method) <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="st">'MNE'</span>,<span class="st">'sLORETA'</span>,<span class="st">'eLORETA'</span>,<span class="st">'dSPM'</span>]):</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the stc</span></span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> apply_inverse(epochs.average(), inv_default, lambda2, method, verbose<span class="op">=</span><span class="va">True</span>)<span class="co">#, pick_ori='vector')</span></span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plot it</span></span>
+<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> s.plot(<span class="op">**</span>brain_kwargs)</span>
+<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-19"><a href="#cb62-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># grab a png from it</span></span>
+<span id="cb62-20"><a href="#cb62-20" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> ccs_eeg_utils.stc_plot2img(h,closeAfterwards<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb62-21"><a href="#cb62-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-22"><a href="#cb62-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add the png to a subplot</span></span>
+<span id="cb62-23"><a href="#cb62-23" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">2</span>,ix<span class="op">+</span><span class="dv">1</span>).imshow(img)</span>
+<span id="cb62-24"><a href="#cb62-24" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Preparing the inverse operator for use...
     Scaled noise and source covariance from nave = 1 to nave = 1072
@@ -3091,8 +3137,20 @@ Applying inverse operator to "0.50 × Face/A + 0.50 × Face/B"...
     Explained  46.4% variance
     Combining the current components...
 [done]
-Using control points [8.26314785e-12 9.82639882e-12 2.66900633e-11]
-Preparing the inverse operator for use...
+Using control points [8.26314785e-12 9.82639882e-12 2.66900633e-11]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"41671d4c3faf467b92ab97f954cc38b2","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"99c2e3051a1a4b329345472221824ecc","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Preparing the inverse operator for use...
     Scaled noise and source covariance from nave = 1 to nave = 1072
     Created the regularized inverter
     Created an SSP operator (subspace dimension = 1)
@@ -3108,8 +3166,20 @@ Applying inverse operator to "0.50 × Face/A + 0.50 × Face/B"...
     Combining the current components...
     sLORETA...
 [done]
-Using control points [18.43577167 21.42066689 46.66754233]
-Preparing the inverse operator for use...
+Using control points [18.43577167 21.42066689 46.66754233]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"43dac8c8e97b49dda8e25d331a276ef3","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"c534a0b11d7e47678b7dd7520d48a45c","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Preparing the inverse operator for use...
     Scaled noise and source covariance from nave = 1 to nave = 1072
     Created the regularized inverter
     Created an SSP operator (subspace dimension = 1)
@@ -3128,8 +3198,20 @@ Applying inverse operator to "0.50 × Face/A + 0.50 × Face/B"...
     Explained  45.4% variance
     Combining the current components...
 [done]
-Using control points [7.39223674e-12 8.42494906e-12 1.71655980e-11]
-Preparing the inverse operator for use...
+Using control points [7.39223674e-12 8.42494906e-12 1.71655980e-11]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"6e0ab99248424ffcab07c41511ce2e08","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"c4193cb99d47414c93a6955e89b38cd3","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Preparing the inverse operator for use...
     Scaled noise and source covariance from nave = 1 to nave = 1072
     Created the regularized inverter
     Created an SSP operator (subspace dimension = 1)
@@ -3149,36 +3231,6 @@ Using control points [34.68525843 40.1269434  92.54111535]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"41671d4c3faf467b92ab97f954cc38b2","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"99c2e3051a1a4b329345472221824ecc","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"43dac8c8e97b49dda8e25d331a276ef3","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"c534a0b11d7e47678b7dd7520d48a45c","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"6e0ab99248424ffcab07c41511ce2e08","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"c4193cb99d47414c93a6955e89b38cd3","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
-</script>
-</div>
-<div class="cell-output cell-output-display">
-<script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"3c83f1d6d9d74cf18df3eaa27a223847","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
@@ -3188,39 +3240,43 @@ Using control points [34.68525843 40.1269434  92.54111535]</code></pre>
 </script>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="ex11_sourceSpace_files/figure-html/cell-27-output-10.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex11_sourceSpace_files/figure-html/cell-27-output-13.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="final-exploration-different-regularisation" class="level4">
 <h4 class="anchored" data-anchor-id="final-exploration-different-regularisation">Final exploration: Different regularisation</h4>
 <p>Adapt the above script once more, and apply different SNRs (e.g.&nbsp;<code>[0.1,2,10,50]</code>). What do you observe? Make note of the MNE text-output, it tells you how much % of your actual observed data is explained by the solution. Do they roughly match your expectations?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting parameters</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>brain_kwargs <span class="op">=</span> <span class="bu">dict</span>(views<span class="op">=</span><span class="st">"lateral"</span>,hemi<span class="op">=</span><span class="st">'split'</span>, size<span class="op">=</span>(<span class="dv">800</span>, <span class="dv">400</span>), initial_time<span class="op">=</span><span class="fl">0.15</span>,time_viewer<span class="op">=</span><span class="va">False</span>,time_unit<span class="op">=</span><span class="st">'s'</span>,show_traces<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co"># getting larger figures</span></span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.dpi'</span>] <span class="op">=</span> <span class="dv">100</span> </span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">20</span>,<span class="dv">15</span>)</span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="co"># a list of all our inverse operators</span></span>
-<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a><span class="co">#loop over inverse operators</span></span>
-<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (ix,SNR) <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="dv">10</span>,<span class="dv">50</span>]):</span>
-<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>    lamb <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> SNR <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the stc</span></span>
-<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> apply_inverse(epochs.average(), inv_default, lamb, <span class="st">"MNE"</span>, verbose<span class="op">=</span><span class="va">True</span>)<span class="co">#, pick_ori='vector')</span></span>
-<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plot it</span></span>
-<span id="cb61-18"><a href="#cb61-18" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> s.plot(<span class="op">**</span>brain_kwargs)</span>
-<span id="cb61-19"><a href="#cb61-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-20"><a href="#cb61-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># grab a png from it</span></span>
-<span id="cb61-21"><a href="#cb61-21" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> ccs_eeg_utils.stc_plot2img(h,closeAfterwards<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb61-22"><a href="#cb61-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-23"><a href="#cb61-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add the png to a subplot</span></span>
-<span id="cb61-24"><a href="#cb61-24" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">2</span>,ix<span class="op">+</span><span class="dv">1</span>).imshow(img)</span>
-<span id="cb61-25"><a href="#cb61-25" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-45" class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting parameters</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>brain_kwargs <span class="op">=</span> <span class="bu">dict</span>(views<span class="op">=</span><span class="st">"lateral"</span>,hemi<span class="op">=</span><span class="st">'split'</span>, size<span class="op">=</span>(<span class="dv">800</span>, <span class="dv">400</span>), initial_time<span class="op">=</span><span class="fl">0.15</span>,time_viewer<span class="op">=</span><span class="va">False</span>,time_unit<span class="op">=</span><span class="st">'s'</span>,show_traces<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># getting larger figures</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.dpi'</span>] <span class="op">=</span> <span class="dv">100</span> </span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">20</span>,<span class="dv">15</span>)</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="co"># a list of all our inverse operators</span></span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a><span class="co">#loop over inverse operators</span></span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (ix,SNR) <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="dv">10</span>,<span class="dv">50</span>]):</span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a>    lamb <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> SNR <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculate the stc</span></span>
+<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> apply_inverse(epochs.average(), inv_default, lamb, <span class="st">"MNE"</span>, verbose<span class="op">=</span><span class="va">True</span>)<span class="co">#, pick_ori='vector')</span></span>
+<span id="cb67-16"><a href="#cb67-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb67-17"><a href="#cb67-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plot it</span></span>
+<span id="cb67-18"><a href="#cb67-18" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> s.plot(<span class="op">**</span>brain_kwargs)</span>
+<span id="cb67-19"><a href="#cb67-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-20"><a href="#cb67-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># grab a png from it</span></span>
+<span id="cb67-21"><a href="#cb67-21" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> ccs_eeg_utils.stc_plot2img(h,closeAfterwards<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb67-22"><a href="#cb67-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-23"><a href="#cb67-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add the png to a subplot</span></span>
+<span id="cb67-24"><a href="#cb67-24" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">2</span>,ix<span class="op">+</span><span class="dv">1</span>).imshow(img)</span>
+<span id="cb67-25"><a href="#cb67-25" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Preparing the inverse operator for use...
     Scaled noise and source covariance from nave = 1 to nave = 1072
@@ -3280,7 +3336,11 @@ Applying inverse operator to "0.50 * Face/A + 0.50 * Face/B"...
 Using control points [3.06306472e-11 3.84585004e-11 1.42431687e-10]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="ex11_sourceSpace_files/figure-html/cell-28-output-2.svg" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="ex11_sourceSpace_files/figure-html/cell-28-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -3336,18 +3396,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -3379,11 +3428,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/s-ccs\.github\.io\/course_EEG\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -3393,8 +3481,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -3406,7 +3503,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -3450,6 +3670,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -3475,6 +3696,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -3535,6 +3782,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
