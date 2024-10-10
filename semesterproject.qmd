@@ -22,8 +22,7 @@ This is a list of datasets with accompanying papers that I have screened. **Plea
 | 24  | pattern symmetry             | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004347) |
 | 12  | reward                       | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004147) |
 | 18  | walking oddall               | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004033) |
-| 47  | (maybe exclude?) social task | timefreq | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003702) |
-| 40  | music-chords oddball         | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003570) |
+| 47  | social task                  | timefreq | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003702) |
 | 17  | game-playing                 | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003517) |
 
 ## What should the project contain?
