@@ -56,6 +56,11 @@ Prepare 1 slide showing:
 :::: callout-warning
 Not all authors do a good job to clearly communicate how their pipeline looked like. Add notes when you are unsure!
 :::: 
+
+:::: callout-note
+It is totally fine to adapt your processing pipeline as you go & experience problems / successes and get feedback.
+::::
+
 :::
 
 

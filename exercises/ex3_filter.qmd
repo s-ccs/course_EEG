@@ -89,7 +89,7 @@ import importlib
 import ccs_eeg_utils
 
 bids_root = "../local/bids"
-subject_id = '002'
+subject_id = '030'
 
 
 bids_path = BIDSPath(subject=subject_id,task="P3",session="P3",

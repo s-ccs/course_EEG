@@ -1,9 +1,9 @@
 ## General remarks to exercises
-These exercises are not intendend to be particularly difficult or very involved - this is by design. They are designed to help you think in different ways about the lecture material. The exercises are highly recommended but not mandatory. It is best if you generate a jupyter notebook for each exercise and upload it every week until Wednesday 12.00 (some exercises are over two weeks and specified as such in the course-overview)
+These exercises are not intendend to be brain teasers (they can be nevertheless 🙈) - this is by design. They are designed to help you think in different ways about the lecture material. The exercises are highly recommended but not mandatory. It is best if you generate a jupyter notebook for each exercise and upload it till the discussion session.
 
 You are encouraged to work in groups of 2. 
 
-Exercises are only graded pass/failed and if requested I will try to provide feedback. Again: Exercises are not mandatory to pass the course. The course-grade is solely based on the semesterproject.
+Exercises are only graded pass/failed and if requested via e-mail I will provide feedback. Again: Exercises are not mandatory to pass the course. The course-grade is solely based on the semesterproject.
 
 ## The exercises
 |||

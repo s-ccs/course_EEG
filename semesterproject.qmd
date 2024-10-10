@@ -4,9 +4,10 @@ The goal of this project is to re-analyse and document a real EEG dataset using 
 
 How I will grade the projects can be seen in [grading](grading.md). I value line of thinking and documented motivation much higher than actual results. I want to see that you understand what you are doing.
 
+
 ## Which Datasets?
 
-In previous iterations, we took a well understood and standardized EEG dataset, which made the task a bit unrealistic and, frankly, a bit boring. This year, we will try something new. You will choose a paper (with data) to reproduce.
+In previous iterations, we took a well understood and standardized EEG dataset, which made the task a bit unrealistic and, frankly, a bit boring. Thererfore, you will choose an EEG paper (with data) to reproduce yourself.
 
 ::: callout-important
 This has the consequence that there will be many (individual) unforseen problems, inconsistencies and problems. This is to be expected and **very** typical for EEG analyses. See it as part of the challenge!
@@ -57,7 +58,7 @@ You can find the link above
 ::: {.callout-note icon="false"}
 ## What is the scope of the project report?
 
-The project should not be a dissertation. If you report goes beyond 40 pages (which depending on the amount of plots can easily happen), you should really think whether you need more pages to make your point. A project report with 20 pages or less is completely fine.
+The project should not be a dissertation. If you report goes beyond 40 pages (which depending on the amount of plots can easily happen), you should really think whether you need more pages to make your point. A project report with 20 pages or less is completely fine, as long as you discuss what you are seeing / plotting / doing.
 :::
 
 ::: {.callout-note icon="false"}
@@ -80,4 +81,4 @@ You make my life easier if you name the git / zip file with your last name, e.g.
 
 ## Deadline
 
-Please hand in the documents until 31.03.2023
+Please hand in the documents until 31.03.2025

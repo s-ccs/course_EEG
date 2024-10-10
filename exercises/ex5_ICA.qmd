@@ -38,7 +38,7 @@ you can call the infomax algorithm using `mne.preprocessing.infomax(x.T,verbose=
 from mne_bids import (BIDSPath,read_raw_bids)
 import mne_bids
 bids_root = "../local/bids"
-subject_id = '002'
+subject_id = '030'
 
 
 bids_path = BIDSPath(subject=subject_id,task="P3",session="P3",

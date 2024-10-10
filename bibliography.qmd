@@ -5,6 +5,7 @@ editor:
 ---
 
 ## Text books
+You should be able to get these books via the library. If not, please contact me
 
 #### Hari & Puce - MEG/EEG Primer
 Good book with a general overview of many topics discussed in the course
@@ -16,3 +17,13 @@ The standard book for ERP analyses
 
 #### Analyzing Neural Time Series Data: Theory and Practice
 The standard book for time-frequency analysis (a bit on the older side though, still excellent read)
+
+
+## Websites
+### Learning EEG
+This is a really nice website with beautiful images. 
+[https://www.learningeeg.com/](https://www.learningeeg.com/)
+
+### Steve Luck's ERPLab tutorial
+This website / book is very applied, and unfortunately uses ERPLab and Matlab throughout. Nevertheless, it is a very nice ressources accompanying the course.
+[Applied Event-related Potential Data Analysis](https://socialsci.libretexts.org/Bookshelves/Psychology/Biological_Psychology/Applied_Event-Related_Potential_Data_Analysis_(Luck))
