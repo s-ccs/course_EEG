@@ -207,12 +207,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../exercises_overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ℹ️ Organisation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../exercises/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🏋️‍♂️ Exercise sheets</span></a>
   </div>
@@ -256,12 +250,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div id="cell-0" class="cell" data-execution_count="2">
+<div id="cell-0" class="cell" data-execution_count="84">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>,<span class="st">'..'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ccs_eeg_utils</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-1" class="cell" data-execution_count="3">
+<div id="cell-1" class="cell" data-execution_count="85">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne, mne_bids, ccs_eeg_utils</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the data</span></span>
@@ -271,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#bids_root = "../../local/bids" # recommended data location</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#bids_root = "/bigpool/export/users/ehinger/erp-core/bids" # Bene's Server location</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"/store/data/erp-core/"</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>subject_id <span class="op">=</span> <span class="st">'002'</span> <span class="co"># recommend subject 2 for now</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>subject_id <span class="op">=</span> <span class="st">'030'</span> <span class="co"># recommend subject 30 for now</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>bids_path <span class="op">=</span> BIDSPath(subject<span class="op">=</span>subject_id,task<span class="op">=</span><span class="st">"P3"</span>,session<span class="op">=</span><span class="st">"P3"</span>,</span>
@@ -284,14 +278,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>ccs_eeg_utils.read_annotations_core(bids_path,raw)</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>raw.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Reading /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_eeg.fdt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3551461/102703398.py:18: RuntimeWarning: Data file name in EEG.data (sub-002_task-P3_eeg.fdt) is incorrect, the file name must have changed on disk, using the correct file name (sub-002_ses-P3_task-P3_eeg.fdt).
-  raw = read_raw_bids(bids_path)</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Reading events from /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_events.tsv.
+<pre><code>Reading /store/data/erp-core/sub-030/ses-P3/eeg/sub-030_ses-P3_task-P3_eeg.fdt
+Reading events from /store/data/erp-core/sub-030/ses-P3/eeg/sub-030_ses-P3_task-P3_events.tsv.
 The event "response" refers to multiple event values. Creating hierarchical event names.
     Renaming event: response -&gt; response/202
     Renaming event: response -&gt; response/202
@@ -359,6 +347,45 @@ The event "response" refers to multiple event values. Creating hierarchical even
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
@@ -421,52 +448,14 @@ The event "response" refers to multiple event values. Creating hierarchical even
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_1448028/1487781420.py:18: RuntimeWarning: Data file name in EEG.data (sub-030_task-P3_eeg.fdt) is incorrect, the file name must have changed on disk, using the correct file name (sub-030_ses-P3_task-P3_eeg.fdt).
+  raw = read_raw_bids(bids_path)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
@@ -482,6 +471,11 @@ The event "response" refers to multiple event values. Creating hierarchical even
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/202
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
@@ -496,210 +490,210 @@ The event "response" refers to multiple event values. Creating hierarchical even
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
 The event "stimulus" refers to multiple event values. Creating hierarchical event names.
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/35
     Renaming event: stimulus -&gt; stimulus/31
     Renaming event: stimulus -&gt; stimulus/35
     Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
     Renaming event: stimulus -&gt; stimulus/32
     Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/34
     Renaming event: stimulus -&gt; stimulus/31
     Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/31
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/33
     Renaming event: stimulus -&gt; stimulus/35
     Renaming event: stimulus -&gt; stimulus/34
     Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/31
     Renaming event: stimulus -&gt; stimulus/32
     Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/22
     Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/24
     Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/25
     Renaming event: stimulus -&gt; stimulus/21
     Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/21
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/24
-    Renaming event: stimulus -&gt; stimulus/24
     Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/24
     Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/24
-    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/24
     Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/21
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/21
     Renaming event: stimulus -&gt; stimulus/25
     Renaming event: stimulus -&gt; stimulus/22
     Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/25
     Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/25
     Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/12
-    Renaming event: stimulus -&gt; stimulus/11
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/11
     Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/14
     Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/11
-    Renaming event: stimulus -&gt; stimulus/14
     Renaming event: stimulus -&gt; stimulus/12
-    Renaming event: stimulus -&gt; stimulus/12
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/13
     Renaming event: stimulus -&gt; stimulus/13
     Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/14
     Renaming event: stimulus -&gt; stimulus/14
     Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/11
     Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/15
     Renaming event: stimulus -&gt; stimulus/12
     Renaming event: stimulus -&gt; stimulus/11
     Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/12
-    Renaming event: stimulus -&gt; stimulus/15
     Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/15
     Renaming event: stimulus -&gt; stimulus/11
     Renaming event: stimulus -&gt; stimulus/15
     Renaming event: stimulus -&gt; stimulus/13
-    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/13
     Renaming event: stimulus -&gt; stimulus/15
     Renaming event: stimulus -&gt; stimulus/12
     Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/15
-Reading channel info from /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_channels.tsv.
-Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/42
+Reading channel info from /store/data/erp-core/sub-030/ses-P3/eeg/sub-030_ses-P3_task-P3_channels.tsv.
+Reading 0 ... 393215  =      0.000 ...   383.999 secs...</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="85">
 <table class="table table-hover table-striped table-sm table-responsive small">
     <tbody><tr>
         <th>Measurement date</th>
@@ -716,7 +710,7 @@ Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
         <tr><th>Participant</th>
         
             
-            <td>sub-002</td>
+            <td>sub-030</td>
             
         
     </tr>
@@ -763,18 +757,18 @@ Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
     
     <tr>
         <th>Filenames</th>
-        <td>sub-002_ses-P3_task-P3_eeg.fdt</td>
+        <td>sub-030_ses-P3_task-P3_eeg.fdt</td>
     </tr>
     
     <tr>
         <th>Duration</th>
-        <td>00:06:45 (HH:MM:SS)</td>
+        <td>00:06:24 (HH:MM:SS)</td>
     </tr>
 </tbody></table>
 </div>
 </div>
 <p><strong>T:</strong> Extract a single channel and plot the whole timeseries. You can directly interact with the <code>raw</code> object, e.g.&nbsp;<code>raw[1:10,1:2000]</code> extracts the first 10 channels and 2000 samples.</p>
-<div id="cell-3" class="cell" data-execution_count="4">
+<div id="cell-3" class="cell" data-execution_count="86">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[<span class="dv">10</span>,:][<span class="dv">0</span>].T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -785,37 +779,160 @@ Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-4" class="cell">
+<div id="cell-4" class="cell" data-execution_count="87">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>raw.info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="87">
+<table class="table table-hover table-striped table-sm table-responsive small">
+    <tbody><tr>
+        <th>Measurement date</th>
+        
+        <td>Unknown</td>
+        
+    </tr>
+    <tr>
+        <th>Experimenter</th>
+        
+        <td>Unknown</td>
+        
+    </tr>
+        <tr><th>Participant</th>
+        
+            
+            <td>sub-030</td>
+            
+        
+    </tr>
+    <tr>
+        <th>Digitized points</th>
+        
+        <td>33 points</td>
+        
+    </tr>
+    <tr>
+        <th>Good channels</th>
+        <td>30 EEG, 3 EOG</td>
+    </tr>
+    <tr>
+        <th>Bad channels</th>
+        <td>None</td>
+    </tr>
+    <tr>
+        <th>EOG channels</th>
+        <td>HEOG_left, HEOG_right, VEOG_lower</td>
+    </tr>
+    <tr>
+        <th>ECG channels</th>
+        <td>Not available</td>
+    
+    </tr><tr>
+        <th>Sampling frequency</th>
+        <td>1024.00 Hz</td>
+    </tr>
+    
+    
+    <tr>
+        <th>Highpass</th>
+        <td>0.00 Hz</td>
+    </tr>
+    
+    
+    <tr>
+        <th>Lowpass</th>
+        <td>512.00 Hz</td>
+    </tr>
+    
+    
+</tbody></table>
 </div>
-<p><strong>Q:</strong> What is the unit/scale of the data? 0.02V = 20000 µV</p>
+</div>
+<p><strong>Q:</strong> What is the unit/scale of the data? 0.01V = 10000 µV</p>
 <p><strong>T:</strong> Have a look at <code>raw.info</code> and note down what the sampling frequency is (how many EEG-samples per second): 1024Hz</p>
-<p><strong>T:</strong> We will epoch the data now. Formost we will cut the raw data to one channel using <code>raw.pick_channels(["Cz"])</code> - not that this will permanently change the “raw” object and “deletes” alle other channels from memory. If you want rather a copy you could use <code>raw_subselect = raw.copy().pick_channels(["Cz"]))</code>.</p>
-<div id="cell-7" class="cell">
+<p><strong>T:</strong> We will epoch the data now. Formost we will cut the raw data to one channel using <code>raw.pick(["Cz"])</code> - not that this will permanently change the “raw” object and “deletes” alle other channels from memory. If you want rather a copy you could use <code>raw_subselect = raw.copy().pick(["Cz"]))</code>.</p>
+<div id="cell-7" class="cell" data-execution_count="88">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>raw.info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="88">
+<table class="table table-hover table-striped table-sm table-responsive small">
+    <tbody><tr>
+        <th>Measurement date</th>
+        
+        <td>Unknown</td>
+        
+    </tr>
+    <tr>
+        <th>Experimenter</th>
+        
+        <td>Unknown</td>
+        
+    </tr>
+        <tr><th>Participant</th>
+        
+            
+            <td>sub-030</td>
+            
+        
+    </tr>
+    <tr>
+        <th>Digitized points</th>
+        
+        <td>33 points</td>
+        
+    </tr>
+    <tr>
+        <th>Good channels</th>
+        <td>30 EEG, 3 EOG</td>
+    </tr>
+    <tr>
+        <th>Bad channels</th>
+        <td>None</td>
+    </tr>
+    <tr>
+        <th>EOG channels</th>
+        <td>HEOG_left, HEOG_right, VEOG_lower</td>
+    </tr>
+    <tr>
+        <th>ECG channels</th>
+        <td>Not available</td>
+    
+    </tr><tr>
+        <th>Sampling frequency</th>
+        <td>1024.00 Hz</td>
+    </tr>
+    
+    
+    <tr>
+        <th>Highpass</th>
+        <td>0.00 Hz</td>
+    </tr>
+    
+    
+    <tr>
+        <th>Lowpass</th>
+        <td>512.00 Hz</td>
+    </tr>
+    
+    
+</tbody></table>
 </div>
-<div id="cell-8" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>raw.pick_channels([<span class="st">"Cz"</span>])</span>
+</div>
+<div id="cell-8" class="cell" data-execution_count="89">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>raw.pick([<span class="st">"Cz"</span>])</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[:,:][<span class="dv">0</span>].T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).</code></pre>
-</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ex1_overview_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="ex1_overview_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>evts,evts_dict <span class="op">=</span> mne.events_from_annotations(raw)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>wanted_keys <span class="op">=</span> [e <span class="cf">for</span> e <span class="kw">in</span> evts_dict.keys() <span class="cf">if</span> <span class="st">"stimulus"</span> <span class="kw">in</span> e]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>wanted_keys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-9" class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>evts,evts_dict <span class="op">=</span> mne.events_from_annotations(raw)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>wanted_keys <span class="op">=</span> [e <span class="cf">for</span> e <span class="kw">in</span> evts_dict.keys() <span class="cf">if</span> <span class="st">"stimulus"</span> <span class="kw">in</span> e]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>wanted_keys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Used Annotations descriptions: ['response:201', 'response:202', 'stimulus:11', 'stimulus:12', 'stimulus:13', 'stimulus:14', 'stimulus:15', 'stimulus:21', 'stimulus:22', 'stimulus:23', 'stimulus:24', 'stimulus:25', 'stimulus:31', 'stimulus:32', 'stimulus:33', 'stimulus:34', 'stimulus:35', 'stimulus:41', 'stimulus:42', 'stimulus:43', 'stimulus:44', 'stimulus:45', 'stimulus:51', 'stimulus:52', 'stimulus:53', 'stimulus:54', 'stimulus:55']</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="90">
 <pre><code>['stimulus:11',
  'stimulus:12',
  'stimulus:13',
@@ -843,10 +960,10 @@ Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
  'stimulus:55']</code></pre>
 </div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>evts_dict_stim<span class="op">=</span><span class="bu">dict</span>((k, evts_dict[k]) <span class="cf">for</span> k <span class="kw">in</span> wanted_keys <span class="cf">if</span> k <span class="kw">in</span> evts_dict)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>evts_dict_stim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div id="cell-10" class="cell" data-execution_count="91">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>evts_dict_stim<span class="op">=</span><span class="bu">dict</span>((k, evts_dict[k]) <span class="cf">for</span> k <span class="kw">in</span> wanted_keys <span class="cf">if</span> k <span class="kw">in</span> evts_dict)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>evts_dict_stim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="91">
 <pre><code>{'stimulus:11': 3,
  'stimulus:12': 4,
  'stimulus:13': 5,
@@ -875,12 +992,12 @@ Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
 </div>
 </div>
 <p><strong>T:</strong> MNE-speciality: We have to convert annotations to events</p>
-<div id="cell-12" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>evts,evts_dict <span class="op">=</span> mne.events_from_annotations(raw)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>wanted_keys <span class="op">=</span> [e <span class="cf">for</span> e <span class="kw">in</span> evts_dict.keys() <span class="cf">if</span> <span class="st">"stimulus"</span> <span class="kw">in</span> e]</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>evts_dict_stim<span class="op">=</span><span class="bu">dict</span>((k, evts_dict[k]) <span class="cf">for</span> k <span class="kw">in</span> wanted_keys <span class="cf">if</span> k <span class="kw">in</span> evts_dict)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> mne.Epochs(raw,evts,evts_dict_stim,tmin<span class="op">=-</span><span class="fl">0.1</span>,tmax<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-12" class="cell" data-execution_count="92">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>evts,evts_dict <span class="op">=</span> mne.events_from_annotations(raw)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>wanted_keys <span class="op">=</span> [e <span class="cf">for</span> e <span class="kw">in</span> evts_dict.keys() <span class="cf">if</span> <span class="st">"stimulus"</span> <span class="kw">in</span> e]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>evts_dict_stim<span class="op">=</span><span class="bu">dict</span>((k, evts_dict[k]) <span class="cf">for</span> k <span class="kw">in</span> wanted_keys <span class="cf">if</span> k <span class="kw">in</span> evts_dict)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> mne.Epochs(raw,evts,evts_dict_stim,tmin<span class="op">=-</span><span class="fl">0.1</span>,tmax<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Used Annotations descriptions: ['response:201', 'response:202', 'stimulus:11', 'stimulus:12', 'stimulus:13', 'stimulus:14', 'stimulus:15', 'stimulus:21', 'stimulus:22', 'stimulus:23', 'stimulus:24', 'stimulus:25', 'stimulus:31', 'stimulus:32', 'stimulus:33', 'stimulus:34', 'stimulus:35', 'stimulus:41', 'stimulus:42', 'stimulus:43', 'stimulus:44', 'stimulus:45', 'stimulus:51', 'stimulus:52', 'stimulus:53', 'stimulus:54', 'stimulus:55']
 Not setting metadata
@@ -890,9 +1007,9 @@ Applying baseline correction (mode: mean)
 0 projection items activated</code></pre>
 </div>
 </div>
-<div id="cell-13" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>epochs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div id="cell-13" class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>epochs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="93">
 <div class="table-responsive">
 <table class="table table-hover table-striped table-sm small caption-top" data-quarto-postprocess="true">
 <colgroup>
@@ -907,29 +1024,29 @@ Applying baseline correction (mode: mean)
 <tr class="even">
 <td data-quarto-table-cell-role="th">Events</td>
 <td>stimulus:11: 8<br>
-stimulus:12: 8<br>
-stimulus:13: 5<br>
-stimulus:14: 8<br>
-stimulus:15: 11<br>
-stimulus:21: 5<br>
+stimulus:12: 4<br>
+stimulus:13: 10<br>
+stimulus:14: 9<br>
+stimulus:15: 9<br>
+stimulus:21: 6<br>
 stimulus:22: 8<br>
-stimulus:23: 9<br>
-stimulus:24: 7<br>
+stimulus:23: 12<br>
+stimulus:24: 3<br>
 stimulus:25: 11<br>
-stimulus:31: 4<br>
-stimulus:32: 9<br>
+stimulus:31: 8<br>
+stimulus:32: 10<br>
 stimulus:33: 8<br>
-stimulus:34: 9<br>
+stimulus:34: 4<br>
 stimulus:35: 10<br>
-stimulus:41: 11<br>
-stimulus:42: 5<br>
-stimulus:43: 4<br>
+stimulus:41: 7<br>
+stimulus:42: 12<br>
+stimulus:43: 11<br>
 stimulus:44: 8<br>
-stimulus:45: 12<br>
-stimulus:51: 16<br>
-stimulus:52: 5<br>
-stimulus:53: 7<br>
-stimulus:54: 4<br>
+stimulus:45: 2<br>
+stimulus:51: 8<br>
+stimulus:52: 12<br>
+stimulus:53: 4<br>
+stimulus:54: 8<br>
 stimulus:55: 8</td>
 </tr>
 <tr class="odd">
@@ -945,64 +1062,42 @@ stimulus:55: 8</td>
 </div>
 </div>
 </div>
-<div id="cell-14" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>epochs.average().get_data().shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="18">
-<pre><code>(1, 1127)</code></pre>
-</div>
-</div>
-<div id="cell-15" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>epochs.average().plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
-Need more than one channel to make topography for eeg. Disabling interactivity.</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex1_overview_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p><strong>T</strong> Now that we have the epochs we should plot them. Plot all trials ‘manually’, without using mne’s functionality (<code>epochs.get_data()</code>).</p>
 <p><strong>Q</strong> What is the unit/scale of the data now?: 0.0001 V = 100µV</p>
-<div id="cell-17" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.plot(np.squeeze(epochs.get_data()[:,<span class="dv">0</span>,:].T))</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>plt.plot(np.squeeze(epochs.get_data()[:,<span class="dv">0</span>,:].T).mean(axis<span class="op">=</span><span class="dv">1</span>),color<span class="op">=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-15" class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.plot(np.squeeze(epochs.get_data()[:,<span class="dv">0</span>,:].T))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.plot(np.squeeze(epochs.get_data()[:,<span class="dv">0</span>,:].T).mean(axis<span class="op">=</span><span class="dv">1</span>),color<span class="op">=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Using data from preloaded Raw for 200 events and 1127 original time points ...
+0 bad epochs dropped
 Using data from preloaded Raw for 200 events and 1127 original time points ...</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ex1_overview_files/figure-html/cell-14-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="ex1_overview_files/figure-html/cell-12-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Now index the epochs <code>evoked = epochs[index].average()</code> and average them. You can then plot them either via <code>evoked.plot()</code> or with <code>mne.viz.plot_compare_evokeds([evokedA,evokedB])</code>.</p>
-<div id="cell-19" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> epochs[[<span class="st">"stimulus:</span><span class="sc">{}{}</span><span class="st">"</span>.<span class="bu">format</span>(k,k) <span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]]].average()</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>distractor <span class="op">=</span> epochs[[<span class="st">"stimulus:</span><span class="sc">{}{}</span><span class="st">"</span>.<span class="bu">format</span>(k,j) <span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>] <span class="cf">for</span> j <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>] <span class="cf">if</span> k<span class="op">!=</span>j]].average()</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>mne.viz.plot_compare_evokeds([target,distractor])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-17" class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> epochs[[<span class="st">"stimulus:</span><span class="sc">{}{}</span><span class="st">"</span>.<span class="bu">format</span>(k,k) <span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]]].average()</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>distractor <span class="op">=</span> epochs[[<span class="st">"stimulus:</span><span class="sc">{}{}</span><span class="st">"</span>.<span class="bu">format</span>(k,j) <span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>] <span class="cf">for</span> j <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>] <span class="cf">if</span> k<span class="op">!=</span>j]].average()</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>mne.viz.plot_compare_evokeds([target,distractor])<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
 NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3551461/86118832.py:3: RuntimeWarning: Cannot find channel coordinates in the supplied Evokeds. Not showing channel locations.
+<pre><code>/tmp/ipykernel_1448028/86118832.py:3: RuntimeWarning: Cannot find channel coordinates in the supplied Evokeds. Not showing channel locations.
   mne.viz.plot_compare_evokeds([target,distractor]);</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ex1_overview_files/figure-html/cell-15-output-3.png" class="img-fluid figure-img"></p>
+<p><img src="ex1_overview_files/figure-html/cell-13-output-3.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>

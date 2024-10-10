@@ -204,12 +204,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises_overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ℹ️ Organisation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../exercises/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🏋️‍♂️ Exercise sheets</span></a>
   </div>
@@ -253,6 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#install-mne-toolbox" id="toc-install-mne-toolbox" class="nav-link" data-scroll-target="#install-mne-toolbox">Install MNE toolbox</a></li>
+  <li><a href="#download-data" id="toc-download-data" class="nav-link" data-scroll-target="#download-data">Download data</a></li>
   <li><a href="#load-data-plot-continuous-eeg" id="toc-load-data-plot-continuous-eeg" class="nav-link" data-scroll-target="#load-data-plot-continuous-eeg">Load data &amp; plot continuous EEG</a></li>
   <li><a href="#epoching" id="toc-epoching" class="nav-link" data-scroll-target="#epoching">Epoching</a></li>
   <li><a href="#my-first-erp" id="toc-my-first-erp" class="nav-link" data-scroll-target="#my-first-erp">My first ERP</a></li>
@@ -275,55 +270,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="install-mne-toolbox" class="level2">
 <h2 class="anchored" data-anchor-id="install-mne-toolbox">Install MNE toolbox</h2>
 <p>run <code>pip install mne</code> or if you like conda: <code>conda install -c conda-forge mne</code></p>
+<p>similarly, install <code>pip install mne-bids</code>, a tool to load the EEG data easily.</p>
 <p>Test the installation by <code>import mne</code></p>
+</section>
+<section id="download-data" class="level2">
+<h2 class="anchored" data-anchor-id="download-data">Download data</h2>
+<p>We will be using a typical P3 oddball dataset. We expect a positive response over parietal/central electrodes (Cz/Pz) starting at 300-400ms, <a href="https://www.neurobs.com/manager/content/docs/psychlab101_experiments/Oddball%20Task%20(Visual)/description.html">something like this</a>.</p>
+<p>If you want to read the details you can find it <a href="https://psyarxiv.com/4azqm/">here</a>. You can also investigate the <code>sub-030_task-P3_eeg.json</code> for a task description which is one of the files you will download next:</p>
+<p>Please download the data from <a href="https://osf.io/9cnmx/"></a></p>
+<p>Next, you need the <a href="ccs_eeg_utils.py">ccs_eeg_utils.py</a> file which you can add to your python code e.g.&nbsp;via</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>,<span class="st">'.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="load-data-plot-continuous-eeg" class="level2">
 <h2 class="anchored" data-anchor-id="load-data-plot-continuous-eeg">Load data &amp; plot continuous EEG</h2>
-<p>We will be using a typical P3 oddball dataset. We expect a positive response over parietal/central electrodes (Cz/Pz) starting at 300-400ms. Something like this: https://www.neurobs.com/manager/content/docs/psychlab101_experiments/Oddball%20Task%20(Visual)/description.html If you want to read the details you can find it here (the dataset is also part of the semester project): https://psyarxiv.com/4azqm/. You can also investigate the <code>sub-002_task-P3_eeg.json</code> for a task description which is automatically downloaded.</p>
-<p>Next, you need the <a href="ccs_eeg_utils.py">ccs_eeg_utils.py</a> file which you can add to your python code e.g.&nbsp;via</p>
-<pre><code>import sys
-sys.path.insert(0,'..')</code></pre>
-<p>For the ccs_eeg_utils, you will need mne-bids - a tool to manage multi-subject/session EEG data.</p>
-<pre><code>pip install mne-bids</code></pre>
-<p>The actual data you can download from https://osf.io/thsqg/ <code>["channels.tsv","events.tsv","eeg.fdt","eeg.json","eeg.set"]</code> and put them into <code>../local/bids/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_XYZ</code> with <code>XZY</code> being the filename.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne_bids <span class="im">import</span> (BIDSPath,read_raw_bids)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># path where to save the datasets.</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"../local/bids"</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>subject_id <span class="op">=</span> <span class="st">'002'</span> <span class="co"># recommend subject 2 for now</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>bids_path <span class="op">=</span> BIDSPath(subject<span class="op">=</span>subject_id,task<span class="op">=</span><span class="st">"P3"</span>,session<span class="op">=</span><span class="st">"P3"</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                     datatype<span class="op">=</span><span class="st">'eeg'</span>, suffix<span class="op">=</span><span class="st">'eeg'</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                     root<span class="op">=</span>bids_root)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># read the file</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> read_raw_bids(bids_path)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># fix the annotations readin</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ccs_eeg_utils.read_annotations_core(bids_path,raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>T:</strong> Extract a single channel and plot the whole timeseries. You can directly interact with the <code>raw</code> object, e.g.&nbsp;<code>raw[1:10,1:5000]</code> extracts the first 10 channels and 2000 samples. <strong>Q:</strong> What is the unit/scale of the data (in sense of “range” of data)?</p>
-<p><strong>T:</strong> Have a look at <code>raw.info</code> and note down what the sampling frequency is (how many EEG-samples per second)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne_bids <span class="im">import</span> (BIDSPath,read_raw_bids)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># path where to save the datasets.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"../local/bids"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>subject_id <span class="op">=</span> <span class="st">'030'</span> <span class="co"># recommend subject 30 for now</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>bids_path <span class="op">=</span> BIDSPath(subject<span class="op">=</span>subject_id,task<span class="op">=</span><span class="st">"P3"</span>,session<span class="op">=</span><span class="st">"P3"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                     datatype<span class="op">=</span><span class="st">'eeg'</span>, suffix<span class="op">=</span><span class="st">'eeg'</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                     root<span class="op">=</span>bids_root)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># read the file</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> read_raw_bids(bids_path)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># fix the annotations readin</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>ccs_eeg_utils.read_annotations_core(bids_path,raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Task:</strong> Extract a single channel and plot the whole timeseries.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can directly interact with the <code>raw</code> object, e.g.&nbsp;<code>raw[1:10,1:5000]</code>, which extracts the first 10 channels and 5000 samples.</p>
+<p>You can also use <code>raw.get_data()</code> to get the whole data as a numpy array.</p>
+</div>
+</div>
+<div class="callout-tipp">
+<p>For now we can use simple matplotlib to visualize the data, e.g.:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[<span class="dv">10</span>,:][<span class="dv">0</span>].T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Question:</strong> What is the range of the data (in sense of min-y to max-y in µ-volt)?</p>
+<p><strong>Task:</strong> Have a look at <code>raw.info</code> and note down what the sampling frequency is (how many EEG-samples per second)</p>
 </section>
 <section id="epoching" class="level2">
 <h2 class="anchored" data-anchor-id="epoching">Epoching</h2>
-<p><strong>T:</strong> We will epoch the data now. Formost we will cut the raw data to one channel using <code>raw.pick_channels(["Cz"])</code> - note that this will permanently change the “raw” object and “deletes” alle other channels from memory. If you want rather a copy you could use <code>raw_subselect = raw.copy().pick_channels(["Cz"]))</code>.</p>
-<p><strong>T</strong> Let’s investigate the annotation markers. Have a look at raw.annotations. These values reflect the values in the bids <code>*_events.tsv</code> file (have a look at the files in <code>../local/bids/sub-002/sub-002_task-P3_events.tsv</code>). BIDS is a new standard to share neuroimaging and other physiological data. It is not really a fileformat, but more of a folder &amp; filename structure with some additional json files. I highly recommend to put your data into bids-format as soon as possible. It helps you stay organized and on top of things!</p>
-<p><strong>T</strong> MNE-speciality: We have to convert annotations to events with <code>evts,evts_dict = mne.events_from_annotations(raw)</code>. Have a look at evts - it shows you the sample, the duration and event-id (with the look-up table evts_dict). In this case we only want to look at stimulus evoked responses, so we subset the event table (note: this could be done after epoching too)</p>
+<p><strong>Task:</strong> We will epoch the data now. Formost we will cut the raw data to one channel using <code>raw.pick(["Cz"])</code> - note that this will permanently change the <code>raw</code> object and <strong>removes</strong> alle other channels from memory. If you want rather a copy you could use <code>raw_subselect = raw.copy().pick(["Cz"]))</code>.</p>
+<p><strong>Task</strong> Let’s investigate the annotation markers. Have a look at raw.annotations. These values reflect the values in the bids <code>*_events.tsv</code> file (have a look at this file via <code>../local/bids/sub-030/sub-030_task-P3_events.tsv</code>). BIDS is a new standard to share neuroimaging and other physiological data. It is not really a fileformat, but more of a folder &amp; filename structure with some additional json files. I highly recommend to put your data into bids-format as soon as possible. It helps you stay organized and on top of things!</p>
+<p><strong>Task</strong> MNE-speciality: We have to convert annotations to events with <code>evts,evts_dict = mne.events_from_annotations(raw)</code>. Have a look at evts - it shows you the sample, the duration and event-id (with the look-up table evts_dict). In this case we only want to look at stimulus evoked responses, so we subset the event table (note: this could be done after epoching too)</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get all keys which contain "stimulus"</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>wanted_keys <span class="op">=</span> [e <span class="cf">for</span> e <span class="kw">in</span> evts_dict.keys() <span class="cf">if</span> <span class="st">"stimulus"</span> <span class="kw">in</span> e]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the large event-dictionairy</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>evts_dict_stim<span class="op">=</span><span class="bu">dict</span>((k, evts_dict[k]) <span class="cf">for</span> k <span class="kw">in</span> wanted_keys <span class="cf">if</span> k <span class="kw">in</span> evts_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>T</strong> Epoch the data with <code>epochs = mne.Epochs(raw,evts,evts_dict_stim,tmin=-0.1,tmax=1)</code></p>
-<p><strong>T</strong> Now that we have the epochs we should plot them. Plot all trials ‘manually’, (without using mne’s functionality) (<code>epochs.get_data()</code>). <strong>Q</strong> What is the unit/scale of the data now?</p>
+<p><strong>Task</strong> Epoch the data with <code>epochs = mne.Epochs(raw,evts,evts_dict_stim,tmin=-0.1,tmax=1)</code></p>
+<p><strong>Task</strong> Now that we have the epochs we should plot them. Plot all trials ‘manually’, (without using mne’s functionality) (<code>epochs.get_data()</code>).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should plot one line per trial.</p>
+</div>
+</div>
+<p><strong>Question</strong> What is the scale-range of the epoched data now?</p>
 </section>
 <section id="my-first-erp" class="level2">
 <h2 class="anchored" data-anchor-id="my-first-erp">My first ERP</h2>
-<p><strong>T</strong> But which epochs belong to targets and which to distractors? This is hidden in the event-description. Using the following lines you can find out which indices belong to which trial-types</p>
+<p><strong>Task</strong> But which epochs belong to targets and which to distractors? This is hidden in the event-description. Using the following lines you can find out which indices belong to which trial-types</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> [<span class="st">"stimulus:</span><span class="sc">{}{}</span><span class="st">"</span>.<span class="bu">format</span>(k,k) <span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>distractor <span class="op">=</span> [<span class="st">"stimulus:</span><span class="sc">{}{}</span><span class="st">"</span>.<span class="bu">format</span>(k,j) <span class="cf">for</span> k <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>] <span class="cf">for</span> j <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>] <span class="cf">if</span> k<span class="op">!=</span>j]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now index the epochs <code>evoked = epochs[index].average()</code> and average them. You can then plot them either via <code>evoked.plot()</code> or with <code>mne.viz.plot_compare_evokeds([evokedA,evokedB])</code>.</p>
-<p><strong>Q</strong> What is the unit/scale of the data now? Set it into context to the other two scales you reported (<strong>Q</strong>’s higher up).</p>
+<p><strong>Question</strong> What is the unit/scale of the data now? Set it into context to the other two scales you reported before</p>
 
 
 </section>

@@ -204,12 +204,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises_overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ℹ️ Organisation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../exercises/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🏋️‍♂️ Exercise sheets</span></a>
   </div>
@@ -266,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Signal processing and analysis of human brain potentials (EEG) [Exercise 4]</h1>
 <section id="cleaning-data" class="level2">
 <h2 class="anchored" data-anchor-id="cleaning-data">Cleaning Data</h2>
-<p><strong>T:</strong> Download the <code>P3</code> dataset for Subject <code>30</code> (before 2020-11-20 12.53 this stated subject 9, sorry!) from the <a href="https://osf.io/thsqg/">ERPcore</a>.</p>
+<p>We will re-use the dataset we used in the first exercise.</p>
 <p><strong>T:</strong> Go through the dataset using the MNE explorer and clean it. You can use <code>raw.plot()</code> for this. If you are working from a jupyter notebook, try to use <code>%matplotlib qt</code> for better support of the cleaning window. To get an understanding how the tool works, press <code>help</code> or type <code>?</code> in the window. (Hint: You first have to add a new annotation by pressing <code>a</code>)</p>
 <p><strong>T:</strong> While going through the dataset, mark what you observe as bad electrodes. Those are saved in <code>raw.info['bads']</code>. The channels can be interpolated with <code>raw.interpolate_bads()</code> or <code>epoch.interpolate_bads()</code>. Compare the channel + neighbours before and after. Did the interpolation succeed? (If you are interested in the mathematical details of spline interpolation, checkout this https://mne.tools/dev/overview/implementation.html#id26) Hint: You need channel locations to run the interpolation which you can get by using the default-standardized channel locations <code>raw.set_montage('standard_1020',match_case=False)</code></p>
 <p><strong>T:</strong> Save the annotations to a file. Best practice is to use a csv file of sorts e.g.&nbsp;using <code>raw.annotations.save(filename)</code>. Try to subsetting for <code>BAD_</code> first. Bonus: Save it in a BIDS derivate folder according to the BIDS guidelines.</p>
