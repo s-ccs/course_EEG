@@ -3,6 +3,8 @@
 ## Overview
 In this exercise we will install the mne-python toolbox, download a example dataset, make some basic visualizations and epoch, average and visualize the resulting ERPs.
 
+What we are doing is roughly outlined in the "What is EEG" video lecture.
+
 ## Install MNE toolbox
 run `pip install mne`
 or if you like conda:
