@@ -20,7 +20,7 @@ We will be using a typical P3 oddball dataset. We expect a positive response ove
 
 If you want to read the details you can find it [here](https://psyarxiv.com/4azqm/). You can also investigate the `sub-030_task-P3_eeg.json` for a task description which is one of the files you will download next:
 
-Please download the data from [](https://osf.io/9cnmx/)
+Please download the data from [here](https://osf.io/9cnmx/)
 
 
 Next, you need the [ccs_eeg_utils.py](ccs_eeg_utils.py) file which you can add to your python code e.g. via
