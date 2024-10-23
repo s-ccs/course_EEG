@@ -19,19 +19,21 @@ x = cos(2*pi*0.5*t) + 0.2*sin(2*pi*2.5*t+0.1) + \
 ```   
 
 
-## Task
-Plot the signal against time.
+**Task:** Plot the signal against time.
 
 
 
 ## Transform to fourier space
 
-Next run the FFT algorithm.
 :::: callout-tip
 ## Task
-
-plot the magnitude response ($log10(abs(fft(x))))$).
+- run the fourier analysis via `fft`.
+- plot the full log10-magnitude
 ::::
+
+::: callout-note
+If you plot e.g. the magnitude you will notice it is mirrorsymmetric around the middle! This is because FFT is actually defined for complex signals. Because we only have real signals, practically half of the FFT is redundant. But this also means, all of our manual-filters in the next steps need to take the mirror-symmetry into account. For this reason, typically a `rfft` function exists, returning only the real part.
+:::
 
 ## A simple filter
 
@@ -49,9 +51,7 @@ A very simple frequency filter is to set the unwanted amplitude of the fourier c
 - plot the signal with what you started out
 ::::
 
-::: callout-note
-If you plot e.g. the magnitude you will notice it is mirrorsymmetric around the middle! This is because FFT is actually defined for complex signals. Because we only have real signals, practically half of the FFT is redundant. But this also means, all of our manual-filters need to take the mirror-symmetry into account.
-:::
+
 
 ## Highpass instead of lowpass
 :::: callout-tip
@@ -62,21 +62,24 @@ Repeat the steps from above, but this time, remove the low frequency components
 
 
 ## What happens to the frequency and time response if we add "artefacts"?
+Let's see how the FFT reacts to steps and spikes. A step-function could look like this:
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Dirac_distribution_CDF.svg/325px-Dirac_distribution_CDF.svg.png)
+
 :::: callout-tip
 ## Task
 
-Add a DC-offset (a step-function) starting from `x[200:]` and investigate the fourier space. Filter it again (low or high pass) and transfer it back to the time domain and investigate the signal around the spike.
+Add a DC-offset (a step-function) starting from `x[200:]` and investigate the fourier space. Filter it again (low or high pass) and transfer it back to the time domain and investigate the signal around the step.
 ::::
 
 ## Impulse Response Function
-To get a bit deeper understanding of what is going on, have a look at the fourier transform of a new impulse signal (e.g. `1:400 => 0`. and `200 => 1`.). 
+To get a bit deeper understanding of what is going on, have a look at the fourier transform of a impulse signal (e.g. `1:400 => 0`. and `200 => 1`.). 
 
 :::: callout-tip
 ## Question
 
-What do you observe?
-
-Why would we see ringing if we put most of the coefficients to 0?
+- What do you observe?
+- Why did we see ringing in the previous filtered step-function, if when filtering we put coefficients to 0 - after all, we are not adding something? 
 ::::
 
 ## Filtering EEG data
@@ -103,7 +106,7 @@ raw.load_data()
 :::: callout-tip
 ## Task
 
-- Choose the channel "Pz", plot the channel (previous HW it was "Cz")
+- Choose the channel "Pz", plot the channel
 - Plot the fourier space using `raw.plot_psd()`
 ::::
 
@@ -118,6 +121,7 @@ Now we filter using `raw.filter()`, specify a highpass of 0.5Hz and a lowpass of
 
 ::: callout-note
 ## Bonus-task
+**Bonus: comparing over-filtered ERPs**
 
  If you want, you can compare the ERP with and without filtering. You can also use "invalid" filter settings - HP up to 2-5Hz, lowpass until 10-20Hz. I say invalid here, because usually with such ranges, you would filter out results that you are actually interested in.
 
