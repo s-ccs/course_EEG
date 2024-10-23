@@ -9,7 +9,7 @@ The purpose of this assignment is to develop your ability to read and critically
 
 ## Assignment
 Read through the questions on this assignment, and then read the following article:
-Tanaka, J. W., & Curran, T. (2001). A neural basis for expert object recognition. Psychol Sci, 12(1), 43–47. Find the paper here: https://doi.org/10.1111/1467-9280.00308 (maybe behind paywall) or here: http://psych.colorado.edu/~tcurran/Tanaka_Curran_2001.pdf
+Tanaka, J. W., & Curran, T. (2001). A neural basis for expert object recognition. Psychol Sci, 12(1), 43–47. Find the paper [here](https://doi.org/10.1111/1467-9280.00308) (maybe behind paywall) or [here](https://pcl.sitehost.iu.edu/rgoldsto/perlearn/tanakacurran.pdf)
 
 1.	In your own words, what was the research question?
      
