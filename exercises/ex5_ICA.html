@@ -246,6 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-5" id="toc-signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-5" class="nav-link active" data-scroll-target="#signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-5">Signal processing and analysis of human brain potentials (EEG) [Exercise 5]</a>
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#infomax" id="toc-infomax" class="nav-link" data-scroll-target="#infomax">Infomax</a></li>
   <li><a href="#ica-on-eeg-data" id="toc-ica-on-eeg-data" class="nav-link" data-scroll-target="#ica-on-eeg-data">ICA on EEG data</a></li>
   </ul></li>
   </ul>
@@ -261,23 +262,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Signal processing and analysis of human brain potentials (EEG) [Exercise 5]</h1>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p><strong>T:</strong> Load simulation dataset by <code>x = ccs_eeg_utils.simulate_ICA(dims=2)</code> and plot it. We will write simple ICA algorithm to try to return the original signals</p>
+<p>We will write simple ICA algorithm to try to return the original unmixed signals based on a simulation example.</p>
+<p><strong>Task:</strong> load the simulation dataset by <code>x = ccs_eeg_utils.simulate_ICA(dims=2)</code> and plot it.</p>
 <p>Remember that for ICA we have to undo a scaling and a rotation. The scaling we can do by whitening our signal <code>x</code>. The sphering (=whitening) matrix is the inverse of the matrix-squareroot of the covariance matrix of x.</p>
-<p>In order to whiten (<code>x_white</code>), we have to remove the mean of <code>x</code> and then calculate the matrix product with the sphering matrix <code>sph*x</code>. Now we are ready to try a extermely simple, naive, restricted and stupid ICA algorithm:</p>
-<p>We simply rotate the signal using a 2D rotation matrix and for each rotatio calculate the kurtosis</p>
+<p>In order to whiten (<code>x_white</code>), we have to remove the mean of <code>x</code> and then calculate the matrix product with the sphering matrix <code>sph*x</code>.</p>
+<p><strong>Task:</strong> Whiten the data!</p>
+<p>Now we are ready to try a extermely simple, naive, restricted and inefficient ICA algorithm:</p>
+<p>We will rotate the signal using a 2D rotation matrix and for each rotatio calculate the sum of the absolute valued kurtosis (use e.g.&nbsp;<code>scp.stats.kurtosis</code>). Later we will try to find the maximum value, which will be the rotation for the most non-normal signal - hopefully the unmixed one</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>turn <span class="op">=</span><span class="kw">lambda</span> k: np.reshape(np.array([np.cos(k), np.sin(k), <span class="op">-</span>np.sin(k), np.cos(k)]),(<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>(pseudocode)</p>
+<p><strong>Task:</strong> Implement the following pseudocode</p>
 <pre><code>for t in 0:pi
     x_bar = turn(t) * x_white
     abs(kurtosis(x_bar))</code></pre>
 <p>The solution to ICA would be then <code>argmax(kurtosis_list)</code>.</p>
-<p><strong>T:</strong> Plot the solution!</p>
+<p><strong>Task:</strong> Plot the solution!</p>
 <p><strong>Bonus</strong> If you want to be fancy, you can also generate an animation linking kurtosis + rotating the datapoints + marginal histograms together</p>
-<p><strong>T:</strong> Next we will use the infomax algorithm implemented in <code>mne</code> (you could try implementing it yourself, but I found an effective adjustment of learning rate quite tricky). you can call the infomax algorithm using <code>mne.preprocessing.infomax(x.T,verbose=True)</code>. Run it on <code>x = ccs_eeg_utils.simulate_ICA(dims=4)</code> and plot the signals before and after.</p>
+</section>
+<section id="infomax" class="level2">
+<h2 class="anchored" data-anchor-id="infomax">Infomax</h2>
+<p>Next we will use the infomax algorithm implemented in <code>mne</code> (you could try implementing it yourself, but I found an effective adjustment of learning rate quite tricky). you can call the infomax algorithm using <code>mne.preprocessing.infomax(x.T,verbose=True)</code>.</p>
+<p><strong>Task:</strong> Run it on <code>x = ccs_eeg_utils.simulate_ICA(dims=4)</code> and plot the signals before and after.</p>
 </section>
 <section id="ica-on-eeg-data" class="level2">
 <h2 class="anchored" data-anchor-id="ica-on-eeg-data">ICA on EEG data</h2>
-<p><strong>T:</strong> Now we are ready to run ICA on real EEG data. Select a dataset from a previous exercise and start the ICA (you can downsample the data to speed up ICA calculation <code>raw.resample(100)</code>).</p>
+<p>Now we are ready to run ICA on real EEG data.</p>
+<p><strong>Task:</strong> Select the dataset from a previous exercise and start the ICA</p>
+<div class="callout-hint">
+<p>You could downsample the data to speed up ICA calculation via <code>raw.resample(100)</code>.</p>
+</div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne_bids <span class="im">import</span> (BIDSPath,read_raw_bids)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne_bids</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>bids_root <span class="op">=</span> <span class="st">"../local/bids"</span></span>
@@ -293,11 +305,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>raw.load_data()</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>raw.<span class="bu">filter</span>(<span class="fl">0.5</span>,<span class="dv">50</span>, fir_design<span class="op">=</span><span class="st">'firwin'</span>)</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>raw.set_montage(<span class="st">'standard_1020'</span>,match_case<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Generate an ICA object <code>ica= mne.preprocessing.ICA(method="fastica")</code></p>
-<p>fit the ICA on the data. <code>ica.fit(raw,verbose=True)</code></p>
-<p>After the fit (can take some minutes) you can plot the component using <code>ica.plot_components()</code></p>
-<p>If you want to inspect a specific component, you can select it using <code>ica.plot_properties(raw,picks=[3])</code>.</p>
-<p>In order to exclude components, write: ica.exclude = [3,4,16]</p>
+<ol type="1">
+<li><p>Generate an ICA object <code>ica= mne.preprocessing.ICA(method="fastica")</code></p></li>
+<li><p>fit the ICA on the data. <code>ica.fit(raw,verbose=True)</code></p></li>
+<li><p>After the fit (can take some minutes) you can plot the component using <code>ica.plot_components()</code></p></li>
+<li><p>If you want to inspect a specific component, you can select it using <code>ica.plot_properties(raw,picks=[3])</code>.</p></li>
+<li><p>In order to exclude components, write: <code>ica.exclude = [3,4,16]</code></p></li>
+</ol>
 <p>You can then compare the EEG before &amp; after using:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ica.apply() changes the Raw object in-place, so let's make a copy first:</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>reconst_raw <span class="op">=</span> raw.copy()</span>

@@ -246,6 +246,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-4" id="toc-signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-4" class="nav-link active" data-scroll-target="#signal-processing-and-analysis-of-human-brain-potentials-eeg-exercise-4">Signal processing and analysis of human brain potentials (EEG) [Exercise 4]</a>
   <ul class="collapse">
   <li><a href="#cleaning-data" id="toc-cleaning-data" class="nav-link" data-scroll-target="#cleaning-data">Cleaning Data</a></li>
+  <li><a href="#marking-electrodes" id="toc-marking-electrodes" class="nav-link" data-scroll-target="#marking-electrodes">Marking electrodes</a></li>
+  <li><a href="#remove-bad-trials" id="toc-remove-bad-trials" class="nav-link" data-scroll-target="#remove-bad-trials">Remove bad trials</a></li>
+  <li><a href="#automatic-rejection" id="toc-automatic-rejection" class="nav-link" data-scroll-target="#automatic-rejection">Automatic rejection</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -261,15 +264,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="cleaning-data" class="level2">
 <h2 class="anchored" data-anchor-id="cleaning-data">Cleaning Data</h2>
 <p>We will re-use the dataset we used in the first exercise.</p>
-<p><strong>T:</strong> Go through the dataset using the MNE explorer and clean it. You can use <code>raw.plot()</code> for this. If you are working from a jupyter notebook, try to use <code>%matplotlib qt</code> for better support of the cleaning window. To get an understanding how the tool works, press <code>help</code> or type <code>?</code> in the window. (Hint: You first have to add a new annotation by pressing <code>a</code>)</p>
-<p><strong>T:</strong> While going through the dataset, mark what you observe as bad electrodes. Those are saved in <code>raw.info['bads']</code>. The channels can be interpolated with <code>raw.interpolate_bads()</code> or <code>epoch.interpolate_bads()</code>. Compare the channel + neighbours before and after. Did the interpolation succeed? (If you are interested in the mathematical details of spline interpolation, checkout this https://mne.tools/dev/overview/implementation.html#id26) Hint: You need channel locations to run the interpolation which you can get by using the default-standardized channel locations <code>raw.set_montage('standard_1020',match_case=False)</code></p>
-<p><strong>T:</strong> Save the annotations to a file. Best practice is to use a csv file of sorts e.g.&nbsp;using <code>raw.annotations.save(filename)</code>. Try to subsetting for <code>BAD_</code> first. Bonus: Save it in a BIDS derivate folder according to the BIDS guidelines.</p>
-<p><strong>T:</strong> In MNE, if annotations with <code>BAD_</code> exist, the epoching function automatically removes them. We are now ready to compare ERP results with and without removal of bad segments. Epoch the data, the respective bad segments will be removed automatically. Compare the two ERPs for the channel <code>Cz</code></p>
-<p><strong>T:</strong> In the epoching step, we can also specify rejection criterion for a peak-to-peak rejection method</p>
+<p><strong>Task:</strong> Go through the dataset using the MNE explorer and clean it. You can use <code>raw.plot()</code> for this.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are working from a jupyter notebook, try to use <code>%matplotlib qt</code> for better support of the cleaning window. To get an understanding how the tool works, press <code>help</code> or type <code>?</code> in the window. (Hint: You first have to add a new annotation by pressing <code>a</code>)</p>
+</div>
+</div>
+</section>
+<section id="marking-electrodes" class="level2">
+<h2 class="anchored" data-anchor-id="marking-electrodes">Marking electrodes</h2>
+<p><strong>Task:</strong> While going through the dataset, mark what you observe as bad electrodes. Those are saved in <code>raw.info['bads']</code>.</p>
+<p>The channels can later be interpolated with <code>raw.interpolate_bads()</code> or <code>epoch.interpolate_bads()</code>. Compare the channel + neighbours before and after. Did the interpolation succeed?</p>
+<p>You need channel locations to run the interpolation which you can get by using the default-standardized channel locations <code>raw.set_montage('standard_1020',match_case=False)</code></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are interested in the mathematical details of spline interpolation, checkout <a href="https://mne.tools/dev/overview/implementation.html#id26">this link</a></p>
+</div>
+</div>
+<p><strong>Task:</strong> Save the annotations to a file. Best practice is to use a csv file of sorts e.g.&nbsp;using <code>raw.annotations.save(filename)</code>. Try to subsetting for <code>BAD_</code> first. <strong>Bonus:</strong> Save it in a BIDS derivate folder according to the BIDS guidelines.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the semester project you will use mne-bids-pipeline, which will automatically save many results - you might nevertheless come to a point where saving your own logs might be a good idea</p>
+</div>
+</div>
+</section>
+<section id="remove-bad-trials" class="level2">
+<h2 class="anchored" data-anchor-id="remove-bad-trials">Remove bad trials</h2>
+<p>In MNE, if annotations with <code>BAD_</code> exist, the epoching function automatically removes them. We are now ready to compare ERP results with and without removal of bad segments. Epoch the data, the respective bad segments will be removed automatically.</p>
+<p><strong>Task:</strong> Compare the two ERPs for the channel <code>Cz</code></p>
+</section>
+<section id="automatic-rejection" class="level2">
+<h2 class="anchored" data-anchor-id="automatic-rejection">Automatic rejection</h2>
+<p>In the epoching step, we can also specify rejection criterion for a peak-to-peak rejection method</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>reject_criteria <span class="op">=</span> <span class="bu">dict</span>(eeg<span class="op">=</span><span class="fl">100e-6</span>,       <span class="co"># 100 µV</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                       eog<span class="op">=</span><span class="fl">200e-6</span>)       <span class="co"># 200 µV</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> mne.Epochs(raw, events, reject<span class="op">=</span>reject_criteria,reject_by_annotation<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Compare these epochs with your manual rejection and with the ERPs without rejection. Plot a single channel <code>Cz</code> overlaying all three “solutions”.</p>
+<p><strong>Task:</strong> Compare these epochs with your manual rejection and with the ERPs without rejection. Plot a single channel <code>Cz</code> overlaying all three “solutions”.</p>
 <p><strong>Bonus:</strong> We are going to add to our comparison by using <strong>autoreject</strong> in MNE python. Have a look at https://autoreject.github.io/ for installation and usage examples. Hint: You need channel locations to run autoreject which you can get by using the default-standardized channel locations <code>raw.set_montage('standard_1020',match_case=False)</code></p>
 <p><strong>Bonus:</strong> We can also try to circumvent cleaning by using trimmed / winsorized means. For this, the <code>epochs.average(method=X)</code> function can be exchanged with a averaging callback. Scipy has comparable functions that you can try out and compare.</p>
 

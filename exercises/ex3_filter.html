@@ -273,7 +273,6 @@ window.Quarto = {
    
   <ul>
   <li><a href="#simulate-a-simple-eeg-signal" id="toc-simulate-a-simple-eeg-signal" class="nav-link active" data-scroll-target="#simulate-a-simple-eeg-signal">Simulate a simple EEG signal</a></li>
-  <li><a href="#task" id="toc-task" class="nav-link" data-scroll-target="#task">Task</a></li>
   <li><a href="#transform-to-fourier-space" id="toc-transform-to-fourier-space" class="nav-link" data-scroll-target="#transform-to-fourier-space">Transform to fourier space</a></li>
   <li><a href="#a-simple-filter" id="toc-a-simple-filter" class="nav-link" data-scroll-target="#a-simple-filter">A simple filter</a></li>
   <li><a href="#highpass-instead-of-lowpass" id="toc-highpass-instead-of-lowpass" class="nav-link" data-scroll-target="#highpass-instead-of-lowpass">Highpass instead of lowpass</a></li>
@@ -316,15 +315,39 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> cos(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">0.5</span><span class="op">*</span>t) <span class="op">+</span> <span class="fl">0.2</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">2.5</span><span class="op">*</span>t<span class="op">+</span><span class="fl">0.1</span>) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="fl">0.2</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">15.3</span><span class="op">*</span>t) <span class="op">+</span> <span class="fl">0.1</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">16.7</span><span class="op">*</span>t <span class="op">+</span> <span class="fl">0.1</span>) <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="fl">0.1</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">23.45</span><span class="op">*</span>t<span class="op">+</span><span class="fl">.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="task" class="level2">
-<h2 class="anchored" data-anchor-id="task">Task</h2>
-<p>Plot the signal against time.</p>
+<p><strong>Task:</strong> Plot the signal against time.</p>
 </section>
 <section id="transform-to-fourier-space" class="level2">
 <h2 class="anchored" data-anchor-id="transform-to-fourier-space">Transform to fourier space</h2>
-<p>Next run the FFT algorithm. :::: callout-tip ## Task</p>
-<p>plot the magnitude response (<span class="math inline">\(log10(abs(fft(x))))\)</span>). ::::</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>run the fourier analysis via <code>fft</code>.</li>
+<li>plot the full log10-magnitude</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you plot e.g.&nbsp;the magnitude you will notice it is mirrorsymmetric around the middle! This is because FFT is actually defined for complex signals. Because we only have real signals, practically half of the FFT is redundant. But this also means, all of our manual-filters in the next steps need to take the mirror-symmetry into account. For this reason, typically a <code>rfft</code> function exists, returning only the real part.</p>
+</div>
+</div>
 </section>
 <section id="a-simple-filter" class="level2">
 <h2 class="anchored" data-anchor-id="a-simple-filter">A simple filter</h2>
@@ -348,19 +371,6 @@ Your tasks are therefore
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you plot e.g.&nbsp;the magnitude you will notice it is mirrorsymmetric around the middle! This is because FFT is actually defined for complex signals. Because we only have real signals, practically half of the FFT is redundant. But this also means, all of our manual-filters need to take the mirror-symmetry into account.</p>
-</div>
-</div>
 </section>
 <section id="highpass-instead-of-lowpass" class="level2">
 <h2 class="anchored" data-anchor-id="highpass-instead-of-lowpass">Highpass instead of lowpass</h2>
@@ -380,6 +390,8 @@ Task
 </section>
 <section id="what-happens-to-the-frequency-and-time-response-if-we-add-artefacts" class="level2">
 <h2 class="anchored" data-anchor-id="what-happens-to-the-frequency-and-time-response-if-we-add-artefacts">What happens to the frequency and time response if we add “artefacts”?</h2>
+<p>Let’s see how the FFT reacts to steps and spikes. A step-function could look like this:</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Dirac_distribution_CDF.svg/325px-Dirac_distribution_CDF.svg.png" class="img-fluid"></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -390,13 +402,13 @@ Task
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Add a DC-offset (a step-function) starting from <code>x[200:]</code> and investigate the fourier space. Filter it again (low or high pass) and transfer it back to the time domain and investigate the signal around the spike.</p>
+<p>Add a DC-offset (a step-function) starting from <code>x[200:]</code> and investigate the fourier space. Filter it again (low or high pass) and transfer it back to the time domain and investigate the signal around the step.</p>
 </div>
 </div>
 </section>
 <section id="impulse-response-function" class="level2">
 <h2 class="anchored" data-anchor-id="impulse-response-function">Impulse Response Function</h2>
-<p>To get a bit deeper understanding of what is going on, have a look at the fourier transform of a new impulse signal (e.g.&nbsp;<code>1:400 =&gt; 0</code>. and <code>200 =&gt; 1</code>.).</p>
+<p>To get a bit deeper understanding of what is going on, have a look at the fourier transform of a impulse signal (e.g.&nbsp;<code>1:400 =&gt; 0</code>. and <code>200 =&gt; 1</code>.).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -407,8 +419,10 @@ Question
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>What do you observe?</p>
-<p>Why would we see ringing if we put most of the coefficients to 0?</p>
+<ul>
+<li>What do you observe?</li>
+<li>Why did we see ringing in the previous filtered step-function, if when filtering we put coefficients to 0 - after all, we are not adding something?</li>
+</ul>
 </div>
 </div>
 </section>
@@ -441,7 +455,7 @@ Task
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Choose the channel “Pz”, plot the channel (previous HW it was “Cz”)</li>
+<li>Choose the channel “Pz”, plot the channel</li>
 <li>Plot the fourier space using <code>raw.plot_psd()</code></li>
 </ul>
 </div>
@@ -473,6 +487,7 @@ Bonus-task
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p><strong>Bonus: comparing over-filtered ERPs</strong></p>
 <p>If you want, you can compare the ERP with and without filtering. You can also use “invalid” filter settings - HP up to 2-5Hz, lowpass until 10-20Hz. I say invalid here, because usually with such ranges, you would filter out results that you are actually interested in.</p>
 <p><strong>Bonus: Electrical Artefacts</strong></p>
 <p>Instead of notch filtering 50/60Hz artefacts, one can also try to regress it out in smarter ways. A good tool for this is <em>Zap_Line</em> with a python implementation here: https://github.com/nbara/python-meegkit/. There are also several robust detrending methods, which could potentially replace highpass filters in the future. But more work needs to be invested to see how results compare. These methods are not (yet) common.</p>

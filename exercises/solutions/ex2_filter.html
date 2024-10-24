@@ -286,7 +286,7 @@ window.Quarto = {
 
 
 
-<div id="cell-0" class="cell" data-execution_count="1">
+<div id="cell-0" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> scp</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.fft</span>
@@ -303,7 +303,7 @@ window.Quarto = {
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="fl">0.1</span><span class="op">*</span>sin(<span class="dv">2</span><span class="op">*</span>pi<span class="op">*</span><span class="fl">23.45</span><span class="op">*</span>t<span class="op">+</span><span class="fl">.8</span>)</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-1" class="cell" data-execution_count="2">
+<div id="cell-1" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -316,7 +316,7 @@ window.Quarto = {
 <ul>
 <li>split the complex fourier result into <em>angle</em> and <em>magnitude</em></li>
 </ul>
-<div id="cell-3" class="cell" data-execution_count="3">
+<div id="cell-3" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#dF = 1/T = 0.25Hz</span></span>
@@ -334,7 +334,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="4">
+<div id="cell-4" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log(np.<span class="bu">abs</span>(np.fft.fft(x))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -344,7 +344,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="5">
+<div id="cell-5" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.angle(scp.fft.fft(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -357,7 +357,7 @@ window.Quarto = {
 <ul>
 <li>set the respective magnitudes to zero (we start with a lowpass filter: <code>magnitude[30:370] = 0</code>)</li>
 </ul>
-<div id="cell-7" class="cell" data-execution_count="6">
+<div id="cell-7" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(x))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(x))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(mag))</span>
@@ -380,7 +380,7 @@ window.Quarto = {
 <li>apply the inverse FFT</li>
 <li>plot the signal with what you started out</li>
 </ul>
-<div id="cell-9" class="cell" data-execution_count="7">
+<div id="cell-9" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.plot(t,x)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.plot(t,scp.fft.ifft(mag<span class="op">*</span>np.exp(<span class="ot">1j</span><span class="op">*</span>ang)).real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -394,7 +394,7 @@ window.Quarto = {
 <section id="highpass-instead-of-lowpass" class="level2">
 <h2 class="anchored" data-anchor-id="highpass-instead-of-lowpass">Highpass instead of lowpass</h2>
 <p>Repeat the steps from above, but this time, remove the low frequency components</p>
-<div id="cell-11" class="cell" data-execution_count="8">
+<div id="cell-11" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(x))</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(x))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -421,7 +421,7 @@ window.Quarto = {
 <section id="what-happens-to-the-frequency-and-time-response-if-we-add-artefacts" class="level2">
 <h2 class="anchored" data-anchor-id="what-happens-to-the-frequency-and-time-response-if-we-add-artefacts">What happens to the frequency and time response if we add “artefacts”?</h2>
 <p>Add a DC-offset (a step-function) starting from <code>x[200:]</code> and investigate the fourier space. Filter it again (low or high pass) and transfer it back to the time domain and investigate the signal around the spike.</p>
-<div id="cell-13" class="cell" data-execution_count="9">
+<div id="cell-13" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>xtmp <span class="op">=</span> x.copy()</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>xtmp[<span class="dv">200</span>:<span class="dv">250</span>] <span class="op">=</span> xtmp[<span class="dv">200</span>:<span class="dv">250</span>]<span class="op">+</span><span class="dv">2</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -434,7 +434,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="cell-14" class="cell" data-execution_count="10">
+<div id="cell-14" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(xtmp))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(xtmp))</span>
@@ -459,7 +459,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="11">
+<div id="cell-15" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>xtmp <span class="op">=</span> x.copy()</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>xtmp[<span class="dv">200</span>:] <span class="op">=</span> xtmp[<span class="dv">200</span>:]<span class="op">+</span><span class="dv">20</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.plot(xtmp)</span>
@@ -498,7 +498,7 @@ window.Quarto = {
 </div>
 </div>
 <p>## Impulse Response Function To get a bit deeper understanding of what is going on, have a look at the fourier transform of a new impulse signal (e.g.&nbsp;1:400 =&gt; 0. and 200 =&gt; 1.). What do you observe? Why would we see ringing if we put most of the coefficients to 0?</p>
-<div id="cell-17" class="cell" data-execution_count="12">
+<div id="cell-17" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Impulse Response Function</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x[:] <span class="op">=</span><span class="dv">0</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">200</span>] <span class="op">=</span> <span class="dv">1</span></span>
@@ -511,7 +511,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="cell-18" class="cell" data-execution_count="13">
+<div id="cell-18" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ang <span class="op">=</span> np.angle(scp.fft.fft(x))</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>mag <span class="op">=</span> np.<span class="bu">abs</span>(scp.fft.fft(x))</span>
@@ -537,7 +537,7 @@ window.Quarto = {
 </div>
 </div>
 <p>## Filtering EEG data</p>
-<div id="cell-20" class="cell" data-execution_count="14">
+<div id="cell-20" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>,<span class="st">".."</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne_bids <span class="im">import</span> (BIDSPath,read_raw_bids)</span>
@@ -559,14 +559,8 @@ window.Quarto = {
 <span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>ccs_eeg_utils.read_annotations_core(bids_path,raw)</span>
 <span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>raw.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Reading /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_eeg.fdt</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_1519696/3018021070.py:18: RuntimeWarning: Data file name in EEG.data (sub-002_task-P3_eeg.fdt) is incorrect, the file name must have changed on disk, using the correct file name (sub-002_ses-P3_task-P3_eeg.fdt).
-  raw = read_raw_bids(bids_path)</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Reading events from /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_events.tsv.
+<pre><code>Reading /store/data/erp-core/sub-030/ses-P3/eeg/sub-030_ses-P3_task-P3_eeg.fdt
+Reading events from /store/data/erp-core/sub-030/ses-P3/eeg/sub-030_ses-P3_task-P3_events.tsv.
 The event "response" refers to multiple event values. Creating hierarchical event names.
     Renaming event: response -&gt; response/202
     Renaming event: response -&gt; response/202
@@ -634,6 +628,45 @@ The event "response" refers to multiple event values. Creating hierarchical even
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
@@ -695,52 +728,14 @@ The event "response" refers to multiple event values. Creating hierarchical even
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
-    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_1519696/3616083917.py:18: RuntimeWarning: Data file name in EEG.data (sub-030_task-P3_eeg.fdt) is incorrect, the file name must have changed on disk, using the correct file name (sub-030_ses-P3_task-P3_eeg.fdt).
+  raw = read_raw_bids(bids_path)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
@@ -757,6 +752,11 @@ The event "response" refers to multiple event values. Creating hierarchical even
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/202
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
@@ -771,210 +771,210 @@ The event "response" refers to multiple event values. Creating hierarchical even
     Renaming event: response -&gt; response/201
     Renaming event: response -&gt; response/201
 The event "stimulus" refers to multiple event values. Creating hierarchical event names.
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/41
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/42
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/43
-    Renaming event: stimulus -&gt; stimulus/45
-    Renaming event: stimulus -&gt; stimulus/44
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/54
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/53
-    Renaming event: stimulus -&gt; stimulus/52
-    Renaming event: stimulus -&gt; stimulus/51
-    Renaming event: stimulus -&gt; stimulus/55
-    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/35
     Renaming event: stimulus -&gt; stimulus/31
     Renaming event: stimulus -&gt; stimulus/35
     Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
     Renaming event: stimulus -&gt; stimulus/32
     Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/34
     Renaming event: stimulus -&gt; stimulus/31
     Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/31
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/33
     Renaming event: stimulus -&gt; stimulus/35
     Renaming event: stimulus -&gt; stimulus/34
     Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/31
     Renaming event: stimulus -&gt; stimulus/32
     Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/34
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/32
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/35
-    Renaming event: stimulus -&gt; stimulus/33
-    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/22
     Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/24
     Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/25
     Renaming event: stimulus -&gt; stimulus/21
     Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/21
-    Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/24
-    Renaming event: stimulus -&gt; stimulus/24
     Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/24
     Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/24
-    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/24
     Renaming event: stimulus -&gt; stimulus/25
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/23
-    Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/21
-    Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/21
     Renaming event: stimulus -&gt; stimulus/25
     Renaming event: stimulus -&gt; stimulus/22
     Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/25
     Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/25
     Renaming event: stimulus -&gt; stimulus/22
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/12
-    Renaming event: stimulus -&gt; stimulus/11
-    Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/23
     Renaming event: stimulus -&gt; stimulus/11
     Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/14
     Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/11
-    Renaming event: stimulus -&gt; stimulus/14
     Renaming event: stimulus -&gt; stimulus/12
-    Renaming event: stimulus -&gt; stimulus/12
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/13
     Renaming event: stimulus -&gt; stimulus/13
     Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/14
     Renaming event: stimulus -&gt; stimulus/14
     Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/11
     Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/15
     Renaming event: stimulus -&gt; stimulus/12
     Renaming event: stimulus -&gt; stimulus/11
     Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/12
-    Renaming event: stimulus -&gt; stimulus/15
     Renaming event: stimulus -&gt; stimulus/14
-    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/15
     Renaming event: stimulus -&gt; stimulus/11
     Renaming event: stimulus -&gt; stimulus/15
     Renaming event: stimulus -&gt; stimulus/13
-    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/13
     Renaming event: stimulus -&gt; stimulus/15
     Renaming event: stimulus -&gt; stimulus/12
     Renaming event: stimulus -&gt; stimulus/15
-    Renaming event: stimulus -&gt; stimulus/15
-Reading channel info from /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_channels.tsv.
-Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/42
+Reading channel info from /store/data/erp-core/sub-030/ses-P3/eeg/sub-030_ses-P3_task-P3_channels.tsv.
+Reading 0 ... 393215  =      0.000 ...   383.999 secs...</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="33">
 <table class="table table-hover table-striped table-sm table-responsive small">
     <tbody><tr>
         <th>Measurement date</th>
@@ -991,7 +991,7 @@ Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
         <tr><th>Participant</th>
         
             
-            <td>sub-002</td>
+            <td>sub-030</td>
             
         
     </tr>
@@ -1038,18 +1038,18 @@ Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
     
     <tr>
         <th>Filenames</th>
-        <td>sub-002_ses-P3_task-P3_eeg.fdt</td>
+        <td>sub-030_ses-P3_task-P3_eeg.fdt</td>
     </tr>
     
     <tr>
         <th>Duration</th>
-        <td>00:06:45 (HH:MM:SS)</td>
+        <td>00:06:24 (HH:MM:SS)</td>
     </tr>
 </tbody></table>
 </div>
 </div>
 <p><strong>T:</strong> Choose the channel “Pz”, plot the channel (same as previous HW)</p>
-<div id="cell-22" class="cell" data-execution_count="15">
+<div id="cell-22" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%matplotlib qt</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>raw.pick([<span class="st">"Pz"</span>])<span class="co">#["Pz","Fz","Cz"])</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[:,:][<span class="dv">0</span>].T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1062,7 +1062,7 @@ Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
 </div>
 </div>
 <p><strong>T:</strong> Plot the fourier space using <code>raw.plot_psd</code></p>
-<div id="cell-24" class="cell" data-execution_count="16">
+<div id="cell-24" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>raw.plot_psd(area_mode<span class="op">=</span><span class="st">'range'</span>, tmax<span class="op">=</span><span class="fl">10.0</span>, average<span class="op">=</span><span class="va">False</span>,xscale<span class="op">=</span><span class="st">"linear"</span>,)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1086,7 +1086,7 @@ Need more than one channel to make topography for eeg. Disabling interactivity.<
 </div>
 <p><strong>T:</strong> Now we filter using <code>raw.filter()</code>, specify a highpass of 0.5Hz and a lowpass of 50Hz. Plot the fourier spectrum again.</p>
 <p><strong>T:</strong> Plot the channel again, did the filter work as indented?</p>
-<div id="cell-26" class="cell" data-execution_count="17">
+<div id="cell-26" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>raw_f <span class="op">=</span> raw.copy().<span class="bu">filter</span>(<span class="fl">0.5</span>,<span class="dv">50</span>, fir_design<span class="op">=</span><span class="st">'firwin'</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>raw_f.plot_psd(area_mode<span class="op">=</span><span class="st">'range'</span>, tmax<span class="op">=</span><span class="fl">10.0</span>, average<span class="op">=</span><span class="va">False</span>,xscale<span class="op">=</span><span class="st">"log"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1122,7 +1122,7 @@ Need more than one channel to make topography for eeg. Disabling interactivity.<
 </div>
 </div>
 </div>
-<div id="cell-27" class="cell" data-execution_count="18">
+<div id="cell-27" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plt.plot(raw_f[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -1134,7 +1134,7 @@ Need more than one channel to make topography for eeg. Disabling interactivity.<
 </div>
 </div>
 <p>Due to a huge DC-offset, the signals cannot be compared. We have to remove e.g.&nbsp;the median from each signal</p>
-<div id="cell-29" class="cell" data-execution_count="19">
+<div id="cell-29" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>plt.plot(raw[:,<span class="dv">0</span>:<span class="dv">10000</span>][<span class="dv">0</span>].T<span class="op">-</span>np.median(raw[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T))</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>plt.plot(raw_f[:,<span class="dv">0</span>:<span class="dv">10000</span>][<span class="dv">0</span>].T<span class="op">-</span>np.median(raw_f[:,<span class="dv">0</span>:<span class="dv">1000</span>][<span class="dv">0</span>].T))</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.plot(raw_f[:,0:1000][0].T-np.mean(raw_f[:,0:1000][0].T))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
