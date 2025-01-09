@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-92a38602d1d2cd77fee3c06dd2560d26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a13d3df9a797fdd02e175b52b9ef5d10.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -288,7 +288,7 @@ window.Quarto = {
 
 
 
-<div id="cell-0" class="cell" data-execution_count="80">
+<div id="cell-0" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
@@ -304,17 +304,9 @@ window.Quarto = {
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># choose any subject 1 - 18</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>limo_epochs <span class="op">=</span> load_data(subject<span class="op">=</span><span class="dv">3</span>,path<span class="op">=</span><span class="st">'../local/limo'</span>) <span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adding metadata with 2 columns
-Replacing existing metadata with 2 columns
-1072 matching events found
-No baseline correction applied
-0 projection items activated
-0 bad epochs dropped</code></pre>
 </div>
-</div>
-<div id="cell-1" class="cell" data-execution_count="81">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>limo_epochs.plot_sensors(show_names<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-1" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>limo_epochs.plot_sensors(show_names<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -326,20 +318,97 @@ No baseline correction applied
 <ul>
 <li>Extract data from electrode <code>B11</code>, this will be your ‘y’</li>
 </ul>
-<div id="cell-3" class="cell" data-execution_count="82">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> limo_epochs.get_data(picks<span class="op">=</span><span class="st">"B11"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-3" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> limo_epochs.get_data(picks<span class="op">=</span><span class="st">"B11"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="83">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>y.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="83">
+<div id="cell-4" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>(1072, 1, 201)</code></pre>
+</div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>limo_epochs.metadata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">face</th>
+<th data-quarto-table-cell-role="th">phase-coherence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>A</td>
+<td>1.255958</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>A</td>
+<td>0.296993</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>A</td>
+<td>-0.086593</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>A</td>
+<td>-1.429144</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>A</td>
+<td>-0.853765</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1067</td>
+<td>B</td>
+<td>-0.086593</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1068</td>
+<td>B</td>
+<td>0.105200</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1069</td>
+<td>B</td>
+<td>-0.853765</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1070</td>
+<td>B</td>
+<td>-0.470179</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1071</td>
+<td>B</td>
+<td>0.105200</td>
+</tr>
+</tbody>
+</table>
+
+<p>1072 rows × 2 columns</p>
+</div>
 </div>
 </div>
 <ul>
 <li>The linear covariate is saved in a dataframe called limo_epochs.metadata. Metadata is yet another way that you can save event-related information besides annotations &amp; events</li>
 <li>Generate a (design) matrix consisting of an intercet and a linear predictor of phase-coherence.</li>
 </ul>
-<div id="cell-6" class="cell" data-execution_count="84">
+<div id="cell-7" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.ones([limo_epochs._data.shape[<span class="dv">0</span>],<span class="dv">2</span>])</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>phase_coh <span class="op">=</span> limo_epochs.metadata[<span class="st">'phase-coherence'</span>]</span>
@@ -347,38 +416,49 @@ No baseline correction applied
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>X[:,<span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>X[:,<span class="dv">1</span>] <span class="op">=</span>phase_coh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="85">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.shape)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-8" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> phase_coh.unique()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>a.sort()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>array([-1.6209372 , -1.42914419, -1.23735118, -1.04555817, -0.85376515,
+       -0.66197214, -0.47017913, -0.27838612, -0.08659311,  0.1051999 ,
+        0.29699291,  0.48878592,  0.68057893,  0.87237194,  1.06416495,
+        1.25595796,  1.44775097,  1.63954398])</code></pre>
+</div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.shape)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>y.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(1072, 2)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="85">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>(1072, 1, 201)</code></pre>
 </div>
 </div>
 <ul>
 <li>Use <code>scipy.linalg.lstsq</code> or similar functions to solve the LeastSquares Problem at each time-point of the epoch</li>
 </ul>
-<div id="cell-9" class="cell" data-execution_count="86">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>b,res,rnk,s <span class="op">=</span> scipy.linalg.lstsq(X, y[:,<span class="dv">0</span>,:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-11" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>b,res,rnk,s <span class="op">=</span> scipy.linalg.lstsq(X, y[:,<span class="dv">0</span>,:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="87">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>b.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="87">
+<div id="cell-12" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>b.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>(2, 201)</code></pre>
 </div>
 </div>
 <ul>
 <li>Plot the result parameters and comment what the two parameters represent.</li>
 </ul>
-<div id="cell-12" class="cell" data-execution_count="88">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.plot(limo_epochs.times,b.T)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">"intercept"</span>,<span class="st">"phase-coherence"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-14" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.plot(limo_epochs.times,b.T)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">"intercept"</span>,<span class="st">"phase-coherence"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="ex7_encoding_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -393,48 +473,68 @@ No baseline correction applied
 <li>Next, generate one evoked.average() for each of the 18 stimulus coherence values.</li>
 <li>Plot them and compare them to your predictions. How well does a continuous predictor capture the data?</li>
 </ul>
-<div id="cell-14" class="cell" data-execution_count="89">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#(partially taken from MNE tutorial: https://mne.tools/dev/auto_examples/datasets/plot_limo_data.html)</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get levels of phase coherence</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>levels <span class="op">=</span> <span class="bu">sorted</span>(phase_coh.unique())</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create labels for levels of phase coherence (i.e., 0 - 85%)</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="st">"</span><span class="sc">{0:.2f}</span><span class="st">"</span>.<span class="bu">format</span>(i) <span class="cf">for</span> i <span class="kw">in</span> np.arange(<span class="fl">0.</span>, <span class="fl">0.90</span>, <span class="fl">0.05</span>)]</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># create dict of evokeds for each level of phase-coherence</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>evokeds <span class="op">=</span> {label: limo_epochs[phase_coh <span class="op">==</span> level].average()</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>           <span class="cf">for</span> level, label <span class="kw">in</span> <span class="bu">zip</span>(levels, labels)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-16" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#(partially taken from MNE tutorial: https://mne.tools/dev/auto_examples/datasets/plot_limo_data.html)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get levels of phase coherence</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>levels <span class="op">=</span> <span class="bu">sorted</span>(phase_coh.unique())</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create labels for levels of phase coherence (i.e., 0 - 85%)</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="st">"</span><span class="sc">{0:.2f}</span><span class="st">"</span>.<span class="bu">format</span>(i) <span class="cf">for</span> i <span class="kw">in</span> np.arange(<span class="fl">0.</span>, <span class="fl">0.90</span>, <span class="fl">0.05</span>)]</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># create dict of evokeds for each level of phase-coherence</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>evokeds <span class="op">=</span> {label: limo_epochs[phase_coh <span class="op">==</span> level].average()</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>           <span class="cf">for</span> level, label <span class="kw">in</span> <span class="bu">zip</span>(levels, labels)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).
+NOTE: pick_channels() is a legacy function. New code should use inst.pick(...).</code></pre>
 </div>
-<div id="cell-15" class="cell" data-execution_count="90">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how many levels to evaluate</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">18</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># get unique phase-corr levels</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>phase_corr_levels <span class="op">=</span> np.sort(limo_epochs.metadata[<span class="st">'phase-coherence'</span>].unique())</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># build a designmatrix </span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># we could put np.ones(n)*0 to remove the intercept</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>Xnew <span class="op">=</span> np.vstack((np.ones(n),phase_corr_levels)).T</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> plt.cm.magma(np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,n))</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the important bit!</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> Xnew<span class="op">@</span>b</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>fig,(ax1,ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>)</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the predicted ERPs</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    ax1.plot(limo_epochs.times,y_pred[i,:] , color<span class="op">=</span>colors[i])</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    plt.ylim(np.array([<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.2</span>])<span class="op">*</span><span class="dv">10</span><span class="op">**-</span><span class="dv">5</span>)</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the ERPs for each evoked object</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,(k,v) <span class="kw">in</span> <span class="bu">enumerate</span>(evokeds.items()):</span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> v.pick([<span class="st">'B11'</span>]).data <span class="co"># nt really sure why this is a function?!</span></span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    ax2.plot(limo_epochs.times,d.T , color<span class="op">=</span>colors[i],label<span class="op">=</span>i)</span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    plt.ylim(np.array([<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.2</span>])<span class="op">*</span><span class="dv">10</span><span class="op">**-</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-17" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how many levels to evaluate</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">18</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># get unique phase-corr levels</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>phase_corr_levels <span class="op">=</span> np.sort(limo_epochs.metadata[<span class="st">'phase-coherence'</span>].unique())</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># build a designmatrix </span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># we could put np.ones(n)*0 to remove the intercept</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>Xnew <span class="op">=</span> np.vstack((np.ones(n),phase_corr_levels)).T</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> plt.cm.magma(np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,n))</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the important bit!</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> Xnew<span class="op">@</span>b</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>fig,(ax1,ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the predicted ERPs</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    ax1.plot(limo_epochs.times,y_pred[i,:] , color<span class="op">=</span>colors[i])</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    plt.ylim(np.array([<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.2</span>])<span class="op">*</span><span class="dv">10</span><span class="op">**-</span><span class="dv">5</span>)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the ERPs for each evoked object</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,(k,v) <span class="kw">in</span> <span class="bu">enumerate</span>(evokeds.items()):</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> v.pick([<span class="st">'B11'</span>]).data <span class="co"># nt really sure why this is a function?!</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    ax2.plot(limo_epochs.times,d.T , color<span class="op">=</span>colors[i],label<span class="op">=</span>i)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    plt.ylim(np.array([<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.2</span>])<span class="op">*</span><span class="dv">10</span><span class="op">**-</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="ex7_encoding_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -448,48 +548,22 @@ No baseline correction applied
 <li><p>Plot the basisfunction as line-plots</p></li>
 <li><p>Plot the designmatrix as an 2D image</p></li>
 </ul>
-<div id="cell-17" class="cell" data-execution_count="91">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fr <span class="op">=</span> phase_corr_levels[<span class="dv">0</span>]</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>to <span class="op">=</span> phase_corr_levels[<span class="bu">len</span>(phase_corr_levels)<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>knotseq <span class="op">=</span> np.linspace(fr,to,num<span class="op">=</span><span class="dv">8</span>) <span class="co">#np.linspace(0,0.90,num=8)</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># from where to where to evaluate the splines?</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># min-corr : max-corr</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(fr,to,num<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># run the ccs-provided function to generate splines</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>Xbs <span class="op">=</span> spline_matrix(x,knots <span class="op">=</span>knotseq)</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plt.plot(x,Xbs,<span class="st">'o-'</span>)</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>plt.imshow(Xbs,aspect<span class="op">=</span><span class="fl">1.</span><span class="op">/</span><span class="dv">20</span>,interpolation<span class="op">=</span><span class="st">'none'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li>Fit the splines to your data (<em>Note</em>: If you wonder about the intercept, there are two ways here.Take the whole spline matrix and dont add an intercept {the intercept is implicit in the spline matrix}, or remove one spline and add an intercept {now all spline-predictors are relativ to the intercept}. Note that due to potential asymmetries in the spline basis set, the intercept is not necessarily what you would expect, see below)</li>
-</ul>
-<div id="cell-19" class="cell" data-execution_count="92">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>X_spl <span class="op">=</span> spline_matrix(limo_epochs.metadata[<span class="st">'phase-coherence'</span>],knots <span class="op">=</span>knotseq)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>b_spl,res,rnk,s <span class="op">=</span> scipy.linalg.lstsq(X_spl, y[:,<span class="dv">0</span>,:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cell-20" class="cell" data-execution_count="93">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.plot(limo_epochs.metadata[<span class="st">'phase-coherence'</span>],X_spl,<span class="st">'o'</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(X_spl,aspect<span class="op">=</span><span class="fl">1.</span><span class="op">/</span><span class="dv">20</span>,interpolation<span class="op">=</span><span class="st">'none'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-19" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>fr <span class="op">=</span> phase_corr_levels[<span class="dv">0</span>]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>to <span class="op">=</span> phase_corr_levels[<span class="bu">len</span>(phase_corr_levels)<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>knotseq <span class="op">=</span> np.linspace(fr,to,num<span class="op">=</span><span class="dv">8</span>) <span class="co">#np.linspace(0,0.90,num=8)</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># from where to where to evaluate the splines?</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># min-corr : max-corr</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(fr,to,num<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># run the ccs-provided function to generate splines</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>Xbs <span class="op">=</span> spline_matrix(x,knots <span class="op">=</span>knotseq)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>plt.plot(x,Xbs,<span class="st">'o-'</span>)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>plt.imshow(Xbs,aspect<span class="op">=</span><span class="fl">1.</span><span class="op">/</span><span class="dv">20</span>,interpolation<span class="op">=</span><span class="st">'none'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -506,14 +580,40 @@ No baseline correction applied
 </div>
 </div>
 <ul>
-<li>Plot the resulting “raw” coefficients</li>
+<li>Fit the splines to your data (<em>Note</em>: If you wonder about the intercept, there are two ways here.Take the whole spline matrix and dont add an intercept {the intercept is implicit in the spline matrix}, or remove one spline and add an intercept {now all spline-predictors are relativ to the intercept}. Note that due to potential asymmetries in the spline basis set, the intercept is not necessarily what you would expect, see below)</li>
 </ul>
-<div id="cell-22" class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plt.plot(b_spl.T)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-21" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>X_spl <span class="op">=</span> spline_matrix(limo_epochs.metadata[<span class="st">'phase-coherence'</span>],knots <span class="op">=</span>knotseq)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>b_spl,res,rnk,s <span class="op">=</span> scipy.linalg.lstsq(X_spl, y[:,<span class="dv">0</span>,:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-22" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.plot(limo_epochs.metadata[<span class="st">'phase-coherence'</span>],X_spl,<span class="st">'o'</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(X_spl,aspect<span class="op">=</span><span class="fl">1.</span><span class="op">/</span><span class="dv">20</span>,interpolation<span class="op">=</span><span class="st">'none'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="ex7_encoding_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ex7_encoding_files/figure-html/cell-17-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Plot the resulting “raw” coefficients</li>
+</ul>
+<div id="cell-24" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.plot(b_spl.T)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ex7_encoding_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -521,37 +621,37 @@ No baseline correction applied
 <ul>
 <li>The “raw” coefficients are hard to interpret. We should run conditional values again. Evaluate the fitted spline-betas at the respective 18 coherence levels and plot them.</li>
 </ul>
-<div id="cell-24" class="cell" data-execution_count="96">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the designmatrix for only few corr-values</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Xnew <span class="op">=</span> spline_matrix(np.linspace(fr, to, num<span class="op">=</span><span class="dv">18</span>),knotseq)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># get colors as well</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> plt.cm.magma(np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">18</span>))</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># this is the "magic"</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>y_pred_bs <span class="op">=</span> Xnew<span class="op">@</span>b_spl</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Similar plot to before</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>)[<span class="dv">1</span>]</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the spline ERPs</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>].plot(limo_epochs.times,y_pred_bs[i,:] , color<span class="op">=</span>colors[i])</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the binned one</span></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,(k,v) <span class="kw">in</span> <span class="bu">enumerate</span>(evokeds.items()):</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> v.pick([<span class="st">'B11'</span>]).data <span class="co"># nt really sure why this is a function?!</span></span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">1</span>].plot(limo_epochs.times,d.T , color<span class="op">=</span>colors[i])</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the linear ERPs</span></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">2</span>].plot(limo_epochs.times,y_pred[i,:] , color<span class="op">=</span>colors[i])</span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>plt.setp(ax,xlim<span class="op">=</span>[<span class="op">-</span><span class="fl">0.2</span>,<span class="fl">0.5</span>],ylim<span class="op">=</span>(np.array([<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.2</span>])<span class="op">*</span><span class="dv">10</span><span class="op">**-</span><span class="dv">5</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-26" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the designmatrix for only few corr-values</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>Xnew <span class="op">=</span> spline_matrix(np.linspace(fr, to, num<span class="op">=</span><span class="dv">18</span>),knotseq)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># get colors as well</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> plt.cm.magma(np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">18</span>))</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># this is the "magic"</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>y_pred_bs <span class="op">=</span> Xnew<span class="op">@</span>b_spl</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Similar plot to before</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>)[<span class="dv">1</span>]</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the spline ERPs</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>].plot(limo_epochs.times,y_pred_bs[i,:] , color<span class="op">=</span>colors[i])</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the binned one</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,(k,v) <span class="kw">in</span> <span class="bu">enumerate</span>(evokeds.items()):</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> v.pick([<span class="st">'B11'</span>]).data <span class="co"># nt really sure why this is a function?!</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">1</span>].plot(limo_epochs.times,d.T , color<span class="op">=</span>colors[i])</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the linear ERPs</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">2</span>].plot(limo_epochs.times,y_pred[i,:] , color<span class="op">=</span>colors[i])</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>plt.setp(ax,xlim<span class="op">=</span>[<span class="op">-</span><span class="fl">0.2</span>,<span class="fl">0.5</span>],ylim<span class="op">=</span>(np.array([<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.2</span>])<span class="op">*</span><span class="dv">10</span><span class="op">**-</span><span class="dv">5</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="ex7_encoding_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -561,93 +661,53 @@ No baseline correction applied
 <li>Because it is a categorical predictor, we have to encode it using either dummy coding (e.g.&nbsp;FaceA = 0, FaceB = 1) or effect coding (FaceA = -0.5, FaceB = 0.5 {you could also use -1 / 1})</li>
 <li>Fit the model, and plot the faceA/faceB effect</li>
 </ul>
-<div id="cell-26" class="cell" data-execution_count="111">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coh-Spline</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>X_spl <span class="op">=</span> spline_matrix(phase_coh,knots <span class="op">=</span>knotseq)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># intercept</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>intercept <span class="op">=</span> np.ones(X_spl.shape[<span class="dv">0</span>])</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># face-effect</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>faceB <span class="op">=</span> (limo_epochs.metadata.face.values <span class="op">==</span> <span class="st">"B"</span>)<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span> <span class="co"># effect coded</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># get all of those</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.vstack((intercept,faceB,X_spl[:,:<span class="op">-</span><span class="dv">1</span>].T))</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># fit it</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>b,res,rnk,s <span class="op">=</span> scipy.linalg.lstsq(X.T, y[:,<span class="dv">0</span>,:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-28" class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coh-Spline</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>X_spl <span class="op">=</span> spline_matrix(phase_coh,knots <span class="op">=</span>knotseq)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># intercept</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>intercept <span class="op">=</span> np.ones(X_spl.shape[<span class="dv">0</span>])</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># face-effect</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>faceB <span class="op">=</span> (limo_epochs.metadata.face.values <span class="op">==</span> <span class="st">"B"</span>)<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span> <span class="co"># effect coded</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co"># get all of those</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.vstack((intercept,faceB,X_spl[:,:<span class="op">-</span><span class="dv">1</span>].T))</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># fit it</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>b,res,rnk,s <span class="op">=</span> scipy.linalg.lstsq(X.T, y[:,<span class="dv">0</span>,:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-27" class="cell" data-execution_count="117">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># face-effect is the second beta</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>plt.plot(limo_epochs.times,b[<span class="dv">0</span>:<span class="dv">2</span>,:].T)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">"intercept"</span>,<span class="st">"face-diff"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
-</figure>
+<div id="cell-29" class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># face-effect is the second beta</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>plt.plot(limo_epochs.times,b[<span class="dv">0</span>:<span class="dv">2</span>,:].T)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">"intercept"</span>,<span class="st">"face-diff"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<div id="cell-28" class="cell" data-execution_count="118">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.plot(limo_epochs.times,b.T<span class="op">@</span>np.matrix([[<span class="dv">1</span>, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>],</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                                          [<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>]] ).T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
+<div id="cell-30" class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>plt.plot(limo_epochs.times,b.T<span class="op">@</span>np.matrix([[<span class="dv">1</span>, <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>],</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                                          [<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>]] ).T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>In order to facilitate calculating such effects, often a contrast-vector (or matrix) is used. We have a vector <span class="math inline">\(b\)</span> that in our case represents <span class="math inline">\([b_{intercept},b_{faceB},b_{spline1}, \dots, b_{splineN}]\)</span>. We typically want to use a sum of predictors, ie. <span class="math inline">\(b_{intercept}\)</span> + <span class="math inline">\(b_{faceB}\)</span> which can be represented as a matrix multiplication of <span class="math inline">\(b*c\)</span> with <span class="math inline">\(c = [1,1,0,\dots,0]\)</span>. If we chose effect coding before, we would need to put in the effect coded coefficients in our contrast-vector. I.e. <span class="math inline">\(c = [1,-0.5,0,\dots,0]\)</span> or <span class="math inline">\(c = [1,-1,0,\dots,0]\)</span>. And finally, we could also combine multiple contrast vectors to one matrix to evaluate multiple effects of interest.</p></li>
 <li><p>Use a contrast matrix to plot the FaceA and FaceB ERP. Note that in difference to the example contrats-vector above, we now also want to add the correct spline-values. For this evaluate the spline-coefficients at noise-coherence of 0.9 and replace the 0’s of your <span class="math inline">\(c_{spline1} \dots c_{splineN}\)</span> contrast vector.</p></li>
 </ul>
-<div id="cell-31" class="cell" data-execution_count="125">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>knotseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="125">
-<pre><code>array([-1.6209372 , -1.15515417, -0.68937115, -0.22358812,  0.24219491,
-        0.70797793,  1.17376096,  1.63954398])</code></pre>
+<div id="cell-33" class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>knotseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div id="cell-34" class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  the calculation above slightly wrong, because I am putting all splines simply to 0. Because I removed the last spline, the implicit intercept relates to the lowest noiselevel. But due to the overlap of the spline-basis functions,  some spline-basis-betas should be non-zero. But which? Let's find out</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(spline_matrix([<span class="dv">0</span>],knots <span class="op">=</span>knotseq))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-32" class="cell" data-execution_count="132">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  the calculation above slightly wrong, because I am putting all splines simply to 0. Because I removed the last spline, the implicit intercept relates to the lowest noiselevel. But due to the overlap of the spline-basis functions,  some spline-basis-betas should be non-zero. But which? Let's find out</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(spline_matrix([<span class="dv">0</span>],knots <span class="op">=</span>knotseq))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[[0.         0.         0.01757333 0.49740426 0.47119613 0.01382628
-  0.         0.        ]]</code></pre>
+<div id="cell-35" class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(spline_matrix([<span class="fl">1.6</span>],knots <span class="op">=</span>knotseq))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div id="cell-33" class="cell" data-execution_count="124">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(spline_matrix([<span class="fl">1.6</span>],knots <span class="op">=</span>knotseq))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[[0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
-  2.54964056e-05 3.49333873e-03 1.18498707e-01 8.77982458e-01]]</code></pre>
-</div>
-</div>
-<div id="cell-34" class="cell" data-execution_count="135">
+<div id="cell-36" class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I am making it explicit here which numbers I choose instead of concatenating</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>plt.plot(limo_epochs.times,b.T<span class="op">@</span>np.matrix([[<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>, <span class="fl">0.16677456</span>, <span class="fl">0.53777498</span>,  <span class="fl">0.28669231</span>, <span class="fl">0.00875815</span>],</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                                          [<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>, <span class="fl">0.16677456</span>, <span class="fl">0.53777498</span>,  <span class="fl">0.28669231</span>, <span class="fl">0.00875815</span>]] ).T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
-</figure>
 </div>
-</div>
-</div>
-<div id="cell-35" class="cell" data-execution_count="136">
+<div id="cell-37" class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How much difference did it make? </span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.plot(limo_epochs.times,b.T<span class="op">@</span>np.matrix([[<span class="dv">1</span>,<span class="dv">1</span>, <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>]] ).T)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>plt.plot(limo_epochs.times,b.T<span class="op">@</span>np.matrix([[<span class="dv">1</span>,<span class="dv">1</span>, <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>, <span class="fl">0.16677456</span>, <span class="fl">0.53777498</span>,  <span class="fl">0.28669231</span>, <span class="fl">0.00875815</span>]] ).T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
 </div>
 </section>
 <section id="bonus" class="level2">
@@ -656,13 +716,13 @@ No baseline correction applied
 <li>There could be an interaction between the spline set and the categorical variable. For this, we have to calculate all pairwise multiplications of the faceB-column, with the spline columns.</li>
 <li>Fit the resulting model and check whether you found an interaction effect</li>
 </ul>
-<div id="cell-37" class="cell" data-execution_count="140">
+<div id="cell-39" class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.vstack((intercept,faceB,X_spl[:,:<span class="op">-</span><span class="dv">1</span>].T))  <span class="co"># generate designmatrix </span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>X_interact <span class="op">=</span> (X[<span class="dv">1</span>,:].reshape(X.shape[<span class="dv">1</span>],<span class="dv">1</span>) <span class="op">*</span> X[<span class="dv">2</span>:,:].T).T <span class="co"># generate interaction matrix</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>b_interact,res,rnk,s <span class="op">=</span> scipy.linalg.lstsq(np.vstack((X,X_interact)).T, y[:,<span class="dv">0</span>,:]) <span class="co"># fit both combined</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-38" class="cell" data-execution_count="141">
+<div id="cell-40" class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>).plot(limo_epochs.times,b.T<span class="op">@</span>np.matrix([[<span class="dv">1</span>,<span class="dv">1</span>, <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>, <span class="fl">0.16677456</span>, <span class="fl">0.53777498</span>,  <span class="fl">0.28669231</span>, <span class="fl">0.00875815</span>],</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                                                         [<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>, <span class="fl">0.16677456</span>, <span class="fl">0.53777498</span>,  <span class="fl">0.28669231</span>, <span class="fl">0.00875815</span>]] ).T)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>).plot(b_interact.T<span class="op">@</span>np.matrix([</span>
@@ -671,13 +731,6 @@ No baseline correction applied
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Also note: We are not doing any statistics here!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-27-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
 </div>
 </section>
 <section id="fitting-a-model-in-mne" class="level2">
@@ -687,7 +740,7 @@ No baseline correction applied
 <li>import <code>from mne.stats import linear_regression</code></li>
 <li>Fit a model <code>y~1 + faceB + coherence</code>, thus a model with linear coherence effect: mne also requires to specify your own designmatrix, you can also give the columns names using <code>res = linear_regression(...,names=['Intercept','effectB' ...])</code>.</li>
 </ul>
-<div id="cell-40" class="cell" data-execution_count="142">
+<div id="cell-42" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>predictor_vars <span class="op">=</span> [<span class="st">'face B - face A'</span>, <span class="st">'phase-coherence'</span>, <span class="st">'intercept'</span>]</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create design matrix data-frame</span></span>
@@ -707,13 +760,13 @@ No baseline correction applied
 <pre><code>Fitting linear model to epochs, (26532 targets, 3 regressors)</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_317829/2779453045.py:11: RuntimeWarning: Fitting linear model to non-data or bad channels. Check picking
+<pre><code>/tmp/ipykernel_354913/2779453045.py:11: RuntimeWarning: Fitting linear model to non-data or bad channels. Check picking
   reg = linear_regression(limo_epochs,</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Done</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="142">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
 
@@ -803,26 +856,34 @@ No baseline correction applied
 <ul>
 <li>You can access the terms using res[‘Intercept’], and plot e.g.&nbsp;the betas using <code>res['Intecept'].beta.plot()</code></li>
 </ul>
-<div id="cell-42" class="cell" data-execution_count="144">
+<div id="cell-44" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>reg[<span class="st">'intercept'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="144">
-<pre><code>lm(beta=&lt;Evoked | '' (average, N=1), -0.29994 – 0.49991 sec, baseline off, 132 ch, ~381 kB&gt;, stderr=&lt;Evoked | '' (average, N=1), -0.29994 – 0.49991 sec, baseline off, 132 ch, ~381 kB&gt;, t_val=&lt;Evoked | '' (average, N=1), -0.29994 – 0.49991 sec, baseline off, 132 ch, ~381 kB&gt;, p_val=&lt;Evoked | '' (average, N=1), -0.29994 – 0.49991 sec, baseline off, 132 ch, ~381 kB&gt;, mlog10_p_val=&lt;Evoked | '' (average, N=1), -0.29994 – 0.49991 sec, baseline off, 132 ch, ~381 kB&gt;)</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>lm(beta=&lt;Evoked | '' (average, N=1), -0.29994 – 0.49991 s, baseline off, 132 ch, ~385 kB&gt;, stderr=&lt;Evoked | '' (average, N=1), -0.29994 – 0.49991 s, baseline off, 132 ch, ~385 kB&gt;, t_val=&lt;Evoked | '' (average, N=1), -0.29994 – 0.49991 s, baseline off, 132 ch, ~385 kB&gt;, p_val=&lt;Evoked | '' (average, N=1), -0.29994 – 0.49991 s, baseline off, 132 ch, ~385 kB&gt;, mlog10_p_val=&lt;Evoked | '' (average, N=1), -0.29994 – 0.49991 s, baseline off, 132 ch, ~385 kB&gt;)</code></pre>
 </div>
 </div>
-<div id="cell-43" class="cell" data-execution_count="149">
+<div id="cell-45" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>reg[<span class="st">'intercept'</span>].beta.plot()<span class="op">;</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>reg[<span class="st">'phase-coherence'</span>].beta.plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_354913/1005863980.py:1: RuntimeWarning: Channel locations not available. Disabling spatial colors.
+  reg['intercept'].beta.plot();</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-30-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="ex7_encoding_files/figure-html/cell-32-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_354913/1005863980.py:2: RuntimeWarning: Channel locations not available. Disabling spatial colors.
+  reg['phase-coherence'].beta.plot();</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-30-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="ex7_encoding_files/figure-html/cell-32-output-4.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -830,20 +891,28 @@ No baseline correction applied
 <ul>
 <li>Because we have all channels now, we can also plot topoplots. Think about how you could visualize the splines as topoplots (note: this is a hard question)</li>
 </ul>
-<div id="cell-45" class="cell" data-execution_count="150">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>reg[<span class="st">'intercept'</span>].beta.plot_topomap(times <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.1</span>))</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>reg[<span class="st">'phase-coherence'</span>].beta.plot_topomap(times <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.1</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-47" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>reg[<span class="st">'intercept'</span>].beta.plot_topomap(times <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.1</span>))</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>reg[<span class="st">'phase-coherence'</span>].beta.plot_topomap(times <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.1</span>))<span class="op">;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>reg[<span class="st">'face B - face A'</span>].beta.plot_topomap(times <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.1</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-31-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="ex7_encoding_files/figure-html/cell-33-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-31-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="ex7_encoding_files/figure-html/cell-33-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ex7_encoding_files/figure-html/cell-33-output-3.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -851,12 +920,16 @@ No baseline correction applied
 <ul>
 <li>You can also plot the p-values using res[‘phase_coherence’].p_val.plot(). Do they follow your intuition?</li>
 </ul>
-<div id="cell-47" class="cell" data-execution_count="151">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>reg[<span class="st">'phase-coherence'</span>].p_val.plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-49" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>reg[<span class="st">'phase-coherence'</span>].p_val.plot()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_354913/2140104791.py:1: RuntimeWarning: Channel locations not available. Disabling spatial colors.
+  reg['phase-coherence'].p_val.plot();</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-32-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="ex7_encoding_files/figure-html/cell-34-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -864,38 +937,76 @@ No baseline correction applied
 <ul>
 <li><strong>Bonus:</strong> What does the distribution (histogram) of p-values of phase-coherence look like during the baseline? (note, bad channels are not automatically removed in MNE, thus you might want to increase your bin-width to spot them</li>
 </ul>
-<div id="cell-49" class="cell" data-execution_count="153">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>pH0 <span class="op">=</span> reg[<span class="st">'phase-coherence'</span>].p_val.copy().crop(tmax<span class="op">=</span><span class="dv">0</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-51" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>pH0 <span class="op">=</span> reg[<span class="st">'phase-coherence'</span>].p_val.copy().crop(tmax<span class="op">=</span><span class="dv">0</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-50" class="cell" data-execution_count="156">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>pH0.data.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="156">
+<div id="cell-52" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>pH0.data.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
 <pre><code>(132, 76)</code></pre>
 </div>
 </div>
-<div id="cell-51" class="cell" data-execution_count="158">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>plData <span class="op">=</span> pH0.data[np.where(np.<span class="bu">sum</span>(pH0.data <span class="op">&gt;</span> <span class="fl">0.99</span>,axis<span class="op">=</span><span class="dv">1</span>) <span class="op">&lt;</span> <span class="dv">25</span>),:]</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>plt.hist(plData.reshape(np.prod(plData.shape)),bins<span class="op">=</span><span class="dv">100</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-53" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>plData <span class="op">=</span> pH0.data[np.where(np.<span class="bu">sum</span>(pH0.data <span class="op">&gt;</span> <span class="fl">0.99</span>,axis<span class="op">=</span><span class="dv">1</span>) <span class="op">&lt;</span> <span class="dv">25</span>),:]</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>plt.hist(plData.reshape(np.prod(plData.shape)),bins<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.yscale("log")</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>         </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>(array([ 58.,  61.,  99.,  91.,  80.,  89., 106.,  70.,  82.,  94.,  84.,
+         73.,  79.,  92.,  82.,  73.,  93.,  88.,  90.,  83.,  95.,  88.,
+         85.,  82.,  93.,  81.,  66.,  87.,  79., 101.,  88.,  80.,  88.,
+         91.,  86.,  96.,  94., 113.,  77.,  90.,  80.,  92.,  86.,  98.,
+         91.,  97.,  93.,  93.,  96.,  97.,  82.,  80.,  94.,  89.,  77.,
+        101., 105.,  92., 103., 107., 120., 111.,  96., 106.,  88.,  85.,
+        111., 111., 106.,  97., 103., 107.,  91., 108., 105., 101., 109.,
+        109., 100.,  90., 101., 101., 109., 100., 101., 115., 117., 124.,
+        113., 107., 119., 109.,  98.,  98., 126., 101., 100.,  99., 108.,
+        120.]),
+ array([3.72791232e-04, 1.03676360e-02, 2.03624808e-02, 3.03573255e-02,
+        4.03521703e-02, 5.03470151e-02, 6.03418599e-02, 7.03367046e-02,
+        8.03315494e-02, 9.03263942e-02, 1.00321239e-01, 1.10316084e-01,
+        1.20310929e-01, 1.30305773e-01, 1.40300618e-01, 1.50295463e-01,
+        1.60290308e-01, 1.70285152e-01, 1.80279997e-01, 1.90274842e-01,
+        2.00269687e-01, 2.10264531e-01, 2.20259376e-01, 2.30254221e-01,
+        2.40249066e-01, 2.50243911e-01, 2.60238755e-01, 2.70233600e-01,
+        2.80228445e-01, 2.90223290e-01, 3.00218134e-01, 3.10212979e-01,
+        3.20207824e-01, 3.30202669e-01, 3.40197514e-01, 3.50192358e-01,
+        3.60187203e-01, 3.70182048e-01, 3.80176893e-01, 3.90171737e-01,
+        4.00166582e-01, 4.10161427e-01, 4.20156272e-01, 4.30151116e-01,
+        4.40145961e-01, 4.50140806e-01, 4.60135651e-01, 4.70130496e-01,
+        4.80125340e-01, 4.90120185e-01, 5.00115030e-01, 5.10109875e-01,
+        5.20104719e-01, 5.30099564e-01, 5.40094409e-01, 5.50089254e-01,
+        5.60084099e-01, 5.70078943e-01, 5.80073788e-01, 5.90068633e-01,
+        6.00063478e-01, 6.10058322e-01, 6.20053167e-01, 6.30048012e-01,
+        6.40042857e-01, 6.50037701e-01, 6.60032546e-01, 6.70027391e-01,
+        6.80022236e-01, 6.90017081e-01, 7.00011925e-01, 7.10006770e-01,
+        7.20001615e-01, 7.29996460e-01, 7.39991304e-01, 7.49986149e-01,
+        7.59980994e-01, 7.69975839e-01, 7.79970684e-01, 7.89965528e-01,
+        7.99960373e-01, 8.09955218e-01, 8.19950063e-01, 8.29944907e-01,
+        8.39939752e-01, 8.49934597e-01, 8.59929442e-01, 8.69924286e-01,
+        8.79919131e-01, 8.89913976e-01, 8.99908821e-01, 9.09903666e-01,
+        9.19898510e-01, 9.29893355e-01, 9.39888200e-01, 9.49883045e-01,
+        9.59877889e-01, 9.69872734e-01, 9.79867579e-01, 9.89862424e-01,
+        9.99857269e-01]),
+ &lt;BarContainer object of 100 artists&gt;)</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ex7_encoding_files/figure-html/cell-35-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="ex7_encoding_files/figure-html/cell-37-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-53" class="cell" data-execution_count="161">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>np.mean(plData.reshape(np.prod(plData.shape)) <span class="op">&lt;</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="161">
+<div id="cell-55" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>np.mean(plData.reshape(np.prod(plData.shape)) <span class="op">&lt;</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>0.040736842105263155</code></pre>
 </div>
 </div>
-<div id="cell-54" class="cell" data-execution_count="155">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the channels with the many 1's are the bad channels</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>np.where(np.<span class="bu">sum</span>(pH0.data <span class="op">&gt;</span> <span class="fl">0.99</span>,axis<span class="op">=</span><span class="dv">1</span>) <span class="op">&gt;</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="155">
-<pre><code>(array([ 12,  26,  40,  71,  80,  85, 116]),)</code></pre>
-</div>
+<div id="cell-56" class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the channels with the many 1's are the bad channels</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>np.where(np.<span class="bu">sum</span>(pH0.data <span class="op">&gt;</span> <span class="fl">0.99</span>,axis<span class="op">=</span><span class="dv">1</span>) <span class="op">&gt;</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-92a38602d1d2cd77fee3c06dd2560d26.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a13d3df9a797fdd02e175b52b9ef5d10.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -269,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="cell-2" class="cell" data-execution_count="3">
+<div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -282,42 +282,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.plot(sig)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sig.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>The autoreload extension is already loaded. To reload it, use:
-  %reload_ext autoreload</code></pre>
-</div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
-<span class="ansi-green-fg ansi-bold">/store/users/ehinger/courses/course_eeg_SS2022/exercises/solutions/ex9_tf.ipynb Cell 2'</span> in <span class="ansi-cyan-fg">&lt;cell line: 9&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">      &lt;a href='vscode-notebook-cell:/store/users/ehinger/courses/course_eeg_SS2022/exercises/solutions/ex9_tf.ipynb#ch0000001?line=6'&gt;7&lt;/a&gt;</span> get_ipython().run_line_magic('load_ext', 'autoreload')
-<span class="ansi-green-fg ansi-bold">      &lt;a href='vscode-notebook-cell:/store/users/ehinger/courses/course_eeg_SS2022/exercises/solutions/ex9_tf.ipynb#ch0000001?line=7'&gt;8&lt;/a&gt;</span> get_ipython().run_line_magic('autoreload', '2')
-<span class="ansi-green-fg">----&gt; &lt;a href='vscode-notebook-cell:/store/users/ehinger/courses/course_eeg_SS2022/exercises/solutions/ex9_tf.ipynb#ch0000001?line=8'&gt;9&lt;/a&gt;</span> sig = ccs_eeg_utils.simulate_TF(signal=3)
-<span class="ansi-green-fg ansi-bold">     &lt;a href='vscode-notebook-cell:/store/users/ehinger/courses/course_eeg_SS2022/exercises/solutions/ex9_tf.ipynb#ch0000001?line=10'&gt;11&lt;/a&gt;</span> plt.plot(sig)
-<span class="ansi-green-fg ansi-bold">     &lt;a href='vscode-notebook-cell:/store/users/ehinger/courses/course_eeg_SS2022/exercises/solutions/ex9_tf.ipynb#ch0000001?line=11'&gt;12&lt;/a&gt;</span> sig.shape
-
-File <span class="ansi-green-fg">/store/users/ehinger/courses/course_eeg_SS2022/exercises/solutions/../ccs_eeg_utils.py:144</span>, in <span class="ansi-cyan-fg">simulate_TF</span><span class="ansi-blue-fg">(signal, noise)</span>
-<span class="ansi-green-fg ansi-bold">    142</span> def simulate_TF(signal=1,noise=True):
-<span class="ansi-green-fg ansi-bold">    143</span>     # signal can be 1 (image), 2(chirp) or 3 (steps)
-<span class="ansi-green-fg">--&gt; 144</span>     import imageio
-<span class="ansi-green-fg ansi-bold">    146</span>     if signal == 2:
-<span class="ansi-green-fg ansi-bold">    147</span>         im = imageio.imread('ex9_tf.png')
-
-<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'imageio'</pre>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ex9_tf_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
 </div>
-<div id="cell-3" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>nseglist <span class="op">=</span> np.arange(<span class="dv">32</span>,<span class="dv">256</span>,<span class="dv">64</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k,n) <span class="kw">in</span> <span class="bu">enumerate</span>(nseglist):</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    (f,t,x) <span class="op">=</span> scipy.signal.stft(sig,fs<span class="op">=</span><span class="dv">500</span>,nperseg<span class="op">=</span>n,noverlap<span class="op">=</span>n<span class="op">*</span><span class="fl">0.3</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="bu">len</span>(nseglist),<span class="dv">1</span>,k<span class="op">+</span><span class="dv">1</span>).imshow(np.<span class="bu">abs</span>(x),origin<span class="op">=</span><span class="st">'lower'</span>,interpolation<span class="op">=</span><span class="st">'none'</span>,aspect<span class="op">=</span><span class="st">'auto'</span>,extent<span class="op">=</span>[<span class="bu">min</span>(t),<span class="bu">max</span>(t),<span class="bu">min</span>(f),<span class="bu">max</span>(f)])</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-3" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>nseglist <span class="op">=</span> np.arange(<span class="dv">32</span>,<span class="dv">256</span>,<span class="dv">64</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k,n) <span class="kw">in</span> <span class="bu">enumerate</span>(nseglist):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    (f,t,x) <span class="op">=</span> scipy.signal.stft(sig,fs<span class="op">=</span><span class="dv">500</span>,nperseg<span class="op">=</span>n,noverlap<span class="op">=</span>n<span class="op">*</span><span class="fl">0.3</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="bu">len</span>(nseglist),<span class="dv">1</span>,k<span class="op">+</span><span class="dv">1</span>).imshow(np.<span class="bu">abs</span>(x),origin<span class="op">=</span><span class="st">'lower'</span>,interpolation<span class="op">=</span><span class="st">'none'</span>,aspect<span class="op">=</span><span class="st">'auto'</span>,extent<span class="op">=</span>[<span class="bu">min</span>(t),<span class="bu">max</span>(t),<span class="bu">min</span>(f),<span class="bu">max</span>(f)])</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -326,15 +308,15 @@ File <span class="ansi-green-fg">/store/users/ehinger/courses/course_eeg_SS2022/
 </div>
 </div>
 </div>
-<div id="cell-4" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#freqs = np.arange(10,250,1)</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>freqs <span class="op">=</span> np.logspace(<span class="op">*</span>np.log10([<span class="dv">10</span>, <span class="dv">250</span>]), num<span class="op">=</span><span class="dv">25</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>cyclist<span class="op">=</span> [<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">16</span>]</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k,cyc) <span class="kw">in</span> <span class="bu">enumerate</span>(cyclist):</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    power <span class="op">=</span> mne.time_frequency.tfr_array_morlet(sig.reshape(<span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>), sfreq<span class="op">=</span><span class="dv">500</span>,freqs<span class="op">=</span>freqs, n_cycles<span class="op">=</span>cyc)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="bu">len</span>(cyclist),<span class="dv">1</span>,k<span class="op">+</span><span class="dv">1</span>).imshow(np.<span class="bu">abs</span>(power[<span class="dv">0</span>,<span class="dv">0</span>,:,:]),aspect<span class="op">=</span><span class="st">"auto"</span>,origin<span class="op">=</span><span class="st">'lower'</span>, extent<span class="op">=</span>[<span class="bu">min</span>(t),<span class="bu">max</span>(t),<span class="bu">min</span>(freqs),<span class="bu">max</span>(freqs)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-4" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#freqs = np.arange(10,250,1)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>freqs <span class="op">=</span> np.logspace(<span class="op">*</span>np.log10([<span class="dv">10</span>, <span class="dv">250</span>]), num<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>cyclist<span class="op">=</span> [<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">16</span>]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k,cyc) <span class="kw">in</span> <span class="bu">enumerate</span>(cyclist):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    power <span class="op">=</span> mne.time_frequency.tfr_array_morlet(sig.reshape(<span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>), sfreq<span class="op">=</span><span class="dv">500</span>,freqs<span class="op">=</span>freqs, n_cycles<span class="op">=</span>cyc)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="bu">len</span>(cyclist),<span class="dv">1</span>,k<span class="op">+</span><span class="dv">1</span>).imshow(np.<span class="bu">abs</span>(power[<span class="dv">0</span>,<span class="dv">0</span>,:,:]),aspect<span class="op">=</span><span class="st">"auto"</span>,origin<span class="op">=</span><span class="st">'lower'</span>, extent<span class="op">=</span>[<span class="bu">min</span>(t),<span class="bu">max</span>(t),<span class="bu">min</span>(freqs),<span class="bu">max</span>(freqs)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -348,94 +330,494 @@ File <span class="ansi-green-fg">/store/users/ehinger/courses/course_eeg_SS2022/
 <p>Get a partially preprocessed P3 Dataset from the ERP-Core:</p>
 <pre><code>epochs = ccs_eeg_utils.get_TF_dataset(  subject_id = '002',bids_root = "../local/bids")</code></pre>
 <p>We are looking only at epochs relative to the responses.</p>
-<div id="cell-6" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> ccs_eeg_utils.get_TF_dataset(  subject_id <span class="op">=</span> <span class="st">'002'</span>,bids_root <span class="op">=</span> <span class="st">"../local/bids"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-6" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> ccs_eeg_utils.get_TF_dataset(  subject_id <span class="op">=</span> <span class="st">'002'</span>,bids_root <span class="op">=</span><span class="st">"/store/data/erp-core/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_eeg.fdt</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/store/users/ehinger/courses/course_eeg_WS2024/exercises/solutions/../ccs_eeg_utils.py:182: RuntimeWarning: Data file name in EEG.data (sub-002_task-P3_eeg.fdt) is incorrect, the file name must have changed on disk, using the correct file name (sub-002_ses-P3_task-P3_eeg.fdt).
+  raw = read_raw_bids(bids_path)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading events from /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_events.tsv.
+The event "response" refers to multiple event values. Creating hierarchical event names.
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/202
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+    Renaming event: response -&gt; response/201
+The event "stimulus" refers to multiple event values. Creating hierarchical event names.
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/41
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/42
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/43
+    Renaming event: stimulus -&gt; stimulus/45
+    Renaming event: stimulus -&gt; stimulus/44
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/54
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/53
+    Renaming event: stimulus -&gt; stimulus/52
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/55
+    Renaming event: stimulus -&gt; stimulus/51
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/31
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/34
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/32
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/35
+    Renaming event: stimulus -&gt; stimulus/33
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/24
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/23
+    Renaming event: stimulus -&gt; stimulus/21
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/25
+    Renaming event: stimulus -&gt; stimulus/22
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/14
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/11
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/13
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/12
+    Renaming event: stimulus -&gt; stimulus/15
+    Renaming event: stimulus -&gt; stimulus/15
+Reading channel info from /store/data/erp-core/sub-002/ses-P3/eeg/sub-002_ses-P3_task-P3_channels.tsv.
+Reading 0 ... 414719  =      0.000 ...   404.999 secs...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/store/users/ehinger/courses/course_eeg_WS2024/exercises/solutions/../ccs_eeg_utils.py:182: RuntimeWarning: Unable to map the following column(s) to to MNE:
+handedness: right
+  raw = read_raw_bids(bids_path)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Used Annotations descriptions: ['response:201', 'response:202', 'stimulus:11', 'stimulus:12', 'stimulus:13', 'stimulus:14', 'stimulus:15', 'stimulus:21', 'stimulus:22', 'stimulus:23', 'stimulus:24', 'stimulus:25', 'stimulus:31', 'stimulus:32', 'stimulus:33', 'stimulus:34', 'stimulus:35', 'stimulus:41', 'stimulus:42', 'stimulus:43', 'stimulus:44', 'stimulus:45', 'stimulus:51', 'stimulus:52', 'stimulus:53', 'stimulus:54', 'stimulus:55']
+Not setting metadata
+202 matching events found
+Setting baseline interval to [-1.0, 0.0] s
+Applying baseline correction (mode: mean)
+0 projection items activated</code></pre>
+</div>
 </div>
 <p>We want to get an overview of the power. So for starters we choose bad frequency resolution but good time resolution with a wavelet transform.</p>
 <p>We will evaluate the TF at <code>freqs = np.logspace(*np.log10([5, 80]), num=25)</code> with 1 cycle.</p>
 <p>Run:</p>
 <pre><code>power_total = mne.time_frequency.tfr_morlet(epochs, freqs=freqs, n_cycles=n_cycles, return_itc=False,n_jobs=4,average=True) # ITC, inter-trial-coherence is quite similar to evoked power, it is a measure of phase consistency over trials but we havent discussed it in the lecture.</code></pre>
-<div id="cell-8" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>freqs <span class="op">=</span> np.logspace(<span class="op">*</span>np.log10([<span class="dv">5</span>, <span class="dv">80</span>]), num<span class="op">=</span><span class="dv">25</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n_cycles <span class="op">=</span> <span class="dv">1</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>power_total <span class="op">=</span> mne.time_frequency.tfr_morlet(epochs, freqs<span class="op">=</span>freqs, n_cycles<span class="op">=</span>n_cycles, return_itc<span class="op">=</span><span class="va">False</span>,n_jobs<span class="op">=</span><span class="dv">4</span>,average<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-8" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>freqs <span class="op">=</span> np.logspace(<span class="op">*</span>np.log10([<span class="dv">5</span>, <span class="dv">80</span>]), num<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>n_cycles <span class="op">=</span> <span class="dv">1</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>power_total <span class="op">=</span> epochs.compute_tfr(freqs<span class="op">=</span>freqs, n_cycles<span class="op">=</span>n_cycles, return_itc<span class="op">=</span><span class="va">False</span>,n_jobs<span class="op">=</span><span class="dv">4</span>,average<span class="op">=</span><span class="va">True</span>,method<span class="op">=</span><span class="st">'morlet'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Loading data for 202 events and 3073 original time points ...
+<pre><code>Using data from preloaded Raw for 202 events and 3073 original time points ...
 0 bad epochs dropped</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
-[Parallel(n_jobs=4)]: Done  14 tasks      | elapsed:    3.8s
-[Parallel(n_jobs=4)]: Done  30 out of  30 | elapsed:    7.2s finished</code></pre>
+[Parallel(n_jobs=4)]: Done  14 tasks      | elapsed:    2.4s
+[Parallel(n_jobs=4)]: Done  30 out of  30 | elapsed:    3.8s finished</code></pre>
 </div>
 </div>
 <p>Next we will visualize all TFs at all electrodes and get an overview whats going on. If you use <code>%matplotlib qt</code> the plot will be interactive. Choose a baseline of -.5 to 0 using the command <code>power.plot_topo()</code></p>
-<div id="cell-10" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib qt</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>power_total.plot_topo(baseline<span class="op">=</span>[<span class="op">-</span><span class="fl">.5</span>,<span class="dv">0</span>],mode<span class="op">=</span><span class="st">"logratio"</span>,vmin<span class="op">=-</span><span class="dv">2</span>,vmax<span class="op">=</span><span class="dv">2</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-10" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib qt</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>power_total.plot_topo(baseline<span class="op">=</span>[<span class="op">-</span><span class="fl">.5</span>,<span class="dv">0</span>],mode<span class="op">=</span><span class="st">"logratio"</span>,vmin<span class="op">=-</span><span class="dv">2</span>,vmax<span class="op">=</span><span class="dv">2</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Applying baseline correction (mode: logratio)</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex9_tf_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
 </div>
 </div>
 <p><strong>T:</strong> Plot the power at electrode Cz using power.plot():</p>
 <pre><code>1. Without any baseline
 2. With a baseline of your choice</code></pre>
 <p><strong>T:</strong> Explain the general pattern you see. Can you spot differences betweem with and without baseline?</p>
-<div id="cell-12" class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>power_total.plot(baseline<span class="op">=</span><span class="va">None</span>,vmin<span class="op">=-</span><span class="dv">2</span><span class="op">*</span><span class="fl">10e-9</span>,vmax<span class="op">=</span><span class="dv">2</span><span class="op">*</span><span class="fl">10e-9</span>,picks<span class="op">=</span><span class="st">'Cz'</span>)<span class="op">;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>power_total.plot(baseline<span class="op">=</span>[<span class="op">-</span><span class="fl">.5</span>,<span class="dv">0</span>],mode<span class="op">=</span><span class="st">'percent'</span>,vmin<span class="op">=-</span><span class="dv">4</span>,vmax<span class="op">=</span><span class="dv">4</span>,picks<span class="op">=</span><span class="st">'Cz'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-12" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>power_total.plot(baseline<span class="op">=</span><span class="va">None</span>,vlim<span class="op">=</span>(<span class="op">-</span><span class="dv">2</span><span class="op">*</span><span class="fl">10e-9</span>,<span class="dv">2</span><span class="op">*</span><span class="fl">10e-9</span>),picks<span class="op">=</span><span class="st">'Cz'</span>)<span class="op">;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>power_total.plot(baseline<span class="op">=</span>[<span class="op">-</span><span class="fl">.5</span>,<span class="dv">0</span>],mode<span class="op">=</span><span class="st">'percent'</span>,vlim<span class="op">=</span>(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>),picks<span class="op">=</span><span class="st">'Cz'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>No baseline correction applied
 Applying baseline correction (mode: percent)</code></pre>
 </div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex9_tf_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex9_tf_files/figure-html/cell-8-output-3.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
 </div>
 <p><strong>T:</strong> Now lets improve upon our frequency resolution <code>nz</code>, increasing the number of cycles to 3. Plot channel Cz with BSL correction (-0.5,1).</p>
 <p>Tipp: you can speed up the calculation by specifying <code>picks="Cz"</code></p>
-<div id="cell-14" class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>n_cycles <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>power_total <span class="op">=</span> mne.time_frequency.tfr_morlet(epochs, freqs<span class="op">=</span>freqs, n_cycles<span class="op">=</span>n_cycles, return_itc<span class="op">=</span><span class="va">False</span>,n_jobs<span class="op">=</span><span class="dv">4</span>,average<span class="op">=</span><span class="va">True</span>,picks<span class="op">=</span><span class="st">'Cz'</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-14" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>n_cycles <span class="op">=</span> <span class="dv">8</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>power_total <span class="op">=</span> epochs.compute_tfr(freqs<span class="op">=</span>freqs, n_cycles<span class="op">=</span>n_cycles, return_itc<span class="op">=</span><span class="va">False</span>,n_jobs<span class="op">=</span><span class="dv">4</span>,average<span class="op">=</span><span class="va">True</span>,picks<span class="op">=</span><span class="st">'Cz'</span>,method<span class="op">=</span><span class="st">'morlet'</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Loading data for 202 events and 3073 original time points ...</code></pre>
+<pre><code>Using data from preloaded Raw for 202 events and 3073 original time points ...</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
-[Parallel(n_jobs=4)]: Done   1 out of   1 | elapsed:    2.9s finished</code></pre>
+<pre><code>[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.</code></pre>
 </div>
 </div>
-<div id="cell-15" class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>power_total.plot_topo(baseline<span class="op">=</span>[<span class="op">-</span><span class="fl">.5</span>,<span class="dv">0</span>],mode<span class="op">=</span><span class="st">'percent'</span>,vmin<span class="op">=-</span><span class="dv">4</span>,vmax<span class="op">=</span><span class="dv">4</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-15" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>power_total.plot_topo(baseline<span class="op">=</span>[<span class="op">-</span><span class="fl">.5</span>,<span class="dv">0</span>],mode<span class="op">=</span><span class="st">'percent'</span>,vmin<span class="op">=-</span><span class="dv">4</span>,vmax<span class="op">=</span><span class="dv">4</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Applying baseline correction (mode: percent)</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex9_tf_files/figure-html/cell-10-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
 </div>
 </div>
 <p><strong>T:</strong> We also want to calculate the induced and evoked TF. For this we first calculate the induced spectrum, then subtract the total from the induced.</p>
@@ -443,93 +825,50 @@ Applying baseline correction (mode: percent)</code></pre>
 <li><p><code>epochs.subtract_evoked()</code> is a function that removes the ERP from each trial. It is a mne-consistent function that practically does: <code>epochs_induced._data = epochs._data  - epochs.average().data</code>. Run the tfr analysis again on the induced dataset, remember that if you dont make a copy of your epochs (via <code>epochs.copy()</code>) the dataset will be overwritten in memory</p></li>
 <li><p>In order to get epochs_evoked, we have to subtract total and induced. We cand do this via</p></li>
 </ol>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>power_evoked <span class="op">=</span> mne.combine_evoked([power_total,power_induced],weights<span class="op">=</span>[<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>power_evoked <span class="op">=</span> mne.combine_evoked([power_total,power_induced],weights<span class="op">=</span>[<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note: you could use this function also to combine/subtract condition effects!</p>
 <p><strong>T:</strong> Visualize evoked, total &amp; induced for electrode Cz</p>
-<div id="cell-17" class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>epochs_induced <span class="op">=</span> epochs.copy()</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#epochs_induced._data = epochs_induced._data  - epochs_induced.average().data # but we are using the offocial way here</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>epochs_induced.subtract_evoked()</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>power_induced <span class="op">=</span> mne.time_frequency.tfr_morlet(epochs_induced, freqs<span class="op">=</span>freqs, n_cycles<span class="op">=</span>n_cycles, return_itc<span class="op">=</span><span class="va">False</span>,n_jobs<span class="op">=</span><span class="dv">1</span>,average<span class="op">=</span><span class="va">True</span>,picks<span class="op">=</span><span class="st">"Cz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-17" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>epochs_induced <span class="op">=</span> epochs.copy()</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#epochs_induced._data = epochs_induced._data  - epochs_induced.average().data # but we are using the offocial way here</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>epochs_induced.subtract_evoked()</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>power_induced <span class="op">=</span> epochs_induced.compute_tfr(freqs<span class="op">=</span>freqs, n_cycles<span class="op">=</span>n_cycles, return_itc<span class="op">=</span><span class="va">False</span>,n_jobs<span class="op">=</span><span class="dv">1</span>,average<span class="op">=</span><span class="va">True</span>,picks<span class="op">=</span><span class="st">"Cz"</span>,method<span class="op">=</span><span class="st">'morlet'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Subtracting Evoked from Epochs
-    The following channels are not included in the subtraction: HEOG_left, VEOG_lower, HEOG_right
+    The following channels are not included in the subtraction: HEOG_left, HEOG_right, VEOG_lower
 [done]
-Loading data for 202 events and 3073 original time points ...</code></pre>
+Using data from preloaded Raw for 202 events and 3073 original time points ...</code></pre>
 </div>
 </div>
-<div id="cell-18" class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>power_induced</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
-<pre><code>&lt;AverageTFR | time : [-1.000000, 2.000000], freq : [5.000000, 80.000000], nave : 202, channels : 1, ~620 kB&gt;</code></pre>
+<div id="cell-18" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib qt</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>power_evoked <span class="op">=</span> mne.combine_evoked([power_total,power_induced],weights<span class="op">=</span>[<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>mode <span class="op">=</span> <span class="st">"mean"</span> <span class="co"># "percent"</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>bsl <span class="op">=</span> [<span class="op">-</span><span class="fl">0.5</span>,<span class="dv">0</span>]</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>cmin <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>cmax <span class="op">=</span> <span class="op">-</span>cmin</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>power_total.plot(baseline<span class="op">=</span>bsl,mode<span class="op">=</span>mode,picks<span class="op">=</span><span class="st">'Cz'</span>)<span class="co">#,vlim=(cmin,cmax))</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>power_induced.plot(baseline<span class="op">=</span>bsl,mode<span class="op">=</span>mode,picks<span class="op">=</span><span class="st">'Cz'</span>)<span class="co">#,vlim=(cmin,cmax))</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>power_evoked.plot(baseline<span class="op">=</span>bsl,mode<span class="op">=</span>mode,picks<span class="op">=</span><span class="st">'Cz'</span>),<span class="co">#vlim=(cmin,cmax))</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Applying baseline correction (mode: mean)
+Applying baseline correction (mode: mean)
+Applying baseline correction (mode: mean)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/ehinger/micromamba/envs/course_EEG_ws2023/lib/python3.10/site-packages/mne/time_frequency/tfr.py:2018: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
+  figs = [plt.figure(layout="constrained") for _ in range(data.shape[0])]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>([&lt;Figure size 640x480 with 2 Axes&gt;],)</code></pre>
 </div>
 </div>
 <div id="cell-19" class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib qt</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>power_evoked <span class="op">=</span> mne.combine_evoked([power_total,power_induced],weights<span class="op">=</span>[<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>mode <span class="op">=</span> <span class="st">"percent"</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>bsl <span class="op">=</span> [<span class="op">-</span><span class="fl">0.5</span>,<span class="dv">0</span>]</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>cmin <span class="op">=</span> <span class="op">-</span><span class="dv">3</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>cmax <span class="op">=</span> <span class="op">-</span>cmin</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>power_total.plot(baseline<span class="op">=</span>bsl,mode<span class="op">=</span>mode,picks<span class="op">=</span><span class="st">'Cz'</span>,vmin<span class="op">=</span>cmin,vmax<span class="op">=</span>cmax)</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>power_induced.plot(baseline<span class="op">=</span>bsl,mode<span class="op">=</span>mode,picks<span class="op">=</span><span class="st">'Cz'</span>,vmin<span class="op">=</span>cmin,vmax<span class="op">=</span>cmax)</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>power_evoked.plot(baseline<span class="op">=</span>bsl,mode<span class="op">=</span>mode,picks<span class="op">=</span><span class="st">'Cz'</span>,vmin<span class="op">=</span>cmin,vmax<span class="op">=</span>cmax)<span class="op">;</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Applying baseline correction (mode: percent)
-Applying baseline correction (mode: percent)
-Applying baseline correction (mode: percent)</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex9_tf_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex9_tf_files/figure-html/cell-13-output-3.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex9_tf_files/figure-html/cell-13-output-4.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-20" class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>power_evoked.plot(baseline<span class="op">=</span>bsl,mode<span class="op">=</span>mode,picks<span class="op">=</span><span class="st">'Cz'</span>,vmin<span class="op">=-</span><span class="dv">20</span>,vmax<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Applying baseline correction (mode: percent)</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex9_tf_files/figure-html/cell-14-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-21" class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>power_total.plot(baseline<span class="op">=</span>bsl,mode<span class="op">=</span>mode,picks<span class="op">=</span><span class="st">'Cz'</span>,vmin<span class="op">=-</span><span class="dv">1</span>,vmax<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Applying baseline correction (mode: percent)</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ex9_tf_files/figure-html/cell-15-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>power_evoked.plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
