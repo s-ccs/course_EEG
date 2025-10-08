@@ -6,7 +6,7 @@ editor:
 
 #pre-render: homework/convertExercises.sh
 website:
-  title: "🧠 EEG-2024"
+  title: "🧠 EEG-2025"
   sidebar:
     style: "docked"
     search: true

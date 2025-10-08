@@ -1,5 +1,5 @@
 ## BIDS
-not directly a software, but a specification: [the BIDS specification](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/03-electroencephalography.html)
+Not directly a software, but a specification: [the BIDS specification](https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/03-electroencephalography.html)
 
 It might be helpful as a manual to get an overview what should be there and what shouldnt.
 
@@ -16,7 +16,7 @@ BIDS is a standardized format (mostly in terms of folder-structures), to save EE
 We recommend strongly to try it out in a tutorial and use it for your semester project data analysis!
 
 ## IClabel
-a cool tool to automatically classify artefactual independent components is ICLabel. You can use it here: https://github.com/mne-tools/mne-icalabel.
+A cool tool to automatically classify artefactual independent components is ICLabel. You can use it here: https://github.com/mne-tools/mne-icalabel.
 
 
 ::: {.callout-warning}

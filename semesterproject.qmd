@@ -2,8 +2,7 @@
 
 The goal of this project is to re-analyse and document a real EEG dataset using MNE-Python.
 
-How I will grade the projects can be seen in [grading](grading.md). I value line of thinking and documented motivation much higher than actual results. I want to see that you understand what you are doing.
-
+How I will grade the projects can be seen in [grading](grading.qmd). I value line of thinking and documented motivation much higher than actual results. I want to see that you understand what you are doing.
 
 ## Which Datasets?
 
@@ -15,15 +14,15 @@ This has the consequence that there will be many (individual) unforseen problems
 
 What follows is a list of datasets with accompanying papers that I have screened. You can select one of these if you wish, but also feel free to look for your own datasets either on [menar.org](https://nemar.org) or on [openneuro.org](https://openneuro.org). Try to look for datasets below 20Gb of space, with a paper accompanied. Please send a potential candidate to me asap, so I can screen it.
 
-| Subjects | task                         | analysis | link                                                                 |
+| Subjects | task             | analysis | link                                                                 |
 |------------------|------------------|------------------|------------------|
-| 20  | grating                      | decoding | [dataset](https://openneuro.org/datasets/ds004043/versions/1.1.0)    |
-| 19  | reaching                     | ERP      | [dataset](https://openneuro.org/datasets/ds003846/versions/1.0.1)    |
-| 24  | pattern symmetry             | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004347) |
-| 12  | reward                       | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004147) |
-| 18  | walking oddall               | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004033) |
-| 47  | social task                  | timefreq | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003702) |
-| 17  | game-playing                 | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003517) |
+| 20       | grating          | decoding | [dataset](https://openneuro.org/datasets/ds004043/versions/1.1.0)    |
+| 19       | reaching         | ERP      | [dataset](https://openneuro.org/datasets/ds003846/versions/1.0.1)    |
+| 24       | pattern symmetry | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004347) |
+| 12       | reward           | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004147) |
+| 18       | walking oddall   | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004033) |
+| 47       | social task      | timefreq | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003702) |
+| 17       | game-playing     | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003517) |
 
 ## What should the project contain?
 
@@ -37,7 +36,7 @@ Given the new nature of the datasets and the unforeseeable complications, I prop
 
 ## Where do I get the data?
 
-You can find the link above
+You can find the link above.
 
 ## Tipps
 
@@ -50,7 +49,6 @@ You can find the link above
 -   Write in the ILIAS Forum. Either others will help, or I myself will answer questions.
 -   I highly recommend watching the first talk in this session: https://www.crowdcast.io/e/live-meeg-2020/7 by Marijn van Vliet for an fitting introduction of analysing multiple subjects with MNE in a reproducible and documented way. After that, use mne-bids-pipeline as suggested before.
 -   The MNE-documentation is quite extensive. It is worth looking into. You can also try **stackexchange** or **neurostar** for help.
-  
 
 ## FAQ (will be updated)
 
@@ -80,4 +78,4 @@ You make my life easier if you name the git / zip file with your last name, e.g.
 
 ## Deadline
 
-Please hand in the documents until 31.03.2025
+Please hand in the documents until 31.03.2026
