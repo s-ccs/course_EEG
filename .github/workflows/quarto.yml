@@ -1,6 +1,6 @@
 on:
   push:
-    branches: main
+    branches: 2025
 
 name: Render and Publish v1
 
