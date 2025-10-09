@@ -44,17 +44,18 @@ Research questions can often be answered by a "yes" or "no".
 **Goals to be reached:**
 
 - Map out the required analysis pipeline of the authors
-- Compare this to the analysis pipeline you want to do
-- Downloaded + Loaded the data. Have a first impression
+- Compare this to the analysis pipeline you want to do (it should not be identical!)
+- Downloaded + Loaded the data. Show a first impression of the continuous data of one subject.
 
 **Slides:**
 Prepare 1 slide showing:
 
 - The central research question (one sentence, very brief)
-- A table with the authors + your pipeline
+- A table contrasting the authors and your pipeline
+- A plot of the continuous EEG data with events marked
 
 :::: callout-warning
-Not all authors do a good job to clearly communicate how their pipeline looked like. Add notes when you are unsure!
+Not all authors do a good job to clearly communicate how their pipeline looked like. Add notes and ask, when you are unsure!
 :::: 
 
 :::: callout-note
@@ -69,12 +70,12 @@ It is totally fine to adapt your processing pipeline as you go & experience prob
 **Goals to be reached:**
 
 - Implemented a preprocessing pipeline
-- One single subject analyzed
+- One single subject is analyzed
  
 **Slides:**
 Prepare 1 slide showing:
-- Your improved pipeline
-- First results of one subject (e.g. an ERP or similar)
+- The table with the authors and your improved pipeline - highlight changes.
+- First results of one subject (e.g. an ERP, TRF or similar)
 
 :::
 
@@ -83,15 +84,16 @@ Prepare 1 slide showing:
 ### Milestone 4: All subjects {#sec-ms4}
 **Goals to be reached:**  
 
-- Pipeline ran for all subjects
+- Your pipeline worked for all subjects
 - Further outliers / problems  identified
 
 **Slides:**
 Provide 1-2 slides with results of your sanity checks.
 
 Sanity checks could be (depending on project, come up with your own!)  
-- ICA topography quality
-- ERP Signal-To-Noise
+- ICA topographies
+- ERPs including baseline
+- Comparisons to author results
 
 
 :::
@@ -100,8 +102,8 @@ Sanity checks could be (depending on project, come up with your own!)
 ### Milestone 5: Outlook {#sec-ms5}
 **Goals to be reached:**  
 
-- You should by now be close to replicate (or not!) the results of the authors
-- You should think of an additional analysis (e.g. ERP, decoding, linear model, time-frequency, source-space) to run on this data.
+- You should by now have replicated (or not!) the results of the authors
+- You now think of an additional analysis (e.g. ERP, decoding, linear model, time-frequency, source-space) to run on this dataset.
 
 **Slides:** Prepare 2 slides listing:  
 
