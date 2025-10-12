@@ -14,15 +14,17 @@ This has the consequence that there will be many (individual) unforseen problems
 
 What follows is a list of datasets with accompanying papers that I have screened. You can select one of these if you wish, but also feel free to look for your own datasets either on [menar.org](https://nemar.org) or on [openneuro.org](https://openneuro.org). Try to look for datasets below 20Gb of space, with a paper accompanied. Please send a potential candidate to me asap, so I can screen it.
 
-| Subjects | task             | analysis | link                                                                 |
+| Subjects | task               | analysis | link                                                                 |
 |------------------|------------------|------------------|------------------|
-| 20       | grating          | decoding | [dataset](https://openneuro.org/datasets/ds004043/versions/1.1.0)    |
-| 19       | reaching         | ERP      | [dataset](https://openneuro.org/datasets/ds003846/versions/1.0.1)    |
-| 24       | pattern symmetry | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004347) |
-| 12       | reward           | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004147) |
-| 18       | walking oddall   | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004033) |
-| 47       | social task      | timefreq | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003702) |
-| 17       | game-playing     | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003517) |
+| 20       | grating            | decoding | [dataset](https://openneuro.org/datasets/ds004043/versions/1.1.0)    |
+| 19       | reaching           | ERP      | [dataset](https://openneuro.org/datasets/ds003846/versions/1.0.1)    |
+| 24       | pattern symmetry   | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004347) |
+| 12       | reward             | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004147) |
+| 18       | walking oddall     | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds004033) |
+| 47       | social task        | timefreq | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003702) |
+| 17       | game-playing       | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003517) |
+| 31       | visual stimulation | ERP      | [dataset](https://openneuro.org/datasets/ds006547/versions/1.0.0)    |
+| 48       | vr visual tasks    | ERP      | [dataset](https://openneuro.org/datasets/ds005841/versions/1.0.0)    |
 
 ## What should the project contain?
 
@@ -38,7 +40,7 @@ Given the new nature of the datasets and the unforeseeable complications, I prop
 
 You can find the link above.
 
-## Tipps
+## Tips
 
 -   Please work modularly! Don't put all your functions in a single jupyter-notebook. Please use notebooks for your analysis & your functions to a ./src/xyz.py files
 -   Make use of the BIDS structure and [mne-bids-pipeline](https://mne.tools/mne-bids-pipeline/).
@@ -59,7 +61,7 @@ The project should not be a dissertation. If you report goes beyond 40 pages (wh
 :::
 
 ::: {.callout-note icon="false"}
-## Am I allowed to use other packages
+## Am I allowed to use other packages?
 
 Yes! Everything goes this time around. I do recommend to stick mostly to mne-python though
 :::
@@ -78,4 +80,4 @@ You make my life easier if you name the git / zip file with your last name, e.g.
 
 ## Deadline
 
-Please hand in the documents until 31.03.2026
+Please hand in the documents until 31.03.2026.

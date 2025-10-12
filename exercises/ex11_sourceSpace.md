@@ -1,4 +1,5 @@
-# Signal processing and analysis of human brain potentials (EEG) [Exercise 9]
+# Signal processing and analysis of human brain potentials (EEG) \[Exercise 11\]
+
 In this exercise we will learn how to move Sensor-Space data to Source-space.
 
 # General remarks

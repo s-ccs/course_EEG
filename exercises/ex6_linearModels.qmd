@@ -1,3 +1,5 @@
+# Signal processing and analysis of human brain potentials (EEG) \[Exercise 6\]
+
 ## Statistical Analysis of N170 area using Linear Regression
 *T* Load the data into a pandas dataframe. A very useful concept here is the concept of a tidy dataframe. The idea is, that every observation is one row of a table, where columns are potential features / descriptors + the dependent variable (the average activity between 130 and 200ms at electrode PO8 here).
 
@@ -41,7 +43,7 @@ Because we will need it quite often.
 **Q:** What do the betas/results/parameters mean now? (You might want to do the plotting of the next step to help your interpretation)
 
 
-Now we have what we call a 2x2 design. Two categorical factors (often only "factor") with two levels each + the interaction. 
+Now we have what we call a 2x2 design. Two categorical factors (often only "factor") with two levels each + the interaction.
 
 **T:** It is about time to plot our results! Put cond on the x, and use color for stimulus. We will reconstruct our original data first:
 
@@ -49,7 +51,7 @@ You should reconstruct 4 values, one for **intact faces**, one for **scrambled f
 
 
 ## Changing Bases
-We discussed in the lecture that it is possible to change the bases. We will go back to the simple example of of `Intercept + cond`. But in addition of *dummy coding* (intact == 1, scrambled == 0), we will fit a second model with *effect-coding* (intact == 0.5, scrambled = -0.5). 
+We discussed in the lecture that it is possible to change the bases. We will go back to the simple example of of `Intercept + cond`. But in addition of *dummy coding* (intact == 1, scrambled == 0), we will fit a second model with *effect-coding* (intact == 0.5, scrambled = -0.5).
 
 **Q:** How do the betas compare of the two models? How does the interpretation change?
 
@@ -75,12 +77,12 @@ Classically, baselines are simply subtracted. Thus every point of an ERP recieve
 
 
 
-**T:** Add the baseline as a predictor to your 2x2 model. 
+**T:** Add the baseline as a predictor to your 2x2 model.
 
 **Q:** What is the resulting beta?
 
 
-Typically we do not only remove the overall baseline, but condition-indivudal baselines. 
+Typically we do not only remove the overall baseline, but condition-indivudal baselines.
 
 **T:** Thus we have to generate interactions with all predictors & interaction of the interactions too
 
@@ -89,9 +91,10 @@ Typically we do not only remove the overall baseline, but condition-indivudal ba
 
 
 ## Bonus: Uncertainty & Standard Errors
+
 This was not part of the lecture, but might be interesting nonetheless. In this exercise we talk about how we can generate errorbars to add to our 2x2 plot.
 
-We can not only estimate the $\hat{\beta}$, our estimated parameters, but also the variance of them, giving us a handle of uncertainty. We just need some additional assumptions (normal residuals). For a derivation see [this](https://stats.stackexchange.com/questions/390836/standard-error-and-confidence-interval-for-multiple-linear-regression-in-matrix). 
+We can not only estimate the $\hat{\beta}$, our estimated parameters, but also the variance of them, giving us a handle of uncertainty. We just need some additional assumptions (normal residuals). For a derivation see [this](https://stats.stackexchange.com/questions/390836/standard-error-and-confidence-interval-for-multiple-linear-regression-in-matrix).
 
 It turns out, that $Var(\beta) = \sigma^2 (X^TX)^{-1}$
 
