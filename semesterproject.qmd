@@ -25,7 +25,7 @@ What follows is a list of datasets with accompanying papers that I have screened
 | 17       | game-playing       | ERP      | [dataset](https://nemar.org/dataexplorer/detail?dataset_id=ds003517), [paper](https://doi.org/10.1016/j.neuroimage.2016.02.075) |
 | 31       | visual stimulation | ERP      | [dataset](https://openneuro.org/datasets/ds006547/versions/1.0.0), [paper](https://doi.org/10.1101/2025.08.09.669461)    |
 | 48       | vr visual tasks    | ERP      | [dataset](https://openneuro.org/datasets/ds005841/versions/1.0.0), [paper](https://doi.org/10.1016/j.cortex.2025.05.008)    |
-| 48       | competitive decision-making    | decoding      | [dataset](https://openneuro.org/datasets/ds006761/versions/1.0.0), [paper](https://www.biorxiv.org/content/10.1101/2025.01.09.632285v3)    |
+| 62       | competitive decision-making    | decoding      | [dataset](https://openneuro.org/datasets/ds006761/versions/1.0.0), [paper](https://www.biorxiv.org/content/10.1101/2025.01.09.632285v3)    |
 
 ## What should the project contain?
 
