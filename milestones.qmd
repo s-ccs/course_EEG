@@ -7,9 +7,9 @@ editor:
 ::: callout-note
 The purpose of the milestones is to help you monitoring your progress throughout the semester.
 
-In each milestone session, each project group briefly presents their current process and we can discuss open questions (approx. 1 min presentation + 3 min discussion per group).
+For each milestone, each group is supposed to prepare **1 slide** (singular!) for each of the milestones and **upload them on Ilias until the deadline (10:00 Monday before the respective session).** See the milestone page on Ilias for a template slide.
 
-For this purpose, each group is supposed to prepare **1 slide** (singular!) for each of the milestones and **upload them on Ilias until midnight before the respective session.**
+Attending the Wednesday meetings for milestones is mandatory. During the meeting, group members will present the group's progress, and we can discuss open questions.
 :::
 
 ::: callout-important

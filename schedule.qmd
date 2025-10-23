@@ -6,7 +6,9 @@ editor:
 ---
 
 ::: callout-note
-An entry in the table means that your work is **due to that weekly meeting (i.e. Wednesday, 11:30 am)**.
+An entry in the table means:
+- Lecture, exercise: watch/submit them by that weekly meeting (i.e. Wednesday, 11:30 am).
+- Milestone: upload the presentation slide until 10:00 on the Monday before the weekly meeting. Attend the weekly meeting for milestone presentation & discussion.
 :::
 
 +---------+------------+-------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
@@ -58,3 +60,8 @@ An entry in the table means that your work is **due to that weekly meeting (i.e.
 ::: callout-note
 The [report](semesterproject.qmd#deadline) is due: 31.03.2026.
 :::
+
+### Workbench sessions
+
+- 17.10.2025 - Introduction
+- 24.10.2025 - BIDS
