@@ -31,7 +31,10 @@ What follows is a list of datasets with accompanying papers that I have screened
 
 The idea is to reproduce, but **not** with a direct reproduction. That is, we will not try to re-do their exact pipeline step-by-step, but rather we will try to obtain their result, with a different pipeline, checking for the robustness of the original analysis pipeline.
 
-A list of the typical steps you will perform: - Preprocessing: Filtering, re-referencening, ICA, Event-handling - (automatic) data cleaning: Time, channel and subjects
+A list of the typical steps you will perform: 
+
+- Preprocessing: Filtering, re-referencing, ICA, Event-handling 
+- (automatic) data cleaning: Time, channel and subjects
 
 ## Group work
 
@@ -43,7 +46,7 @@ You can find the link above.
 
 ## Tips
 
--   Please work modularly! Don't put all your functions in a single jupyter-notebook. Please use notebooks for your analysis & your functions to a ./src/xyz.py files
+-   Please work modularly! Don't put all your functions in a single jupyter-notebook. Please use notebooks for your analysis & organise your functions into ./src/xyz.py files.
 -   Make use of the BIDS structure and [mne-bids-pipeline](https://mne.tools/mne-bids-pipeline/).
 -   Thoroughly think about what you are doing and why. And note that down - most people can blindly apply a pipeline, I want to see your reasoning why you included / removed certain steps.
 
@@ -64,7 +67,7 @@ The project should not be a dissertation. If you report goes beyond 40 pages (wh
 ::: {.callout-note icon="false"}
 ## Am I allowed to use other packages?
 
-Yes! Everything goes this time around. I do recommend to stick mostly to mne-python though
+Yes! Everything goes this time around. I do recommend to stick mostly to mne-python though.
 :::
 
 ::: {.callout-note icon="false"}
@@ -75,7 +78,11 @@ No. It is a good idea to use a notebook to display the data / report / results. 
 
 ## Format of report
 
-You can share a git of your project and a report, or the code and the report via Illias. The git can be on github or on the university gitlab. The report can be a jupyter notebook if you prefer to intermingle code and documentation. The report is there to document your decisions and thoughts along the pipeline. I am especially interested why you chose certain steps / parameters / analyses / visualizations. Make grading easy for me and show that you understood what you are doing and what your results are.
+You can share a git of your project and a report, or the code and the report via Ilias. The git can be on github or on the university gitlab. The report can be a jupyter notebook if you prefer to intermingle code and documentation. 
+
+A possible structure for your report might include: an introduction; an overview of the original paper and analysis; details of your replication; and a discussion of your results. The Workbench slides uploaded on Ilias discuss this structure more in depth.
+
+The report is there to document your decisions and thoughts along the pipeline. I am especially interested why you chose certain steps / parameters / analyses / visualizations. Make grading easy for me and show that you understood what you are doing and what your results are.
 
 You make my life easier if you name the git / zip file with your last name, e.g. `Muller_SS2021_EEGSemesterProject.zip`, and the folder containing in the zip as well.
 

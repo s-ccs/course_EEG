@@ -7,7 +7,7 @@ editor:
 ::: callout-note
 The purpose of the milestones is to help you monitoring your progress throughout the semester.
 
-For each milestone, each group is supposed to prepare **1 slide** (singular!) for each of the milestones and **upload them on Ilias until the deadline (10:00 Monday before the respective session).** See the milestone page on Ilias for a template slide.
+For each milestone, each group is supposed to prepare **1 slide** (singular!) and **upload them on Ilias until the deadline (10:00 Monday before the respective session).** See the milestone page on Ilias for a template slide.
 
 Attending the Wednesday meetings for milestones is mandatory. During the meeting, group members will present the group's progress, and we can discuss open questions.
 :::
@@ -97,7 +97,9 @@ Sanity checks could be (depending on project, come up with your own!)
 **Goals to be reached:**
 
 - You should by now have replicated (or not!) the results of the authors
-- You now think of an additional analysis (e.g. ERP, decoding, linear model, time-frequency, source-space) to run on this dataset.
+- You now think of an additional analysis (e.g. ERP, decoding, linear model, time-frequency, source-space) to run on this dataset. 
+
+The analysis you propose here along with the feedback you receive will guide your further work on the project (beyond answering your main research question) between milestone 5 and the time of handing in your project. 
 
 **Slides:** Prepare 2 slides listing:
 

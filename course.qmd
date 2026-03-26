@@ -10,7 +10,7 @@ I will support, but I will not enforce.
 The formal requirements to pass the course, is to get a grade >=4.0 in the semester project and to present at each milestone (ungraded). There is no requirement to join the other seminar sessions, to do the homeworks or watch the lectures. All of these things will be extremely helpful though, and I recommend to watch them early in the semester (you have to watch them anyway!)
 
 ## Exercises
-The homeworks are voluntarily, but **HIGHLY** recommended. The semester project is based on the exercises. If you went through them and understood the content, the semester project will be easier to tackle.
+The homeworks are voluntary, but **HIGHLY** recommended. The semester project is based on the exercises. If you went through them and understood the content, the semester project will be easier to tackle.
 
 A note to solutions: I provide solutions so that you can check yourself in case you get stuck. This is dangerous from a learning perspective because easy access to solutions also means you might not challenge yourself enough. I highly recommend trying out various ways on a problem first, and only to go for the solution if you do not succeed after 10-20min.
 

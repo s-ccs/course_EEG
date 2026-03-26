@@ -25,5 +25,5 @@ This is a really nice website with beautiful images.
 [https://www.learningeeg.com/](https://www.learningeeg.com/)
 
 ### Steve Luck's ERPLab tutorial
-This website / book is very applied, and unfortunately uses ERPLab and Matlab throughout. Nevertheless, it is a very nice ressources accompanying the course.
+This website / book is very applied, and unfortunately uses ERPLab and Matlab throughout. Nevertheless, it is a very nice resource accompanying the course.
 [Applied Event-related Potential Data Analysis](https://socialsci.libretexts.org/Bookshelves/Psychology/Biological_Psychology/Applied_Event-Related_Potential_Data_Analysis_(Luck))
