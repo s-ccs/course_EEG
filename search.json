@@ -48,7 +48,7 @@
     "href": "software.html#iclabel",
     "title": "🧠 EEG-2025",
     "section": "IClabel",
-    "text": "IClabel\nA cool tool to automatically classify artefactual independent components is ICLabel. You can use it here: https://github.com/mne-tools/mne-icalabel.\n\n\n\n\n\n\nWarning\n\n\n\nThe combination iclabel + mne_bids_pipeline is relatively fresh. Discussion here: https://github.com/mne-tools/mne-bids-pipeline/pull/1018\nThis should install the correct version:\npip3 install git+https://github.com/jschepers/mne-bids-pipeline.git@merge_ic_label",
+    "text": "IClabel\nA tool to automatically classify artefactual independent components is ICLabel. You can use it here: https://github.com/mne-tools/mne-icalabel or via mne-bids-pipeline",
     "crumbs": [
       "Resources",
       "💻 Software"
