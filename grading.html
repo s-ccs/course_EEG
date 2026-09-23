@@ -214,13 +214,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#grading" id="toc-grading" class="nav-link active" data-scroll-target="#grading">Grading</a>
-  <ul class="collapse">
-  <li><a href="#code---35-graded-before-the-poster-session" id="toc-code---35-graded-before-the-poster-session" class="nav-link" data-scroll-target="#code---35-graded-before-the-poster-session">Code - 35% (graded before the poster session)</a></li>
-  <li><a href="#poster---15" id="toc-poster---15" class="nav-link" data-scroll-target="#poster---15">Poster - 15%</a></li>
-  <li><a href="#walkthrough---20-4-min-sharp" id="toc-walkthrough---20-4-min-sharp" class="nav-link" data-scroll-target="#walkthrough---20-4-min-sharp">Walkthrough - 20% (4 min sharp)</a></li>
-  <li><a href="#qa---30-10-min" id="toc-qa---30-10-min" class="nav-link" data-scroll-target="#qa---30-10-min">Q&amp;A - 30% (~10 min)</a></li>
-  </ul></li>
+  <li><a href="#grading" id="toc-grading" class="nav-link active" data-scroll-target="#grading">Grading</a></li>
   </ul>
 </nav>
     </div>
@@ -232,29 +226,21 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="grading" class="level2">
 <h2 class="anchored" data-anchor-id="grading">Grading</h2>
-<p>We will grade your <strong>code before the poster session</strong>, and a <strong>poster presentation</strong>, consisting of a <strong>poster walkthrough</strong> (4min) and ~10 minutes of <strong>questions / answers</strong>.</p>
-<section id="code---35-graded-before-the-poster-session" class="level3">
-<h3 class="anchored" data-anchor-id="code---35-graded-before-the-poster-session">Code - 35% (graded before the poster session)</h3>
+<p>I will grade the report and code according to the following criteria:</p>
 <ul>
-<li><p><strong>10% Code readability &amp; code documentation.</strong> Same as before: direct documentation (code comments), docstrings, style and modularity. One difference to the report-based version: since there is no methods section anymore, the <em>why</em> behind your choices (reference, filter settings, data removal criteria, algorithmic choices) should appear in short comments where the choice is made. I do not want essays in the code — one or two sharp sentences per decision (“average reference, because …”)</p></li>
-<li><p><strong>10% Reproducibility &amp; modularity.</strong> Control and document the software versions, make sure your analysis scripts can be reproduced on another computer easily. If you are using mne-BIDS-pipeline you already have a good start</p></li>
-<li><p><strong>15% Sanity checks &amp; sanity visualizations.</strong> Small asserts &amp; plots here and there, maybe even a unittest or two- small things that make sure your code is doing what it is supposed to be doing.</p></li>
+<li>20% Code readability &amp; code documentation</li>
+<li>20% Reproducibility &amp; modularity</li>
+<li>20% Sanity Checks &amp; sanity visualizations &amp; their discussion</li>
+<li>20% Result visualization &amp; Results documentation &amp; interpretation</li>
+<li>20% Scope of Project</li>
 </ul>
-</section>
-<section id="poster---15" class="level3">
-<h3 class="anchored" data-anchor-id="poster---15">Poster - 15%</h3>
-<p>Poster should consist of: - pipeline overview with own choices - Results (including results of original-authors to compare with). - Results of additional analyses</p>
-</section>
-<section id="walkthrough---20-4-min-sharp" class="level3">
-<h3 class="anchored" data-anchor-id="walkthrough---20-4-min-sharp">Walkthrough - 20% (4 min sharp)</h3>
-<p>You walk us through your poster, present your pipelines, your motivation for change, your results (whether you think you replicated or not) and your additional analysis.</p>
-</section>
-<section id="qa---30-10-min" class="level3">
-<h3 class="anchored" data-anchor-id="qa---30-10-min">Q&amp;A - 30% (~10 min)</h3>
-<p>We will mainly ask for motivation of selected parameters: why this reference, why these filters, why did you remove these epochs, why this algorithm etc. Sometimes there is no correct answer, so I want to hear what your thoughts were choosing either or. “The pipeline did it” is not a good answer, but “we changed X and it did Y” would be. We will not quiz you on specific knowledge of EEG (we won’t ask e.g.&nbsp;“how does ICA relate to PCA”)</p>
+<p>Generally, you see that <strong>documentation and explanations</strong> are important. I do not (only) want to see that you analyzed the dataset, but I want to see what your motivation for choosing parameters is (parameters like reference, filter settings, data removal criteria, algorithmic choices etc.).</p>
+<p>Regarding <strong>readability</strong>, I think direct-documentation (code-comments), style and modularity are key.</p>
+<p>Regarding <strong>reproducibility</strong>, it is important that you control and document the software versions, that your analysis scripts can be easily reproduced on another computer. If you are using mne-BIDS-pipeline you should already have a good start.</p>
+<p><strong>Sanity checks</strong> are small asserts &amp; plots here and there, maybe even a unittest or two - small things that make sure your code is doing what it is supposed to be doing.</p>
+<p>Sentences starting with (“This seems correct, because xy”, “this is strange because…”, etc.) are expected. Such sentences give me an idea how much you understood the material.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
