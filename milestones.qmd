@@ -60,9 +60,15 @@ It is totally fine to adapt your processing pipeline as you go & experience prob
 :::
 
 ::: callout-important
-Lectures needed to be watched for this milestone (for everyone): - 03 Preprocessing 1: Filter in time and space - 04 Preprocessing 2: Data Cleaning - 05 Preprocessing 3: Blind source separation
+Lectures needed to be watched for this milestone (for everyone): 
+-   03 Preprocessing 1: Filter in time and space 
+-   04 Preprocessing 2: Data Cleaning 
+-   05 Preprocessing 3: Blind source separation
 
-Lectures recommended depending on the analysis used by your paper: - ERP -\> 02 An overview of Event Related Potentials - Time frequency analysis -\> 09 Analysis Time-Frequency - Decoding -\> 10 Analysis 3: Decoding
+Lectures recommended depending on the analysis used by your paper: 
+-   ERP -\> 02 An overview of Event Related Potentials 
+-   Time frequency analysis -\> 09 Analysis Time-Frequency 
+-   Decoding -\> 10 Analysis 3: Decoding
 :::
 ::::::
 
@@ -80,7 +86,10 @@ Lectures recommended depending on the analysis used by your paper: - ERP -\> 02 
 -   First results of one subject (e.g. an ERP, TRF or similar)
 
 ::: callout-important
-Lectures needed depending on the analysis used by your paper: - ERP -\> 02 An overview of Event Related Potentials - Time frequency analysis -\> 09 Analysis Time-Frequency - Decoding -\> 10 Analysis 3: Decoding
+Lectures needed depending on the analysis used by your paper: 
+-   ERP -\> 02 An overview of Event Related Potentials 
+-   Time frequency analysis -\> 09 Analysis Time-Frequency 
+-   Decoding -\> 10 Analysis 3: Decoding
 :::
 ::::
 
@@ -115,4 +124,8 @@ The analysis you propose here along with the feedback you receive will guide you
 
 -   (Slide 1) the current state of replication vs. not
 -   (Slide 2) your ideas on what to look at next
+
+::: callout-important
+If you haven't, watch all the other videos on analysis methods for inspirations!
+:::
 :::
