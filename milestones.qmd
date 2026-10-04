@@ -7,7 +7,7 @@ editor:
 ::: callout-note
 The purpose of the milestones is to help you monitoring your progress throughout the semester.
 
-For each milestone, each group is supposed to prepare **1 slide** (singular!) and **upload them on Ilias until the deadline (10:00 Monday before the respective session).** See the milestone page on Ilias for a template slide.
+For each milestone, each group is supposed to prepare **1-2 slides** (no more than specified, please!) and **upload them on Ilias until the deadline (10:00 Monday before the respective session).** See the milestone page on Ilias for a template slide.
 
 Attending the Wednesday meetings for milestones is mandatory. During the meeting, group members will present the group's progress, and we can discuss open questions.
 :::
@@ -16,8 +16,8 @@ Attending the Wednesday meetings for milestones is mandatory. During the meeting
 Check out the [schedule](schedule.qmd) for the actual dates.
 :::
 
-::: {.callout-caution collapse="true" icon="false"}
-### Milestone 1: Paper+Dataset selected {#sec-ms1}
+:::: {.callout-caution collapse="true" icon="false"}
+### Milestone 1: Paper+Dataset selected 📄 {#sec-ms1}
 
 **Goals to be reached:**
 
@@ -26,30 +26,30 @@ Check out the [schedule](schedule.qmd) for the actual dates.
 
 **Slides:** Prepare 1 slide showing:
 
-- Teamname + Members
-- The general idea of the experiment
-- The main research question
-- The main analysis you will perform (ERP, Time-Frequency, Source-space, others)
+-   Teamname + Members
+-   The general idea of the experiment
+-   The main research question
+-   The main analysis you will perform (ERP, Time-Frequency, Source-space, others)
 
 ::: callout-tip
 Research questions can often be answered by a "yes" or "no".
 :::
-:::
+::::
 
-::: {.callout-caution collapse="true" icon="false"}
-### Milestone 2: Processing Pipeline {#sec-ms2}
+:::::: {.callout-caution collapse="true" icon="false"}
+### Milestone 2: Processing Pipeline ⚙️ {#sec-ms2}
 
 **Goals to be reached:**
 
-- Map out the required analysis pipeline of the authors
-- Compare this to the analysis pipeline you want to do (it should not be identical!)
-- Downloaded + Loaded the data. Show a first impression of the continuous data of one subject.
+-   Map out the required analysis pipeline of the authors
+-   Compare this to the analysis pipeline you want to do (it should not be identical!)
+-   Downloaded + Loaded the data. Show a first impression of the continuous data of one subject.
 
 **Slides:** Prepare 1 slide showing:
 
-- The central research question (one sentence, very brief)
-- A table contrasting the authors and your pipeline
-- A plot of the continuous EEG data with events marked
+-   The central research question (one sentence, very brief)
+-   A table contrasting the authors and your pipeline
+-   A plot of the continuous EEG data with events marked
 
 ::: callout-warning
 Not all authors do a good job to clearly communicate how their pipeline looked like. Add notes and ask, when you are unsure!
@@ -58,52 +58,61 @@ Not all authors do a good job to clearly communicate how their pipeline looked l
 ::: callout-note
 It is totally fine to adapt your processing pipeline as you go & experience problems / successes and get feedback.
 :::
-:::
 
-::: {.callout-caution collapse="true" icon="false"}
-### Milestone 3: First subject analyzed {#sec-ms3}
+::: callout-important
+Lectures needed to be watched for this milestone (for everyone): - 03 Preprocessing 1: Filter in time and space - 04 Preprocessing 2: Data Cleaning - 05 Preprocessing 3: Blind source separation
+
+Lectures recommended depending on the analysis used by your paper: - ERP -\> 02 An overview of Event Related Potentials - Time frequency analysis -\> 09 Analysis Time-Frequency - Decoding -\> 10 Analysis 3: Decoding
+:::
+::::::
+
+:::: {.callout-caution collapse="true" icon="false"}
+### Milestone 3: First subject analyzed 🧍 {#sec-ms3}
 
 **Goals to be reached:**
 
-- Implemented a preprocessing pipeline
-- One single subject is analyzed
+-   Implemented a preprocessing pipeline
+-   One single subject is analyzed
 
 **Slides:** Prepare 1 slide showing:
 
-- The table with the authors and your improved pipeline - highlight changes.
-- First results of one subject (e.g. an ERP, TRF or similar)
+-   The table with the authors and your improved pipeline - highlight changes.
+-   First results of one subject (e.g. an ERP, TRF or similar)
+
+::: callout-important
+Lectures needed depending on the analysis used by your paper: - ERP -\> 02 An overview of Event Related Potentials - Time frequency analysis -\> 09 Analysis Time-Frequency - Decoding -\> 10 Analysis 3: Decoding
 :::
+::::
 
 ::: {.callout-caution collapse="true" icon="false"}
-### Milestone 4: All subjects {#sec-ms4}
+### Milestone 4: All subjects 🧑‍🤝‍🧑 {#sec-ms4}
 
 **Goals to be reached:**
 
-- Your pipeline worked for all subjects
-- Further outliers / problems identified
+-   Your pipeline worked for all subjects
+-   Further outliers / problems identified
 
 **Slides:** Provide 1-2 slides with results of your sanity checks.
 
 Sanity checks could be (depending on project, come up with your own!)
 
-- ICA topographies
-- ERPs including baseline
-- Comparisons to author results
+-   ICA topographies
+-   ERPs including baseline
+-   Comparisons to author results
 :::
 
 ::: {.callout-caution collapse="true" icon="false"}
-### Milestone 5: Outlook {#sec-ms5}
+### Milestone 5: Outlook 🔍 {#sec-ms5}
 
 **Goals to be reached:**
 
-- You should by now have replicated (or not!) the results of the authors
-- You now think of an additional analysis (e.g. ERP, decoding, linear model, time-frequency, source-space) to run on this dataset. 
+-   You should by now have replicated (or not!) the results of the authors
+-   You now think of an additional analysis (e.g. ERP, decoding, linear model, time-frequency, source-space) to run on this dataset.
 
-The analysis you propose here along with the feedback you receive will guide your further work on the project (beyond answering your main research question) between milestone 5 and the time of handing in your project. 
+The analysis you propose here along with the feedback you receive will guide your further work on the project (beyond answering your main research question) between milestone 5 and the time of handing in your project.
 
 **Slides:** Prepare 2 slides listing:
 
-- (Slide 1) the current state of replication vs. not
-- (Slide 2) your ideas on what to look at next
-
+-   (Slide 1) the current state of replication vs. not
+-   (Slide 2) your ideas on what to look at next
 :::
