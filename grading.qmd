@@ -1,20 +1,29 @@
 ## Grading
 
-I will grade the report and code according to the following criteria:
+We will grade your **code before the poster session**, and a **poster presentation**, consisting of a **poster walkthrough** (4min) and ~10 minutes of **questions / answers**.
 
-- 20%  Code readability & code documentation
-- 20%  Reproducibility & modularity
-- 20%  Sanity Checks & sanity visualizations & their discussion
-- 20%  Result visualization & Results documentation & interpretation
-- 20%  Scope of Project
+### Code - 35% (graded before the poster session)
 
-Generally, you see that **documentation and explanations** are important. I do not (only) want to see that you analyzed the dataset, but I want to see what your motivation for choosing parameters is (parameters like reference, filter settings, data removal criteria, algorithmic choices etc.).
+- **10% Code readability & code documentation.** Same as before: direct documentation (code comments), docstrings, style and modularity. One difference to the report-based version: since there is no methods section anymore, the *why* behind your choices (reference, filter settings, data removal criteria, algorithmic choices) should appear in short comments where the choice is made. I do not want essays in the code — one or two sharp sentences per decision ("average reference, because ...") 
 
-Regarding **readability**, I think direct-documentation (code-comments), style and modularity are key.
+- **10% Reproducibility & modularity.** Control and document the software versions, make sure your analysis scripts can be reproduced on another computer easily. If you are using mne-BIDS-pipeline you already have a good start
 
-Regarding **reproducibility**, it is important that you control and document the software versions, that your analysis scripts can be easily reproduced on another computer. If you are using mne-BIDS-pipeline you should already have a good start.
+- **15% Sanity checks & sanity visualizations.** Small asserts & plots here and there, maybe even a unittest or two- small things that make sure your code is doing what it is supposed to be doing.
+
+### Poster - 15%
+
+Poster should consist of:
+- pipeline overview with own choices 
+- Results (including results of original-authors to compare with). 
+- Results of additional analyses
+
+### Walkthrough - 20% (4 min sharp)
+
+You walk us through your poster, present your pipelines, your motivation for change, your results (whether you think you replicated or not) and your additional analysis.
+
+### Q&A - 30% (~10 min)
+
+We will mainly ask for motivation of selected parameters: why this reference, why these filters, why did you remove these epochs, why this algorithm etc. Sometimes there is no correct answer, so I want to hear what your thoughts were choosing either or. "The pipeline did it" is not a good answer, but "we changed X and it did Y" would be. We will not quiz you on specific knowledge of EEG (we won't ask e.g. "how does ICA relate to PCA")
 
 
-**Sanity checks** are small asserts & plots here and there, maybe even a unittest or two - small things that make sure your code is doing what it is supposed to be doing.
 
-Sentences starting with ("This seems correct, because xy", "this is strange because...", etc.) are expected. Such sentences give me an idea how much you understood the material.

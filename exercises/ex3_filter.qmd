@@ -64,7 +64,7 @@ Repeat the steps from above, but this time, remove the low frequency components
 ## What happens to the frequency and time response if we add "artefacts"?
 Let's see how the FFT reacts to steps and spikes. A step-function could look like this:
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Dirac_distribution_CDF.svg/325px-Dirac_distribution_CDF.svg.png)
+![](https://upload.wikimedia.org/wikipedia/commons/d/d9/Dirac_distribution_CDF.svg)
 
 :::: callout-tip
 ## Task
