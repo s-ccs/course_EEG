@@ -62,14 +62,16 @@ It is totally fine to adapt your processing pipeline as you go & experience prob
 ::: callout-important
 Lectures needed to be watched for this milestone (for everyone): 
 
+-   02 An overview of Event Related Potentials (even if you're not doing ERP for your final analyis, this is important for understanding and preprocessing) 
 -   03 Preprocessing 1: Filter in time and space 
 -   04 Preprocessing 2: Data Cleaning 
 -   05 Preprocessing 3: Blind source separation
 
+
 Lectures recommended depending on the analysis used by your paper: 
 
 -   ERP -\> 02 An overview of Event Related Potentials 
--   Time frequency analysis -\> 09 Analysis Time-Frequency 
+-   Time frequency analysis -\> 09 Analysis Time-Frequency
 -   Decoding -\> 10 Analysis 3: Decoding
 :::
 ::::::
