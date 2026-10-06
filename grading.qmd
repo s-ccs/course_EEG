@@ -4,11 +4,11 @@ We will grade your **code before the poster session**, and a **poster presentati
 
 ### Code - 35% (graded before the poster session)
 
-- **10% Code readability & code documentation.** Same as before: direct documentation (code comments), docstrings, style and modularity. One difference to the report-based version: since there is no methods section anymore, the *why* behind your choices (reference, filter settings, data removal criteria, algorithmic choices) should appear in short comments where the choice is made. I do not want essays in the code — one or two sharp sentences per decision ("average reference, because ...") 
+- **10% Code readability & code documentation.** Clear and informative documentation (code comments), docstrings, style and modularity. Please include short reasoning comments on your processing choices (reference, filter settings, data removal criteria, algorithmic choices). I do not want essays in the code — one or two sharp sentences per decision ("# Decision/Rationale: average reference, because ...").
 
-- **10% Reproducibility & modularity.** Control and document the software versions, make sure your analysis scripts can be reproduced on another computer easily. If you are using mne-BIDS-pipeline you already have a good start
+- **10% Reproducibility & modularity.** Control and document the software versions, make sure your analysis scripts can be reproduced on another computer easily. Tipp: If you are using mne-BIDS-pipeline you already have a good start.
 
-- **15% Sanity checks & sanity visualizations.** Small asserts & plots here and there, maybe even a unittest or two- small things that make sure your code is doing what it is supposed to be doing.
+- **15% Sanity checks & sanity visualizations.** The pipeline includes small checks (e.g., asserts, quick plots, or simple tests) of intermediate and final results to show that the code works as intended.
 
 ### Poster - 15%
 
@@ -19,7 +19,7 @@ Poster should consist of:
 
 ### Walkthrough - 20% (4 min sharp)
 
-You walk us through your poster, present your pipelines, your motivation for change, your results (whether you think you replicated or not) and your additional analysis.
+You walk us through your poster, present your pipelines, your reasons for deviating from the original pipeline, your results (whether you think you replicated or not) and your additional analysis.
 
 ### Q&A - 30% (~10 min)
 
