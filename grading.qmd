@@ -14,7 +14,9 @@ We will grade your **code before the poster session**, and a **poster presentati
 
 Poster should consist of:
 - pipeline overview with own choices 
+
 - Results (including results of original-authors to compare with). 
+
 - Results of additional analyses
 
 ### Walkthrough - 20% (4 min sharp)
