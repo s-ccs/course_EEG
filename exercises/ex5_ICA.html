@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e1a39ec4445e93a23d175f5e93049130.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a78c12ba66f6a9ea594d4c80f379957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -270,13 +270,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Signal processing and analysis of human brain potentials (EEG) [Exercise 5]</h1>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>We will write simple ICA algorithm to try to return the original unmixed signals based on a simulation example.</p>
+<p>We will write a simple ICA algorithm to try to return the original unmixed signals based on a simulation example.</p>
 <p><strong>Task:</strong> load the simulation dataset by <code>x = ccs_eeg_utils.simulate_ICA(dims=2)</code> and plot it.</p>
 <p>Remember that for ICA we have to undo a scaling and a rotation. The scaling we can do by whitening our signal <code>x</code>. The sphering (=whitening) matrix is the inverse of the matrix-squareroot of the covariance matrix of x.</p>
 <p>In order to whiten (<code>x_white</code>), we have to remove the mean of <code>x</code> and then calculate the matrix product with the sphering matrix <code>sph*x</code>.</p>
 <p><strong>Task:</strong> Whiten the data!</p>
-<p>Now we are ready to try a extermely simple, naive, restricted and inefficient ICA algorithm:</p>
-<p>We will rotate the signal using a 2D rotation matrix and for each rotatio calculate the sum of the absolute valued kurtosis (use e.g.&nbsp;<code>scp.stats.kurtosis</code>). Later we will try to find the maximum value, which will be the rotation for the most non-normal signal - hopefully the unmixed one</p>
+<p>Now we are ready to try an extremely simple, naive, restricted and inefficient ICA algorithm:</p>
+<p>We will rotate the signal using a 2D rotation matrix and for each rotation calculate the sum of the absolute valued kurtosis (use e.g.&nbsp;<code>scp.stats.kurtosis</code>). Later we will try to find the maximum value, which will be the rotation for the most non-normal signal - hopefully the unmixed one</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>turn <span class="op">=</span><span class="kw">lambda</span> k: np.reshape(np.array([np.cos(k), np.sin(k), <span class="op">-</span>np.sin(k), np.cos(k)]),(<span class="dv">2</span>,<span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Task:</strong> Implement the following pseudocode</p>
 <pre><code>for t in 0:pi
@@ -327,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>raw.plot()</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>reconst_raw.plot()  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Or use one of MNEs functionalities: `<code>ica.plot_overlay(raw,exclude=[1,8,9])</code></p>
+<p>Or use one of MNE’s functionalities: `<code>ica.plot_overlay(raw,exclude=[1,8,9])</code></p>
 
 
 </section>

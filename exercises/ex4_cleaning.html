@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e1a39ec4445e93a23d175f5e93049130.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a78c12ba66f6a9ea594d4c80f379957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -305,7 +305,7 @@ Tip
 <p>If you are interested in the mathematical details of spline interpolation, checkout <a href="https://mne.tools/dev/overview/implementation.html#id26">this link</a></p>
 </div>
 </div>
-<p><strong>Task:</strong> Save the annotations to a file. Best practice is to use a csv file of sorts e.g.&nbsp;using <code>raw.annotations.save(filename)</code>. Try to subsetting for <code>BAD_</code> first. <strong>Bonus:</strong> Save it in a BIDS derivate folder according to the BIDS guidelines.</p>
+<p><strong>Task:</strong> Save the annotations to a file. Best practice is to use a csv file of sorts e.g.&nbsp;using <code>raw.annotations.save(filename)</code>. Try subsetting for <code>BAD_</code> first. <strong>Bonus:</strong> Save it in a BIDS derivate folder according to the BIDS guidelines.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -327,7 +327,7 @@ Tip
 </section>
 <section id="automatic-rejection" class="level2">
 <h2 class="anchored" data-anchor-id="automatic-rejection">Automatic rejection</h2>
-<p>In the epoching step, we can also specify rejection criterion for a peak-to-peak rejection method</p>
+<p>In the epoching step, we can also specify rejection criteria for a peak-to-peak rejection method</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>reject_criteria <span class="op">=</span> <span class="bu">dict</span>(eeg<span class="op">=</span><span class="fl">100e-6</span>,       <span class="co"># 100 µV</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                       eog<span class="op">=</span><span class="fl">200e-6</span>)       <span class="co"># 200 µV</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> mne.Epochs(raw, events, reject<span class="op">=</span>reject_criteria,reject_by_annotation<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

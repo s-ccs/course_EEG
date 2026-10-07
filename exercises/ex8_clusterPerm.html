@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e1a39ec4445e93a23d175f5e93049130.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a78c12ba66f6a9ea594d4c80f379957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -304,12 +304,12 @@ window.Quarto = {
 <h1>Signal processing and analysis of human brain potentials (EEG) [Exercise 8]</h1>
 <section id="multiple-comparison-corrections" class="level2">
 <h2 class="anchored" data-anchor-id="multiple-comparison-corrections">Multiple Comparison Corrections</h2>
-<p>Use <code>data = ccs_eeg_utils.ex8_simulateData()</code> to simulate a simple difference between two condition. Instead of electrodes x time, we now have a simple rectangular matrix (or <span class="math inline">\(n_{subject}=15\)</span> of them), but the principles of multiple comparison corrections, can be applied to it as well.</p>
+<p>Use <code>data = ccs_eeg_utils.ex8_simulateData()</code> to simulate a simple difference between two conditions. Instead of electrodes x time, we now have a simple rectangular matrix (or <span class="math inline">\(n_{subject}=15\)</span> of them), but the principles of multiple comparison corrections, can be applied to it as well.</p>
 <p><strong>T:</strong> calculate the mean of the data over subjects and plot it as an image</p>
 <p><strong>T:</strong> Plot some subjects individually. Can you infer anything from the “single subject” displays?</p>
 <section id="t-values" class="level3">
 <h3 class="anchored" data-anchor-id="t-values">T-Values</h3>
-<p>The t-value is a weighting of your effect-strength (i.e.&nbsp;the difference between the means of two conditions) and the standard deviation (=spread) of this effect. <span class="math inline">\(t = \frac{mean(x)}{\frac{std(x)}{\sqrt(n-1)}}\)</span>. Use this formula to manually compare the t-values over the n=15 subjects. Compare it with <code>scipy.stats.ttest_1samp(data,popmean=0,axis=0)</code>.</p>
+<p>The t-value is a weighting of your effect-strength (i.e.&nbsp;the difference between the means of two conditions) and the standard deviation (=spread) of this effect. <span class="math inline">\(t = \frac{mean(x)}{\frac{std(x)}{\sqrt(n)}}\)</span>. Use this formula to manually compare the t-values over the n=15 subjects. Compare it with <code>scipy.stats.ttest_1samp(data,popmean=0,axis=0)</code>.</p>
 <p><strong>T:</strong> The scipy function also returns p-values. We want to plot the t-values next to the p-values. Because we will iteratively add different multiple comparison corrections, it is best to generate a function that allows to subsequently increase the amount of plots one can plot. I recommend to plot the log10(p-values)</p>
 <p><strong>Bonus:</strong> You can also use <code>m = np.ma.masked_where(pvalues&gt;0.05,tvalues)</code> to get a nice masked view of the data.</p>
 </section>
@@ -325,7 +325,7 @@ window.Quarto = {
 </section>
 <section id="bonus-f-max-permutation-test" class="level2">
 <h2 class="anchored" data-anchor-id="bonus-f-max-permutation-test">Bonus: F-Max Permutation test</h2>
-<p>In the lecture we discussed permutation tests and permutation cluster tests. What we didnt discuss is that you can easily adjust a permutation test to correct for multiple comparisons. We permute each 40x40 grid element concurrently, but instead of saving for each grid element the permuted statistics (e.g.&nbsp;the t-value), we save the maximum of all grid elements. This biases our permutation distribution towards large t-values, and concurrently makes it harder for the observed value to “stand out” (=&gt; be unlikely) from that distribution. You can use <code>mne.stats.permutation_t_test</code> to calculate this.</p>
+<p>In the lecture we discussed permutation tests and permutation cluster tests. What we didn’t discuss is that you can easily adjust a permutation test to correct for multiple comparisons. We permute each 40x40 grid element concurrently, but instead of saving for each grid element the permuted statistics (e.g.&nbsp;the t-value), we save the maximum of all grid elements. This biases our permutation distribution towards large t-values, and concurrently makes it harder for the observed value to “stand out” (=&gt; be unlikely) from that distribution. You can use <code>mne.stats.permutation_t_test</code> to calculate this.</p>
 </section>
 <section id="cluster-permutation-tests" class="level2">
 <h2 class="anchored" data-anchor-id="cluster-permutation-tests">Cluster Permutation Tests</h2>
@@ -333,12 +333,12 @@ window.Quarto = {
 <p>A cluster permutation test has the following structure</p>
 <ol type="1">
 <li>calculate <code>t_obs</code>, the t-values for your observed data (as before <code>mne.stats.ttest_1samp_no_p</code>)</li>
-<li>Threshold <code>t_obs</code> using <code>scipy.stats.t.ppf(1-(2*alpha), n-1)</code> as the threshold value. This converts a p-value back to the t-value. In principle you could also decide to use a t-theshold of e.g.&nbsp;2. The threshold is arbitrarily set, but important.</li>
+<li>Threshold <code>t_obs</code> using <code>scipy.stats.t.ppf(1-(2*alpha), n-1)</code> as the threshold value. This converts a p-value back to the t-value. In principle you could also decide to use a t-threshold of e.g.&nbsp;2. The threshold is arbitrarily set, but important.</li>
 <li>Because our cluster are in image-space, neighbours can easily be calculated using <code>skimage.measure.label</code></li>
 <li>Find the largest cluster and save it to <code>c_obs</code></li>
 <li>Permutation, do 1000 times:
 <ol type="1">
-<li>generate a <code>signFlip</code> vector with length <code>n</code> (by default n=15 subjects) consisting of random “1” and “-1”, one for each subject. Assuming the <span class="math inline">\(H_0\)</span> is true (which we do in this loop), the sign around “0” is random for each subject, so no harm should be done in flipping it (it will change the resulting statistic obviously, but doing it 1000 time shoudnt introuce / hide an effect)</li>
+<li>generate a <code>signFlip</code> vector with length <code>n</code> (by default n=15 subjects) consisting of random “1” and “-1”, one for each subject. Assuming the <span class="math inline">\(H_0\)</span> is true (which we do in this loop), the sign around “0” is random for each subject, so no harm should be done in flipping it (it will change the resulting statistic obviously, but doing it 1000 times shouldn’t introduce / hide an effect)</li>
 <li>Multiply the <code>signFlip</code> vector to the data</li>
 <li>repeat step 1-4 of the observed data for the permuted data to get <code>c_perm</code></li>
 <li>Save this largest clustersize</li>
@@ -346,14 +346,14 @@ window.Quarto = {
 <li>Append <code>c_obs</code> to your <code>c_perm</code> (the simplified reason is, that else you could get a p-value of 0 <a href="https://benediktehinger.de/blog/science/permutation-test-for-matlab/">more details if of interest</a>)</li>
 <li><code>1 - np.mean(c_obs&gt;=c_perms)</code> gives you your p-value</li>
 </ol>
-<p>Note: The test could be improved by e.g.&nbsp;summing the t-values of a cluster instead of merely counting the cluster-extend, but that leads us a bit astray from what we want to understand here.</p>
-<p><strong>T:</strong> Running a simular permutation test in MNE is much easier:</p>
+<p>Note: The test could be improved by e.g.&nbsp;summing the t-values of a cluster instead of merely counting the cluster extent, but that leads us a bit astray from what we want to understand here.</p>
+<p><strong>T:</strong> Running a similar permutation test in MNE is much easier:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>t_clust, clusters, p_values, H0 <span class="op">=</span> mne.stats.permutation_cluster_1samp_test(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    data, threshold<span class="op">=</span>threshold, adjacency<span class="op">=</span><span class="va">None</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    n_permutations<span class="op">=</span><span class="dv">1000</span>, out_type<span class="op">=</span><span class="st">'mask'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>The threshold is the same threshold you used before</li>
-<li>Typically we would have to supply the adjacency manually, because the adjancy depends on which channels are next to eachother. But in this case we can put <code>None</code> and mne will assume it is a grid-structure</li>
+<li>Typically we would have to supply the adjacency manually, because the adjacency depends on which channels are next to each other. But in this case we can put <code>None</code> and mne will assume it is a grid-structure</li>
 </ul>
 <p>In order to fill the clusters with their respective p-values:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p_clust <span class="op">=</span> np.ones(data.shape[<span class="dv">1</span>:])</span>
@@ -364,11 +364,11 @@ window.Quarto = {
 </section>
 <section id="tfce" class="level2">
 <h2 class="anchored" data-anchor-id="tfce">TFCE</h2>
-<p>last but not least, we will get rid of this initial cluster-formung threshold. TFCE integrates over all possible thresholds. We will not implement TFCE here, but simply call the mne-python function.</p>
+<p>last but not least, we will get rid of this initial cluster-forming threshold. TFCE integrates over all possible thresholds. We will not implement TFCE here, but simply call the mne-python function.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>t_tfce, _, p_tfce, H0 <span class="op">=</span> mne.stats.permutation_cluster_1samp_test(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    data, adjacency<span class="op">=</span><span class="va">None</span>,threshold <span class="op">=</span> <span class="bu">dict</span>(start<span class="op">=</span><span class="dv">0</span>, step<span class="op">=</span><span class="fl">0.2</span>),</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    n_permutations<span class="op">=</span><span class="dv">1000</span>, out_type<span class="op">=</span><span class="st">'mask'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>T:</strong> Add this to your comparison plot. We are done! I hope you learned the differences and underlying algorithms of several multiple-comparison corrects!</p>
+<p><strong>T:</strong> Add this to your comparison plot. We are done! I hope you learned the differences and underlying algorithms of several multiple-comparison corrections!</p>
 
 
 </section>

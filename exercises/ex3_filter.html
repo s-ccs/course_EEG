@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e1a39ec4445e93a23d175f5e93049130.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a78c12ba66f6a9ea594d4c80f379957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -353,7 +353,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you plot e.g.&nbsp;the magnitude you will notice it is mirrorsymmetric around the middle! This is because FFT is actually defined for complex signals. Because we only have real signals, practically half of the FFT is redundant. But this also means, all of our manual-filters in the next steps need to take the mirror-symmetry into account. For this reason, typically a <code>rfft</code> function exists, returning only the real part.</p>
+<p>If you plot e.g.&nbsp;the magnitude you will notice it is mirror-symmetric around the middle! This is because FFT is actually defined for complex signals. Because we only have real signals, practically half of the FFT is redundant. But this also means, all of our manual-filters in the next steps need to take the mirror-symmetry into account. For this reason, typically a <code>rfft</code> function exists, returning only the real part.</p>
 </div>
 </div>
 </section>
@@ -416,7 +416,7 @@ Note
 </section>
 <section id="impulse-response-function" class="level2">
 <h2 class="anchored" data-anchor-id="impulse-response-function">Impulse Response Function</h2>
-<p>To get a bit deeper understanding of what is going on, have a look at the fourier transform of a impulse signal (e.g.&nbsp;<code>1:400 =&gt; 0</code>. and <code>200 =&gt; 1</code>.).</p>
+<p>To get a bit deeper understanding of what is going on, have a look at the fourier transform of an impulse signal (e.g.&nbsp;<code>1:400 =&gt; 0</code>. and <code>200 =&gt; 1</code>.).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -436,7 +436,7 @@ Note
 </section>
 <section id="filtering-eeg-data" class="level2">
 <h2 class="anchored" data-anchor-id="filtering-eeg-data">Filtering EEG data</h2>
-<p>Usually we would not built our own filters - but understanding the properties is still very important! We will load our data from last time again:</p>
+<p>Usually we would not build our own filters - but understanding the properties is still very important! We will load our data from last time again:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne_bids <span class="im">import</span> (BIDSPath,read_raw_bids)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne_bids</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib</span>
@@ -481,7 +481,7 @@ Note
 <div class="callout-body-container callout-body">
 <ul>
 <li>Plot the fourier spectrum after filtering again.</li>
-<li>Plot the channel again, did the filter work as indented?</li>
+<li>Plot the channel again, did the filter work as intended?</li>
 </ul>
 </div>
 </div>

@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e1a39ec4445e93a23d175f5e93049130.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a78c12ba66f6a9ea594d4c80f379957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -286,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="big-picture">Big picture:</h3>
 <p>Subjects imagine opening left &amp; right hand or hand &amp; feet. We want to decode which they do, in case they are doing that for real, or when they are just imagining it (brain reading 🤯!)</p>
 <ul>
-<li><p>We will use Common Spatial Patterns to get a good feature space and LinearDiscriminatAnalysis as a simple decoder. Of course you can always change things up and see how it changes.</p></li>
+<li><p>We will use Common Spatial Patterns to get a good feature space and LinearDiscriminantAnalysis as a simple decoder. Of course you can always change things up and see how it changes.</p></li>
 <li><p>We will use cross-validation to preclude overfitting</p></li>
 <li><p>We will apply the weights over all timepoints to get a score across time</p></li>
 </ul>
@@ -302,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="csp-feature-selection" class="level3">
 <h3 class="anchored" data-anchor-id="csp-feature-selection">CSP Feature Selection</h3>
 <p>We can define a CommonSpatialPatterns object using <code>csp = mne.decoding.CSP(n_components=2)</code></p>
-<p>To fit the CSP we have to give it the data and the labels. For now we just want to look at the CSP, not run a classifier for it, so we dont worry about any overfit etc.</p>
+<p>To fit the CSP we have to give it the data and the labels. For now we just want to look at the CSP, not run a classifier for it, so we don’t worry about any overfit etc.</p>
 <p><strong>T:</strong> <code>csp.fit_transform(epochs_data, labels)</code> will fit it and <code>csp.plot_filters(epochs.info)</code> and <code>csp.plot_patterns(epochs.info)</code> will plot filter and activation.</p>
 <p><strong>Q:</strong> Let’s say you invite a subject again, but are allowed to only measure 5 channels not the 64. Which of the two plots would you choose to inform which channels to measure? In other words, does any of the plot tell you where the information to decode is strongest?</p>
 <p><strong>T:</strong> Finally, let’s weight/transform the data to the fitted CSP components using <code>csp_data = csp.transform(data)</code>. Note that because <code>csp(...,transform_into="average_power")</code> is set by default, we will get data without a time-dimension, thus already aggregated. Plot the datapoints against each other, how easy is it now to define a classifier?</p>
@@ -327,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To work against overfitting, we use crossvalidate and use some functions from sklearn for it. We will use a stratifiedShuffleSplit, which will split our data in training and test sets, but in a stratified way. Thus we dont have to worry about under/oversampling between our classes for now.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> sklearn.model_selection.StratifiedShuffleSplit(<span class="dv">10</span>, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cv_split <span class="op">=</span> cv.split(epochs_train.get_data(),labels)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Next we can walk though each test/train, fit CSP, fit LDA and evaluate. I will give you the skeleton and you only have to fill in the XXX to speed up programming :).</p>
+<p>Next we can walk through each test/train, fit CSP, fit LDA and evaluate. I will give you the skeleton and you only have to fill in the XXX to speed up programming :).</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>score_list <span class="op">=</span> []</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> train_idx, test_idx <span class="kw">in</span> cv_split:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    y_train, y_test <span class="op">=</span> labels[train_idx], labels[test_idx]</span>
@@ -342,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="decoding-via-pipeline" class="level3">
 <h3 class="anchored" data-anchor-id="decoding-via-pipeline">Decoding via Pipeline</h3>
-<p>Typically you would like to use a pipeline-system to easily exchange components. We are using the scikit pipeline We need several incredients:</p>
+<p>Typically you would like to use a pipeline-system to easily exchange components. We are using the scikit pipeline We need several ingredients:</p>
 <ol type="1">
 <li>Training-Data &amp; labels</li>
 <li>Pipeline with feature selection (CSP) &amp; Classifier (LDA)</li>
@@ -356,8 +356,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.discriminant_analysis <span class="im">import</span> LinearDiscriminantAnalysis</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mne.decoding</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>lda <span class="op">=</span> LinearDiscriminantAnalysis()</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>csp <span class="op">=</span> mne.decoding.CSP(n_components<span class="op">=</span><span class="dv">2</span>) <span class="co"># default is 4, typically youd like to do a nested cross-val hyperparam search. 2 is likely too low</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> <span class="kw">and</span> the pipeline simply:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>csp <span class="op">=</span> mne.decoding.CSP(n_components<span class="op">=</span><span class="dv">2</span>) <span class="co"># default is 4, typically you'd like to do a nested cross-val hyperparam search. 2 is likely too low</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># and the pipeline simply:</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> sklearn.pipeline.Pipeline([(<span class="st">'CSP'</span>, csp), (<span class="st">'LDA'</span>, lda)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="1">
 <li>The sklearn Cross-validation pipeline is run like this</li>
@@ -374,14 +374,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Thus in principle, you would like to explore some options with one set of subjects, then test the pipeline on another set of subjects. But this is a bit too involved for the homework.</p>
 <section id="remove-csp" class="level3">
 <h3 class="anchored" data-anchor-id="remove-csp">Remove CSP</h3>
-<p>Instead of applying a feature selection, maybe we can learn from the “raw” data? <strong>T:</strong> Replace the “csd” in the pipeline with <code>mne.decoding.Vectorizer()</code>, this will ensure the reshaping of the features we performed earlier.</p>
+<p>Instead of applying a feature selection, maybe we can learn from the “raw” data? <strong>T:</strong> Replace the “CSP” in the pipeline with <code>mne.decoding.Vectorizer()</code>, this will ensure the reshaping of the features we performed earlier.</p>
 <p><strong>Q:</strong> What is the accuracy now?</p>
 </section>
 <section id="classify-over-time" class="level3">
 <h3 class="anchored" data-anchor-id="classify-over-time">Classify over time</h3>
 <p>Next we will fit a classifier for each timepoint and test it on that timepoint (you have to use the simple pipeline, see below) For this the convenience function <code>timeDecode = mne.decoding.SlidingEstimator(pipe)</code> exists. This function performs the pipeline on the last dimension (which is currently time).</p>
 <p>Because we will get multiple scores per cross-val, we also have to switch our scorer to <code>mne.decoding.cross_val_multiscore(timeDecode,...)</code>.</p>
-<p><strong>T:</strong> Plot the performance against time **Bonus T:* You can also use <code>mne.decoding.GeneralizingEstimator(...)</code> to get the temporal decoding matrix (increased runtime warning)</p>
+<p><strong>T:</strong> Plot the performance against time <strong>Bonus T:</strong> You can also use <code>mne.decoding.GeneralizingEstimator(...)</code> to get the temporal decoding matrix (increased runtime warning)</p>
 <p>You might be surprised - or not - by the performance you observed. Applying this to a dataset with actual evoked responses, will likely be much more satisfactory.</p>
 <p>The reason seems clear, we would need CSP in between. But CSP needs multiple timepoints and doesn’t work with SlidingEstimator. We’d have to do it manually.</p>
 </section>

@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e1a39ec4445e93a23d175f5e93049130.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a78c12ba66f6a9ea594d4c80f379957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -292,15 +292,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We are looking only at epochs relative to the responses, which have been already extracted by the helper function.</p>
 <p>We want to get an overview of the power. So for starters we choose bad frequency resolution but good time resolution with a wavelet transform.</p>
 <p>We will evaluate the TF at <code>freqs = np.logspace(*np.log10([5, 80]), num=25)</code> with 1 cycle.</p>
-<p><strong>T:</strong>Run:</p>
-<pre><code>power_total = mne.time_frequency.tfr_morlet(epochs, freqs=freqs, n_cycles=n_cycles, return_itc=False,n_jobs=4,average=True) # ITC, inter-trial-coherence is quite similar to evoked power, it is a measure of phase consistency over trials but we havent discussed it in the lecture.</code></pre>
+<p><strong>T:</strong> Run:</p>
+<pre><code>power_total = mne.time_frequency.tfr_morlet(epochs, freqs=freqs, n_cycles=n_cycles, return_itc=False,n_jobs=4,average=True) # ITC, inter-trial-coherence is quite similar to evoked power, it is a measure of phase consistency over trials but we haven't discussed it in the lecture.</code></pre>
 <p>Next we will visualize all TFs at all electrodes and get an overview whats going on. If you use <code>%matplotlib qt</code> the plot will be interactive. Choose a baseline of -.5 to 0 using the command <code>power.plot_topo()</code></p>
 <p><strong>T:</strong> Plot the power at electrode Cz using power.plot(): 1. Without any baseline 2. With a baseline of your choice</p>
-<p><strong>T:</strong> Explain the general pattern you see. Can you spot differences betweem with and withot baseline?</p>
-<p><strong>T:</strong> Now lets improve upon our frequency resolution nz increasing the number of cycles to 3. Plot channel Cz with BSL correction (-0.5,0). Tipp: you can speed up the calculation by specifying <code>picks="Cz"</code></p>
+<p><strong>T:</strong> Explain the general pattern you see. Can you spot differences between with and without baseline?</p>
+<p><strong>T:</strong> Now lets improve upon our frequency resolution by increasing the number of cycles to 3. Plot channel Cz with BSL correction (-0.5,0). Tip: you can speed up the calculation by specifying <code>picks="Cz"</code></p>
 <p><strong>T:</strong> We also want to calculate the induced and evoked TF. For this we first calculate the induced spectrum, then subtract the total from the induced.</p>
 <ol type="1">
-<li><p><code>epochs.subtract_evoked()</code> is a function that removes the ERP from each trial. It is a mne-consistent function that practically does: <code>epochs_induced._data = epochs._data  - epochs.average().data</code>. Run the tfr analysis again on the induced dataset, remember that if you dont make a copy of your epochs (via <code>epochs.copy()</code>) the dataset will be overwritten in memory</p></li>
+<li><p><code>epochs.subtract_evoked()</code> is a function that removes the ERP from each trial. It is a mne-consistent function that practically does: <code>epochs_induced._data = epochs._data  - epochs.average().data</code>. Run the tfr analysis again on the induced dataset, remember that if you don’t make a copy of your epochs (via <code>epochs.copy()</code>) the dataset will be overwritten in memory</p></li>
 <li><p>In order to get epochs_evoked, we have to subtract total and induced. We cand do this via</p></li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>power_evoked <span class="op">=</span> mne.combine_evoked([power_total,power_induced],weights<span class="op">=</span>[<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

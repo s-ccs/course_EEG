@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e1a39ec4445e93a23d175f5e93049130.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a78c12ba66f6a9ea594d4c80f379957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -308,7 +308,7 @@ window.Quarto = {
 <p><em>T</em> Load the data into a pandas dataframe. A very useful concept here is the concept of a tidy dataframe. The idea is, that every observation is one row of a table, where columns are potential features / descriptors + the dependent variable (the average activity between 130 and 200ms at electrode PO8 here).</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> pd.read_csv(<span class="st">"ex6_N170.csv"</span>,delimiter<span class="op">=</span><span class="st">","</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>T:</strong> Use a plottinglibrary of your choice to visualise the simple scatter plot between some/all variables. I recommend packages <em>seaborn</em> e.g.&nbsp;pairplot) or <em>plotnine</em> for this. They make it easy to split up plots of continuous variables (e.g.&nbsp;baseline vs.&nbsp;PO8) by a categorical variable, e.g.&nbsp;<em>cond</em> (scrambled/intact).</p>
+<p><strong>T:</strong> Use a plotting library of your choice to visualise the simple scatter plot between some/all variables. I recommend packages <em>seaborn</em> (e.g.&nbsp;pairplot) or <em>plotnine</em> for this. They make it easy to split up plots of continuous variables (e.g.&nbsp;baseline vs.&nbsp;PO8) by a categorical variable, e.g.&nbsp;<em>cond</em> (scrambled/intact).</p>
 <p><strong>Q:</strong> Can you already guess what the relationships between the variables are, solely based on the plots?</p>
 <section id="do-it-yourself-linear-models" class="level3">
 <h3 class="anchored" data-anchor-id="do-it-yourself-linear-models">Do-It-Yourself Linear Models</h3>
@@ -321,7 +321,7 @@ window.Quarto = {
 <p>Because we will need it quite often.</p>
 <p><strong>Q:</strong> What does the resulting value <em>mean</em>? Note: The result is often called a “beta”</p>
 <p><em>Note: While the pseudoinverse is great because it is easy to understand what is going on, typically we would not directly use it but rather go over a Cholesky-Decomposition first. This will greatly increase numeric stability. But right now we do not care much about that</em></p>
-<p><strong>T:</strong> Now we add the condition <em>cond</em> to the designmarix (thus <code>PO8 ~ intercept + cond</code>) which differentiates between intact and scrambled images. Because this is a categorical variable we have to encode it first. For that, we need a “1” when images are intact and a “0” if they were scrambled. Fit the model</p>
+<p><strong>T:</strong> Now we add the condition <em>cond</em> to the designmatrix (thus <code>PO8 ~ intercept + cond</code>) which differentiates between intact and scrambled images. Because this is a categorical variable we have to encode it first. For that, we need a “1” when images are intact and a “0” if they were scrambled. Fit the model</p>
 <p><strong>Q:</strong> What do the outputs mean now?</p>
 <p><strong>T:</strong> Next add a predictor for stimulus (<code>PO8 ~ intercept + cond + stim</code>) and fit it.</p>
 <p><strong>Q:</strong> What changed to the previous modelfit - <em>Bonus</em>: An idea why the size of the change is the size it is? Hint: It has to do with correlations</p>
@@ -329,25 +329,25 @@ window.Quarto = {
 <p><strong>Q:</strong> What do the betas/results/parameters mean now? (You might want to do the plotting of the next step to help your interpretation)</p>
 <p>Now we have what we call a 2x2 design. Two categorical factors (often only “factor”) with two levels each + the interaction.</p>
 <p><strong>T:</strong> It is about time to plot our results! Put cond on the x, and use color for stimulus. We will reconstruct our original data first:</p>
-<p>You should reconstruct 4 values, one for <strong>intact faces</strong>, one for <strong>scrambled faces</strong>, one for <strong>intact cars</strong> and one for <strong>scrambled cars</strong>. It migt be helpful to explicitly write down the models (<span class="math inline">\(y  = 1*\beta_0 + ...\)</span> )</p>
+<p>You should reconstruct 4 values, one for <strong>intact faces</strong>, one for <strong>scrambled faces</strong>, one for <strong>intact cars</strong> and one for <strong>scrambled cars</strong>. It might be helpful to explicitly write down the models (<span class="math inline">\(y  = 1*\beta_0 + ...\)</span> )</p>
 </section>
 </section>
 <section id="changing-bases" class="level2">
 <h2 class="anchored" data-anchor-id="changing-bases">Changing Bases</h2>
-<p>We discussed in the lecture that it is possible to change the bases. We will go back to the simple example of of <code>Intercept + cond</code>. But in addition of <em>dummy coding</em> (intact == 1, scrambled == 0), we will fit a second model with <em>effect-coding</em> (intact == 0.5, scrambled = -0.5).</p>
+<p>We discussed in the lecture that it is possible to change the bases. We will go back to the simple example of <code>Intercept + cond</code>. But in addition of <em>dummy coding</em> (intact == 1, scrambled == 0), we will fit a second model with <em>effect-coding</em> (intact == 0.5, scrambled = -0.5).</p>
 <p><strong>Q:</strong> How do the betas compare of the two models? How does the interpretation change?</p>
 <p><strong>Hint</strong> If you need more you can read two of my tutorial-blogposts on this topic <a href="https://benediktehinger.de/blog/science/dummy-coding-and-effects-coding/">here</a> and <a href="https://benediktehinger.de/blog/science/interaction-and-effect-sum-coding/">here :)</a></p>
-<p><strong>T:</strong> Now we run the full 2x2 model once with dummy and once with effect-coding. The interaction of an effect-coded model is still just the designmatrix columns multiplied with eachother</p>
+<p><strong>T:</strong> Now we run the full 2x2 model once with dummy and once with effect-coding. The interaction of an effect-coded model is still just the designmatrix columns multiplied with each other</p>
 <p><strong>Q:</strong> Can you put the results together, why do they have the results they have?</p>
 <section id="continuous-regressors" class="level3">
 <h3 class="anchored" data-anchor-id="continuous-regressors">Continuous Regressors</h3>
 <p>Now it is time to involve our continuous regressor. In this case it is the baseline-value. We are following here the relatively new approach of <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/psyp.13451">Alday 2019</a> and instead of subtracting a baseline, we will regress it out. We did not talk about baseline correction in the lecture, this is something I will talk about at the end of the course.</p>
 <p>In theory baseline corrections are not needed, the baseline (i.e.&nbsp;what happens before stimulus onset, thus “negative” time in an ERP) should be flat / noise around 0, because stimulus order is random. But in practice, we only have limited number of trials and limited randomization. Thus it might be, that we have a bias with in one condition more residual drift / low-frequency activity than in the other. This will “move” the whole ERP curve up/down and bias results later in the epoch.</p>
-<p>Classically, baselines are simply subtracted. Thus every point of an ERP recieves the “same” baseline correction. This is equivalent to adding a known parameter to our model: <code>y ~ b0 * constant + b1 * cond + 1*BSL</code>. What we will do instead is the 2020-version, we regress the baseline. This allows us to remove less of the baseline activity (or more, but rarely happens).</p>
-<p><strong>T:</strong> Plot the PO8 actiity against the baseline (you might have done this plot at the beginning of the exercise). Split it up by cond &amp; stim</p>
+<p>Classically, baselines are simply subtracted. Thus every point of an ERP receives the “same” baseline correction. This is equivalent to adding a known parameter to our model: <code>y ~ b0 * constant + b1 * cond + 1*BSL</code>. What we will do instead is the 2020-version, we regress the baseline. This allows us to remove less of the baseline activity (or more, but rarely happens).</p>
+<p><strong>T:</strong> Plot the PO8 activity against the baseline (you might have done this plot at the beginning of the exercise). Split it up by cond &amp; stim</p>
 <p><strong>T:</strong> Add the baseline as a predictor to your 2x2 model.</p>
 <p><strong>Q:</strong> What is the resulting beta?</p>
-<p>Typically we do not only remove the overall baseline, but condition-indivudal baselines.</p>
+<p>Typically we do not only remove the overall baseline, but condition-individual baselines.</p>
 <p><strong>T:</strong> Thus we have to generate interactions with all predictors &amp; interaction of the interactions too</p>
 <p><strong>Q:</strong> What is your interpretation of the resulting betas? For which conditions do we really need a baseline correction and how strong should it be?</p>
 </section>

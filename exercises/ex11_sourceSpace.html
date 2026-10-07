@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e1a39ec4445e93a23d175f5e93049130.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a78c12ba66f6a9ea594d4c80f379957e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -295,25 +295,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="general-remarks" class="level1">
 <h1>General remarks</h1>
-<p>Source localization is hard. There are numerous moving parts, many parameters and decisions, and a complex chain of tools. Especially the part named “structural information” makes use of the Freesurfer tool, which is a tool that needs quite some time to understand the underlying functionalities, intrications and output. This box depicts how to get from an MRI to a 3D-surface/headmodel &amp; how to align this headmodel to the coordinate system of your electrode sensors.</p>
+<p>Source localization is hard. There are numerous moving parts, many parameters and decisions, and a complex chain of tools. Especially the part named “structural information” makes use of the Freesurfer tool, which is a tool that needs quite some time to understand the underlying functionalities, intricacies and output. This box depicts how to get from an MRI to a 3D-surface/headmodel &amp; how to align this headmodel to the coordinate system of your electrode sensors.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://mne.tools/stable/_images/flow_diagram.svg" class="img-fluid figure-img"></p>
 <figcaption>MNE Flow</figcaption>
 </figure>
 </div>
-<p>We will skip these steps completly and start with an already-segment “default” MRI (called ‘fsaverage’).</p>
+<p>We will skip these steps completely and start with an already-segment “default” MRI (called ‘fsaverage’).</p>
 <section id="important" class="level3">
 <h3 class="anchored" data-anchor-id="important"><strong>Important:</strong></h3>
-<p>Source-reconstructions with a default-MRI (opposite of a individual MRI) introduces even more noise (=uncertainty) than already existing in “optimal” source localization. Your source-localizations should therefore be interpreted even more carefully than with individual MRIs. Never let yourself be fooled by the apparent precision of source-localizations!!</p>
+<p>Source-reconstructions with a default-MRI (opposite of an individual MRI) introduces even more noise (=uncertainty) than already existing in “optimal” source localization. Your source-localizations should therefore be interpreted even more carefully than with individual MRIs. Never let yourself be fooled by the apparent precision of source-localizations!!</p>
 </section>
 </section>
 <section id="setup" class="level1">
 <h1>Setup</h1>
-<p>We first need to install the python packages “pysurfer” and “mayavi” - if mayavi doesnt work,you can also try pyvista &amp; pyvistaqt</p>
+<p>We first need to install the python packages “pysurfer” and “mayavi” - if mayavi doesn’t work, you can also try pyvista &amp; pyvistaqt</p>
 <section id="d-frustration-alert" class="level3">
 <h3 class="anchored" data-anchor-id="d-frustration-alert">!! 3D Frustration alert!!</h3>
-<p>3D Plots are annoying. They crash your system, they are slow, they are unstable. The frustration is normal and unfortunately still to be expected.</p>
+<p>3D Plots are annoying. They crash your system, they are slow, they are unstable. The frustration is normal and unfortunately still expected.</p>
 </section>
 <section id="actual-start-of-exercise" class="level3">
 <h3 class="anchored" data-anchor-id="actual-start-of-exercise">Actual start of exercise</h3>
@@ -334,16 +334,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>trans <span class="op">=</span> <span class="st">'fsaverage'</span>  <span class="co"># MNE has a built-in fsaverage transformation</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>src <span class="op">=</span> op.join(fs_dir, <span class="st">'bem'</span>, <span class="st">'fsaverage-ico-5-src.fif'</span>)</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>bem <span class="op">=</span> op.join(fs_dir, <span class="st">'bem'</span>, <span class="st">'fsaverage-5120-5120-5120-bem-sol.fif'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Next we need a dataset that we want to source localize. We will use the LIMO dataset, which has lot’s of trials, but unfortauntely neither individual headmodel, nor individual electrode-positions.</p>
+<p>Next we need a dataset that we want to source localize. We will use the LIMO dataset, which has lots of trials, but unfortunately neither individual headmodel, nor individual electrode-positions.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne.datasets.limo <span class="im">import</span> load_data</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> load_data(subject<span class="op">=</span><span class="dv">3</span>,path<span class="op">=</span><span class="st">'../local/limo'</span>) <span class="co">#</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>epochs.set_eeg_reference(projection<span class="op">=</span><span class="va">True</span>)  <span class="co"># needed for inverse modeling</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="alignment-of-brains-and-sensors" class="level3">
 <h3 class="anchored" data-anchor-id="alignment-of-brains-and-sensors">Alignment of brains and sensors</h3>
-<p>It is of outmost importance, to align sensors and brains. This can be a very tricky task if you have individual MRIs &amp; headmodels, because brains are mirror-symmetric and electrode locations as well. Thus R/L Flips are common.</p>
-<p>Typically we define 3 anatomical landmarks, the nasion (between your eyes) and the Auricular Points Left and Right, a point just infront of your ear-canals. These points can be defined in your electrode-locations (e.g.&nbsp;using a digitizer), and are visible in the MRI.</p>
-<p>Luckily, for us everything is alligned already and we can plot it using:</p>
+<p>It is of utmost importance, to align sensors and brains. This can be a very tricky task if you have individual MRIs &amp; headmodels, because brains are mirror-symmetric and electrode locations as well. Thus R/L Flips are common.</p>
+<p>Typically we define 3 anatomical landmarks, the nasion (between your eyes) and the Auricular Points Left and Right, a point just in front of your ear canals. These points can be defined in your electrode-locations (e.g.&nbsp;using a digitizer), and are visible in the MRI.</p>
+<p>Luckily, for us everything is aligned already and we can plot it using:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that the locations of EEG electrodes is correct with respect to MRI</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib qt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#%gui qt</span></span>
@@ -357,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="the-forward-model" class="level1">
 <h1>The forward model</h1>
-<p>The forward model translates source-activity to sensor-activity. We have to provide the sensor locations (<code>epochs.info</code>), the <strong>trans</strong>formations of sensorlocations to BEM model (<code>trans</code>) and the actual physical spheres (bem). The default conductivities for the BEM model are already saved in the pre-computed standard BEM model.</p>
+<p>The forward model translates source-activity to sensor-activity. We have to provide the sensor locations (<code>epochs.info</code>), the <strong>trans</strong>formations of sensor locations to BEM model (<code>trans</code>) and the actual physical spheres (bem). The default conductivities for the BEM model are already saved in the pre-computed standard BEM model.</p>
 <p>The standard-forward model can be calculated using <code>fwd = mne.make_forward_solution(epochs.info, trans=trans, src=src, bem=bem, eeg=True, mindist=5.0)</code></p>
 <p>The leadfield can be extracted by <code>fwd["sol"]["data"]</code>.</p>
 <p><strong>T:</strong> What is the shape of the leadfield and what do the dimension refer to?</p>
@@ -374,7 +374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># generate Brain Plot</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Brain(<span class="st">'fsaverage'</span>, <span class="st">"lh"</span>, <span class="st">"white"</span>, background<span class="op">=</span><span class="st">'white'</span>,subjects_dir<span class="op">=</span>subjects_dir)</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># get the surface model, get the left-hemisphere (`0`), geht the vertice-indices</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># get the surface model, get the left-hemisphere (`0`), get the vertex indices</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> fwd[<span class="st">"src"</span>][<span class="dv">0</span>][<span class="st">'vertno'</span>]</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>nvert <span class="op">=</span> <span class="bu">len</span>(v)</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
@@ -409,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>lim <span class="op">=</span> np.percentile(np.<span class="bu">abs</span>(s),[<span class="dv">30</span>,<span class="dv">80</span>,<span class="dv">98</span>])</span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>b.scale_data_colormap(fmin<span class="op">=</span>lim[<span class="dv">0</span>], fmid<span class="op">=</span>lim[<span class="dv">1</span>], fmax<span class="op">=</span>lim[<span class="dv">2</span>], transparent<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note the usage of np.abs around the source activity. It is generally not really possible to interpret positive / negative source activity. if you are on one side of a gyrus, the activity might be positive, on the other side it might be negative - simply because of dipole orientation. We therefore often just look at the absolute value</p>
-<p><strong>Bonus:</strong> If you wanted to plot all time-points, you can use <code>b.set_time(200)</code> to set time, or <code>from surfer import TimeViewer</code> and <code>viewer = TimeViewer(b)</code> to get a rudimentairy GUI</p>
+<p><strong>Bonus:</strong> If you wanted to plot all time-points, you can use <code>b.set_time(200)</code> to set time, or <code>from surfer import TimeViewer</code> and <code>viewer = TimeViewer(b)</code> to get a rudimentary GUI</p>
 </section>
 <section id="finishing-words-to-the-manual-implementation" class="level3">
 <h3 class="anchored" data-anchor-id="finishing-words-to-the-manual-implementation">Finishing words to the manual implementation</h3>
@@ -435,7 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We generate an inverse operator like this:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mne.minimum_norm <span class="im">import</span> make_inverse_operator, apply_inverse</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>inv_default <span class="op">=</span> make_inverse_operator(epochs.info, fwd, noise_cov, loose<span class="op">=</span><span class="fl">0.2</span>, depth<span class="op">=</span><span class="fl">0.8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>T:</strong> Generate three more operator, one with loose=1, allowing for all dipole orientations, one with loose=0, enforcing strict orthogonal orientation (don’t do that) and one with loose=0.2, but depth=0. - deactivating depth weighting.</p>
+<p><strong>T:</strong> Generate three more operators, one with loose=1, allowing for all dipole orientations, one with loose=0, enforcing strict orthogonal orientation (don’t do that) and one with loose=0.2, but depth=0. - deactivating depth weighting.</p>
 </section>
 <section id="applying-the-inverse" class="level3">
 <h3 class="anchored" data-anchor-id="applying-the-inverse">Applying the inverse</h3>
@@ -448,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="comparing-inverse-solutions" class="level1">
 <h1>Comparing Inverse Solutions</h1>
-<p>We will do a set of source-solution comparisons. Note that this is just one example, and just a subset of all possible parameters. It might give you a small glimpse, and maybe even only a missleading intuition. But still, at least it will give you a starting point for experience in source localization.</p>
+<p>We will do a set of source-solution comparisons. Note that this is just one example, and just a subset of all possible parameters. It might give you a small glimpse, and maybe even only a misleading intuition. But still, at least it will give you a starting point for experience in source localization.</p>
 <section id="comparing-our-dipole-orientation-depth-models" class="level3">
 <h3 class="anchored" data-anchor-id="comparing-our-dipole-orientation-depth-models">Comparing our dipole-orientation &amp; depth models</h3>
 <p>I feel like this exercise is already pretty long, so I will give you larger chunks of code.</p>
@@ -492,9 +492,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Some further notes:</h1>
 <ul>
 <li><p>There are no ideal parameters or algorithms. Different combinations of parameters will introduce different assumptions will lead to potentially very different solutions. One conclusion from our exploration with a single subject might be: Activity comes from visual cortex, but maybe this is something we knew before.</p></li>
-<li><p>So far, we were projecting ERPs conditionwise to the source space. But you can also plot subtractions of conditions, highlighting where the effects occured. Further, you could even directly project betas or difference-waves to source space.</p></li>
+<li><p>So far, we were projecting ERPs conditionwise to the source space. But you can also plot subtractions of conditions, highlighting where the effects occurred. Further, you could even directly project betas or difference-waves to source space.</p></li>
 <li><p>If you have multiple subjects, and you want to perform statistics, you need to match the head-models of subjects. Given that we do not have individual headmodels, this is no problem for us. All vertices / dipoles are at exactly the same position for all subjects - convenient!</p></li>
-<li><p>Performing statistics over subjects works <a href="https://mne.tools/dev/auto_tutorials/stats-source-space/plot_stats_cluster_spatio_temporal.html#sphx-glr-auto-tutorials-stats-source-space-plot-stats-cluster-spatio-temporal-py">quite similarly (check out this tutorial)</a> to previous analysis. In case of cluster-permutation tests, adjacency/neighbourhood needs to be defined in 3D space on the surface. Computation time might be increased enourmously.</p></li>
+<li><p>Performing statistics over subjects works <a href="https://mne.tools/dev/auto_tutorials/stats-source-space/plot_stats_cluster_spatio_temporal.html#sphx-glr-auto-tutorials-stats-source-space-plot-stats-cluster-spatio-temporal-py">quite similarly (check out this tutorial)</a> to previous analysis. In case of cluster-permutation tests, adjacency/neighbourhood needs to be defined in 3D space on the surface. Computation time might be increased enormously.</p></li>
 <li><p>All of our source-space analysis have been performed on the surface of the cortex. This is where the gray matter is, and where we hypothesize that our EEG signal is produced. But we might be wrong, there might be deep-sources, e.g.&nbsp;hippocampus or cerebellum also generating our potentials. Thus instead of restricting our source analysis to the surface, we could also make use of the whole 3D volume of the brain. This is less well documented in MNE, but also possible. In some sense it is a question of preference.</p></li>
 <li><p>Again my warning: Do not overinterpret your source analysis results! You might be centimeters away from your real activity.</p></li>
 </ul>
