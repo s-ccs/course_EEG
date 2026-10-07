@@ -20,6 +20,8 @@ The poster should consist of:
 
 - Results of additional analyses
 
+We will have a workbench session, where we discuss good practices for posters and poster presentations and you will have a poster template, that you can use if you want to.
+
 ### Walkthrough - 20% (4 min sharp)
 
 You walk us through your poster, present your pipeline, your reasons for deviating from the original pipeline, your results (whether you think you replicated or not) and your additional analysis.
