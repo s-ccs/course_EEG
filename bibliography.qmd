@@ -5,7 +5,7 @@ editor:
 ---
 
 ## Text books
-You should be able to get these books via the library. If not, please contact me
+You should be able to get these books via the library. If not, please contact me.
 
 #### Hari & Puce - MEG/EEG Primer
 Good book with a general overview of many topics discussed in the course

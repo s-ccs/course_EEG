@@ -1,6 +1,6 @@
 ## General remarks to exercises
 
-These exercises are not intended to be brain teasers (they can be nevertheless 🙈) - this is by design. They are designed to help you think in different ways about the lecture material. The exercises are highly recommended but not mandatory. It is best if you generate a jupyter notebook for each exercise and upload it till the deadline on ILIAS. 
+These exercises are not intended to be brain teasers (they can be nevertheless 🙈) - this is by design. They are designed to help you think in different ways about the lecture material. The exercises are highly recommended but not mandatory. It is best if you generate a jupyter notebook for each exercise and upload it until the deadline on ILIAS. 
 
 You are encouraged to work in groups of 2.
 
@@ -17,7 +17,7 @@ Exercises are only graded pass/failed, and you can request feedback in the Frida
 | ICA                  | [Exercise 5](ex5_ICA.qmd)                                                                      |
 | LinearModels         | [Exercise 6](ex6_linearModels.qmd), [Supplementary CSV file](ex6_N170.csv)                     |
 | Encoding             | [Exercise 7](ex7_encoding.md)                                                                  |
-| ClusterPermuatation  | [Exercise 8](ex8_clusterPerm.md)                                                               |
+| ClusterPermutation   | [Exercise 8](ex8_clusterPerm.md)                                                               |
 | TimeFrequency        | [Exercise 9](ex9_tf.md)                                                                        |
 | Decoding             | [Exercise 10](ex10_decoding.md)                                                                |
 | Source Space         | [Exercise 11](ex11_sourceSpace.md)                                                             |

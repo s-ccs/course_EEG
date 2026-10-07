@@ -6,7 +6,7 @@ Welcome to the practical part of the EEG course.
 
 ### Some Comments
 - The lectures are in ILIAS
-- You are highly welcome to our discussion on Wednesday 09:15, see ILIAS.
+- You are highly welcome to our discussion on Wednesday, see ILIAS.
 - I highly recommend to do the exercises, given that the semesterproject will make heavy use of the skills you learned here. You have typically 1 week time for the homeworks. They are not obligatory.
 - If you want feedback, please indicate it at the top of your notebook.
 

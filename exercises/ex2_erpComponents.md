@@ -1,6 +1,6 @@
 
 
-# Signal processing and analysis of human brain potentials (EEG) [Exercise 5]
+# Signal processing and analysis of human brain potentials (EEG) [Exercise 2]
 (This assignment is directly based on the [ERP PURSUE](https://pursue.richmond.edu/) Course)
 
 The purpose of this assignment is to develop your ability to read and critically evaluate a journal article that uses ERP techniques to answer a research question. Specifically, you should be able to identify the research question and important elements of the research design, and explain how the ERP data help to answer this question. Don’t get bogged down with other details in the paper. Instead, use the assignment questions to guide your reading.  Type your answers in the text field below each question.  USE YOUR OWN WORDS to answer the questions. 
