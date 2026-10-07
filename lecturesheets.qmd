@@ -1,0 +1,55 @@
+---
+title: "Lecture Work"
+editor:
+  render-on-save: true
+---
+While going through each lecture, work on the following tasks. They are meant to make the material more motivating and engaging, deepen your interest and understanding, and hopefully help you forget less after the course!
+
+Work with your homework partner. There is typically nothing to hand in, just bring your results to the discussion session!
+
+Note that we are not grading this work - there is **absolutely no point** in using an LLM to work on these tasks.
+
+
+## Lecture 1 - overview
+You need pen & paper for this work sheet. Please bring it to the discussion session so we can, well..., discuss it!
+
+There are many ways to measure brain activity, and many application domains. Think of a daily situation or a special interest you have. Next, think of a way that you could enhance, supplement or improve it, if only you could measure brain activity at the same time.
+
+1) What is the activity/application?
+2) How could you enhance, supplement or improve the activity?
+3) What measurement technique of brain activity seems most appropriate to you?
+4) What measurement paradigm (e.g. event-related activity, resting state, connectivity), seems fitting?
+5) Can you forsee issues, and how could you address them?
+6) Is it realistic or science fiction?
+
+## Lecture 2 - ERPs
+
+Instead of a direct lecture work sheet, we will discuss [Exercise 2](exercises/ex2_erpComponents.md), which involves reading a paper and answering some questions about the paper. This will help you in analysing your project paper and extracting the necessary information, so don't skip on it!
+
+## Lecture 3 - Filtering
+You need pen & paper for this work sheet. Please bring it to the discussion session so we can discuss it!
+
+Your task this week is to design signals and filters that are pretty bad. Because there are many bad signals and filters out in the world, restrict yourself to one or two signals, and pair each with one filter.
+
+1) Draw a coordinate system time vs. activity and draw in your signal.
+2) Now think of a filter type you want to apply, and draw it's frequency space anatomy on the back of the sheet of paper. But make it **bad** in one aspect (try to find one easy and one hard aspect, in the session we will try guessing what's up with some of these filter)
+3) Now add the filtered signal (either in the same or another coordinate system) to the original signal, so that we have signal & filtered signal on the same page
+
+
+## Lecture 4 - Data Cleaning
+
+EEG data is often contaminated with artefacts. The best practice is to prevent the artefact already in the recording. Take three small sheets of paper:
+
+1) Write the artefact you want to remove/reduce at the top.
+2) Sketch how it would look like
+3) What can realistically be done to remove this artefact from EEG data?
+4) What can technically be done to remove this artefact - even though it might be very difficult to do, or slightly unethical?
+
+
+## Lecture 5 - Blind Source Separation
+
+1) Load any of your datasets from your project
+2) Run an ICA
+3) Plot the first 20 components
+4) Print or screenshot these components, then use a pen or annotation tool to label which component is what (e.g. Eye, Brain, Muscle, Line Noise etc.) - use stars if you are unsure, we can discuss them.
+5) Bring the printed sheet, or send the annotated screenshot to `ica-examples@benediktehinger.de`
