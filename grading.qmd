@@ -4,7 +4,7 @@ We will grade your **code before the poster session**, and **your poster present
 
 ### Code - 35% (graded before the poster session)
 
-- **10% Code readability & code documentation.** Clear and informative documentation (code comments), docstrings, style and modularity. Please include short reasoning comments on your processing choices (reference, filter settings, data removal criteria, algorithmic choices). I do not want essays in the code — one or two sharp sentences per decision ("# Decision/Rationale: average reference, because ...").
+- **10% Code readability & code documentation.** Clear and informative documentation (code comments), docstrings, style and modularity. Please include short reasoning comments on your processing choices (reference, filter settings, data removal criteria, algorithmic choices). I do not want essays in the code — one or two sharp sentences per decision (`# Decision/Rationale: average reference, because ...`).
 
 - **10% Reproducibility & modularity.** Control and document the software versions, make sure your analysis scripts can be reproduced on another computer easily. Tip: If you are using mne-BIDS-pipeline you already have a good start.
 
@@ -13,6 +13,7 @@ We will grade your **code before the poster session**, and **your poster present
 ### Poster - 15%
 
 The poster should consist of:
+
 - pipeline overview with own choices 
 
 - Results (including results of the original authors to compare with). 
