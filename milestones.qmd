@@ -10,6 +10,8 @@ The purpose of the milestones is to help you monitor your progress throughout th
 For each milestone, each group is supposed to prepare **1-2 slides** (no more than specified, please!) and **upload them on ILIAS until the deadline (10:00 Monday before the respective session).** See the milestone page on ILIAS for a template slide.
 
 Attending the Wednesday meetings for milestones is mandatory. During the meeting, group members will present the group's progress, and we can discuss open questions.
+
+Depending on your project, you may choose to prioritize certain course videos. The videos recommended for each milestone are listed below.
 :::
 
 ::: callout-important
@@ -31,12 +33,12 @@ Check out the [schedule](schedule.qmd) for the actual dates.
 -   The main research question
 -   The main analysis you will perform (ERP, Time-Frequency, Source-space, others)
 
-::: callout-tip
-Research questions can often be answered by a "yes" or "no".
+::: callout-note
+👉 Research questions can often be answered by a "yes" or "no".
 :::
 ::::
 
-:::::: {.callout-caution collapse="true" icon="false"}
+:::: {.callout-caution collapse="true" icon="false"}
 ### Milestone 2: Processing Pipeline ⚙️ {#sec-ms2}
 
 **Goals to be reached:**
@@ -51,30 +53,26 @@ Research questions can often be answered by a "yes" or "no".
 -   A table contrasting the authors and your pipeline
 -   A plot of the continuous EEG data with events marked
 
-::: callout-warning
-Not all authors do a good job to clearly communicate how their pipeline looked like. Add notes and ask, when you are unsure!
-:::
-
 ::: callout-note
-It is totally fine to adapt your processing pipeline as you go & experience problems / successes and get feedback.
-:::
+❗ Not all authors do a good job to clearly communicate how their pipeline looked like. Add notes and ask, when you are unsure!
 
-::: callout-important
-Lectures needed to be watched for this milestone (for everyone): 
+👉 It is totally fine to adapt your processing pipeline as you go & experience problems / successes and get feedback.
 
--   02 An overview of Event Related Potentials (even if you're not doing ERP for your final analysis, this is important for understanding and preprocessing) 
--   03 Preprocessing 1: Filter in time and space 
--   04 Preprocessing 2: Data Cleaning 
+**Lectures needed to be watched for this milestone (for everyone):**
+
+-   02 An overview of Event Related Potentials (even if you're not doing ERP for your final analysis, this is important for understanding and preprocessing)
+-   03 Preprocessing 1: Filter in time and space
+-   04 Preprocessing 2: Data Cleaning
 -   05 Preprocessing 3: Blind source separation
 
+**Lectures recommended depending on the analysis used by your paper:**
 
-Lectures recommended depending on the analysis used by your paper: 
-
--   ERP -\> 02 An overview of Event Related Potentials 
--   Time frequency analysis -\> 09 Analysis Time-Frequency
+-   ERP -\> 02 An overview of Event Related Potentials
+-   Linear regression/Encoding -\> 06 Analysis 1a: Multiple Linear Regression; 07 Analysis 1b: Encoding Models; 08 Analysis 1c: Multiple Comparison Correction
+-   Time frequency analysis -\> 09 Analysis 2: Time-Frequency
 -   Decoding -\> 10 Analysis 3: Decoding
 :::
-::::::
+::::
 
 :::: {.callout-caution collapse="true" icon="false"}
 ### Milestone 3: First subject analyzed 🧍 {#sec-ms3}
@@ -89,11 +87,12 @@ Lectures recommended depending on the analysis used by your paper:
 -   The table with the authors and your improved pipeline - highlight changes.
 -   First results of one subject (e.g. an ERP, TRF or similar)
 
-::: callout-important
-Lectures needed depending on the analysis used by your paper: 
+::: callout-note
+**Lectures needed depending on the analysis used by your paper:**
 
--   ERP -\> 02 An overview of Event Related Potentials 
--   Time frequency analysis -\> 09 Analysis Time-Frequency 
+-   ERP -\> 02 An overview of Event Related Potentials
+-   Linear regression/Encoding -\> 06 Analysis 1a: Multiple Linear Regression; 07 Analysis 1b: Encoding Models; 08 Analysis 1c: Multiple Comparison Correction
+-   Time frequency analysis -\> 09 Analysis Time-Frequency
 -   Decoding -\> 10 Analysis 3: Decoding
 :::
 ::::
@@ -115,7 +114,7 @@ Sanity checks could be (depending on project, come up with your own!)
 -   Comparisons to author results
 :::
 
-::: {.callout-caution collapse="true" icon="false"}
+:::: {.callout-caution collapse="true" icon="false"}
 ### Milestone 5: Outlook 🔍 {#sec-ms5}
 
 **Goals to be reached:**
@@ -130,7 +129,7 @@ The analysis you propose here along with the feedback you receive will guide you
 -   (Slide 1) the current state of replication vs. not
 -   (Slide 2) your ideas on what to look at next
 
-::: callout-important
+::: callout-note
 If you haven't, watch all the other videos on analysis methods for inspirations!
 :::
-:::
+::::
