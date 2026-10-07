@@ -1,7 +1,7 @@
 # Signal processing and analysis of human brain potentials (EEG) [Exercise 1]
 
 ## Overview
-In this exercise we will install the mne-python toolbox, download a example dataset, make some basic visualizations and epoch, average and visualize the resulting ERPs.
+In this exercise we will install the mne-python toolbox, download an example dataset, make some basic visualizations and epoch, average and visualize the resulting ERPs.
 
 What we are doing is roughly outlined in the "What is EEG" video lecture.
 
@@ -45,7 +45,7 @@ bids_path = BIDSPath(subject=subject_id,task="P3",session="P3",
 
 # read the file
 raw = read_raw_bids(bids_path)
-# fix the annotations readin
+# fix the annotations reading
 ccs_eeg_utils.read_annotations_core(bids_path,raw)
 
 ```
@@ -60,7 +60,7 @@ You can also use `raw.get_data()` to get the whole data as a numpy array.
 
 :::
 
-::: callout-tipp
+::: callout-tip
 
 For now we can use simple matplotlib to visualize the data, e.g.:
 ```python
@@ -76,7 +76,7 @@ plt.plot(raw[10,:][0].T)
 
 ## Epoching 
 
-**Task:** We will epoch the data now. Formost we will cut the raw data to one channel using `raw.pick(["Cz"])` - note that this will permanently change the `raw` object and **removes** alle other channels from memory. If you want rather a copy you could use `raw_subselect = raw.copy().pick(["Cz"]))`.
+**Task:** We will epoch the data now. First, we will cut the raw data to one channel using `raw.pick(["Cz"])` - note that this will permanently change the `raw` object and **removes** all other channels from memory. If you want rather a copy you could use `raw_subselect = raw.copy().pick(["Cz"])`.
 
 
 **Task** Let's investigate the annotation markers. Have a look at raw.annotations. These values reflect the values in the bids `*_events.tsv`  file (have a look at this file via `../local/bids/sub-030/sub-030_task-P3_events.tsv`). BIDS is a new standard to share neuroimaging and other physiological data. It is not really a fileformat, but more of a folder & filename structure with some additional json files. I highly recommend to put your data into bids-format as soon as possible. It helps you stay organized and on top of things!
@@ -87,7 +87,7 @@ plt.plot(raw[10,:][0].T)
 ```python
 # get all keys which contain "stimulus"
 wanted_keys = [e for e in evts_dict.keys() if "stimulus" in e]
-# subset the large event-dictionairy
+# subset the large event-dictionary
 evts_dict_stim=dict((k, evts_dict[k]) for k in wanted_keys if k in evts_dict)
 ```
 

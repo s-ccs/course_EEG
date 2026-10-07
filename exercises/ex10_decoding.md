@@ -8,7 +8,7 @@ Information on the dataset at hand can be found [here](https://physionet.org/con
 
 Subjects imagine opening left & right hand or hand & feet. We want to decode which they do, in case they are doing that for real, or when they are just imagining it (brain reading 🤯!)
 
-- We will use Common Spatial Patterns to get a good feature space and LinearDiscriminatAnalysis as a simple decoder. Of course you can always change things up and see how it changes.
+- We will use Common Spatial Patterns to get a good feature space and LinearDiscriminantAnalysis as a simple decoder. Of course you can always change things up and see how it changes.
 
 - We will use cross-validation to preclude overfitting
 
@@ -29,7 +29,7 @@ Subjects imagine opening left & right hand or hand & feet (you could change the 
 ### CSP Feature Selection
 We can define a CommonSpatialPatterns object using `csp = mne.decoding.CSP(n_components=2)`
 
-To fit the CSP we have to give it the data and the labels. For now we just want to look at the CSP, not run a classifier for it, so we dont worry about any overfit etc.
+To fit the CSP we have to give it the data and the labels. For now we just want to look at the CSP, not run a classifier for it, so we don't worry about any overfit etc.
 
 **T:** `csp.fit_transform(epochs_data, labels)` will fit it and `csp.plot_filters(epochs.info)` and `csp.plot_patterns(epochs.info)` will plot filter and activation. 
 
@@ -66,7 +66,7 @@ cv = sklearn.model_selection.StratifiedShuffleSplit(10, test_size=0.2, random_st
 cv_split = cv.split(epochs_train.get_data(),labels)
 ```
 
-Next we can walk though each test/train, fit CSP, fit LDA and evaluate. I will give you the skeleton and you only have to fill in the XXX to speed up programming :).
+Next we can walk through each test/train, fit CSP, fit LDA and evaluate. I will give you the skeleton and you only have to fill in the XXX to speed up programming :).
 
 ```python
 score_list = []
@@ -83,7 +83,7 @@ for train_idx, test_idx in cv_split:
 ```
 ### Decoding via Pipeline
 Typically you would like to use a pipeline-system to easily exchange components. We are using the scikit pipeline
-We need several incredients: 
+We need several ingredients: 
 
 1. Training-Data & labels
 2. Pipeline with feature selection (CSP) & Classifier (LDA)
@@ -96,8 +96,8 @@ We need several incredients:
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 import mne.decoding
 lda = LinearDiscriminantAnalysis()
-csp = mne.decoding.CSP(n_components=2) # default is 4, typically youd like to do a nested cross-val hyperparam search. 2 is likely too low
-% and the pipeline simply:
+csp = mne.decoding.CSP(n_components=2) # default is 4, typically you'd like to do a nested cross-val hyperparam search. 2 is likely too low
+# and the pipeline simply:
 pipe = sklearn.pipeline.Pipeline([('CSP', csp), ('LDA', lda)])
  ```
 
@@ -119,7 +119,7 @@ Thus in principle, you would like to explore some options with one set of subjec
 
 ### Remove CSP
 Instead of applying a feature selection, maybe we can learn from the "raw" data? 
-**T:** Replace the "csd" in the pipeline with `mne.decoding.Vectorizer()`, this will ensure the reshaping of the features we performed earlier.
+**T:** Replace the "CSP" in the pipeline with `mne.decoding.Vectorizer()`, this will ensure the reshaping of the features we performed earlier.
 
 **Q:** What is the accuracy now?
 
@@ -130,7 +130,7 @@ For this the convenience function `timeDecode = mne.decoding.SlidingEstimator(pi
 Because we will get multiple scores per cross-val, we also have to switch our scorer to `mne.decoding.cross_val_multiscore(timeDecode,...)`.
 
 **T:** Plot the performance against time
-**Bonus T:* You can also use `mne.decoding.GeneralizingEstimator(...)` to get the temporal decoding matrix (increased runtime warning)
+**Bonus T:** You can also use `mne.decoding.GeneralizingEstimator(...)` to get the temporal decoding matrix (increased runtime warning)
 
 You might be surprised - or not - by the performance you observed. Applying this to a dataset with actual evoked responses, will likely be much more satisfactory.
 

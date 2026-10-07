@@ -4,21 +4,21 @@ In this exercise we will learn how to move Sensor-Space data to Source-space.
 
 # General remarks
 
-Source localization is hard. There are numerous moving parts, many parameters and decisions, and a complex chain of tools. Especially the part named "structural information" makes use of the Freesurfer tool, which is a tool that needs quite some time to understand the underlying functionalities, intrications and output. This box depicts how to get from an MRI to a 3D-surface/headmodel & how to align this headmodel to the coordinate system of your electrode sensors. 
+Source localization is hard. There are numerous moving parts, many parameters and decisions, and a complex chain of tools. Especially the part named "structural information" makes use of the Freesurfer tool, which is a tool that needs quite some time to understand the underlying functionalities, intricacies and output. This box depicts how to get from an MRI to a 3D-surface/headmodel & how to align this headmodel to the coordinate system of your electrode sensors. 
 
 
 ![MNE Flow](https://mne.tools/stable/_images/flow_diagram.svg)
 
-We will skip these steps completly and start with an already-segment "default" MRI (called 'fsaverage'). 
+We will skip these steps completely and start with an already-segment "default" MRI (called 'fsaverage'). 
 
 ### **Important:**
- Source-reconstructions with a default-MRI (opposite of a individual MRI) introduces even more noise (=uncertainty) than already existing in "optimal" source localization. Your source-localizations should therefore be interpreted even more carefully than with individual MRIs. Never let yourself be fooled by the apparent precision of source-localizations!!
+ Source-reconstructions with a default-MRI (opposite of an individual MRI) introduces even more noise (=uncertainty) than already existing in "optimal" source localization. Your source-localizations should therefore be interpreted even more carefully than with individual MRIs. Never let yourself be fooled by the apparent precision of source-localizations!!
 
 # Setup
-We first need to install the python packages "pysurfer" and "mayavi" - if mayavi doesnt work,you can also try pyvista & pyvistaqt
+We first need to install the python packages "pysurfer" and "mayavi" - if mayavi doesn't work, you can also try pyvista & pyvistaqt
 
 ### !! 3D Frustration alert!! 
-3D Plots are annoying. They crash your system, they are slow, they are unstable. The frustration is normal and unfortunately still to be expected.
+3D Plots are annoying. They crash your system, they are slow, they are unstable. The frustration is normal and unfortunately still expected.
 
 ### Actual start of exercise
 
@@ -44,7 +44,7 @@ src = op.join(fs_dir, 'bem', 'fsaverage-ico-5-src.fif')
 bem = op.join(fs_dir, 'bem', 'fsaverage-5120-5120-5120-bem-sol.fif')
 ```
 
-Next we need a dataset that we want to source localize. We will use the LIMO dataset, which has lot's of trials, but unfortauntely neither individual headmodel, nor individual electrode-positions.
+Next we need a dataset that we want to source localize. We will use the LIMO dataset, which has lots of trials, but unfortunately neither individual headmodel, nor individual electrode-positions.
 
 ```python
 from mne.datasets.limo import load_data
@@ -55,11 +55,11 @@ epochs.set_eeg_reference(projection=True)  # needed for inverse modeling
 
 
 ### Alignment of brains and sensors
-It is of outmost importance, to align sensors and brains. This can be a very tricky task if you have individual MRIs & headmodels, because brains are mirror-symmetric and electrode locations as well. Thus R/L Flips are common.
+It is of utmost importance, to align sensors and brains. This can be a very tricky task if you have individual MRIs & headmodels, because brains are mirror-symmetric and electrode locations as well. Thus R/L Flips are common.
 
-Typically we define 3 anatomical landmarks, the nasion (between your eyes) and the Auricular Points Left and Right, a point just infront of your ear-canals. These points can be defined in your electrode-locations (e.g. using a digitizer), and are visible in the MRI. 
+Typically we define 3 anatomical landmarks, the nasion (between your eyes) and the Auricular Points Left and Right, a point just in front of your ear canals. These points can be defined in your electrode-locations (e.g. using a digitizer), and are visible in the MRI. 
 
-Luckily, for us everything is alligned already and we can plot it using:
+Luckily, for us everything is aligned already and we can plot it using:
 ```python
 # Check that the locations of EEG electrodes is correct with respect to MRI
 %matplotlib qt
@@ -76,7 +76,7 @@ p
 
 # The forward model
 
-The forward model translates source-activity to sensor-activity. We have to provide the sensor locations (`epochs.info`), the **trans**formations of sensorlocations to BEM model (`trans`) and the actual physical spheres (bem). The default conductivities for the BEM model are already saved in the pre-computed standard BEM model.
+The forward model translates source-activity to sensor-activity. We have to provide the sensor locations (`epochs.info`), the **trans**formations of sensor locations to BEM model (`trans`) and the actual physical spheres (bem). The default conductivities for the BEM model are already saved in the pre-computed standard BEM model.
 
 
 The standard-forward model can be calculated using `fwd = mne.make_forward_solution(epochs.info, trans=trans, src=src, bem=bem, eeg=True, mindist=5.0)`
@@ -105,7 +105,7 @@ subjects_dir = op.dirname(fs_dir)
 # generate Brain Plot
 b = Brain('fsaverage', "lh", "white", background='white',subjects_dir=subjects_dir)
 
-# get the surface model, get the left-hemisphere (`0`), geht the vertice-indices
+# get the surface model, get the left-hemisphere (`0`), get the vertex indices
 v = fwd["src"][0]['vertno']
 nvert = len(v)
 
@@ -155,7 +155,7 @@ b.scale_data_colormap(fmin=lim[0], fmid=lim[1], fmax=lim[2], transparent=True)
 
 Note the usage of np.abs around the source activity. It is generally not really possible to interpret positive / negative source activity. if you are on one side of a gyrus, the activity might be positive, on the other side it might be negative - simply because of dipole orientation. We therefore often just look at the absolute value
 
-**Bonus:** If you wanted to plot all time-points, you can use `b.set_time(200)` to set time, or  `from surfer import TimeViewer` and `viewer = TimeViewer(b)` to get a rudimentairy GUI
+**Bonus:** If you wanted to plot all time-points, you can use `b.set_time(200)` to set time, or  `from surfer import TimeViewer` and `viewer = TimeViewer(b)` to get a rudimentary GUI
 
 
 ### Finishing words to the manual implementation
@@ -198,7 +198,7 @@ We generate an inverse operator like this:
 from mne.minimum_norm import make_inverse_operator, apply_inverse
 inv_default = make_inverse_operator(epochs.info, fwd, noise_cov, loose=0.2, depth=0.8)
 ```
-**T:** Generate three more operator, one with loose=1, allowing for all dipole orientations, one with loose=0, enforcing strict orthogonal orientation (don't do that) and one with loose=0.2, but depth=0. - deactivating depth weighting.
+**T:** Generate three more operators, one with loose=1, allowing for all dipole orientations, one with loose=0, enforcing strict orthogonal orientation (don't do that) and one with loose=0.2, but depth=0. - deactivating depth weighting.
 
 
 
@@ -219,7 +219,7 @@ lambda2 = 1.0 / snr ** 2
 
 
 # Comparing Inverse Solutions
-We will do a set of source-solution comparisons. Note that this is just one example, and just a subset of all possible parameters. It might give you a small glimpse, and maybe even only a missleading intuition. But still, at least it will give you a starting point for experience in source localization.
+We will do a set of source-solution comparisons. Note that this is just one example, and just a subset of all possible parameters. It might give you a small glimpse, and maybe even only a misleading intuition. But still, at least it will give you a starting point for experience in source localization.
 
 ### Comparing our dipole-orientation & depth models
 I feel like this exercise is already pretty long, so I will give you larger chunks of code.
@@ -270,11 +270,11 @@ Make note of the MNE text-output, it tells you how much % of your actual observe
 
 - There are no ideal parameters or algorithms. Different combinations of parameters will introduce different assumptions will lead to potentially very different solutions. One conclusion from our exploration with a single subject might be: Activity comes from visual cortex, but maybe this is something we knew before. 
 
-- So far, we were projecting ERPs conditionwise to the source space. But you can also plot subtractions of conditions, highlighting where the effects occured. Further, you could even directly project betas or difference-waves to source space.
+- So far, we were projecting ERPs conditionwise to the source space. But you can also plot subtractions of conditions, highlighting where the effects occurred. Further, you could even directly project betas or difference-waves to source space.
 
 - If you have multiple subjects, and you want to perform statistics, you need to match the head-models of subjects. Given that we do not have individual headmodels, this is no problem for us. All vertices / dipoles are at exactly the same position for all subjects - convenient!
 
-- Performing statistics over subjects works [quite similarly (check out this tutorial)](https://mne.tools/dev/auto_tutorials/stats-source-space/plot_stats_cluster_spatio_temporal.html#sphx-glr-auto-tutorials-stats-source-space-plot-stats-cluster-spatio-temporal-py) to previous analysis. In case of cluster-permutation tests, adjacency/neighbourhood needs to be defined in 3D space on the surface. Computation time might be increased enourmously.
+- Performing statistics over subjects works [quite similarly (check out this tutorial)](https://mne.tools/dev/auto_tutorials/stats-source-space/plot_stats_cluster_spatio_temporal.html#sphx-glr-auto-tutorials-stats-source-space-plot-stats-cluster-spatio-temporal-py) to previous analysis. In case of cluster-permutation tests, adjacency/neighbourhood needs to be defined in 3D space on the surface. Computation time might be increased enormously.
 
 - All of our source-space analysis have been performed on the surface of the cortex. This is where the gray matter is, and where we hypothesize that our EEG signal is produced. But we might be wrong, there might be deep-sources, e.g. hippocampus or cerebellum also generating our potentials. Thus instead of restricting our source analysis to the surface, we could also make use of the whole 3D volume of the brain. This is less well documented in MNE, but also possible. In some sense it is a question of preference.
 

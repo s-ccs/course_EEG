@@ -38,9 +38,9 @@ We want to get an overview of the power. So for starters we choose bad frequency
 
 We will evaluate the TF at `freqs = np.logspace(*np.log10([5, 80]), num=25)` with 1 cycle. 
  
-**T:**Run:
+**T:** Run:
 ``` 
-power_total = mne.time_frequency.tfr_morlet(epochs, freqs=freqs, n_cycles=n_cycles, return_itc=False,n_jobs=4,average=True) # ITC, inter-trial-coherence is quite similar to evoked power, it is a measure of phase consistency over trials but we havent discussed it in the lecture.
+power_total = mne.time_frequency.tfr_morlet(epochs, freqs=freqs, n_cycles=n_cycles, return_itc=False,n_jobs=4,average=True) # ITC, inter-trial-coherence is quite similar to evoked power, it is a measure of phase consistency over trials but we haven't discussed it in the lecture.
 ``` 
 
 
@@ -52,18 +52,18 @@ Choose a baseline of -.5 to 0 using the command `power.plot_topo()`
     1. Without any baseline
     2. With a baseline of your choice
 
-**T:** Explain the general pattern you see. Can you spot differences betweem with and withot baseline?
+**T:** Explain the general pattern you see. Can you spot differences between with and without baseline?
 
 
-**T:** Now lets improve upon our frequency resolution nz increasing the number of cycles to 3. Plot channel Cz with BSL correction
-(-0.5,0). Tipp: you can speed up the calculation by specifying `picks="Cz"`
+**T:** Now lets improve upon our frequency resolution by increasing the number of cycles to 3. Plot channel Cz with BSL correction
+(-0.5,0). Tip: you can speed up the calculation by specifying `picks="Cz"`
 
 
 
 **T:** We also want to calculate the induced and evoked TF. For this we first calculate the induced spectrum, then subtract the total from the induced.
 
 1. `epochs.subtract_evoked()` is a function that removes the ERP from each trial. It is a mne-consistent function that practically does:
-`epochs_induced._data = epochs._data  - epochs.average().data`. Run the tfr analysis again on the induced dataset, remember that if you dont make a copy of your epochs (via `epochs.copy()`) the dataset will be overwritten in memory
+`epochs_induced._data = epochs._data  - epochs.average().data`. Run the tfr analysis again on the induced dataset, remember that if you don't make a copy of your epochs (via `epochs.copy()`) the dataset will be overwritten in memory
 
 2. In order to get epochs_evoked, we have to subtract total and induced. We cand do this via 
 ```python

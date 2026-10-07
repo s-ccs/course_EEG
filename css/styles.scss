@@ -1,0 +1,12 @@
+/*-- scss:defaults --*/
+
+/*-- scss:rules --*/
+/* Heading sizes relative to the base font size.
+   (Must live in the rules section: $font-size-base is only defined
+   once bootstrap's variables have been compiled.) */
+h1 { font-size: $font-size-base * 1.75; }
+h2 { font-size: $font-size-base * 1.5; }
+h3 { font-size: $font-size-base * 1.25; }
+h4 { font-size: $font-size-base * 1.1; }
+h5 { font-size: $font-size-base * 1.0; }
+h6 { font-size: $font-size-base * 1.0; }

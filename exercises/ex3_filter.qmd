@@ -32,7 +32,7 @@ x = cos(2*pi*0.5*t) + 0.2*sin(2*pi*2.5*t+0.1) + \
 ::::
 
 ::: callout-note
-If you plot e.g. the magnitude you will notice it is mirrorsymmetric around the middle! This is because FFT is actually defined for complex signals. Because we only have real signals, practically half of the FFT is redundant. But this also means, all of our manual-filters in the next steps need to take the mirror-symmetry into account. For this reason, typically a `rfft` function exists, returning only the real part.
+If you plot e.g. the magnitude you will notice it is mirror-symmetric around the middle! This is because FFT is actually defined for complex signals. Because we only have real signals, practically half of the FFT is redundant. But this also means, all of our manual-filters in the next steps need to take the mirror-symmetry into account. For this reason, typically a `rfft` function exists, returning only the real part.
 :::
 
 ## A simple filter
@@ -73,7 +73,7 @@ Add a DC-offset (a step-function) starting from `x[200:]` and investigate the fo
 ::::
 
 ## Impulse Response Function
-To get a bit deeper understanding of what is going on, have a look at the fourier transform of a impulse signal (e.g. `1:400 => 0`. and `200 => 1`.). 
+To get a bit deeper understanding of what is going on, have a look at the fourier transform of an impulse signal (e.g. `1:400 => 0`. and `200 => 1`.). 
 
 :::: callout-tip
 ## Question
@@ -83,7 +83,7 @@ To get a bit deeper understanding of what is going on, have a look at the fourie
 ::::
 
 ## Filtering EEG data
-Usually we would not built our own filters - but understanding the properties is still very important! We will load our data from last time again:
+Usually we would not build our own filters - but understanding the properties is still very important! We will load our data from last time again:
 
 ```python
 from mne_bids import (BIDSPath,read_raw_bids)
@@ -115,7 +115,7 @@ Now we filter using `raw.filter()`, specify a highpass of 0.5Hz and a lowpass of
 :::: callout-tip
 ## Task
 - Plot the fourier spectrum after filtering again.
-- Plot the channel again, did the filter work as indented?
+- Plot the channel again, did the filter work as intended?
 
 ::::
 

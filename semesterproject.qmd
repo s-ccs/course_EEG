@@ -6,13 +6,13 @@ How I will grade the projects can be seen in [grading](grading.qmd). I value lin
 
 ## Which Datasets?
 
-In previous iterations, we took a well understood and standardized EEG dataset, which made the task a bit unrealistic and, frankly, a bit boring. Thererfore, you will choose an EEG paper (with data) to reproduce yourself.
+In previous iterations, we took a well understood and standardized EEG dataset, which made the task a bit unrealistic and, frankly, a bit boring. Therefore, you will choose an EEG paper (with data) to reproduce yourself.
 
 ::: callout-important
-This has the consequence that there will be many (individual) unforseen problems, inconsistencies and problems. This is to be expected and **very** typical for EEG analyses. See it as part of the challenge!
+This has the consequence that there will be many (individual) unforeseen problems, inconsistencies and problems. This is to be expected and **very** typical for EEG analyses. See it as part of the challenge!
 :::
 
-What follows is a list of datasets with accompanying papers that I have screened. You can select one of these if you wish, but also feel free to look for your own datasets either on [menar.org](https://nemar.org) or on [openneuro.org](https://openneuro.org). Try to look for datasets below 20Gb of space, with a paper accompanied. Please send a potential candidate to me asap, so I can screen it.
+What follows is a list of datasets with accompanying papers that I have screened. You can select one of these if you wish, but also feel free to look for your own datasets either on [nemar.org](https://nemar.org) or on [openneuro.org](https://openneuro.org). Try to look for datasets below 20Gb of space, with a paper accompanied. Please send a potential candidate to me asap, so I can screen it.
 
 | Subjects | task               | analysis | link                                                                 |
 |------------------|------------------|------------------|------------------|
@@ -52,16 +52,11 @@ You can find the link above.
 ## How can I get help / advice?
 
 -   Write in the ILIAS Forum. Either others will help, or I myself will answer questions.
--   I highly recommend watching the first talk in this session: https://www.crowdcast.io/e/live-meeg-2020/7 by Marijn van Vliet for an fitting introduction of analysing multiple subjects with MNE in a reproducible and documented way. After that, use mne-bids-pipeline as suggested before.
+-   I highly recommend watching the first talk in this session: https://www.crowdcast.io/e/live-meeg-2020/7 by Marijn van Vliet for a fitting introduction of analysing multiple subjects with MNE in a reproducible and documented way. After that, use mne-bids-pipeline as suggested before.
 -   The MNE-documentation is quite extensive. It is worth looking into. You can also try **stackexchange** or **neurostar** for help.
 
-## FAQ (will be updated)
+## FAQ (will be continuously updated)
 
-::: {.callout-note icon="false"}
-## What is the scope of the project report?
-
-The project should not be a dissertation. If you report goes beyond 40 pages (which depending on the amount of plots can easily happen), you should really think whether you need more pages to make your point. A project report with 20 pages or less is completely fine, as long as you discuss what you are seeing / plotting / doing.
-:::
 
 ::: {.callout-note icon="false"}
 ## Am I allowed to use other packages?
@@ -70,21 +65,19 @@ Yes! Everything goes this time around. I do recommend to stick mostly to mne-pyt
 :::
 
 ::: {.callout-note icon="false"}
-## Should I use a single jupyternotebook?
+## Should I use a single Jupyter notebook?
 
-No. It is a good idea to use a notebook to display the data / report / results. But one large notebook quickly becomes messy. I'd recommend to encapsulate code in functions and put them in separate files that you can import and use in your notebook.
+No. It is a good idea to use a notebook to display the data / results. But one large notebook quickly becomes messy. I'd recommend to encapsulate code in functions and put them in separate files that you can import and use in your notebook.
 :::
 
-## Format of report
 
-You can share a git of your project and a report, or the code and the report via Ilias. The git can be on github or on the university gitlab. The report can be a jupyter notebook if you prefer to intermingle code and documentation. 
+## Format of submission
 
-A possible structure for your report might include: an introduction; an overview of the original paper and analysis; details of your replication; and a discussion of your results. The Workbench slides uploaded on Ilias discuss this structure more in depth.
+You can share a git of your project, or the code via ILIAS. The git can be on github or on the university github.
 
-The report is there to document your decisions and thoughts along the pipeline. I am especially interested why you chose certain steps / parameters / analyses / visualizations. Make grading easy for me and show that you understood what you are doing and what your results are.
 
-You make my life easier if you name the git / zip file with your last name, e.g. `Muller_SS2021_EEGSemesterProject.zip`, and the folder containing in the zip as well.
+You make my life easier if you name the git / zip file with your last name, e.g. `Muller_SS2026_EEGSemesterProject.zip`, and the folder containing in the zip as well. 
 
 ## Deadline
 
-Please hand in the documents until 31.03.2026.
+Please hand in the code + poster until 10.03.2027 - 7 days before the poster presentation, so we can check the code and print the posters in time.

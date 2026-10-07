@@ -5,9 +5,9 @@ editor:
 ---
 
 ::: callout-note
-The purpose of the milestones is to help you monitoring your progress throughout the semester.
+The purpose of the milestones is to help you monitor your progress throughout the semester.
 
-For each milestone, each group is supposed to prepare **1-2 slides** (no more than specified, please!) and **upload them on Ilias until the deadline (10:00 Monday before the respective session).** See the milestone page on Ilias for a template slide.
+For each milestone, each group is supposed to prepare **1-2 slides** (no more than specified, please!) and **upload them on ILIAS until the deadline (10:00 Monday before the respective session).** See the milestone page on ILIAS for a template slide.
 
 Attending the Wednesday meetings for milestones is mandatory. During the meeting, group members will present the group's progress, and we can discuss open questions.
 :::
@@ -62,7 +62,7 @@ It is totally fine to adapt your processing pipeline as you go & experience prob
 ::: callout-important
 Lectures needed to be watched for this milestone (for everyone): 
 
--   02 An overview of Event Related Potentials (even if you're not doing ERP for your final analyis, this is important for understanding and preprocessing) 
+-   02 An overview of Event Related Potentials (even if you're not doing ERP for your final analysis, this is important for understanding and preprocessing) 
 -   03 Preprocessing 1: Filter in time and space 
 -   04 Preprocessing 2: Data Cleaning 
 -   05 Preprocessing 3: Blind source separation
