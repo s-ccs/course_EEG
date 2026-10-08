@@ -27,6 +27,8 @@ website:
               text: 🎯 Milestones
       - section: "Exercises"
         contents:
+            - href: lecturesheets.qmd
+              text: Lecture Work Sheets
             - href: exercises/exercises.qmd
               text: 🏋️‍♂️ Exercise sheets
       - section: "Resources"
