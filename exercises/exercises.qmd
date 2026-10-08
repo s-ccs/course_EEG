@@ -4,7 +4,7 @@ These exercises are not intended to be brain teasers (they can be nevertheless ð
 
 You are encouraged to work in groups of 2.
 
-Exercises are only graded pass/failed, and you can request feedback in the Friday workbench sessions or via e-mail (see ILIAS). Again: Exercises are not mandatory to pass the course. The course-grade is solely based on the semesterproject.
+Exercises are not graded, and you can request feedback in the Friday workbench sessions or via e-mail (see ILIAS). Again: Exercises are not mandatory to pass the course. The course-grade is solely based on the semesterproject.
 
 ## The exercises
 
